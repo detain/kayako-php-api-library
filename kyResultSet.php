@@ -215,11 +215,11 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	 *
 	 * @return kyResultSet
 	 */
-	public function resetFilters() {
+	public function removeFilters() {
 		if ($this->previous_result_set === null)
 			return $this;
 
-		return $this->previous_result_set->resetFilter();
+		return $this->previous_result_set->removeFilters();
 	}
 
 	/**
