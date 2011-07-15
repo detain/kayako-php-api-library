@@ -129,7 +129,7 @@ class kyStaff extends kyObjectBase {
 	 * @param kyStaffGroup $staff_group Staff group object.
 	 * @return kyStaff
 	 */
-	public function setStaffGroup($staff_group) {
+	public function setStaffGroup(kyStaffGroup $staff_group) {
 		$this->staff_group_id = $staff_group->getId();
 		$this->staff_group = $staff_group;
 		return $this;
@@ -399,15 +399,15 @@ class kyStaff extends kyObjectBase {
 	 * Creates new staff user.
 	 * WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.
 	 *
-	 * @param string $first_name First name of the staff user.
-	 * @param string $last_name Last name of the staff user.
-	 * @param string $user_name Login username of the staff user.
-	 * @param string $email E-mail address of the staff user.
-	 * @param kyStaffGroup $staff_group Staff group of the staff user.
-	 * @param string $password Password for the staff user.
+	 * @param string $first_name First name of new staff user.
+	 * @param string $last_name Last name of new staff user.
+	 * @param string $user_name Login username of new staff user.
+	 * @param string $email E-mail address of new staff user.
+	 * @param kyStaffGroup $staff_group Staff group of new staff user.
+	 * @param string $password Password for new staff user.
 	 * @return kyStaff
 	 */
-	static public function createNew($first_name, $last_name, $user_name, $email, $staff_group, $password) {
+	static public function createNew($first_name, $last_name, $user_name, $email, kyStaffGroup $staff_group, $password) {
 		$new_staff = new kyStaff();
 		$new_staff->setFirstName($first_name);
 		$new_staff->setLastName($last_name);
@@ -427,7 +427,7 @@ class kyStaff extends kyObjectBase {
 	 * @param string $subject Subject of the ticket.
 	 * @return kyTicket
 	 */
-	public function newTicket($department, $contents, $subject) {
+	public function newTicket(kyDepartment $department, $contents, $subject) {
 		return kyTicket::createNew($department, $this, $contents, $subject);
 	}
 }
