@@ -370,7 +370,7 @@ class kyDepartment extends kyObjectBase {
 	 * @param string $type Type of new department.
 	 * @return kyDepartment
 	 */
-	public function createSubdepartment($title, $type = self::TYPE_PUBLIC, $module = self::MODULE_TICKETS) {
+	public function newSubdepartment($title, $type = self::TYPE_PUBLIC, $module = self::MODULE_TICKETS) {
 		$new_department = kyDepartment::createNew($title, $type, $module);
 		$new_department->setParentDepartment($this);
 		return $new_department;
