@@ -58,7 +58,7 @@ abstract class kyBase {
 	static private $put_memory_stream = true;
 
 	/**
-	 * Kayako controller used to operate on this objects.
+	 * Default Kayako controller used to operate on this objects. Override in descending classes.
 	 * @var string
 	 */
 	static protected $controller = null;
@@ -101,11 +101,15 @@ abstract class kyBase {
 	/**
 	 * Prepares URL and POST data.
 	 *
+	 * @param string $controller Kayako controller to call. Null to use default controller defined for object.
 	 * @param string $method HTTP verb.
 	 * @param array $parameters List of additional parameters (like object identifiers or search parameters).
 	 * @return array
 	 */
-	static private function getRequestData($method, $parameters = array()) {
+	static private function getRequestData($controller, $method, $parameters = array()) {
+		if ($controller === null)
+			$controller = static::$controller;
+
 		$salt = mt_rand();
 		$signature = base64_encode(hash_hmac('sha256', $salt, self::$secret_key, true));
 
@@ -118,14 +122,14 @@ abstract class kyBase {
 		switch ($method) {
 			case self::METHOD_POST:
 			case self::METHOD_PUT:
-				$url = sprintf("%s?e=%s%s", self::$base_url, static::$controller, $parameters_str);
+				$url = sprintf("%s?e=%s%s", self::$base_url, $controller, $parameters_str);
 				$auth_data['apikey'] = self::$api_key;
 				$auth_data['salt'] = $salt;
 				$auth_data['signature'] = $signature;
 				break;
 			case self::METHOD_GET:
 			case self::METHOD_DELETE:
-				$url = sprintf("%s?e=%s%s&apikey=%s&salt=%s&signature=%s", self::$base_url, static::$controller, $parameters_str, self::$api_key, $salt, urlencode($signature));
+				$url = sprintf("%s?e=%s%s&apikey=%s&salt=%s&signature=%s", self::$base_url, $controller, $parameters_str, self::$api_key, $salt, urlencode($signature));
 				break;
 		}
 
@@ -135,13 +139,14 @@ abstract class kyBase {
 	/**
 	 * Sends the request to Kayako server and returns parsed response.
 	 *
+	 * @param string $controller Kayako controller to call. Null to use default controller defined for object.
 	 * @param string $method HTTP verb.
 	 * @param array $parameters Optional. List of additional parameters (like object identifiers or search parameters).
 	 * @param array $data Optional. Object data (for POST and PUT).
 	 * @return array
 	 */
-	static protected function processRequest($method, $parameters = array(), $data = array()) {
-		$request_data = static::getRequestData($method, $parameters);
+	static protected function processRequest($controller, $method, $parameters = array(), $data = array()) {
+		$request_data = static::getRequestData($controller, $method, $parameters);
 
 		$curl_options = array(
 			CURLOPT_HEADER => false,
@@ -180,7 +185,7 @@ abstract class kyBase {
 				$curl_options[CURLOPT_CUSTOMREQUEST] = 'DELETE';
 				break;
 		}
-
+var_dump($request_body);
 		$curl_handle = curl_init();
 		curl_setopt_array($curl_handle, $curl_options);
 		$response = curl_exec($curl_handle);
@@ -211,10 +216,11 @@ abstract class kyBase {
 	 * Sends GET request and returns parsed response.
 	 *
 	 * @param array $parameters Optional. List of additional parameters (like object identifiers or search parameters).
+	 * @param string $controller Kayako controller to call. Null to use default controller defined for object.
 	 * @return array
 	 */
-	static protected function _get($parameters = array()) {
-		return static::processRequest(self::METHOD_GET, $parameters);
+	static protected function _get($parameters = array(), $controller = null) {
+		return static::processRequest($controller, self::METHOD_GET, $parameters);
 	}
 
 	/**
@@ -225,7 +231,7 @@ abstract class kyBase {
 	 * @return array
 	 */
 	static protected function _post($parameters = array(), $data = array()) {
-		return static::processRequest(self::METHOD_POST, $parameters, $data);
+		return static::processRequest(static::$controller, self::METHOD_POST, $parameters, $data);
 	}
 
 	/**
@@ -236,7 +242,7 @@ abstract class kyBase {
 	 * @return array
 	 */
 	static protected function _put($parameters = array(), $data = array()) {
-		return static::processRequest(self::METHOD_PUT, $parameters, $data);
+		return static::processRequest(static::$controller, self::METHOD_PUT, $parameters, $data);
 	}
 
 	/**
@@ -245,6 +251,6 @@ abstract class kyBase {
 	 * @param array $parameters List of additional parameters (like object identifiers or search parameters).
 	 */
 	static protected function _delete($parameters = array()) {
-		static::processRequest(self::METHOD_DELETE, $parameters);
+		static::processRequest(static::$controller, self::METHOD_DELETE, $parameters);
 	}
 }
