@@ -12,7 +12,7 @@ require_once('kyObjectBase.php');
 abstract class kyCustomFieldGroupBase extends kyObjectBase {
 
 	static protected $object_xml_name = 'group';
-	static protected $read_only = true;
+	protected $read_only = true;
 
 	protected $id;
 	protected $title;

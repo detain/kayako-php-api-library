@@ -11,16 +11,16 @@ require_once('kyBase.php');
 abstract class kyObjectBase extends kyBase {
 
 	/**
-	 * Indicates the name of object element in XML response.
+	 * Indicates the name of object element in XML response. Override in descending classes.
 	 * @var string
 	 */
 	static protected $object_xml_name = null;
 
 	/**
-	 * Controls if the object can be created/updated/deleted.
+	 * Controls if the object can be created/updated/deleted. Override in descending classes.
 	 * @var bool
 	 */
-	static protected $read_only = false;
+	protected $read_only = false;
 
 	/**
 	 * Default constructor.
@@ -116,7 +116,7 @@ abstract class kyObjectBase extends kyBase {
 	 * @return self
 	 */
 	public function create() {
-		if (static::$read_only)
+		if ($this->read_only)
 			throw new Exception(sprintf("You can't create new objects of type %s.", get_called_class()));
 
 		$result = static::_post(array(), $this->buildData(self::METHOD_POST));
@@ -130,7 +130,7 @@ abstract class kyObjectBase extends kyBase {
 	 * @return self
 	 */
 	public function update() {
-		if (static::$read_only)
+		if ($this->read_only)
 			throw new Exception(sprintf("You can't update objects of type %s.", get_called_class()));
 
 		$result = static::_put($this->getId(true), $this->buildData(self::METHOD_PUT));
@@ -142,7 +142,7 @@ abstract class kyObjectBase extends kyBase {
 	 * Deletes the object on the server.
 	 */
 	public function delete() {
-		if (static::$read_only)
+		if ($this->read_only)
 			throw new Exception(sprintf("You can't delete object of type %s.", get_called_class()));
 
 		static::_delete($this->getId(true));

@@ -16,7 +16,7 @@ class kyTicketPriority extends kyObjectBase {
 
 	static protected $controller = '/Tickets/TicketPriority';
 	static protected $object_xml_name = 'ticketpriority';
-	static protected $read_only = true;
+	protected $read_only = true;
 
 	private $id = null;
 	private $title = null;

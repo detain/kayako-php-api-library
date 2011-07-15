@@ -16,7 +16,7 @@ class kyTicketStatus extends kyObjectBase {
 
 	static protected $controller = '/Tickets/TicketStatus';
 	static protected $object_xml_name = 'ticketstatus';
-	static protected $read_only = true;
+	protected $read_only = true;
 
 	private $id = null;
 	private $title = null;
