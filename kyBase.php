@@ -5,7 +5,7 @@
  * Base class with Kayako REST client funcionality.
  *
  * @link http://wiki.kayako.com/display/DEV/REST+API
- * @author Tomasz Sawicki (Tomasz.Sawicki@put.poznan.pl)
+ * @author Tomasz Sawicki (https://github.com/Furgas)
  */
 abstract class kyBase {
 	/**
@@ -51,6 +51,13 @@ abstract class kyBase {
 	static private $secret_key = null;
 
 	/**
+	 * True to PUT data using in-memory stream (may not work on Windows). False to PUT using post fields.
+	 * See processRequest for implementation details.
+	 * @var bool
+	 */
+	static private $put_memory_stream = null;
+
+	/**
 	 * Kayako controller used to operate on this objects.
 	 * @var string
 	 */
@@ -79,9 +86,10 @@ abstract class kyBase {
 	 * @param string $base_url Base URL of Kayako REST API.
 	 * @param string $api_key Kayako REST API key.
 	 * @param string $secret_key Kayako REST API secret key.
+	 * @param bool $put_memory_stream True to PUT data using in-memory stream (may not work on Windows). False to PUT using post fields.
 	 * @param string $datetime_format Default format of datetime object properties used in getters and setters.
 	 */
-	static public function init($base_url, $api_key, $secret_key, $datetime_format = null) {
+	static public function init($base_url, $api_key, $secret_key, $put_memory_stream = true, $datetime_format = null) {
 		self::$base_url = $base_url;
 		self::$api_key = $api_key;
 		self::$secret_key = $secret_key;
@@ -154,19 +162,18 @@ abstract class kyBase {
 				$curl_options[CURLOPT_POST] = true;
 				break;
 			case self::METHOD_PUT:
-				/*
-				 * Alternative method.
-				 */
-				//$curl_options[CURLOPT_CUSTOMREQUEST] = 'PUT';
-				//$curl_options[CURLOPT_POSTFIELDS] = $request_body;
+				if (self::$put_memory_stream) {
+					$fh = fopen('php://memory', 'rw');
+					fwrite($fh, $request_body);
+					rewind($fh);
 
-				$fh = fopen('php://memory', 'rw');
-				fwrite($fh, $request_body);
-				rewind($fh);
-
-				$curl_options[CURLOPT_INFILE] = $fh;
-				$curl_options[CURLOPT_INFILESIZE] = strlen($request_body);
-				$curl_options[CURLOPT_PUT] = true;
+					$curl_options[CURLOPT_INFILE] = $fh;
+					$curl_options[CURLOPT_INFILESIZE] = strlen($request_body);
+					$curl_options[CURLOPT_PUT] = true;
+				} else {
+					$curl_options[CURLOPT_CUSTOMREQUEST] = 'PUT';
+					$curl_options[CURLOPT_POSTFIELDS] = $request_body;
+				}
 				break;
 			case self::METHOD_DELETE:
 				$curl_options[CURLOPT_CUSTOMREQUEST] = 'DELETE';
