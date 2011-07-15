@@ -328,4 +328,36 @@ class kyDepartment extends kyObjectBase {
 
 		return $this;
 	}
+
+	/**
+	 * Creates new department.
+	 * WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.
+	 *
+	 * @param string $title Title of new department.
+	 * @param string $module Module of new department.
+	 * @param string $type Type of new department.
+	 * @return kyDepartment
+	 */
+	static public function createNew($title, $type = self::TYPE_PUBLIC, $module = self::MODULE_TICKETS) {
+		$new_department = new kyDepartment();
+		$new_department->setTitle($title);
+		$new_department->setType($type);
+		$new_department->setModule($module);
+		return $new_department;
+	}
+
+	/**
+	 * Creates new subdepartment in this department.
+	 * WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.
+	 *
+	 * @param string $title Title of new department.
+	 * @param string $module Module of new department.
+	 * @param string $type Type of new department.
+	 * @return kyDepartment
+	 */
+	public function createSubdepartment($title, $type = self::TYPE_PUBLIC, $module = self::MODULE_TICKETS) {
+		$new_department = kyDepartment::createNew($title, $type, $module);
+		$new_department->setParentDepartment($this);
+		return $new_department;
+	}
 }
