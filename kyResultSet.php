@@ -396,6 +396,16 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	}
 
 	/**
+	 * Deletes from server all objects in this result sets.
+	 * WARNING: Use carefully!
+	 */
+	public function deleteAll() {
+		foreach ($this->object_keys as $key) {
+			$this->objects[$key]->delete();
+		}
+	}
+
+	/**
 	 * Returns formatted list of objects in this result set.
 	 * Calls __toString method of every object.
 	 */
