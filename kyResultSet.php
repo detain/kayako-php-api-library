@@ -115,6 +115,9 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	 * ArrayAccess implementation.
 	 */
     public function offsetSet($offset, $value) {
+    	if (!is_object($value) || (strlen($this->class_name) > 0 && get_class($value) !== $this->class_name))
+    		throw new Exception(sprintf('The result set can only hold objects of type "%s"', $this->class_name));
+
     	$this->objects[$offset] = $value;
     	$this->object_keys = array_keys($this->objects);
     }
@@ -397,11 +400,11 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	 * Calls __toString method of every object.
 	 */
 	public function __toString() {
-		$object_strings = array();
+		$result = '';
 		$count = 1;
 		foreach ($this->object_keys as $key) {
-			$object_strings[] = sprintf("%d. %s", $count++, $this->objects[$key]);
+			$result .= sprintf("%d. %s", $count++, $this->objects[$key]);
 		}
-		return implode("\n", $object_strings)."\n";
+		return $result;
 	}
 }

@@ -270,6 +270,6 @@ abstract class kyObjectBase extends kyBase {
 	 * @return string
 	 */
 	public function __toString() {
-		return sprintf("%s (id: %s): %s", get_class($this), implode(', ', $this->getId(true)), $this->toString());
+		return sprintf("%s (id: %s): %s\n", get_class($this), implode(', ', $this->getId(true)), $this->toString());
 	}
 }
