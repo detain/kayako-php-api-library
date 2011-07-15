@@ -362,16 +362,15 @@ class kyDepartment extends kyObjectBase {
 	}
 
 	/**
-	 * Creates new subdepartment in this department.
+	 * Creates new subdepartment in this department. Module of new department will be the same as parent department's module.
 	 * WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.
 	 *
 	 * @param string $title Title of new department.
 	 * @param string $type Type of new department - one of kyDepartment::TYPE_* constants.
-	 * @param string $module Module of new department - one of kyDepartment::MODULE_* constants.
 	 * @return kyDepartment
 	 */
-	public function newSubdepartment($title, $type = self::TYPE_PUBLIC, $module = self::MODULE_TICKETS) {
-		$new_department = kyDepartment::createNew($title, $type, $module);
+	public function newSubdepartment($title, $type = self::TYPE_PUBLIC) {
+		$new_department = kyDepartment::createNew($title, $type, $this->getModule());
 		$new_department->setParentDepartment($this);
 		return $new_department;
 	}
