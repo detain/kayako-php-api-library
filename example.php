@@ -50,7 +50,7 @@ $staff = kyStaff::get($staff_id);
 $new_ticket = $user->newTicket($department,
 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 Aliquam placerat cursus augue sed adipiscing. Proin viverra egestas nulla et sollicitudin.',
-	'Lorem ipsum 1')->setOwnerStaff($staff)->create();
+	'Lorem ipsum 1')->create();
 
 //print the ticket Display Identifier
 print "The ticket was created and its ID is: ".$new_ticket->getDisplayId();
@@ -59,11 +59,14 @@ print "The ticket was created and its ID is: ".$new_ticket->getDisplayId();
  * Changing ticket.
  */
 
+//assign staff user
+$new_ticket->setOwnerStaff($staff)->update();
+
 //change status
 $new_ticket->setStatusId(5)->update();
 
 /**
- * Adding ticket post (as staff).
+ * Adding ticket post (as assigned staff user).
  */
 
 //add new post
@@ -82,7 +85,7 @@ $new_ticket_attachment = $new_ticket_post->newAttachmentFromFile('/path/to/file.
 /**
  * Searching for tickets (using helper).
  */
-$tickets = kySearchTicket::createNew()->addDepartmentId(1)->addTicketStatusId(2)->addTicketStatusId(3)->addOwnerStaffId(4)->addUser(3)->search();
+$tickets = kySearchTicket::createNew()->addDepartmentId(1)->addTicketStatusId(2)->addTicketStatusId(3)->addOwnerStaffId(4)->addUserId(3)->search();
 
 /**
  * Searching for tickets (using getAll).

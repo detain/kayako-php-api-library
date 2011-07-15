@@ -10,6 +10,7 @@ Client requires PHP >= 5.3.0 (beacause late static binding is used) with enabled
 
 h2. Kayako
 
+This version of the client was designed for version 4.01.204.
 I had some problems in Kayako prior to version 4_01_204, so it's better to upgrade at least to this version.
 
 While implementing this client I came across few inconsitencies and missing data in Kayako API, so I introduced following changes to the source code of Kayako:
@@ -82,7 +83,7 @@ $department_id = 1;
 $department = kyDepartment::get($department_id);
 </pre>
 
-h3. Loading creator
+h3. Loading ticket creator
 
 Also you need the creator of ticket. It can be ordinary user or staff user. Let's assume that we want to create ticket as ordinary user. Unfortunately in Kayako vrsion 4_01_204 you can't search users by providing an email address. So to find out the user identifier fetch all users and find the proper one:
 
@@ -117,13 +118,13 @@ $staff = kyStaff::get($staff_id);
 
 h2. Creating a ticket.
 
-Now we are ready to create some ticket. We assign the ticket to the staff user in the same step (but it's not required).
+Now we are ready to create a ticket.
 
 <pre>
 $new_ticket = $user->newTicket($department,
 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 Aliquam placerat cursus augue sed adipiscing. Proin viverra egestas nulla et sollicitudin.',
-	'Lorem ipsum 1')->setOwnerStaff($staff)->create();
+	'Lorem ipsum 1')->create();
 </pre>
 
 The ticket should be created. The $new_ticket object holds all the information about newly created ticket. You can for example get its display identifer so you can present it to the user. 
@@ -133,6 +134,14 @@ print "The ticket was created and its ID is: ".$new_ticket->getDisplayId();
 </pre>
 
 Usually that's everything what will be needed in casual cases, when you simply want to create a ticket. But we can do some more...
+
+h2. Assigning staff user
+
+Let's assign new ticket to the staff user loaded previously.
+
+<pre>
+$new_ticket->setOwnerStaff($staff)->update();
+</pre>
 
 h2. Changing the ticket
 
@@ -174,7 +183,7 @@ h3. Search using helper
 Search using helper with method chaining.
 
 <pre>
-$tickets = kySearchTicket::createNew()->addDepartmentId(1)->addTicketStatusId(2)->addTicketStatusId(3)->addOwnerStaffId(4)->addUser(3)->search();
+$tickets = kySearchTicket::createNew()->addDepartmentId(1)->addTicketStatusId(2)->addTicketStatusId(3)->addOwnerStaffId(4)->addUserId(3)->search();
 </pre>
 
 h3. Search using getAll.
