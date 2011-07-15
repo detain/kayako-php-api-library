@@ -193,6 +193,9 @@ abstract class kyBase {
 		if ($result === false)
 			throw new Exception("Error parsing XML response.");
 
+		if (count($result) === 1 && array_key_exists('_contents', $result) && strlen($result['_contents']) === 0)
+			$result = array();
+
 		return $result;
 	}
 
