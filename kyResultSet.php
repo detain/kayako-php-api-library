@@ -232,7 +232,7 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 		if ($depth <= 0 || $this->previous_result_set === null)
 			return $this;
 
-		return $this->previous_result_set->revertFilter($depth - 1);
+		return $this->previous_result_set->removeFilter($depth - 1);
 	}
 
 	/**
