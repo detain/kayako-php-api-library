@@ -3,18 +3,41 @@ require_once('kyObjectBase.php');
 
 /**
  * Part of PHP client to REST API of Kayako v4 (Kayako Fusion).
+ * Compatible with Kayako version >= 4.01.204.
  *
  * Kayako Department object.
  *
  * @link http://wiki.kayako.com/display/DEV/REST+-+Department
- * @author Tomasz Sawicki (Tomasz.Sawicki@put.poznan.pl)
+ * @author Tomasz Sawicki (https://github.com/Furgas)
  */
 class kyDepartment extends kyObjectBase {
 
+	/**
+	 * Module a department can be associated with - Tickets.
+	 *
+	 * @var string
+	 */
 	const MODULE_TICKETS = 'tickets';
+
+	/**
+	 * Module a department can be associated with - Livechat.
+	 *
+	 * @var string
+	 */
 	const MODULE_LIVECHAT = 'livechat';
 
+	/**
+	 * Type of department - public.
+	 *
+	 * @var string
+	 */
 	const TYPE_PUBLIC = 'public';
+
+	/**
+	 * Type of department - private.
+	 *
+	 * @var string
+	 */
 	const TYPE_PRIVATE = 'private';
 
 	static protected $controller = '/Base/Department';
@@ -29,6 +52,9 @@ class kyDepartment extends kyObjectBase {
 	private $user_visibility_custom = false;
 	private $user_group_ids = array();
 
+	private $parent_department = null;
+	private $user_groups = null;
+
 	protected function parseData($data) {
 		$this->id = intval($data['id']);
 		$this->title = $data['title'];
@@ -40,6 +66,7 @@ class kyDepartment extends kyObjectBase {
 			$this->parent_department_id = null;
 		$this->user_visibility_custom = intval($data['uservisibilitycustom']) === 0 ? false : true;
 		if ($this->user_visibility_custom && is_array($data['usergroups'])) {
+			$this->user_group_ids = array();
 			if (is_string($data['usergroups'][0]['id'])) {
 				$this->user_group_ids[] = intval($data['usergroups'][0]['id']);
 			} else {
@@ -52,6 +79,8 @@ class kyDepartment extends kyObjectBase {
 
 	protected function buildData($method) {
 		$data = array();
+
+		//TODO: check if required parameters are present
 
 		$data['title'] = $this->title;
 		$data['type'] = $this->type;
@@ -77,6 +106,7 @@ class kyDepartment extends kyObjectBase {
 	}
 
 	/**
+	 * Returns title of the department.
 	 *
 	 * @return string
 	 */
@@ -85,8 +115,9 @@ class kyDepartment extends kyObjectBase {
 	}
 
 	/**
+	 * Sets title of the department.
 	 *
-	 * @param string $title
+	 * @param string $title Title of the department.
 	 * @return kyDepartment
 	 */
 	public function setTitle($title) {
@@ -95,6 +126,7 @@ class kyDepartment extends kyObjectBase {
 	}
 
 	/**
+	 * Return type of the department - one of kyDepartment::TYPE_* constants.
 	 *
 	 * @return string
 	 */
@@ -103,8 +135,9 @@ class kyDepartment extends kyObjectBase {
 	}
 
 	/**
+	 * Sets type of the department.
 	 *
-	 * @param string $type
+	 * @param string $type Type of the department - one of kyDepartment::TYPE_* constants.
 	 * @return kyDepartment
 	 */
 	public function setType($type) {
@@ -113,6 +146,7 @@ class kyDepartment extends kyObjectBase {
 	}
 
 	/**
+	 * Returns module the department is associated with - one of kyDepartment::MODULE_* constants.
 	 *
 	 * @return string
 	 */
@@ -121,8 +155,9 @@ class kyDepartment extends kyObjectBase {
 	}
 
 	/**
+	 * Sets module the department will be associated with.
 	 *
-	 * @param string $module
+	 * @param string $module Module the department will be associated with - one of kyDepartment::MODULE_* constants.
 	 * @return kyDepartment
 	 */
 	public function setModule($module) {
@@ -131,6 +166,7 @@ class kyDepartment extends kyObjectBase {
 	}
 
 	/**
+	 * Returns display order of the department.
 	 *
 	 * @return int
 	 */
@@ -139,8 +175,9 @@ class kyDepartment extends kyObjectBase {
 	}
 
 	/**
+	 * Sets display order of the department.
 	 *
-	 * @param int $display_order
+	 * @param int $display_order A positive integer that the helpdesk will use to sort departments when displaying them (ascending).
 	 * @return kyDepartment
 	 */
 	public function setDisplayOrder($display_order) {
@@ -149,6 +186,7 @@ class kyDepartment extends kyObjectBase {
 	}
 
 	/**
+	 * Returns identifier of parent department for this department.
 	 *
 	 * @return int
 	 */
@@ -157,38 +195,55 @@ class kyDepartment extends kyObjectBase {
 	}
 
 	/**
+	 * Sets the identifier of parent department for this department.
+	 * Invalidates parent department cache.
 	 *
-	 * @param int $parent_department_id
+	 * @param int $parent_department_id Identifier of department that will be the parent for this department.
 	 * @return kyDepartment
 	 */
 	public function setParentDepartmentId($parent_department_id) {
 		$this->parent_department_id = $parent_department_id;
+		$this->parent_department = null;
 		return $this;
 	}
 
 	/**
+	 * Returns department object that is the parent for this department.
+	 * Result is cached until the end of script.
 	 *
-	 * @todo Cache the result in object private field.
+	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyDepartment
 	 */
-	public function getParentDeparment() {
+	public function getParentDeparment($reload = false) {
+		if ($this->parent_department !== null && !$reload)
+			return $this->parent_department;
+
 		if ($this->parent_department_id === null || $this->parent_department_id <= 0)
 			return null;
 
-		return kyDepartment::get($this->parent_department_id);
+		$this->parent_department = kyDepartment::get($this->parent_department_id);
+		return $this->parent_department;
 	}
 
 	/**
+	 * Sets parent department for this department.
 	 *
-	 * @param kyDepartment $parent_department
+	 * @param kyDepartment $parent_department Department object that will be the parent for this department.
 	 * @return kyDepartment
 	 */
-	public function setParentDepartment($parent_department) {
-		$this->parent_department_id = $parent_department->getId();
+	public function setParentDepartment(kyDepartment $parent_department) {
+		if ($parent_department === null) {
+			$this->parent_department_id = $this->parent_department = null;
+		} else {
+			$this->parent_department_id = $parent_department->getId();
+			$this->parent_department = $parent_department;
+		}
 		return $this;
 	}
 
 	/**
+	 * Returns true to indicate that visibility of this department is restricted to particular user groups.
+	 * Use getUserGroupIds to get their identifiers or getUserGroups to get the objects.
 	 *
 	 * @return bool
 	 */
@@ -197,16 +252,24 @@ class kyDepartment extends kyObjectBase {
 	}
 
 	/**
+	 * Sets wheter to restrict visibility of this department to particular user groups.
+	 * Use setUserGroupIds to set these groups using identifiers or addUserGroup to set them using objects.
+	 * Automatically clears user groups when set to false.
 	 *
-	 * @param bool $user_visibility_custom
+	 * @param bool $user_visibility_custom True to restrict visibility of this department to particular user groups. False otherwise.
 	 * @return kyDepartment
 	 */
 	public function setUserVisibilityCustom($user_visibility_custom) {
 		$this->user_visibility_custom = $user_visibility_custom;
+		if ($this->user_visibility_custom === false) {
+			$this->user_group_ids = array();
+			$this->user_groups = null;
+		}
 		return $this;
 	}
 
 	/**
+	 * Returns identifiers of user groups that can be assigned to this department.
 	 *
 	 * @return array
 	 */
@@ -215,8 +278,9 @@ class kyDepartment extends kyObjectBase {
 	}
 
 	/**
+	 * Sets user groups that can be assigned to this department using their identifiers.
 	 *
-	 * @param int[] $user_group_ids
+	 * @param int[] $user_group_ids Identifiers of user groups that can be assigned to this department.
 	 * @return kyDepartment
 	 */
 	public function setUserGroupIds($user_group_ids) {
@@ -225,28 +289,43 @@ class kyDepartment extends kyObjectBase {
 	}
 
 	/**
+	 * Returns user groups that can be assigned to this department.
+	 * Result is cached until the end of script.
 	 *
 	 * @todo Cache the result in object private field.
 	 * @return kyUserGroup[]
 	 */
-	public function getUserGroups() {
+	public function getUserGroups($reload = false) {
 		$user_groups = array();
 		foreach ($this->user_group_ids as $user_group_id) {
-			$user_groups[] = kyUserGroup::get($user_group_id);
+			if (!is_array($this->user_groups) || !array_key_exists($user_group_id, $this->user_groups) || $reload)
+				$this->user_groups[$user_group_id] = kyUserGroup::get($user_group_id);
+			$user_groups[] = $this->user_groups[$user_group_id];
 		}
 		return $user_groups;
 	}
 
 	/**
+	 * Add user group to the list of groups that can be assigned to this department.
+	 * Automatically sets custom user visibility flag to True.
 	 *
-	 * @param kyUserGroup $user_group
+	 * @param kyUserGroup $user_group User group that can be assigned to this department.
 	 * @param bool $clear Clear the list before adding.
 	 * @return kyDepartment
 	 */
-	public function addUserGroup($user_group, $clear = false) {
-		if ($clear)
+	public function addUserGroup(kyUserGroup $user_group, $clear = false) {
+		if ($clear) {
+			$this->user_group = array();
 			$this->user_group_ids = array();
+		}
+
+		//do nothing if it's already present
+		if (in_array($user_group->getId(), $this->user_group_ids))
+			return $this;
+
 		$this->user_group_ids[] = $user_group->getId();
+		$this->user_visibility_custom = true;
+
 		return $this;
 	}
 }

@@ -3,11 +3,11 @@ require_once('kyObjectBase.php');
 
 /**
  * Part of PHP client to REST API of Kayako v4 (Kayako Fusion).
+ * Compatible with Kayako version >= 4.01.240.
  *
  * Kayako TicketPost object.
- * CAUTION: Some features needs the patch (see further).
  *
- * @author Tomasz Sawicki (Tomasz.Sawicki@put.poznan.pl)
+ * @author Tomasz Sawicki (https://github.com/Furgas)
  */
 class kyTicketPost extends kyObjectBase {
 	const CREATOR_STAFF = 1;
@@ -38,8 +38,8 @@ class kyTicketPost extends kyObjectBase {
 	private $attachments = null;
 
 	protected function parseData($data) {
-		$this->id = intval($data['id']); //Introduced in the patch
-		$this->ticket_id = intval($data['ticketid']); //Introduced in the patch
+		$this->id = intval($data['id']);
+		$this->ticket_id = intval($data['ticketid']);
 		$this->dateline = intval($data['dateline']) > 0 ? date(self::$datetime_format, $data['dateline']) : null;
 		$this->user_id = intval($data['userid']);
 		$this->full_name = $data['fullname'];

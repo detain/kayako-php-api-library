@@ -7,7 +7,7 @@ require_once('kyBase.php');
  * Base class for searching Kayako objects.
  * EXPERIMENTAL.
  *
- * @author Tomasz Sawicki (Tomasz.Sawicki@put.poznan.pl)
+ * @author Tomasz Sawicki (https://github.com/Furgas)
  */
 abstract class kySearchBase extends kyBase {
 
@@ -38,8 +38,10 @@ abstract class kySearchBase extends kyBase {
 	public function search() {
 		$result = static::_get($this->buildParameters());
 		$objects = array();
-		foreach ($result[static::$object_xml_name] as $object_data) {
-			$objects[] = new static::$object_class_name($object_data);
+		if (is_array($result) && count($result) > 0) {
+			foreach ($result[static::$object_xml_name] as $object_data) {
+				$objects[] = new static::$object_class_name($object_data);
+			}
 		}
 		return $objects;
 	}

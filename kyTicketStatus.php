@@ -3,10 +3,11 @@ require_once('kyObjectBase.php');
 
 /**
  * Part of PHP client to REST API of Kayako v4 (Kayako Fusion).
+ * Compatible with Kayako version >= 4.01.204.
  *
  * Kayako TicketStatus object.
  *
- * @author Tomasz Sawicki (Tomasz.Sawicki@put.poznan.pl)
+ * @author Tomasz Sawicki (https://github.com/Furgas)
  */
 class kyTicketStatus extends kyObjectBase {
 

@@ -6,7 +6,7 @@ require_once('kyBase.php');
  *
  * Base class for getting, creating, updating and deleting Kayako objects.
  *
- * @author Tomasz Sawicki (Tomasz.Sawicki@put.poznan.pl)
+ * @author Tomasz Sawicki (https://github.com/Furgas)
  */
 abstract class kyObjectBase extends kyBase {
 

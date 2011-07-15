@@ -8,7 +8,7 @@ require_once('kySearchBase.php');
  * EXPERIMENTAL.
  *
  * @link http://wiki.kayako.com/display/DEV/REST+-+Ticket
- * @author Tomasz Sawicki (Tomasz.Sawicki@put.poznan.pl)
+ * @author Tomasz Sawicki (https://github.com/Furgas)
  */
 class kySearchTicket extends kySearchBase {
 

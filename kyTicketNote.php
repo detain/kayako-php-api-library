@@ -3,22 +3,68 @@ require_once('kyObjectBase.php');
 
 /**
  * Part of PHP client to REST API of Kayako v4 (Kayako Fusion).
+ * Compatible with Kayako version >= 4.01.240.
  *
  * Kayako TicketNote object.
- * CAUTION: Some features needs the patch (see further).
  *
- * @author Tomasz Sawicki (Tomasz.Sawicki@put.poznan.pl)
+ * @author Tomasz Sawicki (https://github.com/Furgas)
  */
 class kyTicketNote extends kyObjectBase {
 
+	/**
+	 * Color of note - yellow.
+	 *
+	 * @var int
+	 */
 	const COLOR_YELLOW = 1;
+
+	/**
+	 * Color of note - purple.
+	 *
+	 * @var int
+	 */
 	const COLOR_PURPLE = 2;
+
+	/**
+	 * Color of note - blue.
+	 *
+	 * @var int
+	 */
 	const COLOR_BLUE = 3;
+
+	/**
+	 * Color of note - green.
+	 *
+	 * @var int
+	 */
 	const COLOR_GREEN = 4;
+
+	/**
+	 * Color of note - red.
+	 *
+	 * @var int
+	 */
 	const COLOR_RED = 5;
 
+	/**
+	 * Note type - connected to ticket.
+	 *
+	 * @var string
+	 */
 	const TYPE_TICKET = 'ticket';
+
+	/**
+	 * Note type - connected to user.
+	 *
+	 * @var string
+	 */
 	const TYPE_USER = 'user';
+
+	/**
+	 * Note type - connected to user organization.
+	 *
+	 * @var string
+	 */
 	const TYPE_USER_ORGANIZATION = 'userorganization';
 
 	static protected $controller = '/Tickets/TicketNote';
@@ -36,8 +82,14 @@ class kyTicketNote extends kyObjectBase {
 	private $creation_date = null;
 	private $contents = null;
 
+	private $creator_staff = null;
+	private $for_staff = null;
+	private $ticket = null;
+	private $user = null;
+	private $user_organization = null;
+
 	protected function parseData($data) {
-		$this->id = intval($data['_attributes']['id']); //Introduced in the patch
+		$this->id = intval($data['_attributes']['id']);
 		$this->type = $data['_attributes']['type'];
 		$this->note_color = intval($data['_attributes']['notecolor']);
 		$this->creator_staff_id = intval($data['_attributes']['creatorstaffid']);
@@ -46,9 +98,6 @@ class kyTicketNote extends kyObjectBase {
 		$this->creation_date = intval($data['_attributes']['creationdate']) > 0 ? date(self::$datetime_format, $data['_attributes']['creationdate']) : null;
 		$this->contents = $data['_contents'];
 
-		/*
-		 * Introduced in the patch.
-		 */
 		if ($this->getType() === kyTicketNote::TYPE_TICKET)
 			$this->ticket_id = intval($data['_attributes']['ticketid']);
 		elseif ($this->getType() === kyTicketNote::TYPE_USER)
@@ -120,6 +169,8 @@ class kyTicketNote extends kyObjectBase {
 	}
 
 	/**
+	 * Return ticket identifier of this note.
+	 * Applicable only for notes of type kyTicketNote::TYPE_TICKET.
 	 *
 	 * @return int
 	 */
@@ -138,10 +189,48 @@ class kyTicketNote extends kyObjectBase {
 	public function setTicketId($ticket_id) {
 		$this->type = self::TYPE_TICKET;
 		$this->ticket_id = $ticket_id;
+		$this->ticket = null;
 		return $this;
 	}
 
 	/**
+	 * Return the ticket this note refers to.
+	 * Applicable only for notes of type kyTicketNote::TYPE_TICKET.
+	 * Result is cached until the end of script.
+	 *
+	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
+	 * @return kyTicket
+	 */
+	public function getTicket($reload = false) {
+		if ($this->getType() !== self::TYPE_TICKET)
+			return null;
+
+		if ($this->ticket !== null && !$reload)
+			return $this->ticket;
+
+		if ($this->ticket_id === null || $this->ticket_id <= 0)
+			return null;
+
+		$this->ticket = kyTicket::get($this->ticket_id);
+		return $this->ticket;
+	}
+
+	/**
+	 * Sets the ticket thah the note will be connected with.
+	 *
+	 * @param kyTicket $ticket
+	 * @return kyTicketNote
+	 */
+	public function setTicket(kyTicket $ticket) {
+		$this->type = self::TYPE_TICKET;
+		$this->ticket_id = $ticket->getId();
+		$this->ticket = $ticket;
+		return $this;
+	}
+
+	/**
+	 * Return identifier of user this note refers to.
+	 * Applicable only for notes of type kyTicketNote::TYPE_USER.
 	 *
 	 * @return int
 	 */
@@ -153,6 +242,30 @@ class kyTicketNote extends kyObjectBase {
 	}
 
 	/**
+	 * Return the user this note refers to.
+	 * Applicable only for notes of type kyTicketNote::TYPE_USER.
+	 * Result is cached until the end of script.
+	 *
+	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
+	 * @return kyUser
+	 */
+	public function getUser($reload = false) {
+		if ($this->getType() !== self::TYPE_USER)
+			return null;
+
+		if ($this->user !== null && !$reload)
+			return $this->user;
+
+		if ($this->user_id === null || $this->user_id <= 0)
+			return null;
+
+		$this->user = kyUser::get($this->user_id);
+		return $this->user;
+	}
+
+	/**
+	 * Return identifier of user organization this note refers to.
+	 * Applicable only for notes of type kyTicketNote::TYPE_USER_ORGANIZATION.
 	 *
 	 * @return int
 	 */
@@ -161,6 +274,28 @@ class kyTicketNote extends kyObjectBase {
 			return null;
 
 		return $this->user_organization_id;
+	}
+
+	/**
+	 * Return the user organization this note refers to.
+	 * Applicable only for notes of type kyTicketNote::TYPE_USER_ORGANIZATION.
+	 * Result is cached until the end of script.
+	 *
+	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
+	 * @return kyUserOrganization
+	 */
+	public function getUserOrganization($reload = false) {
+		if ($this->getType() !== self::TYPE_USER_ORGANIZATION)
+			return null;
+
+		if ($this->user_organization !== null && !$reload)
+			return $this->user_organization;
+
+		if ($this->user_organization_id === null || $this->user_organization_id <= 0)
+			return null;
+
+		$this->user_organization = kyUserOrganization::get($this->user_organization_id);
+		return $this->user_organization;
 	}
 
 	/**

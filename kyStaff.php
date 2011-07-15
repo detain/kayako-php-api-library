@@ -3,11 +3,12 @@ require_once('kyObjectBase.php');
 
 /**
  * Part of PHP client to REST API of Kayako v4 (Kayako Fusion).
+ * Compatible with Kayako version >= 4.01.204.
  *
  * Kayako Staff object.
  *
  * @link http://wiki.kayako.com/display/DEV/REST+-+Staff
- * @author Tomasz Sawicki (Tomasz.Sawicki@put.poznan.pl)
+ * @author Tomasz Sawicki (https://github.com/Furgas)
  */
 class kyStaff extends kyObjectBase {
 
@@ -30,6 +31,8 @@ class kyStaff extends kyObjectBase {
 	private $enable_dst = false;
 	private $password = null;
 
+	private $staff_group = null;
+
 	protected function parseData($data) {
 		$this->id = intval($data['id']);
 		$this->staff_group_id = intval($data['staffgroupid']);
@@ -48,6 +51,8 @@ class kyStaff extends kyObjectBase {
 
 	protected function buildData($method) {
 		$data = array();
+
+		//TODO: check if required parameters are present
 
 		$data['staffgroupid'] = $this->staff_group_id;
 		$data['firstname'] = $this->first_name;
@@ -73,6 +78,7 @@ class kyStaff extends kyObjectBase {
 	}
 
 	/**
+	 * Returns staff group identifier of the staff user.
 	 *
 	 * @return int
 	 */
@@ -81,38 +87,50 @@ class kyStaff extends kyObjectBase {
 	}
 
 	/**
+	 * Sets staff group identifier for the staff user.
+	 * Invalidates staff group cache.
 	 *
-	 * @param int $staff_group_id
+	 * @param int $staff_group_id Staff group identifier.
 	 * @return kyStaff
 	 */
 	public function setStaffGroupId($staff_group_id) {
 		$this->staff_group_id = $staff_group_id;
+		$this->staff_group = null;
 		return $this;
 	}
 
 	/**
+	 * Returns staff group object for ths staff user.
+	 * Result is cached until the end of script.
 	 *
-	 * @todo Cache the result in object private field.
+	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyStaffGroup
 	 */
-	public function getStaffGroup() {
-		if ($this->user_staff_id === null || $this->user_staff_id <= 0)
+	public function getStaffGroup($reload = false) {
+		if ($this->staff_group !== null && !$reload)
+			return $this->staff_group;
+
+		if ($this->staff_group_id === null || $this->staff_group_id <= 0)
 			return null;
 
-		return kyStaffGroup::get($this->staff_group_id);
+		$this->staff_group = kyStaffGroup::get($this->staff_group_id);
+		return $this->staff_group;
 	}
 
 	/**
+	 * Sets staff group for the staff user.
 	 *
-	 * @param kyStaffGroup $staff_group
+	 * @param kyStaffGroup $staff_group Staff group object.
 	 * @return kyStaff
 	 */
 	public function setStaffGroup($staff_group) {
 		$this->staff_group_id = $staff_group->getId();
+		$this->staff_group = $staff_group;
 		return $this;
 	}
 
 	/**
+	 * Returns first name of the staff user.
 	 *
 	 * @return string
 	 */
@@ -121,8 +139,9 @@ class kyStaff extends kyObjectBase {
 	}
 
 	/**
+	 * Sets first name of the staff user.
 	 *
-	 * @param string $first_name
+	 * @param string $first_name First name of the staff user.
 	 * @return kyStaff
 	 */
 	public function setFirstName($first_name) {
@@ -131,6 +150,7 @@ class kyStaff extends kyObjectBase {
 	}
 
 	/**
+	 * Returns last name of the staff user.
 	 *
 	 * @return string
 	 */
@@ -139,8 +159,9 @@ class kyStaff extends kyObjectBase {
 	}
 
 	/**
+	 * Sets last name of the staff user.
 	 *
-	 * @param string $last_name
+	 * @param string $last_name Last name of the staff user.
 	 * @return kyStaff
 	 */
 	public function setLastName($last_name) {
@@ -149,6 +170,7 @@ class kyStaff extends kyObjectBase {
 	}
 
 	/**
+	 * Returns full name of the staff user.
 	 *
 	 * @return string
 	 */
@@ -157,6 +179,7 @@ class kyStaff extends kyObjectBase {
 	}
 
 	/**
+	 * Returns login username of the staff user.
 	 *
 	 * @return string
 	 */
@@ -165,8 +188,9 @@ class kyStaff extends kyObjectBase {
 	}
 
 	/**
+	 * Sets login username of the staff user.
 	 *
-	 * @param string $user_name
+	 * @param string $user_name Login username of the staff user.
 	 * @return kyStaff
 	 */
 	public function setUserName($user_name) {
@@ -175,6 +199,7 @@ class kyStaff extends kyObjectBase {
 	}
 
 	/**
+	 * Returns e-mail address of the staff user.
 	 *
 	 * @return string
 	 */
@@ -183,8 +208,9 @@ class kyStaff extends kyObjectBase {
 	}
 
 	/**
+	 * Sets e-mail address of the staff user.
 	 *
-	 * @param string $email
+	 * @param string $email E-mail address of the staff user.
 	 * @return kyStaff
 	 */
 	public function setEmail($email) {
@@ -193,6 +219,7 @@ class kyStaff extends kyObjectBase {
 	}
 
 	/**
+	 * Returns designation of the staff user.
 	 *
 	 * @return string
 	 */
@@ -201,8 +228,9 @@ class kyStaff extends kyObjectBase {
 	}
 
 	/**
+	 * Sets designation of the staff user.
 	 *
-	 * @param string $designation
+	 * @param string $designation Designation of the staff user.
 	 * @return kyStaff
 	 */
 	public function setDesignation($designation) {
@@ -211,6 +239,7 @@ class kyStaff extends kyObjectBase {
 	}
 
 	/**
+	 * Returns default greeting message when the staff user accepts a live chat request.
 	 *
 	 * @return string
 	 */
@@ -219,8 +248,9 @@ class kyStaff extends kyObjectBase {
 	}
 
 	/**
+	 * Sets default greeting message when the staff user accepts a live chat request.
 	 *
-	 * @param string $greeting
+	 * @param string $greeting Default greeting message when the staff user accepts a live chat request.
 	 * @return kyStaff
 	 */
 	public function setGreeting($greeting) {
@@ -229,8 +259,19 @@ class kyStaff extends kyObjectBase {
 	}
 
 	/**
+	 * Returns signature that will be appended to each reply made by the staff user.
+	 * The value is not available when the object was fetched from the server.
 	 *
-	 * @param string $signature
+	 * @return string
+	 */
+	public function getSignature() {
+		return $this->signature;
+	}
+
+	/**
+	 * Sets signature that wil be appended to each reply made by the staff user.
+	 *
+	 * @param string $signature Signature that will be appended to each reply made by the staff user.
 	 * @return kyStaff
 	 */
 	public function setSignature($signature) {
@@ -239,6 +280,7 @@ class kyStaff extends kyObjectBase {
 	}
 
 	/**
+	 * Returns mobile number of the staff user.
 	 *
 	 * @return string
 	 */
@@ -247,8 +289,9 @@ class kyStaff extends kyObjectBase {
 	}
 
 	/**
+	 * Sets mobile number of the staff user.
 	 *
-	 * @param string $mobile_number
+	 * @param string $mobile_number Mobile number of the staff user.
 	 * @return kyStaff
 	 */
 	public function setMobileNumber($mobile_number) {
@@ -257,6 +300,7 @@ class kyStaff extends kyObjectBase {
 	}
 
 	/**
+	 * Returns whether the staff user is enabled.
 	 *
 	 * @return bool
 	 */
@@ -265,8 +309,10 @@ class kyStaff extends kyObjectBase {
 	}
 
 	/**
+	 * Sets whether the staff user is enabled.
+	 * True is the default value when creating new staff user.
 	 *
-	 * @param bool $is_enabled
+	 * @param bool $is_enabled True to enable the staff user. False to disable.
 	 * @return kyStaff
 	 */
 	public function setIsEnabled($is_enabled) {
@@ -275,6 +321,7 @@ class kyStaff extends kyObjectBase {
 	}
 
 	/**
+	 * Returns timezone of the staff user.
 	 *
 	 * @return string
 	 */
@@ -283,8 +330,9 @@ class kyStaff extends kyObjectBase {
 	}
 
 	/**
+	 * Sets timezone of the staff user.
 	 *
-	 * @param string $timezone
+	 * @param string $timezone Timezone of the staff user.
 	 * @return kyStaff
 	 */
 	public function setTimezone($timezone) {
@@ -301,8 +349,10 @@ class kyStaff extends kyObjectBase {
 	}
 
 	/**
+	 * Sets whether Daylight Saving Time is enabled for the staff user.
+	 * True is the default value when creating new staff user.
 	 *
-	 * @param bool $enable_dst
+	 * @param bool $enable_dst True to enable Daylight Saving Time for the staff user. False to disable.
 	 * @return kyStaff
 	 */
 	public function setEnableDST($enable_dst) {
@@ -311,8 +361,9 @@ class kyStaff extends kyObjectBase {
 	}
 
 	/**
+	 * Sets password for the staff user.
 	 *
-	 * @param string $password
+	 * @param string $password Password for the staff user.
 	 * @return kyStaff
 	 */
 	public function setPassword($password) {
@@ -321,7 +372,7 @@ class kyStaff extends kyObjectBase {
 	}
 
 	/**
-	 * Creates new ticket with this Staff as the author.
+	 * Creates new ticket with this staff user as the author.
 	 * WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.
 	 *
 	 * @param kyDepartment $department Department where the ticket will be created.

@@ -2,13 +2,13 @@
 require_once('kyObjectBase.php');
 
 /**
- * Part of PHP client to REST API of Kayako v4 (Kayako Fusion).
+ * Part of PHP client to REST API of Kayako v4 (Kayako Fusion). Compatible with version 4.01.240.
+ * Compatible with Kayako version >= 4.01.240.
  *
  * Kayako Ticket object.
- * CAUTION: Some features needs the patch (see further).
  *
  * @link http://wiki.kayako.com/display/DEV/REST+-+Ticket
- * @author Tomasz Sawicki (Tomasz.Sawicki@put.poznan.pl)
+ * @author Tomasz Sawicki (https://github.com/Furgas)
  */
 class kyTicket extends kyObjectBase {
 
@@ -20,6 +20,7 @@ class kyTicket extends kyObjectBase {
 	const FLAG_RED = 5;
 	const FLAG_BLUE = 6;
 
+	const CREATOR_AUTO = 0;
 	const CREATOR_STAFF = 1;
 	const CREATOR_USER = 2;
 	const CREATOR_CLIENT = 2;
@@ -39,6 +40,7 @@ class kyTicket extends kyObjectBase {
 	static private $default_status_id = null;
 	static private $default_priority_id = null;
 	static private $default_type_id = null;
+	static private $auto_create_user = true;
 
 	private $id = null;
 	private $flag_type = null;
@@ -77,6 +79,7 @@ class kyTicket extends kyObjectBase {
 	private $time_tracks = null;
 	private $posts = null;
 	private $attachments = null;
+	private $custom_fields_groups = null;
 
 	private $contents = null;
 	private $creator_id = null;
@@ -87,11 +90,13 @@ class kyTicket extends kyObjectBase {
 	 * @param int $status_id Default ticket status identifier.
 	 * @param int $priority_id Default ticket priority identifier.
 	 * @param int $type_id Default ticket type identifier.
+	 * @param bool $auto_create_user True to automatically create user if none is provided as creator. False otherwise.
 	 */
-	static public function setDefaults($status_id, $priority_id, $type_id) {
+	static public function setDefaults($status_id, $priority_id, $type_id, $auto_create_user = true) {
 		self::$default_status_id = $status_id;
 		self::$default_priority_id = $priority_id;
 		self::$default_type_id = $type_id;
+		self::$auto_create_user = $auto_create_user;
 	}
 
 	protected function parseData($data) {
@@ -106,6 +111,8 @@ class kyTicket extends kyObjectBase {
 		$this->user_organization_name = $data['userorganization'];
 		$this->user_organization_id = intval($data['userorganizationid']);
 		$this->owner_staff_id = intval($data['ownerstaffid']);
+		if ($this->owner_staff_id === 0)
+			$this->owner_staff_id = null;
 		$this->owner_staff_name = $data['ownerstaffname'];
 		$this->full_name = $data['fullname'];
 		$this->email = $data['email'];
@@ -141,7 +148,6 @@ class kyTicket extends kyObjectBase {
 
 		/**
 		 * Notes and time tracks.
-		 * CAUTION: Better with the patch.
 		 */
 		if (array_key_exists('note', $data)) {
 			foreach ($data['note'] as $note_data) {
@@ -164,7 +170,6 @@ class kyTicket extends kyObjectBase {
 
 		/**
 		 * Posts.
-		 * CAUTION: Better with the patch.
 		 */
 		if (array_key_exists('posts', $data)) {
 			$this->posts = array();
@@ -192,8 +197,15 @@ class kyTicket extends kyObjectBase {
 			case self::CREATOR_USER:
 				$data['userid']  = $this->creator_id;
 				break;
+			case self::CREATOR_AUTO:
+				$data['autouserid'] = true;
+				break;
 		}
-		$data['ownerstaffid'] = $this->owner_staff_id;
+
+		if ($this->owner_staff_id === null)
+			$data['ownerstaffid'] = 0;
+		else
+			$data['ownerstaffid'] = $this->owner_staff_id;
 		$data['type'] = $this->creation_type;
 
 		return $data;
@@ -245,16 +257,16 @@ class kyTicket extends kyObjectBase {
 	 * Sets the creator of this ticket.
 	 *
 	 * @param int $type Creator type. One of self::CREATOR_* constants.
-	 * @param int $id Creator (user of staff) identifier.
 	 * @param string $full_name Full name of creator.
 	 * @param string $email E-mail of creator.
+	 * @param int $id Creator (user of staff) identifier. Not necessary for type CREATOR_AUTO.
 	 * @return kyTicket
 	 */
-	public function setCreator($type, $id, $full_name, $email) {
+	public function setCreator($type, $full_name, $email, $id = null) {
 		$this->creator = $type;
-		$this->creator_id = $id;
 		$this->full_name = $full_name;
 		$this->email = $email;
+		$this->creator_id = $id;
 		return $this;
 	}
 
@@ -761,11 +773,11 @@ class kyTicket extends kyObjectBase {
 	/**
 	 * Returns list of ticket posts. Result is cached.
 	 *
-	 * @param bool $force_refresh Use true to refresh posts data.
+	 * @param bool $reload True to reload posts data from server.
 	 * @return kyTicketPost[]
 	 */
-	public function getPosts($force_refresh = false) {
-		if ($this->posts === null || $force_refresh) {
+	public function getPosts($reload = false) {
+		if ($this->posts === null || $reload) {
 			$this->posts = kyTicketPost::getAll($this->getId());
 		}
 		return $this->posts;
@@ -773,7 +785,6 @@ class kyTicket extends kyObjectBase {
 
 	/**
 	 * Returns first post of ticket.
-	 * CAUTION: Needs the patch.
 	 *
 	 * @return kyTicketPost
 	 */
@@ -805,7 +816,26 @@ class kyTicket extends kyObjectBase {
 	}
 
 	/**
-	 * Creates new ticket.
+	 * Generic method for creating new ticket (without setting creator).
+	 *
+	 * @param kyDepartment $department Department where new ticket will be created.
+	 * @param string $contents Contents of the first post.
+	 * @param string $subject Subject of new ticket.
+	 * @return kyTicket
+	 */
+	static private function createNewGeneric($department, $contents, $subject) {
+		$new_ticket = new kyTicket();
+		$new_ticket->setStatusId(self::$default_status_id);
+		$new_ticket->setPriorityId(self::$default_priority_id);
+		$new_ticket->setTypeId(self::$default_type_id);
+		$new_ticket->setDepartment($department);
+		$new_ticket->setSubject($subject);
+		$new_ticket->setContents($contents);
+		return $new_ticket;
+	}
+
+	/**
+	 * Creates new ticket with implicit user or staff as creator.
 	 * WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.
 	 *
 	 * @param kyDepartment $department Department where new ticket will be created.
@@ -815,18 +845,29 @@ class kyTicket extends kyObjectBase {
 	 * @return kyTicket
 	 */
 	static public function createNew($department, $creator, $contents, $subject) {
-		$new_ticket = new kyTicket();
-		$new_ticket->setStatusId(self::$default_status_id);
-		$new_ticket->setPriorityId(self::$default_priority_id);
-		$new_ticket->setTypeId(self::$default_type_id);
+		$new_ticket = self::createNewGeneric($department, $contents, $subject);
 		if ($creator instanceOf kyUser) {
-			$new_ticket->setCreator(self::CREATOR_USER, $creator->getId(), $creator->getFullName(), $creator->getEmail());
+			$new_ticket->setCreator(self::CREATOR_USER, $creator->getFullName(), $creator->getEmail(), $creator->getId());
 		} elseif ($creator instanceOf kyStaff) {
-			$new_ticket->setCreator(self::CREATOR_STAFF, $creator->getId(), $creator->getFullName(), $creator->getEmail());
+			$new_ticket->setCreator(self::CREATOR_STAFF, $creator->getFullName(), $creator->getEmail(), $creator->getId());
 		}
-		$new_ticket->setDepartment($department);
-		$new_ticket->setSubject($subject);
-		$new_ticket->setContents($contents);
+		return $new_ticket;
+	}
+
+	/**
+	 * Creates new ticket with creator user automatically created by server using provided name and e-mail.
+	 * WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.
+	 *
+	 * @param kyDepartment $department Department where new ticket will be created.
+	 * @param string $creator_full_name Creator full name.
+	 * @param string $creator_email Creator e-mail.
+	 * @param string $contents Contents of the first post.
+	 * @param string $subject Subject of new ticket.
+	 * @return kyTicket
+	 */
+	static public function createNewAuto($department, $creator_full_name, $creator_email, $contents, $subject) {
+		$new_ticket = self::createNewGeneric($department, $contents, $subject);
+		$new_ticket->setCreator(self::CREATOR_AUTO, $creator_full_name, $creator_email);
 		return $new_ticket;
 	}
 
