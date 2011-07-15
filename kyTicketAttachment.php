@@ -209,7 +209,11 @@ class kyTicketAttachment extends kyObjectBase {
 	 * @return kyTicketAttachment
 	 */
 	public function setContentsFromFile($file_path, $file_name = null) {
-		$this->contents = file_get_contents($file_path);
+		$contents = file_get_contents($file_path);
+		if ($contents === false)
+			throw new Exception(sprintf("Error reading contents of %s.", $file_path));
+
+		$this->contents =& $contents;
 		if ($file_name === null)
 			$file_name = pathinfo($file_path, PATHINFO_BASENAME);
 		$this->file_name = $file_name;
