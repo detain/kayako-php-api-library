@@ -79,7 +79,7 @@ class kyTicket extends kyObjectBase {
 	private $time_tracks = null;
 	private $posts = null;
 	private $attachments = null;
-	private $custom_fields_groups = null;
+	private $custom_field_groups = null;
 
 	private $contents = null;
 	private $creator_id = null;
@@ -813,6 +813,21 @@ class kyTicket extends kyObjectBase {
 	public function setContents($contents) {
 		$this->contents = $contents;
 		return $this;
+	}
+
+	/**
+	 * Returns list of custom field groups for this ticket.
+	 * Result is cached until the end of script.
+	 *
+	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
+	 * @return
+	 */
+	public function getCustomFieldGroups($reload = false) {
+		if ($this->custom_field_groups !== null && !$reload)
+			return $this->custom_field_groups;
+
+		$this->custom_field_groups = kyTicketCustomFieldGroup::getAll($this->getId());
+		return $this->custom_field_groups;
 	}
 
 	/**

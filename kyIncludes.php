@@ -1,10 +1,15 @@
 <?php
 //objects
+require_once("kyCustomField.php");
+require_once("kyCustomFieldDate.php");
+require_once("kyCustomFieldFile.php");
+require_once("kyCustomFieldMulti.php");
 require_once("kyDepartment.php");
 require_once("kyStaff.php");
 require_once("kyStaffGroup.php");
 require_once("kyTicket.php");
 require_once("kyTicketAttachment.php");
+require_once("kyTicketCustomFieldGroup.php");
 require_once("kyTicketNote.php");
 require_once("kyTicketPost.php");
 require_once("kyTicketPriority.php");
