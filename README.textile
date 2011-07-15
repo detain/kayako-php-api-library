@@ -117,7 +117,9 @@ print "The ticket was created and its ID is: ".$new_ticket->getDisplayId();
 
 Usually that's everything what will be needed in casual cases, when you simply want to create a ticket. But we can do some more...
 
-h2. Assigning staff user
+h2. Changing the ticket
+
+h3. Assigning staff user
 
 Let's assign new ticket to the staff user loaded previously.
 
@@ -125,15 +127,7 @@ Let's assign new ticket to the staff user loaded previously.
 $new_ticket->setOwnerStaff($staff)->update();
 </pre>
 
-h2. Changing the ticket
-
-Assume we want to change the status of newly created ticket.
-
-<pre>
-$new_ticket->setStatusId(5)->update();
-</pre>
-
-h2. Adding a ticket post (as staff).
+h3. Adding a ticket post (as staff).
 
 The owner of ticket (staff user assigned) apparently doesn't understand the rubbish we've sent in ticket contents so let's ask politely for clarification;) We are adding new ticket post as ticket owner.
 
@@ -141,7 +135,7 @@ The owner of ticket (staff user assigned) apparently doesn't understand the rubb
 $new_ticket_post = $new_ticket->newPost($new_ticket->getOwnerStaff(), 'What??')->create();
 </pre>
 
-h2. Adding a ticket post with attachments (as user).
+h3. Adding a ticket post with attachments (as user).
 
 Let's create some new post as user and attach some file to it.
 
@@ -156,7 +150,23 @@ $new_ticket_post = $new_ticket->newPost($new_ticket->getUser(), 'Sorry, I forgot
 $new_ticket_attachment = $new_ticket_post->newAttachmentFromFile('/path/to/file.pdf')->create();
 </pre>
 
-h2. Searching for tickets (using helper).
+h3. Recording the time spent
+
+We can add a track of time spent on processing the ticket.
+
+<pre>
+$new_ticket->newTimeTrack("Worked hard on this", $staff, "1:30", "00:45")->create();
+</pre>
+
+h3. Changing the ticket status
+
+Assume we want to change the status of newly created ticket.
+
+<pre>
+$new_ticket->setStatusId(2)->update();
+</pre>
+
+h2. Searching for tickets.
 
 If you want to search for tickets you can do it two ways. 
 
@@ -165,7 +175,7 @@ h3. Search using helper
 Search using helper with method chaining.
 
 <pre>
-$tickets = kySearchTicket::createNew()->addDepartmentId(1)->addTicketStatusId(2)->addTicketStatusId(3)->addOwnerStaffId(4)->addUserId(3)->search();
+$tickets = kySearchTicket::createNew()->addDepartmentId(1)->addTicketStatusId(1)->addTicketStatusId(2)->addOwnerStaffId(1)->addUserId(1)->search();
 </pre>
 
 h3. Search using getAll.
@@ -173,7 +183,7 @@ h3. Search using getAll.
 And the same with getAll method.
 
 <pre>
-$tickets = kyTicket::getAll(array(1), array(2, 3), array(4), array(3));
+$tickets = kyTicket::getAll(array(1), array(1, 2), array(1), array(1));
 </pre>
 
 h1. How to contribute

@@ -56,14 +56,11 @@ Aliquam placerat cursus augue sed adipiscing. Proin viverra egestas nulla et sol
 print "The ticket was created and its ID is: ".$new_ticket->getDisplayId();
 
 /**
- * Changing ticket.
+ * Assign staff user.
  */
 
 //assign staff user
 $new_ticket->setOwnerStaff($staff)->update();
-
-//change status
-$new_ticket->setStatusId(5)->update();
 
 /**
  * Adding ticket post (as assigned staff user).
@@ -83,11 +80,21 @@ $new_ticket_post = $new_ticket->newPost($new_ticket->getUser(), 'Sorry, I forgot
 $new_ticket_attachment = $new_ticket_post->newAttachmentFromFile('/path/to/file.pdf')->create();
 
 /**
+ * Other changes.
+ */
+
+//record time spent on processing the ticket
+$new_ticket->newTimeTrack("Worked hard on this", $staff, "1:30", "00:45")->create();
+
+//change status
+$new_ticket->setStatusId(2)->update();
+
+/**
  * Searching for tickets (using helper).
  */
-$tickets = kySearchTicket::createNew()->addDepartmentId(1)->addTicketStatusId(2)->addTicketStatusId(3)->addOwnerStaffId(4)->addUserId(3)->search();
+$tickets = kySearchTicket::createNew()->addDepartmentId(1)->addTicketStatusId(1)->addTicketStatusId(2)->addOwnerStaffId(1)->addUserId(1)->search();
 
 /**
  * Searching for tickets (using getAll).
  */
-$tickets = kyTicket::getAll(array(1), array(2, 3), array(4), array(3));
+$tickets = kyTicket::getAll(array(1), array(1, 2), array(1), array(1));
