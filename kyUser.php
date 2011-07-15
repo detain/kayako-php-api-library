@@ -87,6 +87,26 @@ class kyUser extends kyObjectBase {
 		return $data;
 	}
 
+	/**
+	 * Fetches all users.
+	 * Optionaly you can get segment of user objects by defining starting user identifier and maximum items count.
+	 *
+	 * @param int $starting_user_id Optional starting user identifier.
+	 * @param int $max_items Optional maximum items count. Defaults to 1000 when starting user is defined.
+	 * @return kyUser[]
+	 */
+	static public function getAll($starting_user_id = null, $max_items = null) {
+		$search_parameters = array('Filter');
+		if (is_numeric($starting_user_id) && $starting_user_id > 0) {
+			if (!is_numeric($max_items) || $max_items <= 0)
+				$limit = 1000;
+			$search_parameters[] = $starting_user_id;
+			$search_parameters[] = $max_items;
+		}
+
+		return parent::getAll($search_parameters);
+	}
+
 	public function getId($complete = false) {
 		return $complete ? array($this->id) : $this->id;
 	}
