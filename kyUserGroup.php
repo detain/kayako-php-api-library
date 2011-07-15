@@ -11,7 +11,16 @@ require_once('kyObjectBase.php');
  */
 class kyUserGroup extends kyObjectBase {
 
+	/**
+	 * Type of user group - guest.
+	 * @var int
+	 */
 	const TYPE_GUEST = 'guest';
+
+	/**
+	 * Type of user group - registered.
+	 * @var int
+	 */
 	const TYPE_REGISTERED = 'registered';
 
 	static protected $controller = '/Base/UserGroup';
@@ -47,6 +56,7 @@ class kyUserGroup extends kyObjectBase {
 	}
 
 	/**
+	 * Returns title of the user group.
 	 *
 	 * @return string
 	 * @filterBy()
@@ -57,8 +67,9 @@ class kyUserGroup extends kyObjectBase {
 	}
 
 	/**
+	 * Sets title of the user group.
 	 *
-	 * @param string $title
+	 * @param string $title Title of the user group.
 	 * @return kyUserGroup
 	 */
 	public function setTitle($title) {
@@ -67,6 +78,7 @@ class kyUserGroup extends kyObjectBase {
 	}
 
 	/**
+	 * Returns type of the user group - one of kyUserGroup::TYPE_* constants.
 	 *
 	 * @return string
 	 * @filterBy()
@@ -77,8 +89,9 @@ class kyUserGroup extends kyObjectBase {
 	}
 
 	/**
+	 * Sets type of the user group.
 	 *
-	 * @param string $type User group type. One of self::TYPE_* constants.
+	 * @param string $type Type of the user group - one of kyUserGroup::TYPE_* constants
 	 * @return kyUserGroup
 	 */
 	public function setType($type) {
@@ -87,11 +100,27 @@ class kyUserGroup extends kyObjectBase {
 	}
 
 	/**
+	 * Returns whether the user group is master group (built-in).
 	 *
 	 * @return bool
 	 * @filterBy()
 	 */
 	public function getIsMaster() {
 		return $this->is_master;
+	}
+
+	/**
+	 * Creates new user group.
+	 * WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.
+	 *
+	 * @param string $title Title of new user group.
+	 * @param string $type Type of new user group - one of kyUserGroup::TYPE_* constants.
+	 * @return kyUserGroup
+	 */
+	static public function createNew($title, $type = self::TYPE_REGISTERED) {
+		$new_user_group = new kyUserGroup();
+		$new_user_group->setTitle($title);
+		$new_user_group->setType($type);
+		return $new_user_group;
 	}
 }
