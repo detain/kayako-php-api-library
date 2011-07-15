@@ -68,7 +68,7 @@ class kyStaff extends kyObjectBase {
 		$data['timezone'] = $this->timezone;
 		$data['enabledst'] = $this->enable_dst ? 1 : 0;
 		if (strlen($this->password) > 0)
-			$this->password = $data['password'];
+			$data['password'] = $this->password;
 
 		return $data;
 	}

@@ -114,7 +114,7 @@ class kyStaffGroup extends kyObjectBase {
 	 * @param string $password Password for new staff user.
 	 * @return kyStaff
 	 */
-	public function addStaff($first_name, $last_name, $user_name, $email, $password) {
+	public function newStaff($first_name, $last_name, $user_name, $email, $password) {
 		return kyStaff::createNew($first_name, $last_name, $user_name, $email, $this, $password);
 	}
 }
