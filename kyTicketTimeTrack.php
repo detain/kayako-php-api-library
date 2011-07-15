@@ -126,7 +126,7 @@ class kyTicketTimeTrack extends kyObjectBase {
 	}
 
 	public function update() {
-		throw new MethodNot("You can't update objects of type kyTicketTimeTrack.");
+		throw new Exception("You can't update objects of type kyTicketTimeTrack.");
 	}
 
 	public function getId($complete = false) {
