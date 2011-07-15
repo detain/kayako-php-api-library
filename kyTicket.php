@@ -883,4 +883,19 @@ class kyTicket extends kyObjectBase {
 	public function newPost($creator, $contents, $subject = 'No subject') {
 		return kyTicketPost::createNew($this, $creator, $contents, $subject);
 	}
+
+	/**
+	 * Creates new ticket time track for this ticket.
+	 * WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.
+	 *
+	 * @param string $contents Note contents.
+	 * @param kyStaff $staff Staff user - both creator and worker.
+	 * @param string $time_worked Worked time formatted as hh:mm. Work date will be set to current datetime.
+	 * @param string $time_billable Billable time formatted as hh:mm. Bill date will be set to current datetime.
+	 * @return kyTicketTimeTrack
+	 */
+	public function newTimeTrack($contents, kyStaff $staff, $time_worked, $time_billable) {
+		return kyTicketTimeTrack::createNew($this, $contents, $staff, $time_worked, $time_billable);
+	}
+
 }

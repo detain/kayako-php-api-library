@@ -47,6 +47,9 @@ class kyTicketTimeTrack extends kyObjectBase {
 	 */
 	const COLOR_RED = 5;
 
+	static protected $controller = '/Tickets/TicketTimeTrack';
+	static protected $object_xml_name = 'timetrack';
+
 	private $id = null;
 	private $ticket_id = null;
 	private $time_worked = null;
@@ -166,14 +169,14 @@ class kyTicketTimeTrack extends kyObjectBase {
 	/**
 	 * Sets worked time for this time track.
 	 *
-	 * @param mixed $time_worked Worked time in seconds or formatted according to hh:mm:ss.
-	 * @param bool $formatted True to indicate that time is formatted according to hh:mm:ss. False to indicate that time is provided in seconds.
+	 * @param mixed $time_worked Worked time in seconds or formatted as hh:mm.
+	 * @param bool $formatted True to indicate that time is formatted as hh:mm. False to indicate that time is provided in seconds.
 	 * @return kyTicketTimeTrack
 	 */
 	public function setTimeWorked($time_worked, $formatted = false) {
 		if ($formatted) {
-			list($hours, $minutes, $seconds) = explode(':', $time_worked);
-			$time_worked = (60 * 60 * $hours) + (60 * $minutes) + $seconds;
+			list($hours, $minutes) = explode(':', $time_worked);
+			$time_worked = (60 * 60 * $hours) + (60 * $minutes);
 		}
 		$this->time_worked = $time_worked;
 		return $this;
@@ -195,14 +198,14 @@ class kyTicketTimeTrack extends kyObjectBase {
 	/**
 	 * Sets billable time for this time track.
 	 *
-	 * @param mixed $time_billable Billable time in seconds or formatted according to hh:mm:ss.
-	 * @param bool $formatted True to indicate that time is formatted according to hh:mm:ss. False to indicate that time is provided in seconds.
+	 * @param mixed $time_billable Billable time in seconds or formatted as hh:mm.
+	 * @param bool $formatted True to indicate that time is formatted as hh:mm. False to indicate that time is provided in seconds.
 	 * @return kyTicketTimeTrack
 	 */
 	public function setTimeBillable($time_billable, $formatted = false) {
 		if ($formatted) {
-			list($hours, $minutes, $seconds) = explode(':', $time_billable);
-			$time_billable = (60 * 60 * $hours) + (60 * $minutes) + $seconds;
+			list($hours, $minutes) = explode(':', $time_billable);
+			$time_billable = (60 * 60 * $hours) + (60 * $minutes);
 		}
 		$this->time_billable = $time_billable;
 		return $this;
@@ -246,6 +249,32 @@ class kyTicketTimeTrack extends kyObjectBase {
 	public function setBillDate($bill_date) {
 		$this->bill_date = $bill_date;
 		return $this;
+	}
+
+	/**
+	 * Shortcut function for setting worked time and when the work was executed.
+	 *
+	 * @param string $time_worked Worked time formatted as hh:mm.
+	 * @param string $work_date When the work was exectued. Default is the current datetime.
+	 */
+	public function setWorkedData($time_worked, $work_date = null) {
+		$this->setTimeWorked($time_worked, true);
+		if ($work_date === null)
+			$work_date = date(kyBase::$datetime_format);
+		$this->setWorkDate($work_date);
+	}
+
+	/**
+	 * Shortcut function for setting billable time and when to bill the worker.
+	 *
+	 * @param string $time_billable Billable time formatted as hh:mm.
+	 * @param string $bill_date When to bill the worker. Default is the current datetime.
+	 */
+	public function setBillingData($time_billable, $bill_date = null) {
+		$this->setTimeBillable($time_billable, true);
+		if ($bill_date === null)
+			$bill_date = date(kyBase::$datetime_format);
+		$this->setBillDate($bill_date);
 	}
 
 	/**
@@ -417,5 +446,27 @@ class kyTicketTimeTrack extends kyObjectBase {
 	public function setContents($contents) {
 		$this->contents = $contents;
 		return $this;
+	}
+
+	/**
+	 * Creates new ticket time track.
+	 * WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.
+	 *
+	 * @param kyTicket $ticket Ticket to attach the timetrack to.
+	 * @param string $contents Note contents.
+	 * @param kyStaff $staff Staff user - both creator and worker.
+	 * @param string $time_worked Worked time formatted as hh:mm. Work date will be set to current datetime.
+	 * @param string $time_billable Billable time formatted as hh:mm. Bill date will be set to current datetime.
+	 * @return kyTicketTimeTrack
+	 */
+	static public function createNew(kyTicket $ticket, $contents, kyStaff $staff, $time_worked, $time_billable) {
+		$ticket_time_track = new self();
+		$ticket_time_track->setTicketId($ticket->getId());
+		$ticket_time_track->setContents($contents);
+		$ticket_time_track->setCreatorStaff($staff);
+		$ticket_time_track->setWorkerStaff($staff);
+		$ticket_time_track->setBillingData($time_billable);
+		$ticket_time_track->setWorkedData($time_worked);
+		return $ticket_time_track;
 	}
 }
