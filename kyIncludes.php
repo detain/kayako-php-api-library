@@ -20,9 +20,6 @@ require_once("kyUser.php");
 require_once("kyUserGroup.php");
 require_once("kyUserOrganization.php");
 
-//searches
-require_once("kySearchTicket.php");
-
 if (!function_exists('ky_xml_to_array')) {
 	function ky_xml_to_array($xml, $namespaces = null) {
 		$iter = 0;
