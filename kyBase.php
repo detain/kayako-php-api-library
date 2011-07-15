@@ -55,7 +55,7 @@ abstract class kyBase {
 	 * See processRequest for implementation details.
 	 * @var bool
 	 */
-	static private $put_memory_stream = null;
+	static private $put_memory_stream = true;
 
 	/**
 	 * Kayako controller used to operate on this objects.
