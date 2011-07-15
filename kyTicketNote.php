@@ -459,4 +459,23 @@ class kyTicketNote extends kyObjectBase {
 		$this->contents = $contents;
 		return $this;
 	}
+
+	/**
+	 * Creates new ticket note.
+	 * WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.
+	 *
+	 * @param kyTicket $ticket Ticket in which to create the post.
+	 * @param kyStaff $creator Creator (staff) of new note.
+	 * @param string $contents Contents of new note.
+	 * @return kyTicketNote
+	 */
+	static public function createNew(kyTicket $ticket, kyStaff $creator, $contents) {
+		$new_ticket_note = new kyTicketNote();
+
+		$new_ticket_note->setTicketId($ticket->getId());
+		$new_ticket_note->setCreator($creator->getId());
+		$new_ticket_note->setContents($contents);
+
+		return $new_ticket_note;
+	}
 }

@@ -269,10 +269,9 @@ class kyTicket extends kyObjectBase {
 				break;
 		}
 
-		if ($this->owner_staff_id === null)
-			$data['ownerstaffid'] = 0;
-		else
+		if ($this->owner_staff_id > 0)
 			$data['ownerstaffid'] = $this->owner_staff_id;
+
 		$data['type'] = $this->creation_type;
 
 		return $data;
@@ -281,40 +280,47 @@ class kyTicket extends kyObjectBase {
 	/**
 	 * Searches for tickets based on provided data. You must provide at least one department identifier.
 	 *
-	 * @param int[] $department_ids Non-empty list of department identifiers.
-	 * @param int[] $ticket_status_ids List of ticket status identifiers.
-	 * @param int[] $owner_staff_ids List of staff (ticket owners) identifiers.
-	 * @param int[] $user_ids List of user (ticket creators) identifiers.
+	 * @param kyDepartment|kyResultSet $departments Non-empty list of department identifiers.
+	 * @param kyTicketStatus|kyResultSet $ticket_statuses List of ticket status identifiers.
+	 * @param kyStaff|kyResultSet $owner_staffs List of staff (ticket owners) identifiers.
+	 * @param kyUser|kyResultSet $users List of user (ticket creators) identifiers.
 	 * @return kyResultSet
 	 */
-	static public function getAll($department_ids, $ticket_status_ids = array(), $owner_staff_ids = array(), $user_ids = array()) {
+	static public function getAll($departments, $ticket_statuses = array(), $owner_staffs = array(), $users = array()) {
 		$search_parameters = array('ListAll');
 
-		if (is_numeric($department_ids)) {
-			$department_ids = array($department_ids);
-		}
-
-		if ($ticket_status_ids === null) {
-			$ticket_status_ids = array();
-		} elseif (is_numeric($ticket_status_ids)) {
-			$ticket_status_ids = array($ticket_status_ids);
-		}
-
-		if ($owner_staff_ids === null) {
-			$owner_staff_ids = array();
-		} elseif (is_numeric($owner_staff_ids)) {
-			$owner_staff_ids = array($owner_staff_ids);
-		}
-
-		if ($user_ids === null) {
-			$user_ids = array();
-		} elseif (is_numeric($user_ids)) {
-			$user_ids = array($user_ids);
+		$department_ids = array();
+		if ($departments instanceof kyDepartment) {
+			$department_ids = array($departments->getId());
+		} elseif ($departments instanceof kyResultSet) {
+			$department_ids = $departments->collectId();
 		}
 
 		//department
 		if (count($department_ids) === 0)
 			throw new Exception('You must provide at least one department to search for tickets.');
+
+		$ticket_status_ids = array();
+		if ($ticket_statuses instanceof kyTicketStatus) {
+			$ticket_status_ids = array($ticket_statuses->getId());
+		} elseif ($ticket_statuses instanceof kyResultSet) {
+			$ticket_status_ids = $ticket_statuses->collectId();
+		}
+
+		$owner_staff_ids = array();
+		if ($owner_staffs instanceof kyStaff) {
+			$owner_staff_ids = array($owner_staffs->getId());
+		} elseif ($owner_staffs instanceof kyResultSet) {
+			$owner_staff_ids = $owner_staffs->collectId();
+		}
+
+		$user_ids = array();
+		if ($users instanceof kyUser) {
+			$user_ids = array($users->getId());
+		} elseif ($users instanceof kyResultSet) {
+			$user_ids = $users->collectId();
+		}
+
 		$search_parameters[] = implode(',', $department_ids);
 
 		//ticket status
@@ -1079,6 +1085,18 @@ class kyTicket extends kyObjectBase {
 	 */
 	public function newPost($creator, $contents, $subject = 'No subject') {
 		return kyTicketPost::createNew($this, $creator, $contents, $subject);
+	}
+
+	/**
+	 * Creates new note in this ticket.
+	 * WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.
+	 *
+	 * @param kyStaff $creator Creator (staff) of new note.
+	 * @param string $contents Contents of new note.
+	 * @return kyTicketNote
+	 */
+	public function newNote(kyStaff $creator, $contents) {
+		return kyTicketNote::createNew($this, $creator, $contents);
 	}
 
 	/**
