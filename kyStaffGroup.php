@@ -87,4 +87,19 @@ class kyStaffGroup extends kyObjectBase {
 		$this->is_admin = $is_admin;
 		return $this;
 	}
+
+	/**
+	 * Creates new staff group.
+	 * WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.
+	 *
+	 * @param string $title Title of the staff group.
+	 * @param bool $is_admin True, if you want staff members assigned to this group to be Administrators. False (default), otherwise.
+	 * @return kyStaffGroup
+	 */
+	static public function createNew($title, $is_admin = false) {
+		$new_staff_group = new kyStaffGroup();
+		$new_staff_group->setTitle($title);
+		$new_staff_group->setIsAdmin($is_admin);
+		return $new_staff_group;
+	}
 }
