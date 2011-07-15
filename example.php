@@ -90,11 +90,12 @@ $new_ticket->newTimeTrack("Worked hard on this", $staff, "1:30", "00:45")->creat
 $new_ticket->setStatusId(2)->update();
 
 /**
- * Searching for tickets (using helper).
- */
-$tickets = kySearchTicket::createNew()->addDepartmentId(1)->addTicketStatusId(1)->addTicketStatusId(2)->addOwnerStaffId(1)->addUserId(1)->search();
-
-/**
  * Searching for tickets (using getAll).
  */
 $tickets = kyTicket::getAll(array(1), array(1, 2), array(1), array(1));
+
+
+/**
+ * Searching for tickets (using query).
+ */
+$tickets = kyTicket::search("Lorem ipsum", array(kyTicket::SEARCH_CONTENTS, kyTicket::SEARCH_NOTES));

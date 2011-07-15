@@ -170,21 +170,24 @@ h2. Searching for tickets.
 
 If you want to search for tickets you can do it two ways. 
 
-h3. Search using helper
-
-Search using helper with method chaining.
-
-<pre>
-$tickets = kySearchTicket::createNew()->addDepartmentId(1)->addTicketStatusId(1)->addTicketStatusId(2)->addOwnerStaffId(1)->addUserId(1)->search();
-</pre>
-
 h3. Search using getAll.
 
-And the same with getAll method.
+Basic search using parameters of kyTicket::getAll method.
 
 <pre>
 $tickets = kyTicket::getAll(array(1), array(1, 2), array(1), array(1));
 </pre>
+
+h3. Search using query
+
+Search using query over multiple areas. 
+Belowe we are searching for tickets that have "Lorem ipsum" in contents of any post or note.
+
+<pre>
+$tickets = kyTicket::search("Lorem ipsum", array(kyTicket::SEARCH_CONTENTS, kyTicket::SEARCH_NOTES));
+</pre>
+
+See kyTicket::SEARCH_ constants for possible search areas.
 
 h1. How to contribute
 
