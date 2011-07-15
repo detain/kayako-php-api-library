@@ -23,6 +23,46 @@ abstract class kyObjectBase extends kyBase {
 	protected $read_only = false;
 
 	/**
+	 * Cache for available filter methods.
+	 * Format:
+	 * array(
+	 *  '<class name>' => array(
+	 * 		'<filter method name>' => '<get method name>',
+	 * 		...
+	 * 	),
+	 * 	...
+	 * )
+	 * @var string[]
+	 */
+	static protected $_filter_methods = array();
+
+	/**
+	 * Cache for available order methods.
+	 * Format:
+	 * array(
+	 *  '<class name>' => array(
+	 * 		'<order method name>' => '<get method name>',
+	 * 		...
+	 * 	),
+	 * 	...
+	 * )
+	 * @var string[]
+	 */
+	static protected $_order_methods = array();
+
+	/**
+	 * Prefix for filter methods.
+	 * @var string
+	 */
+	const FILTER_PREFIX = "filterBy";
+
+	/**
+	 * Prefix for order methods.
+	 * @var string
+	 */
+	const ORDER_PREFIX = "orderBy";
+
+	/**
 	 * Default constructor.
 	 *
 	 * @param array $data Object data from XML response converted into array.
@@ -60,10 +100,17 @@ abstract class kyObjectBase extends kyBase {
 	abstract public function getId($complete = false);
 
 	/**
+	 * Should return short (one line) description of the object (it's title, name, etc.).
+	 *
+	 * @return string
+	 */
+	abstract public function toString();
+
+	/**
 	 * Fetches objects from server.
 	 *
 	 * @param array $search_parameters Optional. Additional search parameters.
-	 * @return self[]
+	 * @return kyResultSet
 	 */
 	static public function getAll($search_parameters = array()) {
 		$result = static::_get($search_parameters);
@@ -73,7 +120,7 @@ abstract class kyObjectBase extends kyBase {
 				$objects[] = new static($object_data);
 			}
 		}
-		return $objects;
+		return new kyResultSet($objects);
 	}
 
 	/**
@@ -146,5 +193,83 @@ abstract class kyObjectBase extends kyBase {
 			throw new Exception(sprintf("You can't delete object of type %s.", get_called_class()));
 
 		static::_delete($this->getId(true));
+	}
+
+	/**
+	 * Returns list of available filter methods for use in result sets with objects of this type.
+	 * Optionaly you can return get method names used to filter objects.
+	 *
+	 * @param bool $filter_names_only True (default) to return array('filterByXXX', 'filterByYYY', ...). False to return array('filterByXXX' => 'getXXX', 'filterByYYY' => 'YYY', ...).
+	 * @return array
+	 */
+	static public function getAvailableFilterMethods($filter_names_only = true) {
+		$class_name = get_called_class();
+		if (!array_key_exists($class_name, self::$_filter_methods)) {
+			$filter_methods = array();
+
+			//get public methods in the class and search for @fitlerBy(filter_method_name) in doc comment
+			$class = new ReflectionClass($class_name);
+			foreach ($class->getMethods(ReflectionMethod::IS_PUBLIC) as $method) {
+				$get_method_name = $method->getName();
+				$method_comment = $method->getDocComment();
+				$result = preg_match('/@filterBy\((.*)\)/', $method_comment, $matches);
+				if ($result === 1 && count($matches) === 2) {
+					if (strlen($matches[1]) > 0) {
+						$filter_method_name = $matches[1];
+					} else {
+						$filter_method_name = preg_replace('/^get/', '', $get_method_name);
+					}
+					$filter_methods[self::FILTER_PREFIX . $filter_method_name] = $get_method_name;
+				}
+			}
+
+			self::$_filter_methods[$class_name] = $filter_methods;
+		}
+
+		return $filter_names_only ? array_keys(self::$_filter_methods[$class_name]) : self::$_filter_methods[$class_name];
+	}
+
+	/**
+	 * Returns list of available order methods for use in result sets with objects of this type.
+	 * Optionaly you can return get method names used to order objects.
+	 *
+	 * @param bool $order_names_only True (default) to return array('orderByXXX', 'orderByYYY', ...). False to return array('orderByXXX' => 'getXXX', 'orderByYYY' => 'YYY', ...).
+	 * @return array
+	 */
+	static public function getAvailableOrderMethods($order_names_only = true) {
+		$class_name = get_called_class();
+		if (!array_key_exists($class_name, self::$_order_methods)) {
+			$order_methods = array();
+
+			//get public methods in the class and search for @orderBy(order_method_name) in doc comment
+			$class = new ReflectionClass($class_name);
+			foreach ($class->getMethods(ReflectionMethod::IS_PUBLIC) as $method) {
+				$get_method_name = $method->getName();
+				$method_comment = $method->getDocComment();
+				$result = preg_match('/@orderBy\((.*)\)/', $method_comment, $matches);
+				if ($result === 1 && count($matches) === 2) {
+					if (strlen($matches[1]) > 0) {
+						$order_method_name = $matches[1];
+					} else {
+						$order_method_name = preg_replace('/^get/', '', $get_method_name);
+					}
+					$order_methods[self::ORDER_PREFIX . $order_method_name] = $get_method_name;
+				}
+			}
+
+			self::$_order_methods[$class_name] = $order_methods;
+		}
+
+		return $order_names_only ? array_keys(self::$_order_methods[$class_name]) : self::$_order_methods[$class_name];
+	}
+
+	/**
+	 * Returns object description with it's type and identifier.
+	 * Calls toString() method to get the object description.
+	 *
+	 * @return string
+	 */
+	public function __toString() {
+		return sprintf("%s (id: %s): %s", get_class($this), implode(', ', $this->getId(true)), $this->toString());
 	}
 }

@@ -43,7 +43,7 @@ class kyTicketStatus extends kyObjectBase {
 		$this->type = $data['type'];
 		$this->display_in_main_list = intval($data['displayinmainlist']) === 0 ? false : true;
 		$this->mark_as_resolved = intval($data['markasresolved']) === 0 ? false : true;
-		$this->display_count = intval($data['displaycount']);
+		$this->display_count = intval($data['displaycount']) === 0 ? false : true;
 		$this->status_color = $data['statuscolor'];
 		$this->status_bg_color = $data['statusbgcolor'];
 		$this->reset_due_time = intval($data['resetduetime']) === 0 ? false : true;
@@ -57,6 +57,10 @@ class kyTicketStatus extends kyObjectBase {
 		}
 	}
 
+	public function toString() {
+		return sprintf("%s (type: %s)", $this->getTitle(), $this->getType());
+	}
+
 	public function getId($complete = false) {
 		return $complete ? array($this->id) : $this->id;
 	}
@@ -64,6 +68,8 @@ class kyTicketStatus extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getTitle() {
 		return $this->title;
@@ -72,6 +78,8 @@ class kyTicketStatus extends kyObjectBase {
 	/**
 	 *
 	 * @return int
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getDisplayOrder() {
 		return $this->display_order;
@@ -80,6 +88,7 @@ class kyTicketStatus extends kyObjectBase {
 	/**
 	 *
 	 * @return int
+	 * @filterBy()
 	 */
 	public function getDepartmentId() {
 		return $this->department_id;
@@ -108,6 +117,8 @@ class kyTicketStatus extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getType() {
 		return $this->type;
@@ -116,6 +127,7 @@ class kyTicketStatus extends kyObjectBase {
 	/**
 	 *
 	 * @return bool
+	 * @filterBy()
 	 */
 	public function getDisplayInMainList() {
 		return $this->display_in_main_list;
@@ -124,6 +136,8 @@ class kyTicketStatus extends kyObjectBase {
 	/**
 	 *
 	 * @return bool
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getMarkAsResolved() {
 		return $this->mark_as_resolved;
@@ -131,7 +145,9 @@ class kyTicketStatus extends kyObjectBase {
 
 	/**
 	 *
-	 * @return int
+	 * @return bool
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getDisplayCount() {
 		return $this->display_count;
@@ -140,6 +156,7 @@ class kyTicketStatus extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
 	 */
 	public function getStatusColor() {
 		return $this->status_color;
@@ -148,6 +165,7 @@ class kyTicketStatus extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
 	 */
 	public function getStatusBackgroundColor() {
 		return $this->status_bg_color;
@@ -156,6 +174,7 @@ class kyTicketStatus extends kyObjectBase {
 	/**
 	 *
 	 * @return bool
+	 * @filterBy()
 	 */
 	public function getResetDueTime() {
 		return $this->reset_due_time;
@@ -164,6 +183,7 @@ class kyTicketStatus extends kyObjectBase {
 	/**
 	 *
 	 * @return bool
+	 * @filterBy()
 	 */
 	public function getTriggerSurvey() {
 		return $this->trigger_survey;
@@ -172,6 +192,7 @@ class kyTicketStatus extends kyObjectBase {
 	/**
 	 *
 	 * @return bool
+	 * @filterBy()
 	 */
 	public function getStaffVisibilityCustom() {
 		return $this->staff_visibility_custom;
@@ -180,6 +201,8 @@ class kyTicketStatus extends kyObjectBase {
 	/**
 	 *
 	 * @return int[]
+	 * @filterBy(StaffGroupId)
+	 * @orderBy(StaffGroupId)
 	 */
 	public function getStaffGroupIds() {
 		return $this->staff_group_ids;
@@ -188,13 +211,13 @@ class kyTicketStatus extends kyObjectBase {
 	/**
 	 *
 	 * @todo Cache the result in object private field.
-	 * @return kyStaffGroup[]
+	 * @return kyResultSet
 	 */
 	public function getStaffGroups() {
 		$staff_groups = array();
 		foreach ($this->staff_group_ids as $staff_group_id) {
 			$staff_groups[] = kyStaffGroup::get($staff_group_id);
 		}
-		return $staff_groups;
+		return new kyResultSet($staff_groups);
 	}
 }

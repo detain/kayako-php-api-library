@@ -101,6 +101,10 @@ class kyDepartment extends kyObjectBase {
 		return $data;
 	}
 
+	public function toString() {
+		return sprintf("%s (type: %s, module: %s)", $this->getTitle(), $this->getType(), $this->getModule());
+	}
+
 	public function getId($complete = false) {
 		return $complete ? array($this->id) : $this->id;
 	}
@@ -109,6 +113,8 @@ class kyDepartment extends kyObjectBase {
 	 * Returns title of the department.
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getTitle() {
 		return $this->title;
@@ -129,6 +135,8 @@ class kyDepartment extends kyObjectBase {
 	 * Return type of the department - one of kyDepartment::TYPE_* constants.
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getType() {
 		return $this->type;
@@ -149,6 +157,8 @@ class kyDepartment extends kyObjectBase {
 	 * Returns module the department is associated with - one of kyDepartment::MODULE_* constants.
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getModule() {
 		return $this->module;
@@ -169,6 +179,8 @@ class kyDepartment extends kyObjectBase {
 	 * Returns display order of the department.
 	 *
 	 * @return int
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getDisplayOrder() {
 		return $this->display_order;
@@ -189,6 +201,8 @@ class kyDepartment extends kyObjectBase {
 	 * Returns identifier of parent department for this department.
 	 *
 	 * @return int
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getParentDeparmentId() {
 		return $this->parent_department_id;
@@ -246,6 +260,7 @@ class kyDepartment extends kyObjectBase {
 	 * Use getUserGroupIds to get their identifiers or getUserGroups to get the objects.
 	 *
 	 * @return bool
+	 * @filterBy()
 	 */
 	public function getUserVisibilityCustom() {
 		return $this->user_visibility_custom;
@@ -272,6 +287,7 @@ class kyDepartment extends kyObjectBase {
 	 * Returns identifiers of user groups that can be assigned to this department.
 	 *
 	 * @return array
+	 * @filterBy(UserGroupId)
 	 */
 	public function getUserGroupIds() {
 		return $this->user_group_ids;
@@ -292,8 +308,7 @@ class kyDepartment extends kyObjectBase {
 	 * Returns user groups that can be assigned to this department.
 	 * Result is cached until the end of script.
 	 *
-	 * @todo Cache the result in object private field.
-	 * @return kyUserGroup[]
+	 * @return kyResultSet
 	 */
 	public function getUserGroups($reload = false) {
 		$user_groups = array();
@@ -302,7 +317,7 @@ class kyDepartment extends kyObjectBase {
 				$this->user_groups[$user_group_id] = kyUserGroup::get($user_group_id);
 			$user_groups[] = $this->user_groups[$user_group_id];
 		}
-		return $user_groups;
+		return new kyResultSet($user_groups);
 	}
 
 	/**

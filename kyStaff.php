@@ -26,7 +26,7 @@ class kyStaff extends kyObjectBase {
 	private $greeting = null;
 	private $signature = null;
 	private $mobile_number = null;
-	private $is_enabled = false;
+	private $is_enabled = true;
 	private $timezone = 'GMT';
 	private $enable_dst = false;
 	private $password = null;
@@ -73,6 +73,10 @@ class kyStaff extends kyObjectBase {
 		return $data;
 	}
 
+	public function toString() {
+		return sprintf("%s (username: %s, email: %s)", $this->getFullName(), $this->getUserName(), $this->getEmail());
+	}
+
 	public function getId($complete = false) {
 		return $complete ? array($this->id) : $this->id;
 	}
@@ -81,6 +85,8 @@ class kyStaff extends kyObjectBase {
 	 * Returns staff group identifier of the staff user.
 	 *
 	 * @return int
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getStaffGroupId() {
 		return $this->staff_group_id;
@@ -133,6 +139,8 @@ class kyStaff extends kyObjectBase {
 	 * Returns first name of the staff user.
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getFirstName() {
 		return $this->first_name;
@@ -153,6 +161,8 @@ class kyStaff extends kyObjectBase {
 	 * Returns last name of the staff user.
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getLastName() {
 		return $this->last_name;
@@ -173,6 +183,8 @@ class kyStaff extends kyObjectBase {
 	 * Returns full name of the staff user.
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getFullName() {
 		return $this->full_name;
@@ -182,6 +194,8 @@ class kyStaff extends kyObjectBase {
 	 * Returns login username of the staff user.
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getUserName() {
 		return $this->user_name;
@@ -202,6 +216,8 @@ class kyStaff extends kyObjectBase {
 	 * Returns e-mail address of the staff user.
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getEmail() {
 		return $this->email;
@@ -222,6 +238,8 @@ class kyStaff extends kyObjectBase {
 	 * Returns designation of the staff user.
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getDesignation() {
 		return $this->designation;
@@ -242,6 +260,7 @@ class kyStaff extends kyObjectBase {
 	 * Returns default greeting message when the staff user accepts a live chat request.
 	 *
 	 * @return string
+	 * @filterBy()
 	 */
 	public function getGreeting() {
 		return $this->greeting;
@@ -283,6 +302,7 @@ class kyStaff extends kyObjectBase {
 	 * Returns mobile number of the staff user.
 	 *
 	 * @return string
+	 * @filterBy()
 	 */
 	public function getMobileNumber() {
 		return $this->mobile_number;
@@ -303,6 +323,8 @@ class kyStaff extends kyObjectBase {
 	 * Returns whether the staff user is enabled.
 	 *
 	 * @return bool
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getIsEnabled() {
 		return $this->is_enabled;
@@ -334,6 +356,7 @@ class kyStaff extends kyObjectBase {
 	 *
 	 * @param string $timezone Timezone of the staff user.
 	 * @return kyStaff
+	 * @filterBy()
 	 */
 	public function setTimezone($timezone) {
 		$this->timezone = $timezone;
@@ -343,6 +366,7 @@ class kyStaff extends kyObjectBase {
 	/**
 	 *
 	 * @return bool
+	 * @filterBy()
 	 */
 	public function getEnableDST() {
 		return $this->enable_dst;

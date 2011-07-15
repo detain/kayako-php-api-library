@@ -104,7 +104,7 @@ class kyTicketTimeTrack extends kyObjectBase {
 	 * Returns all time tracks of the ticket.
 	 *
 	 * @param int $ticket_id Ticket identifier.
-	 * @return kyTicketTimeTrack[]
+	 * @return kyResultSet
 	 */
 	static public function getAll($ticket_id) {
 		$search_parameters = array('ListAll');
@@ -127,6 +127,10 @@ class kyTicketTimeTrack extends kyObjectBase {
 
 	public function update() {
 		throw new Exception("You can't update objects of type kyTicketTimeTrack.");
+	}
+
+	public function toString() {
+		return sprintf("%s (worker: %s)", substr($this->getContents(), 0, 50) . (strlen($this->getContents()) > 50 ? '...' : ''), $this->getWorkerStaffName());
 	}
 
 	public function getId($complete = false) {
@@ -158,6 +162,8 @@ class kyTicketTimeTrack extends kyObjectBase {
 	 *
 	 * @param bool $formatted True to format result nicely (ex. 02:30:00). False to return amount of seconds.
 	 * @return int|string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getTimeWorked($formatted = false) {
 		if ($formatted)
@@ -187,6 +193,8 @@ class kyTicketTimeTrack extends kyObjectBase {
 	 *
 	 * @param bool $formatted True to format result nicely (ex. 02:30:00). False to return amount of seconds.
 	 * @return int|string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getTimeBillable($formatted = false) {
 		if ($formatted)
@@ -215,6 +223,8 @@ class kyTicketTimeTrack extends kyObjectBase {
 	 * Returns date and time when the work was executed.
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getWorkDate() {
 		return $this->work_date;
@@ -235,6 +245,8 @@ class kyTicketTimeTrack extends kyObjectBase {
 	 * Returns date and time when to bill the worker.
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getBillDate() {
 		return $this->bill_date;
@@ -281,6 +293,8 @@ class kyTicketTimeTrack extends kyObjectBase {
 	 * Returns identifier of staff user that has done the work.
 	 *
 	 * @return int
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getWorkerStaffId() {
 		return $this->worker_staff_id;
@@ -337,6 +351,8 @@ class kyTicketTimeTrack extends kyObjectBase {
 	 * Returns full name of staff user that has done the work.
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getWorkerStaffName() {
 		return $this->worker_staff_name;
@@ -346,6 +362,8 @@ class kyTicketTimeTrack extends kyObjectBase {
 	 * Returns identifier of staff user that created the time track.
 	 *
 	 * @return int
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getCreatorStaffId() {
 		return $this->creator_staff_id;
@@ -403,6 +421,8 @@ class kyTicketTimeTrack extends kyObjectBase {
 	 * Returns full name of staff user that created the time track.
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getCreatorStaffName() {
 		return $this->creator_staff_name;
@@ -432,6 +452,7 @@ class kyTicketTimeTrack extends kyObjectBase {
 	 * Returns contents of the time track.
 	 *
 	 * @return string
+	 * @filterBy()
 	 */
 	public function getContents() {
 		return $this->contents;

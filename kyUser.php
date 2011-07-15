@@ -14,6 +14,11 @@ class kyUser extends kyObjectBase {
 	const ROLE_USER = 'user';
 	const ROLE_MANAGER = 'manager';
 
+	const SALUTATION_MR = 'Mr.';
+	const SALUTATION_MISS = 'Ms.';
+	const SALUTATION_MRS = 'Mrs.';
+	const SALUTATION_DR = 'Dr.';
+
 	static protected $controller = '/Base/User';
 	static protected $object_xml_name = 'user';
 
@@ -21,6 +26,7 @@ class kyUser extends kyObjectBase {
 	private $user_group_id = null;
 	private $user_role = self::ROLE_USER;
 	private $user_organization_id = null;
+	private $salutation = null;
 	private $user_expiry = null;
 	private $full_name = null;
 	private $email = array();
@@ -28,7 +34,7 @@ class kyUser extends kyObjectBase {
 	private $phone = null;
 	private $dateline = null;
 	private $last_visit = null;
-	private $is_enabled = false;
+	private $is_enabled = true;
 	private $timezone = 'GMT';
 	private $enable_dst = false;
 	private $sla_plan_id = null;
@@ -41,6 +47,7 @@ class kyUser extends kyObjectBase {
 		$this->user_group_id = intval($data['usergroupid']);
 		$this->user_role = $data['userrole'];
 		$this->user_organization_id = intval($data['userorganizationid']);
+		$this->salutation = $data['salutation'];
 		$this->user_expiry = intval($data['userexpiry']) > 0 ? date(self::$datetime_format, $data['userexpiry']) : null;
 		$this->full_name = $data['fullname'];
 		$this->email = $data['email'];
@@ -63,6 +70,7 @@ class kyUser extends kyObjectBase {
 		$data['usergroupid'] = $this->user_group_id;
 		$data['userrole'] = $this->user_role;
 		$data['userorganizationid'] = $this->user_organization_id;
+		$data['salutation'] = $this->salutation;
 		$data['userexpiry'] = 0;
 		if ($this->user_expiry !== null)
 			$data['userexpiry'] = strtotime($this->user_expiry);
@@ -93,7 +101,7 @@ class kyUser extends kyObjectBase {
 	 *
 	 * @param int $starting_user_id Optional starting user identifier.
 	 * @param int $max_items Optional maximum items count. Defaults to 1000 when starting user is defined.
-	 * @return kyUser[]
+	 * @return kyResultSet
 	 */
 	static public function getAll($starting_user_id = null, $max_items = null) {
 		$search_parameters = array('Filter');
@@ -107,6 +115,10 @@ class kyUser extends kyObjectBase {
 		return parent::getAll($search_parameters);
 	}
 
+	public function toString() {
+		return sprintf("%s (email: %s)", $this->getFullName(), $this->getEmail());
+	}
+
 	public function getId($complete = false) {
 		return $complete ? array($this->id) : $this->id;
 	}
@@ -114,6 +126,8 @@ class kyUser extends kyObjectBase {
 	/**
 	 *
 	 * @return int
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getUserGroupId() {
 		return $this->user_group_id;
@@ -154,6 +168,8 @@ class kyUser extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getUserRole() {
 		return $this->user_role;
@@ -172,6 +188,8 @@ class kyUser extends kyObjectBase {
 	/**
 	 *
 	 * @return int
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getUserOrganizationId() {
 		return $this->user_organization_id;
@@ -212,6 +230,28 @@ class kyUser extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
+	 */
+	public function getSalutation() {
+		return $this->salutation;
+	}
+
+	/**
+	 *
+	 * @param string $salutation
+	 * @return kyUser
+	 */
+	public function setSalutation($salutation) {
+		$this->salutation = $salutation;
+		return $this;
+	}
+
+	/**
+	 *
+	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getUserExpiry() {
 		return $this->user_expiry;
@@ -230,6 +270,8 @@ class kyUser extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getFullName() {
 		return $this->full_name;
@@ -258,6 +300,7 @@ class kyUser extends kyObjectBase {
 	 * Returns list of user emails.
 	 *
 	 * @return string
+	 * @filterBy(Email)
 	 */
 	public function getEmails() {
 		return $this->email;
@@ -278,6 +321,8 @@ class kyUser extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getDesignation() {
 		return $this->designation;
@@ -296,6 +341,7 @@ class kyUser extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
 	 */
 	public function getPhone() {
 		return $this->phone;
@@ -314,6 +360,8 @@ class kyUser extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getDateline() {
 		return $this->dateline;
@@ -322,6 +370,8 @@ class kyUser extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getLastVisit() {
 		return $this->last_visit;
@@ -330,6 +380,7 @@ class kyUser extends kyObjectBase {
 	/**
 	 *
 	 * @return bool
+	 * @filterBy()
 	 */
 	public function getIsEnabled() {
 		return $this->is_enabled;
@@ -348,6 +399,7 @@ class kyUser extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
 	 */
 	public function getTimezone() {
 		return $this->timezone;
@@ -366,6 +418,7 @@ class kyUser extends kyObjectBase {
 	/**
 	 *
 	 * @return bool
+	 * @filterBy()
 	 */
 	public function getEnableDST() {
 		return $this->enable_dst;
@@ -384,6 +437,7 @@ class kyUser extends kyObjectBase {
 	/**
 	 *
 	 * @return int
+	 * @filterBy()
 	 */
 	public function getSLAPlanId() {
 		return $this->sla_plan_id;
@@ -402,6 +456,8 @@ class kyUser extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getSLAPlanExpiry() {
 		return $this->sla_plan_expiry;

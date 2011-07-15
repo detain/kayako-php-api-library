@@ -37,12 +37,22 @@ kyTicket::setDefaults($default_status_id, $default_priority_id, $default_type_id
 </pre>
 
 *IMPORTANT*
-Status, priority and type identifiers may be different in your installation. In order to discover right identifiers fetch and examine all objects to choose the proper ones:
+Status, priority and type identifiers may be different in your installation.
+
+In order to discover right identifiers fetch and examine all objects to choose the proper ones:
 
 <pre>
-var_dump(kyTicketStatus::getAll());
-var_dump(kyTicketPriority::getAll());
-var_dump(kyTicketType::getAll());
+print kyTicketStatus::getAll();
+print kyTicketPriority::getAll();
+print kyTicketType::getAll();
+</pre>
+
+You can also use filtering to find status, priority and type by its title:
+
+<pre>
+$default_status_id = kyTicketStatus::getAll()->filterByTitle("Open")->first()->getId();
+$default_priority_id = kyTicketPriority::getAll()->filterByTitle("Normal")->first()->getId();
+$default_type_id = kyTicketType::getAll()->filterByTitle("Issue")->first()->getId();
 </pre>
 
 h2. Preparing objects
@@ -52,7 +62,13 @@ h3. Loading department
 To create a ticket you will have to load a proper department providing its identifier. To find out the identifier fetch all departments and find the proper one:
  
 <pre>
-var_dump(kyDeparment::getAll());
+print kyDeparment::getAll();
+</pre>
+
+You can also use filtering to find department by its title:
+
+<pre>
+$department_id = kyDepartment::getAll()->filterByTitle("General")->first()->getId();
 </pre>
 
 *IMPORTANT*
@@ -67,10 +83,16 @@ $department = kyDepartment::get($department_id);
 
 h3. Loading ticket creator
 
-Also you need the creator of ticket. It can be ordinary user or staff user. Let's assume that we want to create ticket as ordinary user. Unfortunately in Kayako vrsion 4_01_204 you can't search users by providing an email address. So to find out the user identifier fetch all users and find the proper one:
+Also you need the creator of ticket. It can be ordinary user or staff user. Let's assume that we want to create ticket as ordinary user. So to find out the user identifier fetch all users and find the proper one:
 
 <pre>
-var_dump(kyUser::getAll());
+print kyUser::getAll();
+</pre>
+
+You can also use filtering to find user by email:
+
+<pre>
+$user_id = kyUser::getAll()->filterByEmail("someuser@example.com")->first()->getId();
 </pre>
 
 *IMPORTANT*
@@ -188,6 +210,52 @@ $tickets = kyTicket::search("Lorem ipsum", array(kyTicket::SEARCH_CONTENTS, kyTi
 </pre>
 
 See kyTicket::SEARCH_ constants for possible search areas.
+
+h3. Client-side filtering, sorting and paging results.
+
+The library supports client-side filtering, sorting and paging of results.
+
+To print available filter methods for User objects:
+
+<pre>
+print_r(kyUser::getAvailableFilterMethods());
+</pre>
+
+To print available order methods for Staff objects:
+
+<pre>
+print_r(kyStaff::getAvailableOrderMethods());
+</pre>
+
+To find the user with email someuser@example.com:
+
+<pre>
+$user = kyUser::getAll()->filterByEmail("someuser@example.com")->first();
+</pre>
+
+To find ticket time tracks with billable time greater than 10 minutes and sort them ascending using time worked:
+
+<pre>
+$time_tracks = $new_ticket->getTimeTracks()->filterByTimeBillable(array(">", 10 * 60))->orderByTimeWorked();
+</pre>
+
+To find department with title "General":
+
+<pre>
+$general_department = kyDepartment::getAll()->filterByTitle("General")->first();
+</pre>
+
+To find and print list of tickets in "General" department with word "help" in subject:
+
+<pre>
+print kyTicket::getAll($general_department->getId())->filterBySubject(array("~", "help"));
+</pre>
+
+To get second page from list of staff users ordered by fullname, assuming 10 items per page:
+
+<pre>
+$staff_page_2 = kyStaff::getAll()->orderByFullName()->getPage(2, 10);
+</pre>
 
 h1. How to contribute
 

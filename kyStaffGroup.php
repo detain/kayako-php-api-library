@@ -17,7 +17,7 @@ class kyStaffGroup extends kyObjectBase {
 
 	private $id = null;
 	private $title = null;
-	private $is_admin = null;
+	private $is_admin = false;
 
 	protected function parseData($data) {
 		$this->id = intval($data['id']);
@@ -28,10 +28,16 @@ class kyStaffGroup extends kyObjectBase {
 	protected function buildData($method) {
 		$data = array();
 
+		//TODO: check if required parameters are present
+
 		$data['title'] = $this->title;
 		$data['isadmin'] = $this->is_admin ? 1 : 0;
 
 		return $data;
+	}
+
+	public function toString() {
+		return sprintf("%s (isadmin: %s)", $this->getTitle(), $this->getIsAdmin() ? "yes" : "no");
 	}
 
 	public function getId($complete = false) {
@@ -39,16 +45,20 @@ class kyStaffGroup extends kyObjectBase {
 	}
 
 	/**
+	 * Returns title of the staff group.
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getTitle() {
 		return $this->title;
 	}
 
 	/**
+	 * Sets title of the staff group.
 	 *
-	 * @param string $title
+	 * @param string $title Title of the staff group.
 	 * @return kyStaffGroup
 	 */
 	public function setTitle($title) {
@@ -57,16 +67,20 @@ class kyStaffGroup extends kyObjectBase {
 	}
 
 	/**
+	 * Returns whether staff members assigned to this group are Administrators.
 	 *
 	 * @return bool
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getIsAdmin() {
 		return $this->is_admin;
 	}
 
 	/**
+	 * Sets whether staff members assigned to this group are Administrators.
 	 *
-	 * @param bool $is_admin
+	 * @param bool $is_admin True, if you want staff members assigned to this group to be Administrators. False (default), otherwise.
 	 * @return kyStaffGroup
 	 */
 	public function setIsAdmin($is_admin) {

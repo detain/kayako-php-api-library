@@ -285,10 +285,32 @@ class kyTicket extends kyObjectBase {
 	 * @param int[] $ticket_status_ids List of ticket status identifiers.
 	 * @param int[] $owner_staff_ids List of staff (ticket owners) identifiers.
 	 * @param int[] $user_ids List of user (ticket creators) identifiers.
-	 * @return kyTicket[]
+	 * @return kyResultSet
 	 */
 	static public function getAll($department_ids, $ticket_status_ids = array(), $owner_staff_ids = array(), $user_ids = array()) {
 		$search_parameters = array('ListAll');
+
+		if (is_numeric($department_ids)) {
+			$department_ids = array($department_ids);
+		}
+
+		if ($ticket_status_ids === null) {
+			$ticket_status_ids = array();
+		} elseif (is_numeric($ticket_status_ids)) {
+			$ticket_status_ids = array($ticket_status_ids);
+		}
+
+		if ($owner_staff_ids === null) {
+			$owner_staff_ids = array();
+		} elseif (is_numeric($owner_staff_ids)) {
+			$owner_staff_ids = array($owner_staff_ids);
+		}
+
+		if ($user_ids === null) {
+			$user_ids = array();
+		} elseif (is_numeric($user_ids)) {
+			$user_ids = array($user_ids);
+		}
 
 		//department
 		if (count($department_ids) === 0)
@@ -323,7 +345,7 @@ class kyTicket extends kyObjectBase {
 	 *
 	 * @param string $query What to search for.
 	 * @param array $areas List of areas where to search for as array with kyTicket::SEARCH_ constants.
-	 * @return self[]
+	 * @return kyResultSet
 	 */
 	static public function search($query, $areas) {
 		$data = array();
@@ -341,7 +363,11 @@ class kyTicket extends kyObjectBase {
 				$objects[] = new static($object_data);
 			}
 		}
-		return $objects;
+		return new kyResultSet($objects);
+	}
+
+	public function toString() {
+		return sprintf("%s %s (creator: %s)", $this->getDisplayId(), $this->getSubject(), $this->getFullName());
 	}
 
 	public function getId($complete = false) {
@@ -368,6 +394,8 @@ class kyTicket extends kyObjectBase {
 	/**
 	 *
 	 * @return int
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getFlagType() {
 		return $this->flag_type;
@@ -376,6 +404,8 @@ class kyTicket extends kyObjectBase {
 	/**
 	 *
 	 * @return int
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getDisplayId() {
 		return $this->display_id;
@@ -384,6 +414,8 @@ class kyTicket extends kyObjectBase {
 	/**
 	 *
 	 * @return int
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getDepartmentId() {
 		return $this->department_id;
@@ -424,6 +456,8 @@ class kyTicket extends kyObjectBase {
 	/**
 	 *
 	 * @return int
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getStatusId() {
 		return $this->status_id;
@@ -464,6 +498,8 @@ class kyTicket extends kyObjectBase {
 	/**
 	 *
 	 * @return int
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getPriorityId() {
 		return $this->priority_id;
@@ -504,6 +540,8 @@ class kyTicket extends kyObjectBase {
 	/**
 	 *
 	 * @return int
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getTypeId() {
 		return $this->type_id;
@@ -544,6 +582,8 @@ class kyTicket extends kyObjectBase {
 	/**
 	 *
 	 * @return int
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getUserId() {
 		return $this->user_id;
@@ -564,6 +604,8 @@ class kyTicket extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getUserOrganizationName() {
 		return $this->user_organization_name;
@@ -572,6 +614,8 @@ class kyTicket extends kyObjectBase {
 	/**
 	 *
 	 * @return int
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getUserOrganizationId() {
 		return $this->user_organization_id;
@@ -592,6 +636,8 @@ class kyTicket extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getOwnerStaffName() {
 		return $this->owner_staff_name;
@@ -600,6 +646,8 @@ class kyTicket extends kyObjectBase {
 	/**
 	 *
 	 * @return int
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getOwnerStaffId() {
 		return $this->owner_staff_id;
@@ -640,6 +688,8 @@ class kyTicket extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getFullName() {
 		return $this->full_name;
@@ -648,6 +698,8 @@ class kyTicket extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getEmail() {
 		return $this->email;
@@ -656,6 +708,8 @@ class kyTicket extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getLastReplier() {
 		return $this->last_replier;
@@ -664,6 +718,8 @@ class kyTicket extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getSubject() {
 		return $this->subject;
@@ -682,6 +738,8 @@ class kyTicket extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getCreationTime() {
 		return $this->creation_time;
@@ -690,6 +748,8 @@ class kyTicket extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getLastActivity() {
 		return $this->last_activity;
@@ -698,6 +758,8 @@ class kyTicket extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getLastStaffReply() {
 		return $this->last_staff_reply;
@@ -706,6 +768,8 @@ class kyTicket extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getLastUserReply() {
 		return $this->last_user_reply;
@@ -714,6 +778,7 @@ class kyTicket extends kyObjectBase {
 	/**
 	 *
 	 * @return int
+	 * @filterBy()
 	 */
 	public function getSLAPlanId() {
 		return $this->sla_plan_id;
@@ -722,6 +787,8 @@ class kyTicket extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getNextReplyDue() {
 		return $this->next_reply_due;
@@ -730,6 +797,8 @@ class kyTicket extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getResolutionDue() {
 		return $this->resolution_due;
@@ -738,6 +807,8 @@ class kyTicket extends kyObjectBase {
 	/**
 	 *
 	 * @return int
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getReplies() {
 		return $this->replies;
@@ -746,6 +817,8 @@ class kyTicket extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getIPAddress() {
 		return $this->ip_address;
@@ -754,6 +827,8 @@ class kyTicket extends kyObjectBase {
 	/**
 	 *
 	 * @return int
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getCreatorType() {
 		return $this->creator;
@@ -762,6 +837,8 @@ class kyTicket extends kyObjectBase {
 	/**
 	 *
 	 * @return int
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getCreationMode() {
 		return $this->creation_mode;
@@ -770,6 +847,8 @@ class kyTicket extends kyObjectBase {
 	/**
 	 *
 	 * @return int
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getCreationType() {
 		return $this->creation_type;
@@ -788,6 +867,8 @@ class kyTicket extends kyObjectBase {
 	/**
 	 *
 	 * @return bool
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getIsEscalated() {
 		return $this->is_escalated;
@@ -796,6 +877,7 @@ class kyTicket extends kyObjectBase {
 	/**
 	 *
 	 * @return int
+	 * @filterBy()
 	 */
 	public function getEscalationRuleId() {
 		return $this->escalation_rule_id;
@@ -804,6 +886,7 @@ class kyTicket extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
 	 */
 	public function getTags() {
 		return $this->tags;
@@ -846,36 +929,40 @@ class kyTicket extends kyObjectBase {
 	/**
 	 * Returns list of ticket notes. Result is cached.
 	 *
-	 * @param bool $force_refresh Use true to refresh notes data.
-	 * @return kyTicketNote[]
+	 * @param bool $reload True to reload notes from server.
+	 * @return kyResultSet
 	 */
-	public function getNotes($force_refresh = false) {
-		if ($this->notes === null || $force_refresh) {
+	public function getNotes($reload = false) {
+		if ($this->notes === null || $reload) {
 			$this->notes = kyTicketNote::getAll($this->getId());
 		}
-		return $this->notes;
+		return new kyResultSet($this->notes);
 	}
 
 	/**
-	 * Returns list of ticket time tracks.
+	 * Returns list of ticket time tracks. Result is cached.
 	 *
-	 * @return kyTicketTimeTrack[]
+	 * @param bool $reload True to reload time tracks from server.
+	 * @return kyResultSet
 	 */
-	public function getTimeTracks() {
-		return $this->time_tracks;
+	public function getTimeTracks($reload = false) {
+		if ($this->time_tracks === null || $reload) {
+			$this->time_tracks = kyTicketTimeTrack::getAll($this->getId());
+		}
+		return new kyResultSet($this->time_tracks);
 	}
 
 	/**
 	 * Returns list of ticket posts. Result is cached.
 	 *
-	 * @param bool $reload True to reload posts data from server.
-	 * @return kyTicketPost[]
+	 * @param bool $reload True to reload posts from server.
+	 * @return kyResultSet
 	 */
 	public function getPosts($reload = false) {
 		if ($this->posts === null || $reload) {
 			$this->posts = kyTicketPost::getAll($this->getId());
 		}
-		return $this->posts;
+		return new kyResultSet($this->posts);
 	}
 
 	/**
@@ -890,11 +977,11 @@ class kyTicket extends kyObjectBase {
 	/**
 	 * Returns list of attachments in all posts of this ticket. Result is cached.
 	 *
-	 * @param bool $force_refresh Use true to refresh attachments.
+	 * @param bool $reload True to reload attachments from server.
 	 * @return kyTicketAttachment[]
 	 */
-	public function getAttachments($force_refresh = false) {
-		if ($this->attachments === null || $force_refresh) {
+	public function getAttachments($reload = false) {
+		if ($this->attachments === null || $reload) {
 			$this->attachments = kyTicketAttachment::getAll($this->id);
 		}
 		return $this->attachments;

@@ -12,9 +12,9 @@ kyBase::init("http://mykayako.example.com/api/index.php", "<API key>", "<Secret 
  * WARNING:
  * Object identifiers may be different in your installation.
  * To find out proper identifier fetch all objects and examine them with:
- * kyTicketStatus::getAll()
- * kyTicketPriority::getAll()
- * kyTicketType::getAll()
+ * print kyTicketStatus::getAll();
+ * print kyTicketPriority::getAll();
+ * print kyTicketType::getAll();
  */
 
 $default_status_id = 1;
@@ -31,9 +31,9 @@ kyTicket::setDefaults($default_status_id, $default_priority_id, $default_type_id
  * WARNING:
  * Object identifiers may be different in your installation.
  * To find out proper identifier fetch all objects and examine them with:
- * kyDepartment::getAll()
- * kyUser::getAll()
- * kyStaff::getAll()
+ * print kyDepartment::getAll();
+ * print kyUser::getAll();
+ * print kyStaff::getAll();
  * Also make sure that:
  * - the user has the right to create ticket in the department,
  * - the staff user has right to be assigned to tickets in the department,
@@ -48,9 +48,9 @@ $staff = kyStaff::get($staff_id);
 
 //create ticket
 $new_ticket = $user->newTicket($department,
-'Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-Aliquam placerat cursus augue sed adipiscing. Proin viverra egestas nulla et sollicitudin.',
-	'Lorem ipsum 1')->create();
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Aliquam placerat cursus augue sed adipiscing. Proin viverra egestas nulla et sollicitudin.",
+	"Lorem ipsum 1")->create();
 
 //print the ticket Display Identifier
 print "The ticket was created and its ID is: ".$new_ticket->getDisplayId();
@@ -67,17 +67,17 @@ $new_ticket->setOwnerStaff($staff)->update();
  */
 
 //add new post
-$new_ticket_post = $new_ticket->newPost($new_ticket->getOwnerStaff(), 'What??')->create();
+$new_ticket_post = $new_ticket->newPost($new_ticket->getOwnerStaff(), "What??")->create();
 
 /**
  * Adding ticket post with attachment (as user).
  */
 
 //add new post
-$new_ticket_post = $new_ticket->newPost($new_ticket->getUser(), 'Sorry, I forgot the attachment...')->create();
+$new_ticket_post = $new_ticket->newPost($new_ticket->getUser(), "Sorry, I forgot the attachment...")->create();
 
 //add attachment to the post - change the path to the proper file
-$new_ticket_attachment = $new_ticket_post->newAttachmentFromFile('/path/to/file.pdf')->create();
+$new_ticket_attachment = $new_ticket_post->newAttachmentFromFile("/path/to/file.pdf")->create();
 
 /**
  * Other changes.
@@ -99,3 +99,28 @@ $tickets = kyTicket::getAll(array(1), array(1, 2), array(1), array(1));
  * Searching for tickets (using query).
  */
 $tickets = kyTicket::search("Lorem ipsum", array(kyTicket::SEARCH_CONTENTS, kyTicket::SEARCH_NOTES));
+
+/**
+ * Filtering, sorting and paging results.
+ */
+
+//print available filter methods for User objects
+print_r(kyUser::getAvailableFilterMethods());
+
+//print available order methods for Staff objects
+print_r(kyStaff::getAvailableOrderMethods());
+
+//find the user with email someuser@example.com
+$user = kyUser::getAll()->filterByEmail("someuser@example.com")->first();
+
+//find ticket time tracks with billable time greater than 10 minutes and sort them ascending using time worked
+$time_tracks = $new_ticket->getTimeTracks()->filterByTimeBillable(array(">", 10 * 60))->orderByTimeWorked();
+
+//find department with title "General"
+$general_department = kyDepartment::getAll()->filterByTitle("General")->first();
+
+//find and print list of tickets in "General" department with word "help" in subject
+print kyTicket::getAll($general_department->getId())->filterBySubject(array("~", "help"));
+
+//assuming 10 items per page, get second page from list of staff users ordered by fullname
+$staff_page_2 = kyStaff::getAll()->orderByFullName()->getPage(2, 10);

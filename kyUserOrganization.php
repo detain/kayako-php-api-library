@@ -72,6 +72,10 @@ class kyUserOrganization extends kyObjectBase {
 		return $data;
 	}
 
+	public function toString() {
+		return sprintf("%s (type: %s)", $this->getName(), $this->getType());
+	}
+
 	public function getId($complete = false) {
 		return $complete ? array($this->id) : $this->id;
 	}
@@ -79,6 +83,8 @@ class kyUserOrganization extends kyObjectBase {
 	/**
 	 *
 	 * @returns string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getName() {
 		return $this->name;
@@ -97,6 +103,8 @@ class kyUserOrganization extends kyObjectBase {
 	/**
 	 *
 	 * @returns string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getType() {
 		return $this->type;
@@ -115,6 +123,8 @@ class kyUserOrganization extends kyObjectBase {
 	/**
 	 *
 	 * @returns string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getAddress() {
 		return $this->address;
@@ -133,6 +143,8 @@ class kyUserOrganization extends kyObjectBase {
 	/**
 	 *
 	 * @returns string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getCity() {
 		return $this->city;
@@ -151,6 +163,8 @@ class kyUserOrganization extends kyObjectBase {
 	/**
 	 *
 	 * @returns string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getState() {
 		return $this->state;
@@ -169,6 +183,8 @@ class kyUserOrganization extends kyObjectBase {
 	/**
 	 *
 	 * @returns string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getPostalCode() {
 		return $this->postal_code;
@@ -187,6 +203,8 @@ class kyUserOrganization extends kyObjectBase {
 	/**
 	 *
 	 * @returns string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getCountry() {
 		return $this->country;
@@ -205,6 +223,7 @@ class kyUserOrganization extends kyObjectBase {
 	/**
 	 *
 	 * @returns string
+	 * @filterBy()
 	 */
 	public function getPhone() {
 		return $this->phone;
@@ -223,6 +242,7 @@ class kyUserOrganization extends kyObjectBase {
 	/**
 	 *
 	 * @returns string
+	 * @filterBy()
 	 */
 	public function getFAX() {
 		return $this->fax;
@@ -241,6 +261,7 @@ class kyUserOrganization extends kyObjectBase {
 	/**
 	 *
 	 * @returns string
+	 * @filterBy()
 	 */
 	public function getWebsite() {
 		return $this->website;
@@ -258,12 +279,20 @@ class kyUserOrganization extends kyObjectBase {
 
 	/**
 	 *
-	 * @returns string
+	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getDateline() {
 		return $this->dateline;
 	}
 
+	/**
+	 *
+	 * @return string
+	 * @filterBy()
+	 * @orderBy()
+	 */
 	public function getLastUpdate() {
 		return $this->last_update;
 	}
@@ -271,6 +300,7 @@ class kyUserOrganization extends kyObjectBase {
 	/**
 	 *
 	 * @returns int
+	 * @filterBy()
 	 */
 	public function getSLAPlanId() {
 		return $this->sla_plan_id;
@@ -289,6 +319,8 @@ class kyUserOrganization extends kyObjectBase {
 	/**
 	 *
 	 * @returns string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getSLAPlanExpiry() {
 		return $this->sla_plan_expiry;

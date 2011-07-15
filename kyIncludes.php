@@ -20,6 +20,9 @@ require_once("kyUser.php");
 require_once("kyUserGroup.php");
 require_once("kyUserOrganization.php");
 
+//other
+require_once("kyResultSet.php");
+
 if (!function_exists('ky_xml_to_array')) {
 	function ky_xml_to_array($xml, $namespaces = null) {
 		$iter = 0;
@@ -108,3 +111,27 @@ if (!function_exists('ky_bytes_format')) {
 	    return number_format($bytes,($c ? 2 : 0),",",".")." ".$unim[$c];
 	}
 }
+
+if (!function_exists('ky_usort_comparison')) {
+	class kyUsort {
+		private $callback;
+		private $get_method_name;
+		private $asc;
+
+	    function __construct($callback, $get_method_name, $asc) {
+	        $this->callback = $callback;
+	        $this->get_method_name = $get_method_name;
+	        $this->asc = $asc;
+	    }
+
+	    public function sort($a, $b) {
+	        return call_user_func_array($this->callback, array($a, $b, $this->get_method_name, $this->asc));
+	    }
+	}
+
+	function ky_usort_comparison($callback, $get_method_name, $asc) {
+	    $usorter = new kyUsort($callback, $get_method_name, $asc);
+	    return array($usorter, "sort");
+	}
+}
+

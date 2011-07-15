@@ -125,7 +125,7 @@ class kyTicketNote extends kyObjectBase {
 	 * Returns all notes of the ticket.
 	 *
 	 * @param int $ticket_id Ticket identifier.
-	 * @return kyTicketNote[]
+	 * @return kyResultSet
 	 */
 	static public function getAll($ticket_id) {
 		$search_parameters = array('ListAll');
@@ -164,8 +164,19 @@ class kyTicketNote extends kyObjectBase {
 		static::_delete(array($this->ticket_id, $this->id));
 	}
 
+	public function toString() {
+		return sprintf("%s (type: %s)", substr($this->getContents(), 0, 50) . (strlen($this->getContents()) > 50 ? '...' : ''), $this->getType());
+	}
+
 	public function getId($complete = false) {
-		return $complete ? array($this->ticket_id, $this->id) : $this->id;
+		switch ($this->getType()) {
+			case self::TYPE_USER:
+				return $complete ? array($this->user_id, $this->id) : $this->id;
+			case self::TYPE_USER_ORGANIZATION:
+				return $complete ? array($this->user_organization_id, $this->id) : $this->id;
+			default:
+				return $complete ? array($this->ticket_id, $this->id) : $this->id;
+		}
 	}
 
 	/**
@@ -233,6 +244,8 @@ class kyTicketNote extends kyObjectBase {
 	 * Applicable only for notes of type kyTicketNote::TYPE_USER.
 	 *
 	 * @return int
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getUserId() {
 		if ($this->getType() !== self::TYPE_USER)
@@ -268,6 +281,8 @@ class kyTicketNote extends kyObjectBase {
 	 * Applicable only for notes of type kyTicketNote::TYPE_USER_ORGANIZATION.
 	 *
 	 * @return int
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getUserOrganizationId() {
 		if ($this->getType() !== self::TYPE_USER_ORGANIZATION)
@@ -301,6 +316,8 @@ class kyTicketNote extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getType() {
 		return $this->type;
@@ -309,6 +326,7 @@ class kyTicketNote extends kyObjectBase {
 	/**
 	 *
 	 * @return int
+	 * @filterBy()
 	 */
 	public function getNoteColor() {
 		return $this->note_color;
@@ -327,6 +345,8 @@ class kyTicketNote extends kyObjectBase {
 	/**
 	 *
 	 * @return int
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getCreatorStaffId() {
 		return $this->creator_staff_id;
@@ -347,6 +367,8 @@ class kyTicketNote extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getCreatorStaffName() {
 		return $this->creator_staff_name;
@@ -370,6 +392,8 @@ class kyTicketNote extends kyObjectBase {
 	/**
 	 *
 	 * @return int
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getForStaffId() {
 		return $this->for_staff_id;
@@ -410,6 +434,8 @@ class kyTicketNote extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getCreationDate() {
 		return $this->creation_date;
@@ -418,6 +444,7 @@ class kyTicketNote extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
 	 */
 	public function getContents() {
 		return $this->contents;

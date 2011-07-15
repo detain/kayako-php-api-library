@@ -78,7 +78,7 @@ class kyTicketPost extends kyObjectBase {
 	 * Returns all posts of the ticket.
 	 *
 	 * @param int $ticket_id Ticket identifier.
-	 * @return kyTicketPost[]
+	 * @return kyResultSet
 	 */
 	static public function getAll($ticket_id) {
 		$search_parameters = array('ListAll');
@@ -107,6 +107,10 @@ class kyTicketPost extends kyObjectBase {
 		static::_delete(array($this->ticket_id, $this->id));
 	}
 
+	public function toString() {
+		return sprintf("%s (creator: %s)", substr($this->getContents(), 0, 50) . (strlen($this->getContents()) > 50 ? '...' : ''), $this->getFullName());
+	}
+
 	public function getId($complete = false) {
 		return $complete ? array($this->ticket_id, $this->id) : $this->id;
 	}
@@ -132,6 +136,8 @@ class kyTicketPost extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getDateline() {
 		return $this->dateline;
@@ -140,6 +146,8 @@ class kyTicketPost extends kyObjectBase {
 	/**
 	 *
 	 * @return int
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getUserId() {
 		return $this->user_id;
@@ -160,6 +168,8 @@ class kyTicketPost extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getFullName() {
 		return $this->full_name;
@@ -168,6 +178,8 @@ class kyTicketPost extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getEmail() {
 		return $this->email;
@@ -176,6 +188,8 @@ class kyTicketPost extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getEmailTo() {
 		return $this->email_to;
@@ -184,6 +198,8 @@ class kyTicketPost extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getIPAddress() {
 		return $this->ip_address;
@@ -192,6 +208,8 @@ class kyTicketPost extends kyObjectBase {
 	/**
 	 *
 	 * @return bool
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getHasAttachments() {
 		return $this->has_attachments;
@@ -200,6 +218,8 @@ class kyTicketPost extends kyObjectBase {
 	/**
 	 *
 	 * @return int
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getCreatorType() {
 		return $this->creator;
@@ -208,6 +228,7 @@ class kyTicketPost extends kyObjectBase {
 	/**
 	 *
 	 * @return bool
+	 * @filterBy()
 	 */
 	public function getIsThirdParty() {
 		return $this->is_third_party;
@@ -216,6 +237,7 @@ class kyTicketPost extends kyObjectBase {
 	/**
 	 *
 	 * @return bool
+	 * @filterBy()
 	 */
 	public function getIsHTML() {
 		return $this->is_html;
@@ -224,6 +246,7 @@ class kyTicketPost extends kyObjectBase {
 	/**
 	 *
 	 * @return bool
+	 * @filterBy()
 	 */
 	public function getEmailed() {
 		return $this->is_emailed;
@@ -232,6 +255,8 @@ class kyTicketPost extends kyObjectBase {
 	/**
 	 *
 	 * @return int
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getStaffId() {
 		return $this->staff_id;
@@ -287,6 +312,7 @@ class kyTicketPost extends kyObjectBase {
 	/**
 	 *
 	 * @return bool
+	 * @filterBy()
 	 */
 	public function getIsSurveyComment() {
 		return $this->is_survey_comment;
@@ -305,6 +331,8 @@ class kyTicketPost extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getContents() {
 		return $this->contents;
@@ -324,11 +352,11 @@ class kyTicketPost extends kyObjectBase {
 	/**
 	 * Returns list of attachments in this post. Result is cached.
 	 *
-	 * @param bool $force_refresh True to refresh attachments.
+	 * @param bool $reload True to reload attachments from server.
 	 * @return array
 	 */
-	public function getAttachments($force_refresh = false) {
-		if ($this->attachments === null || $force_refresh) {
+	public function getAttachments($reload = false) {
+		if ($this->attachments === null || $reload) {
 			$this->attachments = array();
 			/*
 			 * Need to get all attachments, and then filter by post identifier.
@@ -341,7 +369,7 @@ class kyTicketPost extends kyObjectBase {
 				}
 			}
 		}
-		return $this->attachments;
+		return new kyResultSet($this->attachments);
 	}
 
 	/**

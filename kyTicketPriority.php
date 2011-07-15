@@ -44,6 +44,10 @@ class kyTicketPriority extends kyObjectBase {
 		}
 	}
 
+	public function toString() {
+		return sprintf("%s (type: %s)", $this->getTitle(), $this->getType());
+	}
+
 	public function getId($complete = false) {
 		return $complete ? array($this->id) : $this->id;
 	}
@@ -51,6 +55,8 @@ class kyTicketPriority extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getTitle() {
 		return $this->title;
@@ -59,6 +65,8 @@ class kyTicketPriority extends kyObjectBase {
 	/**
 	 *
 	 * @return int
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getDisplayOrder() {
 		return $this->display_order;
@@ -67,6 +75,7 @@ class kyTicketPriority extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
 	 */
 	public function getForegroundColor() {
 		return $this->fr_color_code;
@@ -75,6 +84,7 @@ class kyTicketPriority extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
 	 */
 	public function getBackgroundColor() {
 		return $this->bg_color_code;
@@ -91,6 +101,8 @@ class kyTicketPriority extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getType() {
 		return $this->type;
@@ -99,6 +111,7 @@ class kyTicketPriority extends kyObjectBase {
 	/**
 	 *
 	 * @return bool
+	 * @filterBy()
 	 */
 	public function getUserVisibilityCustom() {
 		return $this->user_visibility_custom;
@@ -107,6 +120,7 @@ class kyTicketPriority extends kyObjectBase {
 	/**
 	 *
 	 * @return int[]
+	 * @filterBy(UserGroupId)
 	 */
 	public function getUserGroupIds() {
 		return $this->user_group_ids;
@@ -115,13 +129,13 @@ class kyTicketPriority extends kyObjectBase {
 	/**
 	 *
 	 * @todo Cache the result in object private field.
-	 * @return kyUserGroup[]
+	 * @return kyResultSet
 	 */
 	public function getUserGroups() {
 		$user_groups = array();
 		foreach ($this->user_group_ids as $user_group_id) {
 			$user_groups[] = kyUserGroup::get($user_group_id);
 		}
-		return $user_groups;
+		return new kyResultSet($user_groups);
 	}
 }

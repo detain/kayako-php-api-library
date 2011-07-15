@@ -38,6 +38,10 @@ class kyUserGroup extends kyObjectBase {
 		return $data;
 	}
 
+	public function toString() {
+		return sprintf("%s (type: %s)", $this->getTitle(), $this->getType());
+	}
+
 	public function getId($complete = false) {
 		return $complete ? array($this->id) : $this->id;
 	}
@@ -45,6 +49,8 @@ class kyUserGroup extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getTitle() {
 		return $this->title;
@@ -63,6 +69,8 @@ class kyUserGroup extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getType() {
 		return $this->type;
@@ -81,6 +89,7 @@ class kyUserGroup extends kyObjectBase {
 	/**
 	 *
 	 * @return bool
+	 * @filterBy()
 	 */
 	public function getIsMaster() {
 		return $this->is_master;

@@ -49,7 +49,7 @@ class kyTicketAttachment extends kyObjectBase {
 	 * Returns all attachments in posts of the ticket.
 	 *
 	 * @param int $ticket_id Ticket identifier.
-	 * @return kyTicketAttachment[]
+	 * @return kyResultSet
 	 */
 	static public function getAll($ticket_id) {
 		$search_parameters = array('ListAll');
@@ -76,6 +76,10 @@ class kyTicketAttachment extends kyObjectBase {
 
 	public function delete() {
 		static::_delete(array($this->ticket_id, $this->id));
+	}
+
+	public function toString() {
+		return sprintf("%s (filetype: %s, filesize: %s)", $this->getFileName(), $this->getFileType(), $this->getFileSize(true));
 	}
 
 	public function getId($complete = false) {
@@ -121,6 +125,8 @@ class kyTicketAttachment extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getFileName() {
 		return $this->file_name;
@@ -139,7 +145,9 @@ class kyTicketAttachment extends kyObjectBase {
 	/**
 	 *
 	 * @param bool $formatted True to format result nicely (KB, MB, and so on).
-	 * @return int|string
+	 * @return mixed
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getFileSize($formatted = false) {
 		if ($formatted)
@@ -151,6 +159,8 @@ class kyTicketAttachment extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getFileType() {
 		return $this->file_type;
@@ -159,6 +169,8 @@ class kyTicketAttachment extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getDateline() {
 		return $this->dateline;

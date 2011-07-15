@@ -24,7 +24,7 @@ class kyTicketCustomFieldGroup extends kyCustomFieldGroupBase {
 	 * Fetches ticket custom fields groups from server.
 	 *
 	 * @param int $ticket_id Ticket identifier.
-	 * @return kyTicketCustomFieldGroup[]
+	 * @return kyResultSet
 	 */
 	static public function getAll($ticket_id) {
 		$result = static::_get(array($ticket_id));
@@ -34,7 +34,7 @@ class kyTicketCustomFieldGroup extends kyCustomFieldGroupBase {
 				$objects[] = new static($ticket_id, $object_data);
 			}
 		}
-		return $objects;
+		return new kyResultSet($objects);
 	}
 
 	/**

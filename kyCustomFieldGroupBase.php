@@ -37,6 +37,10 @@ abstract class kyCustomFieldGroupBase extends kyObjectBase {
 		throw new Exception(sprintf("You can't refresh object of type %s.", get_called_class()));
 	}
 
+	public function toString() {
+		return sprintf("%s (%d fields)", $this->getTitle(), count($this->getFields()));
+	}
+
 	public function getId($complete = false) {
 		return $complete ? array($this->id) : $this->id;
 	}
@@ -45,6 +49,8 @@ abstract class kyCustomFieldGroupBase extends kyObjectBase {
 	 * Returns title of this custom fields group.
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getTitle() {
 		return $this->title;

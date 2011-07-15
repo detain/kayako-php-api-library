@@ -42,6 +42,10 @@ class kyTicketType extends kyObjectBase {
 		}
 	}
 
+	public function toString() {
+		return sprintf("%s (type: %s)", $this->getTitle(), $this->getType());
+	}
+
 	public function getId($complete = false) {
 		return $complete ? array($this->id) : $this->id;
 	}
@@ -49,6 +53,8 @@ class kyTicketType extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getTitle() {
 		return $this->title;
@@ -57,6 +63,8 @@ class kyTicketType extends kyObjectBase {
 	/**
 	 *
 	 * @return int
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getDisplayOrder() {
 		return $this->display_order;
@@ -65,6 +73,7 @@ class kyTicketType extends kyObjectBase {
 	/**
 	 *
 	 * @return int
+	 * @filterBy()
 	 */
 	public function getDepartmentId() {
 		return $this->department_id;
@@ -93,6 +102,8 @@ class kyTicketType extends kyObjectBase {
 	/**
 	 *
 	 * @return string
+	 * @filterBy()
+	 * @orderBy()
 	 */
 	public function getType() {
 		return $this->type;
@@ -101,6 +112,7 @@ class kyTicketType extends kyObjectBase {
 	/**
 	 *
 	 * @return bool
+	 * @filterBy()
 	 */
 	public function getUserVisibilityCustom() {
 		return $this->user_visibility_custom;
@@ -109,6 +121,8 @@ class kyTicketType extends kyObjectBase {
 	/**
 	 *
 	 * @return int[]
+	 * @filterBy(UserGroupId)
+	 * @orderBy(UserGroupId)
 	 */
 	public function getUserGroupIds() {
 		return $this->user_group_ids;
@@ -117,13 +131,13 @@ class kyTicketType extends kyObjectBase {
 	/**
 	 *
 	 * @todo Cache the result in object private field.
-	 * @return kyUserGroup[]
+	 * @return kyResultSet
 	 */
 	public function getUserGroups() {
 		$user_groups = array();
 		foreach ($this->user_group_ids as $user_group_id) {
 			$user_groups[] = kyUserGroup::get($user_group_id);
 		}
-		return $user_groups;
+		return new kyResultSet($user_groups);
 	}
 }
