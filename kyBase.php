@@ -93,6 +93,7 @@ abstract class kyBase {
 		self::$base_url = $base_url;
 		self::$api_key = $api_key;
 		self::$secret_key = $secret_key;
+		self::$put_memory_stream = $put_memory_stream;
 		if ($datetime_format !== null)
 			self::$datetime_format = $datetime_format;
 	}
