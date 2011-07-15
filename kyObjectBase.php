@@ -51,18 +51,6 @@ abstract class kyObjectBase extends kyBase {
 	static protected $_order_methods = array();
 
 	/**
-	 * Prefix for filter methods.
-	 * @var string
-	 */
-	const FILTER_PREFIX = "filterBy";
-
-	/**
-	 * Prefix for order methods.
-	 * @var string
-	 */
-	const ORDER_PREFIX = "orderBy";
-
-	/**
 	 * Default constructor.
 	 *
 	 * @param array $data Object data from XML response converted into array.
@@ -219,7 +207,7 @@ abstract class kyObjectBase extends kyBase {
 					} else {
 						$filter_method_name = preg_replace('/^get/', '', $get_method_name);
 					}
-					$filter_methods[self::FILTER_PREFIX . $filter_method_name] = $get_method_name;
+					$filter_methods[kyResultSet::FILTER_PREFIX . $filter_method_name] = $get_method_name;
 				}
 			}
 
@@ -253,7 +241,7 @@ abstract class kyObjectBase extends kyBase {
 					} else {
 						$order_method_name = preg_replace('/^get/', '', $get_method_name);
 					}
-					$order_methods[self::ORDER_PREFIX . $order_method_name] = $get_method_name;
+					$order_methods[kyResultSet::ORDER_PREFIX . $order_method_name] = $get_method_name;
 				}
 			}
 

@@ -7,6 +7,25 @@
  * @author Tomasz Sawicki (https://github.com/Furgas)
  */
 class kyResultSet implements Iterator, Countable, ArrayAccess {
+
+	/**
+	 * Prefix for filter methods.
+	 * @var string
+	 */
+	const FILTER_PREFIX = "filterBy";
+
+	/**
+	 * Prefix for order methods.
+	 * @var string
+	 */
+	const ORDER_PREFIX = "orderBy";
+
+	/**
+	 * Prefix for collect methods.
+	 * @var string
+	 */
+	const COLLECT_PREFIX = "collect";
+
 	/**
 	 * Class name of objects in this result set.
 	 * @var string
@@ -160,7 +179,7 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	 * @param array $filter_values List of filter values.
 	 * @return kyResultSet
 	 */
-	public function filter($get_method_name, $filter_values) {
+	public function filterBy($get_method_name, $filter_values) {
 		if (!is_array($filter_values)) {
 			$filter_values = array($filter_values);
 		}
@@ -195,6 +214,14 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 		usort($this->objects, ky_usort_comparison(array("kyResultSet", "compareObjects"), $get_method_name, $asc));
 		$this->object_keys = array_keys($this->objects);
 		return $this;
+	}
+
+	public function collect($get_method_name, $get_arguments = array()) {
+		$collect_result = array();
+		foreach ($this->object_keys as $key) {
+			$collect_result[] = $this->objects[$key]->$get_method_name(array_shift($get_arguments), array_shift($get_arguments), array_shift($get_arguments));
+		}
+		return $collect_result;
 	}
 
 	/**
@@ -280,7 +307,7 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	 * @return kyResultSet
 	 */
 	public function __call($name, $arguments) {
-		if (stripos($name, kyObjectBase::FILTER_PREFIX) === 0) {
+		if (stripos($name, self::FILTER_PREFIX) === 0) {
 			if (count($this->object_keys) === 0)
 				return new kyResultSet($this->objects, $this);
 
@@ -292,9 +319,9 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 
 			if (array_key_exists($filter_name, $available_filtering)) {
 				$get_method_name = $available_filtering[$filter_name];
-				return $this->filter($get_method_name, $filter_values);
+				return $this->filterBy($get_method_name, $filter_values);
 			}
-		} elseif (stripos($name, kyObjectBase::ORDER_PREFIX) === 0) {
+		} elseif (stripos($name, self::ORDER_PREFIX) === 0) {
 			if (count($this->object_keys) === 0)
 				return $this;
 
@@ -315,6 +342,9 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 				$this->orderBy($get_method_name, $asc);
 				return $this;
 			}
+		} elseif (stripos($name, self::COLLECT_PREFIX) === 0) {
+			$get_method_name = preg_replace(sprintf('/^%s/', self::COLLECT_PREFIX), 'get', $name);
+			return $this->collect($get_method_name, $arguments);
 		}
 
 		trigger_error(sprintf('Call to undefined method %s::%s()', get_class($this), $name), E_USER_ERROR);
