@@ -228,10 +228,11 @@ abstract class kyBase {
 	 *
 	 * @param array $parameters Optional. List of additional parameters (like object identifiers or search parameters).
 	 * @param array $data Object data.
+	 * @param string $controller Kayako controller to call. Null to use default controller defined for object.
 	 * @return array
 	 */
-	static protected function _post($parameters = array(), $data = array()) {
-		return static::processRequest(static::$controller, self::METHOD_POST, $parameters, $data);
+	static protected function _post($parameters = array(), $data = array(), $controller = null) {
+		return static::processRequest($controller, self::METHOD_POST, $parameters, $data);
 	}
 
 	/**
