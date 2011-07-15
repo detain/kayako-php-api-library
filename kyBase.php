@@ -66,6 +66,13 @@ abstract class kyBase {
 	}
 
 	/**
+	 * Creates new object. Compatible with method chaining.
+	 */
+	static public function createNew() {
+		return new static();
+	}
+
+	/**
 	 * Initializes the client.
 	 * Should be called before before contacting the API.
 	 *

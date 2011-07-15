@@ -31,20 +31,11 @@ abstract class kySearchBase extends kyBase {
 	abstract protected function buildParameters();
 
 	/**
-	 * Creates new object.
-	 */
-	static public function createNew() {
-		$class_name = get_called_class();
-		return new $class_name();
-	}
-
-	/**
 	 * Performs the search.
 	 *
 	 * @return self[]
 	 */
 	public function search() {
-		$class_name = get_called_class();
 		$result = static::_get($this->buildParameters());
 		$objects = array();
 		foreach ($result[static::$object_xml_name] as $object_data) {

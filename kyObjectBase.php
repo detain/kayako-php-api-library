@@ -66,12 +66,11 @@ abstract class kyObjectBase extends kyBase {
 	 * @return self[]
 	 */
 	static public function getAll($search_parameters = array()) {
-		$class_name = get_called_class();
 		$result = static::_get($search_parameters);
 		$objects = array();
 		if (array_key_exists(static::$object_xml_name, $result)) {
 			foreach ($result[static::$object_xml_name] as $object_data) {
-				$objects[] = new $class_name($object_data);
+				$objects[] = new static($object_data);
 			}
 		}
 		return $objects;
@@ -84,13 +83,12 @@ abstract class kyObjectBase extends kyBase {
 	 * @return self
 	 */
 	static public function get($id) {
-		$class_name = get_called_class();
 		if (!is_array($id))
 			$id = array($id);
 		$result = static::_get($id);
 		if (count($result) === 0)
 			return null;
-		return new $class_name($result[static::$object_xml_name][0]);
+		return new static($result[static::$object_xml_name][0]);
 	}
 
 	/**
@@ -100,6 +98,14 @@ abstract class kyObjectBase extends kyBase {
 	 */
 	public function refresh() {
 		$result = static::_get($this->getId(true));
+
+		/**
+		 * Clear all object properties.
+		 */
+   	    foreach ($this as $key => $value) {
+           	$this->$key = null;
+       	}
+
 		$this->parseData($result[static::$object_xml_name][0]);
 		return $this;
 	}
