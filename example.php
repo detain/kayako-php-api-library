@@ -7,8 +7,20 @@ require_once("kyIncludes.php");
 //client initialization
 kyBase::init("http://mykayako.example.com/api/index.php", "<API key>", "<Secret key>");
 
-//optional: set new tickets default status and priority and type
-kyTicket::setDefaults(4, 1, 1);
+/**
+ * Optional. Setting defaults for new tickets.
+ * Object identifiers may be different in your installation.
+ * To find out proper identifier fetch all objects with:
+ * kyTicketStatus::getAll()
+ * kyTicketPriority::getAll()
+ * kyTicketType::getAll()
+ * and examine them.
+ */
+
+$default_status_id = 1;
+$default_priority_id = 1;
+$default_type_id = 1;
+kyTicket::setDefaults($default_status_id, $default_priority_id, $default_type_id);
 
 /**
  * Creating ticket.

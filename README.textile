@@ -11,13 +11,15 @@ Client requires PHP >= 5.3.0 (beacause late static binding is used) with enabled
 h2. Kayako
 
 While implementing this client I came across few inconsitencies and missing data in Kayako API, so I introduced following changes to the source code of Kayako:
-* order ticket posts and notes by theirs creation date (older first)
+* order ticket posts and notes by their creation date (older first)
 * include identifier in ticket note and ticket time track
 * include ticket identifier in ticket note and ticket time track
 * include user identifier in ticket user note
 * include user organization identifier in ticket user organization note
 * change "ticketpostid" element of ticket to "id" (leave "ticketpostid" for backward compatibility)
 * include ticket identifier in ticket post
+
+*Without the patch it won't be possible to delete ticket notes and ticket posts.*
 
 In order to take advantage of these changes you must patch your Kayako installation. Patches starting from version 4_01_204 of Kayako Fusion are included in "patch" directory. To apply the patch copy it to root directory of Kayako installation and run
 <pre>
@@ -35,9 +37,25 @@ require_once("kyIncludes.php");
 
 //client initialization
 kyBase::init("http://mykayako.example.com/api/index.php", "<API key>", "<Secret key>");
+</pre>
 
-//optional: set new tickets default status and priority and type
-kyTicket::setDefaults(4, 1, 1);
+h2. Setting defaults for ticket creation
+
+This step is optional. If the client will be used to create tickets it's recommended to set default status, priority and type of new tickets:
+
+<pre>
+$default_status_id = 1;
+$default_priority_id = 1;
+$default_type_id = 1;
+kyTicket::setDefaults($default_status_id, $default_priority_id, $default_type_id);
+</pre>
+
+Status, priority and type identifiers may be different in your installation. In order to discover right identifiers fetch and examine all objects to choose the proper ones:
+
+<pre>
+var_dump(kyTicketStatus::getAll());
+var_dump(kyTicketPriority::getAll());
+var_dump(kyTicketType::getAll());
 </pre>
 
 h2. Creating a ticket.
