@@ -10,25 +10,7 @@ Client requires PHP >= 5.3.0 (beacause late static binding is used) with enabled
 
 h2. Kayako
 
-This version of the client was designed for version 4.01.204.
-I had some problems in Kayako prior to version 4_01_204, so it's better to upgrade at least to this version.
-
-While implementing this client I came across few inconsitencies and missing data in Kayako API, so I introduced following changes to the source code of Kayako:
-* order ticket posts and notes by their creation date (older first)
-* include identifier in ticket note and ticket time track
-* include ticket identifier in ticket note and ticket time track
-* include user identifier in ticket user note
-* include user organization identifier in ticket user organization note
-* change "ticketpostid" element of ticket to "id" (leave "ticketpostid" for backward compatibility)
-* include ticket identifier in ticket post
-
-*IMPORTANT*
-Without the patch it won't be possible to delete ticket notes and ticket posts. If it's ok for you, than you don't need to apply the patch.
-
-In order to take advantage of these changes you must patch your Kayako installation. Patches starting from version 4_01_204 of Kayako Fusion are included in "patch" directory. To apply the patch copy it to root directory of Kayako installation and run
-<pre>
-patch -p0 < patch-4_01_204.diff
-</pre>
+This version of the client is designed for Kayako version 4.01.240.
 
 h1. Examples
 
