@@ -1041,7 +1041,7 @@ class kyTicket extends kyObjectBase {
 	 * @param string $subject Subject of new ticket.
 	 * @return kyTicket
 	 */
-	static public function createNew($department, $creator, $contents, $subject) {
+	static public function createNew(kyDepartment $department, $creator, $contents, $subject) {
 		$new_ticket = self::createNewGeneric($department, $contents, $subject);
 		if ($creator instanceOf kyUser) {
 			$new_ticket->setCreator(self::CREATOR_USER, $creator->getFullName(), $creator->getEmail(), $creator->getId());
@@ -1062,7 +1062,7 @@ class kyTicket extends kyObjectBase {
 	 * @param string $subject Subject of new ticket.
 	 * @return kyTicket
 	 */
-	static public function createNewAuto($department, $creator_full_name, $creator_email, $contents, $subject) {
+	static public function createNewAuto(kyDepartment $department, $creator_full_name, $creator_email, $contents, $subject) {
 		$new_ticket = self::createNewGeneric($department, $contents, $subject);
 		$new_ticket->setCreator(self::CREATOR_AUTO, $creator_full_name, $creator_email);
 		return $new_ticket;

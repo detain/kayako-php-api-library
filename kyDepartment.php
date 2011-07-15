@@ -375,4 +375,18 @@ class kyDepartment extends kyObjectBase {
 		$new_department->setParentDepartment($this);
 		return $new_department;
 	}
+
+	/**
+	 * Creates new ticket in this department with creator user automatically created by server using provided name and e-mail.
+	 * WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.
+	 *
+	 * @param string $creator_full_name Creator full name.
+	 * @param string $creator_email Creator e-mail.
+	 * @param string $contents Contents of the first post.
+	 * @param string $subject Subject of new ticket.
+	 * @return kyTicket
+	 */
+	public function newTicketAuto($creator_full_name, $creator_email, $contents, $subject) {
+		return kyTicket::createNewAuto($this, $creator_full_name, $creator_email, $contents, $subject);
+	}
 }
