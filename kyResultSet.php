@@ -26,6 +26,8 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	 */
 	const COLLECT_PREFIX = "collect";
 
+	static private $operators = array("~", ">", ">=", "<", "<=", "!=");
+
 	/**
 	 * Class name of objects in this result set.
 	 * @var string
@@ -182,6 +184,15 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	public function filterBy($get_method_name, $filter_values) {
 		if (!is_array($filter_values)) {
 			$filter_values = array($filter_values);
+		} elseif (count($filter_values) === 1) {
+			//support for collect
+			$first_filter_value = reset($filter_values);
+			if (is_array($first_filter_value)) {
+				$operator_or_not = reset($first_filter_value);
+				if (count($first_filter_value) !== 2 || !in_array($operator_or_not, self::$operators)) {
+					$filter_values = $first_filter_value;
+				}
+			}
 		}
 
 		$filtered_objects = array();
