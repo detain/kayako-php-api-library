@@ -396,6 +396,29 @@ class kyStaff extends kyObjectBase {
 	}
 
 	/**
+	 * Creates new staff user.
+	 * WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.
+	 *
+	 * @param string $first_name First name of the staff user.
+	 * @param string $last_name Last name of the staff user.
+	 * @param string $user_name Login username of the staff user.
+	 * @param string $email E-mail address of the staff user.
+	 * @param kyStaffGroup $staff_group Staff group of the staff user.
+	 * @param string $password Password for the staff user.
+	 * @return kyStaff
+	 */
+	static public function createNew($first_name, $last_name, $user_name, $email, $staff_group, $password) {
+		$new_staff = new kyStaff();
+		$new_staff->setFirstName($first_name);
+		$new_staff->setLastName($last_name);
+		$new_staff->setUserName($user_name);
+		$new_staff->setEmail($email);
+		$new_staff->setStaffGroup($staff_group);
+		$new_staff->setPassword($password);
+		return $new_staff;
+	}
+
+	/**
 	 * Creates new ticket with this staff user as the author.
 	 * WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.
 	 *

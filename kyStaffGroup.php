@@ -102,4 +102,19 @@ class kyStaffGroup extends kyObjectBase {
 		$new_staff_group->setIsAdmin($is_admin);
 		return $new_staff_group;
 	}
+
+	/**
+	 * Creates new staff user in this staff group.
+	 * WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.
+	 *
+	 * @param string $first_name First name of the staff user.
+	 * @param string $last_name Last name of the staff user.
+	 * @param string $user_name Login username of the staff user.
+	 * @param string $email E-mail address of the staff user.
+	 * @param string $password Password for the staff user.
+	 * @return kyStaff
+	 */
+	public function addStaff($first_name, $last_name, $user_name, $email, $staff_group, $password) {
+		return kyStaff::createNew($first_name, $last_name, $user_name, $email, $this, $password);
+	}
 }
