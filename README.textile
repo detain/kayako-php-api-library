@@ -10,6 +10,8 @@ Client requires PHP >= 5.3.0 (beacause late static binding is used) with enabled
 
 h2. Kayako
 
+I had some problems in Kayako prior to version 4_01_204, so it's better to upgrade at least to this version.
+
 While implementing this client I came across few inconsitencies and missing data in Kayako API, so I introduced following changes to the source code of Kayako:
 * order ticket posts and notes by their creation date (older first)
 * include identifier in ticket note and ticket time track
@@ -19,7 +21,8 @@ While implementing this client I came across few inconsitencies and missing data
 * change "ticketpostid" element of ticket to "id" (leave "ticketpostid" for backward compatibility)
 * include ticket identifier in ticket post
 
-*Without the patch it won't be possible to delete ticket notes and ticket posts.*
+*IMPORTANT*
+Without the patch it won't be possible to delete ticket notes and ticket posts. If it's ok for you, than you don't need to apply the patch.
 
 In order to take advantage of these changes you must patch your Kayako installation. Patches starting from version 4_01_204 of Kayako Fusion are included in "patch" directory. To apply the patch copy it to root directory of Kayako installation and run
 <pre>
@@ -50,6 +53,7 @@ $default_type_id = 1;
 kyTicket::setDefaults($default_status_id, $default_priority_id, $default_type_id);
 </pre>
 
+*IMPORTANT*
 Status, priority and type identifiers may be different in your installation. In order to discover right identifiers fetch and examine all objects to choose the proper ones:
 
 <pre>
@@ -58,52 +62,104 @@ var_dump(kyTicketPriority::getAll());
 var_dump(kyTicketType::getAll());
 </pre>
 
-h2. Creating a ticket.
+h2. Preparing objects
+
+h3. Loading department
+
+To create a ticket you will have to load a proper department providing its identifier. To find out the identifier fetch all departments and find the proper one:
+ 
+<pre>
+var_dump(kyDeparment::getAll());
+</pre>
+
+*IMPORTANT*
+Department should be Public and its module should be set to Tickets.
+
+We will assume that our department has identifier = 1. Let's fetch the object:
 
 <pre>
-//load department, user and staff
-$department = kyDepartment::get(1);
-$user = kyUser::get(1);
-$staff = kyStaff::get(1);
+$department_id = 1;
+$department = kyDepartment::get($department_id);
+</pre>
 
-//create ticket
+h3. Loading creator
+
+Also you need the creator of ticket. It can be ordinary user or staff user. Let's assume that we want to create ticket as ordinary user. Unfortunately in Kayako vrsion 4_01_204 you can't search users by providing an email address. So to find out the user identifier fetch all users and find the proper one:
+
+<pre>
+var_dump(kyUser::getAll());
+</pre>
+
+*IMPORTANT*
+User must have the right to create tickets in department loaded in previous step.
+
+We will assume that our user has identifier = 1. Let's fetch the object:
+
+<pre>
+$user_id = 1;
+$user = kyUser::get($user_id);
+</pre>
+
+h3. Loading ticket owner 
+
+Optionally you can assign the ticket to some staff user. 
+
+<pre>
+var_dump(kyStaff::getAll());
+</pre>
+
+We will assume that our staff user has identifier = 1. Let's fetch the object:
+
+<pre>
+$staff_id = 1;
+$staff = kyStaff::get($staff_id);
+</pre>
+
+h2. Creating a ticket.
+
+Now we are ready to create some ticket. We assign the ticket to the staff user in the same step (but it's not required).
+
+<pre>
 $new_ticket = $user->newTicket($department,
 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 Aliquam placerat cursus augue sed adipiscing. Proin viverra egestas nulla et sollicitudin.',
 	'Lorem ipsum 1')->setOwnerStaff($staff)->create();
-
-//get ticket id
-$ticket_id = $new_ticket->getId();
 </pre>
+
+The ticket should be created. The $new_ticket object holds all the information about newly created ticket. You can for example get its display identifer so you can present it to the user. 
+
+<pre>
+print "The ticket was created and its ID is: ".$new_ticket->getDisplayId();
+</pre>
+
+Usually that's everything what will be needed in casual cases, when you simply want to create a ticket. But we can do some more...
 
 h2. Changing the ticket
 
-<pre>
-//load ticket
-$ticket = kyTicket::get($ticket_id);
+Assume we want to change the status of newly created ticket.
 
-//change status
-$ticket->setStatusId(5)->update();
+<pre>
+$new_ticket->setStatusId(5)->update();
 </pre>
 
 h2. Adding a ticket post (as staff).
 
-<pre>
-//load ticket
-$ticket = kyTicket::get($ticket_id);
+The owner of ticket (staff user assigned) apparently doesn't understand the rubbish we've sent in ticket contents so let's ask politely for clarification;) We are adding new ticket post as ticket owner.
 
-//add new post
-$new_ticket_post = $ticket->newPost($ticket->getOwnerStaff(), 'What??')->create();
+<pre>
+$new_ticket_post = $new_ticket->newPost($new_ticket->getOwnerStaff(), 'What??')->create();
 </pre>
 
 h2. Adding a ticket post with attachments (as user).
 
-<pre>
-//load ticket
-$ticket = kyTicket::get($ticket_id);
+Let's create some new post as user and attach some file to it.
 
+*IMPORTANT*
+Change the path of file to the existing one.
+
+<pre>
 //add new post
-$new_ticket_post = $ticket->newPost($ticket->getUser(), 'Sorry, I forgot the attachment...')->create();
+$new_ticket_post = $new_ticket->newPost($new_ticket->getUser(), 'Sorry, I forgot the attachment...')->create();
 
 //add attachment to the post
 $new_ticket_attachment = $new_ticket_post->newAttachmentFromFile('/path/to/file.pdf')->create();
@@ -111,14 +167,22 @@ $new_ticket_attachment = $new_ticket_post->newAttachmentFromFile('/path/to/file.
 
 h2. Searching for tickets (using helper).
 
+If you want to search for tickets you can do it two ways. 
+
+h3. Search using helper
+
+Search using helper with method chaining.
+
 <pre>
-$tickets = kySearchTicket::createNew()->addDepartmentId(3)->addOwnerStaffId(3)->addOwnerStaffId(4)->search();
+$tickets = kySearchTicket::createNew()->addDepartmentId(1)->addTicketStatusId(2)->addTicketStatusId(3)->addOwnerStaffId(4)->addUser(3)->search();
 </pre>
 
-h2. Searching for tickets (using getAll).
+h3. Search using getAll.
+
+And the same with getAll method.
 
 <pre>
-$tickets = kyTicket::getAll(array(1), array(5), array(1), array(1));
+$tickets = kyTicket::getAll(array(1), array(2, 3), array(4), array(3));
 </pre>
 
 h1. How to contribute
