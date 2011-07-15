@@ -12,6 +12,7 @@ require_once('kyObjectBase.php');
 abstract class kyCustomFieldGroupBase extends kyObjectBase {
 
 	static protected $object_xml_name = 'group';
+	static protected $read_only = true;
 
 	protected $id;
 	protected $title;
@@ -26,6 +27,14 @@ abstract class kyCustomFieldGroupBase extends kyObjectBase {
 				$this->fields[] = kyCustomField::createByType($custom_field_data);
 			}
 		}
+	}
+
+	static public function get($id) {
+		throw new Exception(sprintf("You can't get single object of type %s.", get_called_class()));
+	}
+
+	public function refresh() {
+		throw new Exception(sprintf("You can't refresh object of type %s.", get_called_class()));
 	}
 
 	public function getId($complete = false) {
