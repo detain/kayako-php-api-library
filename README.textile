@@ -1,0 +1,126 @@
+h1. Kayako REST API Client
+
+"Kayako Resolve":http://www.kayako.com/products/resolve/ is a comprehensive helpdesk and ticket management solution. It exposes "REST API":http://wiki.kayako.com/display/DEV/REST+API which can be used for example to create new tickets from external systems. To facilitate the use of this API I created a client written in PHP.
+
+h1. Prerequisities
+
+h2. PHP
+
+Client requires PHP >= 5.3.0 (beacause late static binding is used) with enabled support for: libXML, cURL, hash, fileinfo and date/time.
+
+h2. Kayako
+
+While implementing this client I came across few inconsitencies and missing data in Kayako API, so I introduced following changes to the source code of Kayako:
+* order ticket posts and notes by theirs creation date (older first)
+* include identifier in ticket note and ticket time track
+* include ticket identifier in ticket note and ticket time track
+* include user identifier in ticket user note
+* include user organization identifier in ticket user organization note
+* change "ticketpostid" element of ticket to "id" (leave "ticketpostid" for backward compatibility)
+* include ticket identifier in ticket post
+
+In order to take advantage of these changes you must patch your Kayako installation. Patches starting from version 4_01_204 of Kayako Fusion are included in "patch" directory. To apply the patch copy it to root directory of Kayako installation and run
+<pre>
+patch -p0 < patch-4_01_204.diff
+</pre>
+
+h1. Examples
+
+Example is also provided with source in example.php file.
+
+h2. Initialising the client.
+
+<pre>
+require_once("kyIncludes.php");
+
+//client initialization
+kyBase::init("http://mykayako.example.com/api/index.php", "<API key>", "<Secret key>");
+
+//optional: set new tickets default status and priority and type
+kyTicket::setDefaults(4, 1, 1);
+</pre>
+
+h2. Creating a ticket.
+
+<pre>
+//load department, user and staff
+$department = kyDepartment::get(1);
+$user = kyUser::get(1);
+$staff = kyStaff::get(1);
+
+//create ticket
+$new_ticket = $user->newTicket($department,
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Aliquam placerat cursus augue sed adipiscing. Proin viverra egestas nulla et sollicitudin.',
+	'Lorem ipsum 1')->setOwnerStaff($staff)->create();
+
+//get ticket id
+$ticket_id = $new_ticket->getId();
+</pre>
+
+h2. Changing the ticket
+
+<pre>
+//load ticket
+$ticket = kyTicket::get($ticket_id);
+
+//change status
+$ticket->setStatusId(5)->update();
+</pre>
+
+h2. Adding a ticket post (as staff).
+
+<pre>
+//load ticket
+$ticket = kyTicket::get($ticket_id);
+
+//add new post
+$new_ticket_post = $ticket->newPost($ticket->getOwnerStaff(), 'What??')->create();
+</pre>
+
+h2. Adding a ticket post with attachments (as user).
+
+<pre>
+//load ticket
+$ticket = kyTicket::get($ticket_id);
+
+//add new post
+$new_ticket_post = $ticket->newPost($ticket->getUser(), 'Sorry, I forgot the attachment...')->create();
+
+//add attachment to the post
+$new_ticket_attachment = $new_ticket_post->newAttachmentFromFile('/path/to/file.pdf')->create();
+</pre>
+
+h2. Searching for tickets (using helper).
+
+<pre>
+$tickets = kySearchTicket::createNew()->addDepartmentId(3)->addOwnerStaffId(3)->addOwnerStaffId(4)->search();
+</pre>
+
+h2. Searching for tickets (using getAll).
+
+<pre>
+$tickets = kyTicket::getAll(array(1), array(5), array(1), array(1));
+</pre>
+
+h1. How to contribute
+
+If you want to contribute an enhancement or a fix:
+
+# Fork the project on github.
+# Make your changes (please try to preserve used coding conventions and code formatting). 
+# Test your changes.
+# Commit the changes without making changes to files that aren’t related to your enhancement or fix.
+# Send a pull request.
+
+h1. (Un)license
+
+This is free and unencumbered software released into the public domain.
+
+Anyone is free to copy, modify, publish, use, compile, sell, or distribute this software, either in source code form or as a compiled binary, for any purpose, commercial or non-commercial, and by any means.
+
+In jurisdictions that recognize copyright laws, the author or authors of this software dedicate any and all copyright interest in the software to the public domain. We make this dedication for the benefit of the public at large and to the detriment of our heirs and successors. We intend this dedication to be an overt act of relinquishment in perpetuity of all present and future rights to this software under copyright law.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+For more information, please refer to <http://unlicense.org/>

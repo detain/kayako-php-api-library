@@ -1,0 +1,122 @@
+Index: __modules/tickets/api/class.Controller_Ticket.php
+===================================================================
+--- __modules/tickets/api/class.Controller_Ticket.php
++++ __modules/tickets/api/class.Controller_Ticket.php
+@@ -308,7 +308,7 @@
+ 		$_ticketPostContainer = array();
+ 
+ 		if ($_renderTicketPosts == true) {
+-			$_SWIFT->Database->Query("SELECT * FROM " . TABLE_PREFIX . "ticketposts WHERE ticketid IN (" . BuildIN($_ticketIDList) . ")");
++			$_SWIFT->Database->Query("SELECT * FROM " . TABLE_PREFIX . "ticketposts WHERE ticketid IN (" . BuildIN($_ticketIDList) . ") ORDER BY dateline");
+ 			while ($_SWIFT->Database->NextRecord())
+ 			{
+ 			    $_ticketPostContainer[$_SWIFT->Database->Record['ticketid']][$_SWIFT->Database->Record['ticketpostid']] = $_SWIFT->Database->Record;
+@@ -379,7 +379,7 @@
+ 		// Process Ticket Notes
+ 		$_ticketNotesContainer = array();
+ 		$_SWIFT->Database->Query("SELECT * FROM " . TABLE_PREFIX . "ticketnotes
+-			WHERE linktype = '" . SWIFT_TicketNote::LINKTYPE_TICKET . "' AND linktypeid IN (" . BuildIN($_ticketIDList) . ")");
++			WHERE linktype = '" . SWIFT_TicketNote::LINKTYPE_TICKET . "' AND linktypeid IN (" . BuildIN($_ticketIDList) . ") ORDER BY dateline");
+ 		while ($_SWIFT->Database->NextRecord())
+ 		{
+ 			if (!isset($_ticketNotesContainer[$_SWIFT->Database->Record['linktypeid']])) {
+@@ -393,7 +393,7 @@
+ 		$_userNotesContainer = $_userOrganizationNotesContainer = array();
+ 		$_SWIFT->Database->Query("SELECT usernotes.*, usernotedata.notecontents AS note FROM " . TABLE_PREFIX . "usernotes AS usernotes
+ 			LEFT JOIN " . TABLE_PREFIX . "usernotedata AS usernotedata ON (usernotes.usernoteid = usernotedata.usernoteid)
+-			WHERE linktype = '" . SWIFT_UserNoteManager::LINKTYPE_USER . "' AND linktypeid IN (" . BuildIN($_userIDList) . ")");
++			WHERE linktype = '" . SWIFT_UserNoteManager::LINKTYPE_USER . "' AND linktypeid IN (" . BuildIN($_userIDList) . ") ORDER BY dateline");
+ 		while ($_SWIFT->Database->NextRecord())
+ 		{
+ 			if (!isset($_userNotesContainer[$_SWIFT->Database->Record['linktypeid']])) {
+@@ -406,7 +406,7 @@
+ 		// Process User Organization Notes
+ 		$_SWIFT->Database->Query("SELECT usernotes.*, usernotedata.notecontents AS note FROM " . TABLE_PREFIX . "usernotes AS usernotes
+ 			LEFT JOIN " . TABLE_PREFIX . "usernotedata AS usernotedata ON (usernotes.usernoteid = usernotedata.usernoteid)
+-			WHERE linktype = '" . SWIFT_UserNoteManager::LINKTYPE_ORGANIZATION . "' AND linktypeid IN (" . BuildIN($_userOrganizationIDList) . ")");
++			WHERE linktype = '" . SWIFT_UserNoteManager::LINKTYPE_ORGANIZATION . "' AND linktypeid IN (" . BuildIN($_userOrganizationIDList) . ") ORDER BY dateline");
+ 		while ($_SWIFT->Database->NextRecord())
+ 		{
+ 			if (!isset($_userOrganizationNotesContainer[$_SWIFT->Database->Record['linktypeid']])) {
+@@ -420,7 +420,7 @@
+ 		$_ticketTimeTrackContainer = array();
+ 		$_SWIFT->Database->Query("SELECT tickettimetracks.*, tickettimetracknotes.notes AS note FROM " . TABLE_PREFIX . "tickettimetracks AS tickettimetracks
+ 			LEFT JOIN " . TABLE_PREFIX . "tickettimetracknotes AS tickettimetracknotes ON (tickettimetracks.tickettimetrackid = tickettimetracknotes.tickettimetrackid)
+-			WHERE tickettimetracks.ticketid IN (" . BuildIN($_ticketIDList) . ")");
++			WHERE tickettimetracks.ticketid IN (" . BuildIN($_ticketIDList) . ") ORDER BY dateline");
+ 		while ($_SWIFT->Database->NextRecord())
+ 		{
+ 			if (!isset($_ticketTimeTrackContainer[$_SWIFT->Database->Record['ticketid']])) {
+@@ -513,21 +513,21 @@
+ 
+ 		    if (isset($_ticketNotesContainer[$_ticketID])) {
+ 		    	foreach ($_ticketNotesContainer[$_ticketID] as $_ticketNote) {
+-		    		$this->XML->AddTag('note', $_ticketNote['note'], array('type' => 'ticket', 'notecolor' => $_ticketNote['notecolor'],
++		    		$this->XML->AddTag('note', $_ticketNote['note'], array('id' => $_ticketNote['ticketnoteid'], 'ticketid' => $_ticketNote['linktypeid'], 'type' => 'ticket', 'notecolor' => $_ticketNote['notecolor'],
+ 		    			'creatorstaffid' => $_ticketNote['staffid'], 'forstaffid' => $_ticketNote['forstaffid'], 'creatorstaffname' => $_ticketNote['staffname'], 'creationdate' => $_ticketNote['dateline']));
+ 		    	}
+ 		    }
+ 
+ 		    if (isset($_userNotesContainer[$_ticket['userid']])) {
+ 		    	foreach ($_userNotesContainer[$_ticket['userid']] as $_ticketNote) {
+-		    		$this->XML->AddTag('note', $_ticketNote['note'], array('type' => 'user', 'notecolor' => $_ticketNote['notecolor'],
++		    		$this->XML->AddTag('note', $_ticketNote['note'], array('id' => $_ticketNote['ticketnoteid'], 'userid' => $_ticketNote['linktypeid'], 'type' => 'user', 'notecolor' => $_ticketNote['notecolor'],
+ 		    			'creatorstaffid' => $_ticketNote['staffid'], 'forstaffid' => '0', 'creatorstaffname' => $_ticketNote['staffname'], 'creationdate' => $_ticketNote['dateline']));
+ 		    	}
+ 		    }
+ 
+ 		    if (isset($_userOrganizationNotesContainer[$_userOrganizationID])) {
+ 		    	foreach ($_userOrganizationNotesContainer[$_userOrganizationID] as $_ticketNote) {
+-		    		$this->XML->AddTag('note', $_ticketNote['note'], array('type' => 'userorganization', 'notecolor' => $_ticketNote['notecolor'],
++		    		$this->XML->AddTag('note', $_ticketNote['note'], array('id' => $_ticketNote['ticketnoteid'], 'userorganizationid' => $_ticketNote['linktypeid'], 'type' => 'userorganization', 'notecolor' => $_ticketNote['notecolor'],
+ 		    			'creatorstaffid' => $_ticketNote['staffid'], 'forstaffid' => '0', 'creatorstaffname' => $_ticketNote['staffname'], 'creationdate' => $_ticketNote['dateline']));
+ 		    	}
+ 		    }
+@@ -535,7 +535,7 @@
+ 		    if (isset($_ticketTimeTrackContainer[$_ticketID])) {
+ 		    	foreach ($_ticketTimeTrackContainer[$_ticketID] as $_ticketTimeTrack) {
+ 		    		$this->XML->AddTag('note', $_ticketTimeTrack['note'],
+-		    		array('timeworked' => $_ticketTimeTrack['timespent'], 'timebillable' => $_ticketTimeTrack['timebillable'],
++		    		array('id' => $_ticketTimeTrack['tickettimetrackid'], 'ticketid' => $_ticketTimeTrack['ticketid'], 'timeworked' => $_ticketTimeTrack['timespent'], 'timebillable' => $_ticketTimeTrack['timebillable'],
+ 		    		'billdate' => $_ticketTimeTrack['dateline'], 'workdate' => $_ticketTimeTrack['workdateline'],
+ 		    		'workerstaffid' => $_ticketTimeTrack['workerstaffid'], 'workerstaffname' => $_ticketTimeTrack['workerstaffname'],
+ 		    		'creatorstaffid' => $_ticketTimeTrack['creatorstaffid'], 'creatorstaffname' => $_ticketTimeTrack['creatorstaffname'],
+@@ -550,7 +550,9 @@
+ 		    		foreach ($_ticketPostContainer[$_ticketID] as $_ticketPostID => $_ticketPost) {
+ 		    			$this->XML->AddParentTag('post');
+ 
+-		    				$this->XML->AddTag('ticketpostid', $_ticketPostID);
++		    				$this->XML->AddTag('ticketpostid', $_ticketPostID); //same as 'id', for compatibility
++		    				$this->XML->AddTag('id', $_ticketPostID);
++		    				$this->XML->AddTag('ticketid', $_ticketPost['ticketid']);
+ 		    				$this->XML->AddTag('dateline', $_ticketPost['dateline']);
+ 		    				$this->XML->AddTag('userid', $_ticketPost['userid']);
+ 		    				$this->XML->AddTag('fullname', $_ticketPost['fullname']);
+Index: __modules/tickets/api/class.Controller_TicketNote.php
+===================================================================
+--- __modules/tickets/api/class.Controller_TicketNote.php
++++ __modules/tickets/api/class.Controller_TicketNote.php
+@@ -179,7 +179,7 @@
+ 
+ 		$this->XML->AddParentTag('notes');
+     	foreach ($_ticketNoteContainer as $_ticketNoteID => $_ticketNote) {
+-    		$this->XML->AddTag('note', $_ticketNote['note'], array('type' => 'ticket', 'notecolor' => $_ticketNote['notecolor'],
++    		$this->XML->AddTag('note', $_ticketNote['note'], array('id' => $_ticketNoteID, 'ticketid' => $_ticketNote['linktypeid'], 'type' => 'ticket', 'notecolor' => $_ticketNote['notecolor'],
+     			'creatorstaffid' => $_ticketNote['staffid'], 'forstaffid' => $_ticketNote['forstaffid'],
+     			'creatorstaffname' => $_ticketNote['staffname'], 'creationdate' => $_ticketNote['dateline']));
+     	}
+Index: __modules/tickets/api/class.Controller_TicketPost.php
+===================================================================
+--- __modules/tickets/api/class.Controller_TicketPost.php
++++ __modules/tickets/api/class.Controller_TicketPost.php
+@@ -183,7 +183,9 @@
+ 		foreach ($_ticketPostContainer as $_ticketPostID => $_ticketPost) {
+     		$this->XML->AddParentTag('post');
+     			
+-    			$this->XML->AddTag('ticketpostid', $_ticketPostID);
++    			$this->XML->AddTag('ticketpostid', $_ticketPostID); //same as 'id', for compatibility
++    			$this->XML->AddTag('id', $_ticketPostID);
++    			$this->XML->AddTag('ticketid', $_ticketPost['ticketid']);
+     			$this->XML->AddTag('dateline', $_ticketPost['dateline']);
+     			$this->XML->AddTag('userid', $_ticketPost['userid']);
+     			$this->XML->AddTag('fullname', $_ticketPost['fullname']);
