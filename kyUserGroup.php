@@ -123,4 +123,17 @@ class kyUserGroup extends kyObjectBase {
 		$new_user_group->setType($type);
 		return $new_user_group;
 	}
+
+	/**
+	 * Creates new user in this user group.
+	 * WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.
+	 *
+	 * @param string $full_name Full name of new user.
+	 * @param string $email E-mail address of new user.
+	 * @param string $password Password of new user.
+	 * @return kyUser
+	 */
+	public function newUser($full_name, $email, $password) {
+		return kyUser::createNew($full_name, $email, $this, $password);
+	}
 }

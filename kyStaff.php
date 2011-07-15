@@ -106,7 +106,7 @@ class kyStaff extends kyObjectBase {
 	}
 
 	/**
-	 * Returns staff group object for ths staff user.
+	 * Returns staff group of the staff user.
 	 * Result is cached until the end of script.
 	 *
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
