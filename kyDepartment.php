@@ -349,8 +349,8 @@ class kyDepartment extends kyObjectBase {
 	 * WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.
 	 *
 	 * @param string $title Title of new department.
-	 * @param string $module Module of new department.
-	 * @param string $type Type of new department.
+	 * @param string $type Type of new department - one of kyDepartment::TYPE_* constants.
+	 * @param string $module Module of new department - one of kyDepartment::MODULE_* constants.
 	 * @return kyDepartment
 	 */
 	static public function createNew($title, $type = self::TYPE_PUBLIC, $module = self::MODULE_TICKETS) {
@@ -366,8 +366,8 @@ class kyDepartment extends kyObjectBase {
 	 * WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.
 	 *
 	 * @param string $title Title of new department.
-	 * @param string $module Module of new department.
-	 * @param string $type Type of new department.
+	 * @param string $type Type of new department - one of kyDepartment::TYPE_* constants.
+	 * @param string $module Module of new department - one of kyDepartment::MODULE_* constants.
 	 * @return kyDepartment
 	 */
 	public function newSubdepartment($title, $type = self::TYPE_PUBLIC, $module = self::MODULE_TICKETS) {
