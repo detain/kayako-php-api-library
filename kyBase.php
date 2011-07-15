@@ -146,7 +146,7 @@ abstract class kyBase {
 				$curl_options[CURLOPT_POSTFIELDS] = $request_body;
 				$curl_options[CURLOPT_POST] = true;
 				break;
-			case self::METHOD_PUT: //nie działa, dostaję HTTP 401
+			case self::METHOD_PUT:
 				/*
 				 * Alternative method.
 				 */

@@ -110,7 +110,7 @@ If you want to contribute an enhancement or a fix:
 # Fork the project on github.
 # Make your changes (please try to preserve used coding conventions and code formatting). 
 # Test your changes.
-# Commit the changes without making changes to files that aren’t related to your enhancement or fix.
+# Commit the changes without making changes to files that aren't related to your enhancement or fix.
 # Send a pull request.
 
 h1. (Un)license
