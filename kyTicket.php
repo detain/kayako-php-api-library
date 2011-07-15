@@ -80,6 +80,7 @@ class kyTicket extends kyObjectBase {
 	private $posts = null;
 	private $attachments = null;
 	private $custom_field_groups = null;
+	static private $statistics = null;
 
 	private $contents = null;
 	private $creator_id = null;
@@ -913,4 +914,145 @@ class kyTicket extends kyObjectBase {
 		return kyTicketTimeTrack::createNew($this, $contents, $staff, $time_worked, $time_billable);
 	}
 
+	/**
+	 * Returns statistics for all tickets in database. Result is cached.
+	 * Format or result:
+	 * 	array(
+	 * 		'departments' => array( //statistics per department (if there are no tickets in department then there will be no record with its id here)
+	 * 			<department id> => array( //tickets assigned to department with this id
+	 * 				'last_activity' => <date and time of last activity on tickets in this department>,
+	 * 				'total_items' => <total amount of tickets in this department>,
+	 * 				'total_unresolved_items' => <total amount of unresolved tickets in this department>,
+	 * 				'ticket_statuses' => array( //statistics per ticket status in the department
+	 * 					<ticket status id> => array(
+	 * 						'last_activity' => <date and time of last activity on tickets with this status in this department>,
+	 * 						'total_items' => <total amount of tickets with this status in this department>
+	 * 					),
+	 * 					...
+	 * 				),
+	 * 				'ticket_types' => array( //statistics per ticket type in the department
+	 * 					<ticket type id> => array(
+	 * 						'last_activity' => <date and time of last activity on tickets of this type in this department>,
+	 * 						'total_items' => <total amount of tickets of this type in this department>,
+	 * 						'total_unresolved_items' => <total amount of unresolved tickets of this type in this department>,
+	 * 					),
+	 * 					...,
+	 * 					'unknown' => array(  //in Kayako 4.01.204 all ticket types will be unknown beacuse of a bug (http://dev.kayako.com/browse/SWIFT-1465)
+	 * 						...
+	 * 					)
+	 * 				)
+	 * 				'ticket_owners' => array( //statistics per ticket owner in the department
+	 * 					<owner staff id> => array(
+	 * 						'last_activity' => <date and time of last activity on tickets assigned to this staff in this department>,
+	 * 						'total_items' => <total amount of tickets assigned to this staff in this department>,
+	 * 						'total_unresolved_items' => <total amount of unresolved tickets assigned to this staff in this department>,
+	 * 					),
+	 * 					...,
+	 * 					'unassigned' => array(  //tickets not assigned to any staff
+	 * 						...
+	 * 					)
+	 * 				)
+	 * 			),
+	 * 			...,
+	 * 			'unknown' => array( //tickets in Trash
+	 * 				...
+	 * 			)
+	 * 		),
+	 * 		'ticket_statuses' => array( //statistics per ticket status in all departments
+	 * 			<ticket status id> => array(
+	 * 				'last_activity' => <date and time of last activity on tickets with this status in all departments>,
+	 * 				'total_items' => <total amount of tickets with this status in all departments>
+	 * 			),
+	 * 			...
+	 * 		),
+	 * 		'ticket_owners' => array( //statistics per ticket owner in all departments
+	 * 			<owner staff id> => array(
+	 * 				'last_activity' => <date and time of last activity on tickets assigned to this staff in all department>,
+	 * 				'total_items' => <total amount of tickets assigned to this staff in all department>,
+	 * 				'total_unresolved_items' => <total amount of unresolved tickets assigned to this staff in all department>,
+	 * 			),
+	 * 			...,
+	 * 			'unassigned' => array(  //tickets not assigned to any staff no matter what department
+	 * 				...
+	 * 			)
+	 * 		)
+	 * 	)
+	 *
+	 * @param bool $reload True to reload statistics data from server.
+	 * @return array
+	 */
+	static public function getStatistics($reload = false) {
+		if (self::$statistics !== null && !$reload)
+			return self::$statistics;
+
+		self::$statistics = array('departments' => array(), 'ticket_statuses' => array(), 'ticket_owners' => array());
+		$raw_stats = static::_get(array(), '/Tickets/TicketCount');
+
+		foreach ($raw_stats['departments'][0]['department'] as $department_raw_stats) {
+			$department_id = intval($department_raw_stats['_attributes']['id']);
+
+			$department_stats = array();
+			$department_stats['last_activity'] = intval($department_raw_stats['lastactivity']) > 0 ? date(self::$datetime_format, $department_raw_stats['lastactivity']) : null;
+			$department_stats['total_items'] = $department_raw_stats['totalitems'];
+			$department_stats['total_unresolved_items'] = $department_raw_stats['totalunresolveditems'];
+
+			foreach ($department_raw_stats['ticketstatus'] as $ticket_status_raw_stats) {
+				$ticket_status_id = intval($ticket_status_raw_stats['_attributes']['id']);
+
+				$ticket_status_stats = array();
+				$ticket_status_stats['last_activity'] = intval($ticket_status_raw_stats['_attributes']['lastactivity']) > 0 ? date(self::$datetime_format, $ticket_status_raw_stats['_attributes']['lastactivity']) : null;
+				$ticket_status_stats['total_items'] = $ticket_status_raw_stats['_attributes']['totalitems'];
+
+				$department_stats['ticket_statuses'][$ticket_status_id] = $ticket_status_stats;
+			}
+
+			//this is broken in Kayako 4.01.240, tickettype id is always 0 (unknown) - http://dev.kayako.com/browse/SWIFT-1465
+			foreach ($department_raw_stats['tickettype'] as $ticket_type_raw_stats) {
+				$ticket_type_id = intval($ticket_type_raw_stats['_attributes']['id']);
+
+				$ticket_type_stats = array();
+				$ticket_type_stats['last_activity'] = intval($ticket_type_raw_stats['_attributes']['lastactivity']) > 0 ? date(self::$datetime_format, $ticket_type_raw_stats['_attributes']['lastactivity']) : null;
+				$ticket_type_stats['total_items'] = $ticket_type_raw_stats['_attributes']['totalitems'];
+				$ticket_type_stats['total_unresolved_items'] = $ticket_type_raw_stats['_attributes']['totalunresolveditems'];
+
+				$department_stats['ticket_types'][$ticket_type_id > 0 ? $ticket_type_id : 'unknown'] = $ticket_type_stats;
+			}
+
+			foreach ($department_raw_stats['ownerstaff'] as $owner_staff_raw_stats) {
+				$staff_id = intval($owner_staff_raw_stats['_attributes']['id']);
+
+				$owner_staff_stats = array();
+				$owner_staff_stats['last_activity'] = intval($owner_staff_raw_stats['_attributes']['lastactivity']) > 0 ? date(self::$datetime_format, $owner_staff_raw_stats['_attributes']['lastactivity']) : null;
+				$owner_staff_stats['total_items'] = $owner_staff_raw_stats['_attributes']['totalitems'];
+				$owner_staff_stats['total_unresolved_items'] = $owner_staff_raw_stats['_attributes']['totalunresolveditems'];
+
+				$department_stats['ticket_owners'][$staff_id > 0 ? $staff_id : 'unassigned'] = $owner_staff_stats;
+			}
+
+			//unknown department is for example for tickets in Trash
+			self::$statistics['departments'][$department_id > 0 ? $department_id : 'unknown'] = $department_stats;
+		}
+
+		foreach ($raw_stats['statuses'][0]['ticketstatus'] as $ticket_status_raw_stats) {
+			$ticket_status_id = intval($ticket_status_raw_stats['_attributes']['id']);
+
+			$ticket_status_stats = array();
+			$ticket_status_stats['last_activity'] = intval($ticket_status_raw_stats['_attributes']['lastactivity']) > 0 ? date(self::$datetime_format, $ticket_status_raw_stats['_attributes']['lastactivity']) : null;
+			$ticket_status_stats['total_items'] = $ticket_status_raw_stats['_attributes']['totalitems'];
+
+			self::$statistics['ticket_statuses'][$ticket_status_id] = $ticket_status_stats;
+		}
+
+		foreach ($raw_stats['owners'][0]['ownerstaff'] as $owner_staff_raw_stats) {
+			$staff_id = intval($owner_staff_raw_stats['_attributes']['id']);
+
+			$owner_staff_stats = array();
+			$owner_staff_stats['last_activity'] = intval($owner_staff_raw_stats['_attributes']['lastactivity']) > 0 ? date(self::$datetime_format, $owner_staff_raw_stats['_attributes']['lastactivity']) : null;
+			$owner_staff_stats['total_items'] = $owner_staff_raw_stats['_attributes']['totalitems'];
+			$owner_staff_stats['total_unresolved_items'] = $owner_staff_raw_stats['_attributes']['totalunresolveditems'];
+
+			self::$statistics['ticket_owners'][$staff_id > 0 ? $staff_id : 'unassigned'] = $owner_staff_stats;
+		}
+		return self::$statistics;
+	}
 }

@@ -185,7 +185,7 @@ abstract class kyBase {
 				$curl_options[CURLOPT_CUSTOMREQUEST] = 'DELETE';
 				break;
 		}
-var_dump($request_body);
+
 		$curl_handle = curl_init();
 		curl_setopt_array($curl_handle, $curl_options);
 		$response = curl_exec($curl_handle);
