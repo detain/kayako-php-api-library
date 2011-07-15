@@ -368,11 +368,22 @@ class kyTicketPost extends kyObjectBase {
 	}
 
 	/**
+	 * Creates new attachment in this post with contents provided as parameter.
+	 * WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.
+	 *
+	 * @param string $contents Raw contents of the file.
+	 * @param string $file_name Filename.
+	 */
+	public function newAttachment($contents, $file_name) {
+		return kyTicketAttachment::createNewFromFile($this, $file_path, $file_name);
+	}
+
+	/**
 	 * Creates new attachment in this post with contents read from physical file.
 	 * WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.
 	 *
 	 * @param string $file_path Path to file.
-	 * @param unknown_type $file_name Optional. Use to set filename other than physical file.
+	 * @param string $file_name Optional. Use to set filename other than physical file.
 	 */
 	public function newAttachmentFromFile($file_path, $file_name = null) {
 		return kyTicketAttachment::createNewFromFile($this, $file_path, $file_name);
