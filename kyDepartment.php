@@ -63,7 +63,7 @@ class kyDepartment extends kyObjectBase {
 		if (is_numeric($this->parent_department_id))
 			$data['parentdepartmentid'] = $this->parent_department_id;
 
-		$data['uservisibilitycustom'] = $this->user_visibility_custom ? 0 : 1;
+		$data['uservisibilitycustom'] = $this->user_visibility_custom ? 1 : 0;
 
 		if ($this->user_visibility_custom) {
 			$data['usergroupid'] = $this->user_group_ids;

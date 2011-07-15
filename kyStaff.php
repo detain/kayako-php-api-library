@@ -59,9 +59,9 @@ class kyStaff extends kyObjectBase {
 		if (strlen($this->signature) > 0)
 			$data['signature'] = $this->signature;
 		$data['mobilenumber'] = $this->mobile_number;
-		$data['isenabled'] = $this->is_enabled ? 0 : 1;
+		$data['isenabled'] = $this->is_enabled ? 1 : 0;
 		$data['timezone'] = $this->timezone;
-		$data['enabledst'] = $this->enable_dst ? 0 : 1;
+		$data['enabledst'] = $this->enable_dst ? 1 : 0;
 		if (strlen($this->password) > 0)
 			$this->password = $data['password'];
 

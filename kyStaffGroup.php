@@ -28,7 +28,7 @@ class kyStaffGroup extends kyObjectBase {
 		$data = array();
 
 		$data['title'] = $this->title;
-		$data['isadmin'] = $this->is_admin ? 0 : 1;
+		$data['isadmin'] = $this->is_admin ? 1 : 0;
 
 		return $data;
 	}

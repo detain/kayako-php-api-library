@@ -69,10 +69,10 @@ class kyUser extends kyObjectBase {
 		$data['email'] = $this->email;
 		$data['designation'] = $this->designation;
 		$data['phone'] = $this->phone;
-		$data['isenabled'] = $this->is_enabled ? 0 : 1;
+		$data['isenabled'] = $this->is_enabled ? 1 : 0;
 
 		$data['timezone'] = $this->timezone;
-		$data['enabledst'] = $this->enable_dst ? 0 : 1;
+		$data['enabledst'] = $this->enable_dst ? 1 : 0;
 		$data['slaplanid'] = $this->sla_plan_id;
 		$data['slaplanexpiry'] = 0;
 		if ($this->sla_plan_expiry !== null)
@@ -81,7 +81,7 @@ class kyUser extends kyObjectBase {
 		if (strlen($this->password) > 0)
 			$data['password'] = $this->password;
 		if ($this->send_welcome_email !== null)
-			$data['sendwelcomeemail'] = $this->send_welcome_email ? 0 : 1;
+			$data['sendwelcomeemail'] = $this->send_welcome_email ? 1 : 0;
 
 		return $data;
 	}
