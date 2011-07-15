@@ -34,6 +34,72 @@ class kyTicket extends kyObjectBase {
 	const CREATION_TYPE_DEFAULT = 1;
 	const CREATION_TYPE_PHONE = 2;
 
+	/**
+	 * Flag for searching using query - search the Ticket ID & Mask ID.
+	 * @var string
+	 */
+	const SEARCH_TICKET_ID = 'ticketid';
+
+	/**
+	 * Flag for searching using query - search the Ticket Post Contents.
+	 * @var string
+	 */
+	const SEARCH_CONTENTS = 'contents';
+
+	/**
+	 * Flag for searching using query - search the Full Name & Email.
+	 * @var string
+	 */
+	const SEARCH_AUTHOR = 'author';
+
+	/**
+	 * Flag for searching using query - search the Email Address (Ticket & Posts).
+	 * @var string
+	 */
+	const SEARCH_EMAIL = 'email';
+
+	/**
+	 * Flag for searching using query - search the Email Address (only Tickets).
+	 * @var string
+	 */
+	const SEARCH_CREATOR_EMAIL = 'creatoremail';
+
+	/**
+	 * Flag for searching using query - search the Full Name.
+	 * @var string
+	 */
+	const SEARCH_FULL_NAME = 'fullname';
+
+	/**
+	 * Flag for searching using query - search the Ticket Notes.
+	 * @var string
+	 */
+	const SEARCH_NOTES = 'notes';
+
+	/**
+	 * Flag for searching using query - search the User Group.
+	 * @var string
+	 */
+	const SEARCH_USER_GROUP = 'usergroup';
+
+	/**
+	 * Flag for searching using query - search the User Organization.
+	 * @var string
+	 */
+	const SEARCH_USER_ORGANIZATION = 'userorganization';
+
+	/**
+	 * Flag for searching using query - search the User (Full Name, Email).
+	 * @var string
+	 */
+	const SEARCH_USER = 'user';
+
+	/**
+	 * Flag for searching using query - search the Ticket Tags.
+	 * @var string
+	 */
+	const SEARCH_TAGS = 'tags';
+
 	static protected $controller = '/Tickets/Ticket';
 	static protected $object_xml_name = 'ticket';
 
@@ -248,6 +314,34 @@ class kyTicket extends kyObjectBase {
 			$search_parameters[] = '-1';
 
 		return parent::getAll($search_parameters);
+	}
+
+	/**
+	 * Searches objects from server using query and search flags.
+	 * Example:
+	 * kyTicket::search("something", array(kyTicket::SEARCH_CONTENTS, kyTicket::SEARCH_NOTES));
+	 *
+	 * @param string $query What to search for.
+	 * @param array $areas List of areas where to search for as array with kyTicket::SEARCH_ constants.
+	 * @return self[]
+	 */
+	static public function search($query, $areas) {
+		$data = array();
+		$data['query'] = $query;
+
+		foreach ($areas as $area) {
+			$data[$area] = 1;
+		}
+
+		$result = static::_post(array(), $data, '/Tickets/TicketSearch');
+
+		$objects = array();
+		if (array_key_exists(static::$object_xml_name, $result)) {
+			foreach ($result[static::$object_xml_name] as $object_data) {
+				$objects[] = new static($object_data);
+			}
+		}
+		return $objects;
 	}
 
 	public function getId($complete = false) {
