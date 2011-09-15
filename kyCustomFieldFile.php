@@ -17,8 +17,7 @@ class kyCustomFieldFile extends kyCustomField {
 	protected function parseData($data) {
 		parent::parseData($data);
 		$this->filename = $data['_attributes']['filename'];
-		//we have to decode it twice - http://dev.kayako.com/browse/SWIFT-1457
-		$this->contents = base64_decode(base64_decode($data['_contents']));
+		$this->contents = base64_decode($data['_contents']);
 	}
 
 	/**
