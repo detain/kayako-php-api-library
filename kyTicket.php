@@ -977,7 +977,7 @@ class kyTicket extends kyObjectBase {
 	 * @return kyTicketPost
 	 */
 	public function getFirstPost() {
-		return reset($this->getPosts());
+		return $this->getPosts()->first();
 	}
 
 	/**
