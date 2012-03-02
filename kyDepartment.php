@@ -204,7 +204,7 @@ class kyDepartment extends kyObjectBase {
 	 * @filterBy()
 	 * @orderBy()
 	 */
-	public function getParentDeparmentId() {
+	public function getParentDepartmentId() {
 		return $this->parent_department_id;
 	}
 
@@ -228,7 +228,7 @@ class kyDepartment extends kyObjectBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyDepartment
 	 */
-	public function getParentDeparment($reload = false) {
+	public function getParentDepartment($reload = false) {
 		if ($this->parent_department !== null && !$reload)
 			return $this->parent_department;
 
