@@ -1,0 +1,1741 @@
+<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>Kayako PHP API Library » \kyUser</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">Kayako PHP API Library</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    Source Code Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Common.html"><i class="icon-folder-open"></i> Common</a></li>
+<li><a href="../packages/Object.html"><i class="icon-folder-open"></i> Object</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods</li>
+<li class="method public inherited"><a href="#__construct" title="__construct :: Default constructor."><span class="description">Default constructor.</span><pre>__construct()</pre></a></li>
+<li class="method public inherited"><a href="#__get" title="__get :: Returns API field value."><span class="description">Returns API field value.</span><pre>__get()</pre></a></li>
+<li class="method public inherited"><a href="#__set" title="__set :: Sets API field value."><span class="description">Sets API field value.</span><pre>__set()</pre></a></li>
+<li class="method public inherited"><a href="#__toString" title="__toString :: Returns object description with it's type and identifier."><span class="description">Returns object description with it's type and identifier.</span><pre>__toString()</pre></a></li>
+<li class="method public "><a href="#addEmail" title="addEmail :: Adds an e-mail to the list user e-mails."><span class="description">Adds an e-mail to the list user e-mails.</span><pre>addEmail()</pre></a></li>
+<li class="method public "><a href="#buildData" title="buildData :: Should build the array of object data for creating or updating the object."><span class="description">Should build the array of object data for creating or updating the object.</span><pre>buildData()</pre></a></li>
+<li class="method public inherited"><a href="#checkRequiredAPIFields" title="checkRequiredAPIFields :: Checks wheter this object has all required fields set."><span class="description">Checks wheter this object has all required fields set.</span><pre>checkRequiredAPIFields()</pre></a></li>
+<li class="method public inherited"><a href="#create" title="create :: Creates an object on the server and refreshes its local data."><span class="description">Creates an object on the server and refreshes its local data.</span><pre>create()</pre></a></li>
+<li class="method public "><a href="#createNew" title="createNew :: Creates new user."><span class="description">Creates new user.</span><pre>createNew()</pre></a></li>
+<li class="method public inherited"><a href="#delete" title="delete :: Deletes the object on the server."><span class="description">Deletes the object on the server.</span><pre>delete()</pre></a></li>
+<li class="method public inherited"><a href="#get" title="get :: Fetches the object from server."><span class="description">Fetches the object from server.</span><pre>get()</pre></a></li>
+<li class="method public inherited"><a href="#getAPIFields" title="getAPIFields :: Returns array of API fields."><span class="description">Returns array of API fields.</span><pre>getAPIFields()</pre></a></li>
+<li class="method public "><a href="#getAll" title="getAll :: Fetches all users."><span class="description">Fetches all users.</span><pre>getAll()</pre></a></li>
+<li class="method public inherited"><a href="#getAvailableFilterMethods" title="getAvailableFilterMethods :: Returns list of available filter methods for use in result sets with objects of this type."><span class="description">Returns list of available filter methods for use in result sets with objects of this type.</span><pre>getAvailableFilterMethods()</pre></a></li>
+<li class="method public inherited"><a href="#getAvailableOrderMethods" title="getAvailableOrderMethods :: Returns list of available order methods for use in result sets with objects of this type."><span class="description">Returns list of available order methods for use in result sets with objects of this type.</span><pre>getAvailableOrderMethods()</pre></a></li>
+<li class="method public inherited"><a href="#getController" title="getController :: Returns object controller."><span class="description">Returns object controller.</span><pre>getController()</pre></a></li>
+<li class="method public "><a href="#getDateline" title="getDateline :: Returns date and time when the user was created."><span class="description">Returns date and time when the user was created.</span><pre>getDateline()</pre></a></li>
+<li class="method public "><a href="#getDesignation" title="getDesignation :: Return designation of the user."><span class="description">Return designation of the user.</span><pre>getDesignation()</pre></a></li>
+<li class="method public "><a href="#getEmail" title="getEmail :: Returns first e-mail from the list of user e-mails."><span class="description">Returns first e-mail from the list of user e-mails.</span><pre>getEmail()</pre></a></li>
+<li class="method public "><a href="#getEmails" title="getEmails :: Returns list of user e-mails."><span class="description">Returns list of user e-mails.</span><pre>getEmails()</pre></a></li>
+<li class="method public "><a href="#getEnableDST" title="getEnableDST :: Returns whether the user has enabled daylight saving time."><span class="description">Returns whether the user has enabled daylight saving time.</span><pre>getEnableDST()</pre></a></li>
+<li class="method public "><a href="#getFullName" title="getFullName :: Returns full name of the user."><span class="description">Returns full name of the user.</span><pre>getFullName()</pre></a></li>
+<li class="method public "><a href="#getId" title="getId :: Should return object identifier or complete list of identifiers as needed by API to identify the object (ex. ticket identifier and ticket post identifier in case of TicketPost)."><span class="description">Should return object identifier or complete list of identifiers as needed by API to identify the object (ex. ticket identifier and ticket post identifier in case of TicketPost).</span><pre>getId()</pre></a></li>
+<li class="method public "><a href="#getIsEnabled" title="getIsEnabled :: Returns whether the user is enabled."><span class="description">Returns whether the user is enabled.</span><pre>getIsEnabled()</pre></a></li>
+<li class="method public "><a href="#getLastVisit" title="getLastVisit :: Returns date and time when the user last logged in."><span class="description">Returns date and time when the user last logged in.</span><pre>getLastVisit()</pre></a></li>
+<li class="method public "><a href="#getPhone" title="getPhone :: Returns phone number of the user."><span class="description">Returns phone number of the user.</span><pre>getPhone()</pre></a></li>
+<li class="method public inherited"><a href="#getRequiredAPIFields" title="getRequiredAPIFields :: Returns list of required API fields for objects of this class."><span class="description">Returns list of required API fields for objects of this class.</span><pre>getRequiredAPIFields()</pre></a></li>
+<li class="method public "><a href="#getSLAPlanExpiry" title="getSLAPlanExpiry :: Returns expiration date of Service Level Agreement plan assignment or null when expiration is disabled."><span class="description">Returns expiration date of Service Level Agreement plan assignment or null when expiration is disabled.</span><pre>getSLAPlanExpiry()</pre></a></li>
+<li class="method public "><a href="#getSLAPlanId" title="getSLAPlanId :: Return Service Level Agreement plan assigned to the user."><span class="description">Return Service Level Agreement plan assigned to the user.</span><pre>getSLAPlanId()</pre></a></li>
+<li class="method public "><a href="#getSalutation" title="getSalutation :: Returns salutation of the user."><span class="description">Returns salutation of the user.</span><pre>getSalutation()</pre></a></li>
+<li class="method public "><a href="#getTimezone" title="getTimezone :: Returns timezone of the user."><span class="description">Returns timezone of the user.</span><pre>getTimezone()</pre></a></li>
+<li class="method public "><a href="#getUserExpiry" title="getUserExpiry :: Returns expiration date of the user or null when expiration is disabled."><span class="description">Returns expiration date of the user or null when expiration is disabled.</span><pre>getUserExpiry()</pre></a></li>
+<li class="method public "><a href="#getUserGroup" title="getUserGroup :: Returns user group of the user."><span class="description">Returns user group of the user.</span><pre>getUserGroup()</pre></a></li>
+<li class="method public "><a href="#getUserGroupId" title="getUserGroupId :: Returns user group identifier of the user."><span class="description">Returns user group identifier of the user.</span><pre>getUserGroupId()</pre></a></li>
+<li class="method public "><a href="#getUserOrganization" title="getUserOrganization :: Returns user organization assigned to the user."><span class="description">Returns user organization assigned to the user.</span><pre>getUserOrganization()</pre></a></li>
+<li class="method public "><a href="#getUserOrganizationId" title="getUserOrganizationId :: Returns identifier of user organization assigned to the user."><span class="description">Returns identifier of user organization assigned to the user.</span><pre>getUserOrganizationId()</pre></a></li>
+<li class="method public "><a href="#getUserRole" title="getUserRole :: Returns role of the user."><span class="description">Returns role of the user.</span><pre>getUserRole()</pre></a></li>
+<li class="method public inherited"><a href="#isNew" title="isNew :: Returns whether the object is new and not yet saved on the server."><span class="description">Returns whether the object is new and not yet saved on the server.</span><pre>isNew()</pre></a></li>
+<li class="method public inherited"><a href="#isReadOnly" title="isReadOnly :: Returns whether this object is read only."><span class="description">Returns whether this object is read only.</span><pre>isReadOnly()</pre></a></li>
+<li class="method public "><a href="#newTicket" title="newTicket :: Creates new ticket with this User as the author."><span class="description">Creates new ticket with this User as the author.</span><pre>newTicket()</pre></a></li>
+<li class="method public inherited"><a href="#refresh" title="refresh :: Refreshes the object data from server."><span class="description">Refreshes the object data from server.</span><pre>refresh()</pre></a></li>
+<li class="method public inherited"><a href="#save" title="save :: Saves (creates or updates) the object to the server."><span class="description">Saves (creates or updates) the object to the server.</span><pre>save()</pre></a></li>
+<li class="method public "><a href="#search" title="search :: Searches for users."><span class="description">Searches for users.</span><pre>search()</pre></a></li>
+<li class="method public "><a href="#setDesignation" title="setDesignation :: Sets designation of the user."><span class="description">Sets designation of the user.</span><pre>setDesignation()</pre></a></li>
+<li class="method public "><a href="#setEnableDST" title="setEnableDST :: Sets whether the user has enabled daylight saving time."><span class="description">Sets whether the user has enabled daylight saving time.</span><pre>setEnableDST()</pre></a></li>
+<li class="method public "><a href="#setFullName" title="setFullName :: Sets full name of the user."><span class="description">Sets full name of the user.</span><pre>setFullName()</pre></a></li>
+<li class="method public "><a href="#setIsEnabled" title="setIsEnabled :: Sets whether the user is enabled."><span class="description">Sets whether the user is enabled.</span><pre>setIsEnabled()</pre></a></li>
+<li class="method public "><a href="#setPassword" title="setPassword :: Sets password of the user."><span class="description">Sets password of the user.</span><pre>setPassword()</pre></a></li>
+<li class="method public "><a href="#setPhone" title="setPhone :: Sets phone number of the user."><span class="description">Sets phone number of the user.</span><pre>setPhone()</pre></a></li>
+<li class="method public inherited"><a href="#setReadOnly" title="setReadOnly :: Sets whether this object is read only."><span class="description">Sets whether this object is read only.</span><pre>setReadOnly()</pre></a></li>
+<li class="method public "><a href="#setSLAPlanExpiry" title="setSLAPlanExpiry :: Sets expiration date of Service Level Agreement plan assignment."><span class="description">Sets expiration date of Service Level Agreement plan assignment.</span><pre>setSLAPlanExpiry()</pre></a></li>
+<li class="method public "><a href="#setSLAPlanId" title="setSLAPlanId :: Sets identifier of the Service Level Agreement plan assigned to the user."><span class="description">Sets identifier of the Service Level Agreement plan assigned to the user.</span><pre>setSLAPlanId()</pre></a></li>
+<li class="method public "><a href="#setSalutation" title="setSalutation :: Sets salutation of the user."><span class="description">Sets salutation of the user.</span><pre>setSalutation()</pre></a></li>
+<li class="method public "><a href="#setSendWelcomeEmail" title="setSendWelcomeEmail :: Sets whether to send welcome email to new user."><span class="description">Sets whether to send welcome email to new user.</span><pre>setSendWelcomeEmail()</pre></a></li>
+<li class="method public "><a href="#setTimezone" title="setTimezone :: Sets timezone of the user."><span class="description">Sets timezone of the user.</span><pre>setTimezone()</pre></a></li>
+<li class="method public "><a href="#setUserExpiry" title="setUserExpiry :: Sets expiration date of the user."><span class="description">Sets expiration date of the user.</span><pre>setUserExpiry()</pre></a></li>
+<li class="method public "><a href="#setUserGroup" title="setUserGroup :: Sets user group for the user."><span class="description">Sets user group for the user.</span><pre>setUserGroup()</pre></a></li>
+<li class="method public "><a href="#setUserGroupId" title="setUserGroupId :: Sets user group identifier of the user."><span class="description">Sets user group identifier of the user.</span><pre>setUserGroupId()</pre></a></li>
+<li class="method public "><a href="#setUserOrganization" title="setUserOrganization :: Sets user organization assigned to the user."><span class="description">Sets user organization assigned to the user.</span><pre>setUserOrganization()</pre></a></li>
+<li class="method public "><a href="#setUserOrganizationId" title="setUserOrganizationId :: Sets user organization assigned the user by its identifier."><span class="description">Sets user organization assigned the user by its identifier.</span><pre>setUserOrganizationId()</pre></a></li>
+<li class="method public "><a href="#setUserRole" title="setUserRole :: Sets role of the user."><span class="description">Sets role of the user.</span><pre>setUserRole()</pre></a></li>
+<li class="method public "><a href="#toString" title="toString :: Should return short (one line) description of the object (it's title, name, etc.)."><span class="description">Should return short (one line) description of the object (it's title, name, etc.).</span><pre>toString()</pre></a></li>
+<li class="method public inherited"><a href="#update" title="update :: Updates the object on the server and refreshes its local data."><span class="description">Updates the object on the server and refreshes its local data.</span><pre>update()</pre></a></li>
+<li class="nav-header protected">» Protected</li>
+<li class="method protected inherited"><a href="#getRESTClient" title="getRESTClient :: Returns REST client."><span class="description">Returns REST client.</span><pre>getRESTClient()</pre></a></li>
+<li class="method protected "><a href="#parseData" title="parseData :: Should use passed data to fill object properties."><span class="description">Should use passed data to fill object properties.</span><pre>parseData()</pre></a></li>
+<li class="nav-header private">» Private</li>
+<li class="method private inherited"><a href="#initAPIFieldsAccessors" title="initAPIFieldsAccessors :: Builds API fields list."><span class="description">Builds API fields list.</span><pre>initAPIFieldsAccessors()</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties</li>
+<li class="nav-header protected">» Protected</li>
+<li class="property protected inherited"><a href="#%24_filter_methods" title="$_filter_methods :: Cache for available filter methods."><span class="description">Cache for available filter methods.</span><pre>$_filter_methods</pre></a></li>
+<li class="property protected inherited"><a href="#%24_order_methods" title="$_order_methods :: Cache for available order methods."><span class="description">Cache for available order methods.</span><pre>$_order_methods</pre></a></li>
+<li class="property protected "><a href="#%24controller" title="$controller :: Default Kayako controller used to operate on this objects. Override in descending classes."><span class="description">Default Kayako controller used to operate on this objects. Override in descending classes.</span><pre>$controller</pre></a></li>
+<li class="property protected "><a href="#%24dateline" title="$dateline :: Timestamp of when the user was created."><span class="description">Timestamp of when the user was created.</span><pre>$dateline</pre></a></li>
+<li class="property protected "><a href="#%24designation" title="$designation :: User designation."><span class="description">User designation.</span><pre>$designation</pre></a></li>
+<li class="property protected "><a href="#%24email" title="$email :: List of user's e-mail addresses."><span class="description">List of user's e-mail addresses.</span><pre>$email</pre></a></li>
+<li class="property protected "><a href="#%24enable_dst" title="$enable_dst :: If Daylight Saving Time is enabled for the user."><span class="description">If Daylight Saving Time is enabled for the user.</span><pre>$enable_dst</pre></a></li>
+<li class="property protected "><a href="#%24full_name" title="$full_name :: Full name of the user."><span class="description">Full name of the user.</span><pre>$full_name</pre></a></li>
+<li class="property protected "><a href="#%24id" title="$id :: User identifier."><span class="description">User identifier.</span><pre>$id</pre></a></li>
+<li class="property protected "><a href="#%24is_enabled" title="$is_enabled :: Whether this user is enabled."><span class="description">Whether this user is enabled.</span><pre>$is_enabled</pre></a></li>
+<li class="property protected "><a href="#%24last_visit" title="$last_visit :: Timestamp of when the user last visited support center."><span class="description">Timestamp of when the user last visited support center.</span><pre>$last_visit</pre></a></li>
+<li class="property protected "><a href="#%24object_xml_name" title="$object_xml_name :: Indicates the name of object element in XML response. Override in descending classes."><span class="description">Indicates the name of object element in XML response. Override in descending classes.</span><pre>$object_xml_name</pre></a></li>
+<li class="property protected "><a href="#%24password" title="$password :: User password."><span class="description">User password.</span><pre>$password</pre></a></li>
+<li class="property protected "><a href="#%24phone" title="$phone :: User phone number."><span class="description">User phone number.</span><pre>$phone</pre></a></li>
+<li class="property protected inherited"><a href="#%24read_only" title="$read_only :: Controls if the object can be created/updated/deleted. Override in descending classes."><span class="description">Controls if the object can be created/updated/deleted. Override in descending classes.</span><pre>$read_only</pre></a></li>
+<li class="property protected "><a href="#%24salutation" title="$salutation :: User salutation."><span class="description">User salutation.</span><pre>$salutation</pre></a></li>
+<li class="property protected "><a href="#%24send_welcome_email" title="$send_welcome_email :: Whether welcome e-mail should be send upon creation of the user."><span class="description">Whether welcome e-mail should be send upon creation of the user.</span><pre>$send_welcome_email</pre></a></li>
+<li class="property protected "><a href="#%24sla_plan_expiry" title="$sla_plan_expiry :: Timestamp of when the Service Level Agreement plan associated to this user will expire."><span class="description">Timestamp of when the Service Level Agreement plan associated to this user will expire.</span><pre>$sla_plan_expiry</pre></a></li>
+<li class="property protected "><a href="#%24sla_plan_id" title="$sla_plan_id :: Identifier of Service Level Agreement plan associated to this user."><span class="description">Identifier of Service Level Agreement plan associated to this user.</span><pre>$sla_plan_id</pre></a></li>
+<li class="property protected "><a href="#%24timezone" title="$timezone :: Timezone of the user."><span class="description">Timezone of the user.</span><pre>$timezone</pre></a></li>
+<li class="property protected "><a href="#%24user_expiry" title="$user_expiry :: Timestamp of when the user will expire."><span class="description">Timestamp of when the user will expire.</span><pre>$user_expiry</pre></a></li>
+<li class="property protected "><a href="#%24user_group_id" title="$user_group_id :: User group identifier."><span class="description">User group identifier.</span><pre>$user_group_id</pre></a></li>
+<li class="property protected "><a href="#%24user_organization_id" title="$user_organization_id :: User organization identifier."><span class="description">User organization identifier.</span><pre>$user_organization_id</pre></a></li>
+<li class="property protected "><a href="#%24user_role" title="$user_role :: User role."><span class="description">User role.</span><pre>$user_role</pre></a></li>
+<li class="nav-header private">» Private</li>
+<li class="property private inherited"><a href="#%24_api_fields" title="$_api_fields :: Cache for API fields."><span class="description">Cache for API fields.</span><pre>$_api_fields</pre></a></li>
+<li class="property private "><a href="#%24user_group" title="$user_group :: Group of the user."><span class="description">Group of the user.</span><pre>$user_group</pre></a></li>
+<li class="property private "><a href="#%24user_organization" title="$user_organization :: Organization of the user."><span class="description">Organization of the user.</span><pre>$user_organization</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-constant"></i> Constants</li>
+<li class="constant  inherited"><a href="#FILES_DATA_NAME" title="FILES_DATA_NAME :: Data key for storing files to send as multipart/form-data."><span class="description">Data key for storing files to send as multipart/form-data.</span><pre>FILES_DATA_NAME</pre></a></li>
+<li class="constant  "><a href="#ROLE_MANAGER" title="ROLE_MANAGER :: "><span class="description">ROLE_MANAGER</span><pre>ROLE_MANAGER</pre></a></li>
+<li class="constant  "><a href="#ROLE_USER" title="ROLE_USER :: "><span class="description">ROLE_USER</span><pre>ROLE_USER</pre></a></li>
+<li class="constant  "><a href="#SALUTATION_DR" title="SALUTATION_DR :: "><span class="description">SALUTATION_DR</span><pre>SALUTATION_DR</pre></a></li>
+<li class="constant  "><a href="#SALUTATION_MISS" title="SALUTATION_MISS :: "><span class="description">SALUTATION_MISS</span><pre>SALUTATION_MISS</pre></a></li>
+<li class="constant  "><a href="#SALUTATION_MR" title="SALUTATION_MR :: "><span class="description">SALUTATION_MR</span><pre>SALUTATION_MR</pre></a></li>
+<li class="constant  "><a href="#SALUTATION_MRS" title="SALUTATION_MRS :: "><span class="description">SALUTATION_MRS</span><pre>SALUTATION_MRS</pre></a></li>
+</ul>
+</div>
+<div class="span8">
+<a name="%5CkyUser" id="\kyUser"></a><div href="../classes/kyUser.html" class="element class">
+<p class="short_description">Kayako User object.</p>
+<div class="details">
+<p class="long_description"><p>All objects interacting with Kayako REST API should extend this class and
+define:
+* Kayako controller
+* XML element name holding object's data in REST response</p></p>
+<table class="table table-bordered">
+<tr>
+<th>author</th>
+<td><a href="">Tomasz Sawicki (https://github.com/Furgas)</a></td>
+</tr>
+<tr>
+<th>link</th>
+<td><a href="http://wiki.kayako.com/display/DEV/REST+-+User">http://wiki.kayako.com/display/DEV/REST+-+User</a></td>
+</tr>
+<tr>
+<th>since</th>
+<td>Kayako version 4.01.204</td>
+</tr>
+<tr>
+<th>package</th>
+<td><a href="..//packages/Object.User.html">Object\User</a></td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a name="__construct" id="__construct"></a><div class="element clickable method public __construct" data-toggle="collapse" data-target=".__construct .collapse">
+<h2>Default constructor.</h2>
+<pre>__construct(array $data) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::__construct()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>Object data from XML response converted into array.</p></div>
+</div></div>
+</div>
+<a name="__get" id="__get"></a><div class="element clickable method public __get" data-toggle="collapse" data-target=".__get .collapse">
+<h2>Returns API field value.</h2>
+<pre>__get(string $api_field_name) : mixed</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Returns API field value based on API field name used by Kayako.</p></p>
+<table class="table table-bordered">
+<tr>
+<th>link</th>
+<td><a href="http://wiki.kayako.com/display/DEV/REST+API+Reference">http://wiki.kayako.com/display/DEV/REST+API+Reference</a></td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::__get()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$api_field_name</h4>
+<code>string</code><p>API field name.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="__set" id="__set"></a><div class="element clickable method public __set" data-toggle="collapse" data-target=".__set .collapse">
+<h2>Sets API field value.</h2>
+<pre>__set(string $api_field_name, mixed $value) : mixed</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Sets API field value based on API field name used by Kayako.</p></p>
+<table class="table table-bordered">
+<tr>
+<th>link</th>
+<td><a href="http://wiki.kayako.com/display/DEV/REST+API+Reference">http://wiki.kayako.com/display/DEV/REST+API+Reference</a></td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::__set()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$api_field_name</h4>
+<code>string</code><p>API field name.</p></div>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>mixed</code><p>API field value.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="__toString" id="__toString"></a><div class="element clickable method public __toString" data-toggle="collapse" data-target=".__toString .collapse">
+<h2>Returns object description with it's type and identifier.</h2>
+<pre>__toString() : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Calls toString() method to get the object description.</p></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::__toString()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="addEmail" id="addEmail"></a><div class="element clickable method public addEmail" data-toggle="collapse" data-target=".addEmail .collapse">
+<h2>Adds an e-mail to the list user e-mails.</h2>
+<pre>addEmail(string $email, bool $clear) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$email</h4>
+<code>string</code><p>E-mail address.</p>
+</div>
+<div class="subelement argument">
+<h4>$clear</h4>
+<code>bool</code><p>Clear the list before adding.</p></div>
+</div></div>
+</div>
+<a name="buildData" id="buildData"></a><div class="element clickable method public buildData" data-toggle="collapse" data-target=".buildData .collapse">
+<h2>Should build the array of object data for creating or updating the object.</h2>
+<pre>buildData(bool $create) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Values must be set in format accepted by REST API.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$create</h4>
+<code>bool</code><p>Indicates if the result will be used to create (true) or update (false) an object.</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a name="checkRequiredAPIFields" id="checkRequiredAPIFields"></a><div class="element clickable method public checkRequiredAPIFields" data-toggle="collapse" data-target=".checkRequiredAPIFields .collapse">
+<h2>Checks wheter this object has all required fields set.</h2>
+<pre>checkRequiredAPIFields(bool $create, bool $throw_exception) : \string[] | bool</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::checkRequiredAPIFields()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$create</h4>
+<code>bool</code><p>True when object will be created. False when object will be updated.</p></div>
+<div class="subelement argument">
+<h4>$throw_exception</h4>
+<code>bool</code><p>True to throw an exception on missing fields. False to return list of missing fields or true when there are none.</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/kyException.html">\kyException</a></code></th>
+<td>When there are missing field values and $throw_exception is true.</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\string[]</code><code>bool</code>List of missing API fields or true when there are none.</div>
+</div></div>
+</div>
+<a name="create" id="create"></a><div class="element clickable method public create" data-toggle="collapse" data-target=".create .collapse">
+<h2>Creates an object on the server and refreshes its local data.</h2>
+<pre>create() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::create()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
+</div></div>
+</div>
+<a name="createNew" id="createNew"></a><div class="element clickable method public createNew" data-toggle="collapse" data-target=".createNew .collapse">
+<h2>Creates new user.</h2>
+<pre>createNew(string $full_name, string $email, kyUserGroup $user_group, string $password) : <a href="../classes/kyUser.html">\kyUser</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$full_name</h4>
+<code>string</code><p>Full name of new user.</p></div>
+<div class="subelement argument">
+<h4>$email</h4>
+<code>string</code><p>E-mail address of new user.</p>
+</div>
+<div class="subelement argument">
+<h4>$user_group</h4>
+<code><a href="../classes/kyUserGroup.html">\kyUserGroup</a></code><p>User group of new user.</p></div>
+<div class="subelement argument">
+<h4>$password</h4>
+<code>string</code><p>Password of new user.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyUser.html">\kyUser</a></code></div>
+</div></div>
+</div>
+<a name="delete" id="delete"></a><div class="element clickable method public delete" data-toggle="collapse" data-target=".delete .collapse">
+<h2>Deletes the object on the server.</h2>
+<pre>delete() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::delete()</td>
+</tr></table>
+</div></div>
+</div>
+<a name="get" id="get"></a><div class="element clickable method public get" data-toggle="collapse" data-target=".get .collapse">
+<h2>Fetches the object from server.</h2>
+<pre>get(int | array $id) : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::get()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$id</h4>
+<code>intarray</code><p>Object identifier or list of identifiers (ex. ticket identifier and ticket post identifier when fetching TicketPost).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
+</div></div>
+</div>
+<a name="getAPIFields" id="getAPIFields"></a><div class="element clickable method public getAPIFields" data-toggle="collapse" data-target=".getAPIFields .collapse">
+<h2>Returns array of API fields.</h2>
+<pre>getAPIFields() : \string[]</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Format of returned array:</p>
+
+<pre>
+array(
+    '<api field name>' => Field description. (getter: <getter name>, setter: <setter name>),
+    ...repeat...
+)
+</pre></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::getAPIFields()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>\string[]</code></div>
+</div></div>
+</div>
+<a name="getAll" id="getAll"></a><div class="element clickable method public getAll" data-toggle="collapse" data-target=".getAll .collapse">
+<h2>Fetches all users.</h2>
+<pre>getAll(int $starting_user_id, int $max_items) : <a href="../classes/kyResultSet.html">\kyResultSet</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Optionaly you can get segment of user objects by defining starting user identifier and maximum items count.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$starting_user_id</h4>
+<code>int</code><p>Optional starting user identifier.</p></div>
+<div class="subelement argument">
+<h4>$max_items</h4>
+<code>int</code><p>Optional maximum items count. Defaults to 1000 when starting user is defined.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyResultSet.html">\kyResultSet</a></code></div>
+</div></div>
+</div>
+<a name="getAvailableFilterMethods" id="getAvailableFilterMethods"></a><div class="element clickable method public getAvailableFilterMethods" data-toggle="collapse" data-target=".getAvailableFilterMethods .collapse">
+<h2>Returns list of available filter methods for use in result sets with objects of this type.</h2>
+<pre>getAvailableFilterMethods(bool $filter_names_only) : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Optionaly you can return get method names used to filter objects.</p></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::getAvailableFilterMethods()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$filter_names_only</h4>
+<code>bool</code><p>True (default) to return array('filterByXXX', 'filterByYYY', ...). False to return array('filterByXXX' => 'getXXX', 'filterByYYY' => 'YYY', ...).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a name="getAvailableOrderMethods" id="getAvailableOrderMethods"></a><div class="element clickable method public getAvailableOrderMethods" data-toggle="collapse" data-target=".getAvailableOrderMethods .collapse">
+<h2>Returns list of available order methods for use in result sets with objects of this type.</h2>
+<pre>getAvailableOrderMethods(bool $order_names_only) : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Optionaly you can return get method names used to order objects.</p></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::getAvailableOrderMethods()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$order_names_only</h4>
+<code>bool</code><p>True (default) to return array('orderByXXX', 'orderByYYY', ...). False to return array('orderByXXX' => 'getXXX', 'orderByYYY' => 'YYY', ...).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a name="getController" id="getController"></a><div class="element clickable method public getController" data-toggle="collapse" data-target=".getController .collapse">
+<h2>Returns object controller.</h2>
+<pre>getController() : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::getController()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getDateline" id="getDateline"></a><div class="element clickable method public getDateline" data-toggle="collapse" data-target=".getDateline .collapse">
+<h2>Returns date and time when the user was created.</h2>
+<pre>getDateline(string $format) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>see</th>
+<td>\http://www.php.net/manual/en/function.date.php</td>
+</tr>
+<tr>
+<th>filterBy</th>
+<td></td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$format</h4>
+<code>string</code><p>Output format of the date. If null the format set in client configuration is used.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getDesignation" id="getDesignation"></a><div class="element clickable method public getDesignation" data-toggle="collapse" data-target=".getDesignation .collapse">
+<h2>Return designation of the user.</h2>
+<pre>getDesignation() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>filterBy</th>
+<td></td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getEmail" id="getEmail"></a><div class="element clickable method public getEmail" data-toggle="collapse" data-target=".getEmail .collapse">
+<h2>Returns first e-mail from the list of user e-mails.</h2>
+<pre>getEmail() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getEmails" id="getEmails"></a><div class="element clickable method public getEmails" data-toggle="collapse" data-target=".getEmails .collapse">
+<h2>Returns list of user e-mails.</h2>
+<pre>getEmails() : \string[]</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>filterBy</th>
+<td>name=Email</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>\string[]</code></div>
+</div></div>
+</div>
+<a name="getEnableDST" id="getEnableDST"></a><div class="element clickable method public getEnableDST" data-toggle="collapse" data-target=".getEnableDST .collapse">
+<h2>Returns whether the user has enabled daylight saving time.</h2>
+<pre>getEnableDST() : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>filterBy</th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="getFullName" id="getFullName"></a><div class="element clickable method public getFullName" data-toggle="collapse" data-target=".getFullName .collapse">
+<h2>Returns full name of the user.</h2>
+<pre>getFullName() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>filterBy</th>
+<td></td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getId" id="getId"></a><div class="element clickable method public getId" data-toggle="collapse" data-target=".getId .collapse">
+<h2>Should return object identifier or complete list of identifiers as needed by API to identify the object (ex. ticket identifier and ticket post identifier in case of TicketPost).</h2>
+<pre>getId(bool $complete) : int | array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$complete</h4>
+<code>bool</code><p>True to return complete list of identifiers as needed by API to identify the object.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>int</code><code>array</code>
+</div>
+</div></div>
+</div>
+<a name="getIsEnabled" id="getIsEnabled"></a><div class="element clickable method public getIsEnabled" data-toggle="collapse" data-target=".getIsEnabled .collapse">
+<h2>Returns whether the user is enabled.</h2>
+<pre>getIsEnabled() : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>filterBy</th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="getLastVisit" id="getLastVisit"></a><div class="element clickable method public getLastVisit" data-toggle="collapse" data-target=".getLastVisit .collapse">
+<h2>Returns date and time when the user last logged in.</h2>
+<pre>getLastVisit(string $format) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>see</th>
+<td>\http://www.php.net/manual/en/function.date.php</td>
+</tr>
+<tr>
+<th>filterBy</th>
+<td></td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$format</h4>
+<code>string</code><p>Output format of the date. If null the format set in client configuration is used.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getPhone" id="getPhone"></a><div class="element clickable method public getPhone" data-toggle="collapse" data-target=".getPhone .collapse">
+<h2>Returns phone number of the user.</h2>
+<pre>getPhone() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>filterBy</th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getRequiredAPIFields" id="getRequiredAPIFields"></a><div class="element clickable method public getRequiredAPIFields" data-toggle="collapse" data-target=".getRequiredAPIFields .collapse">
+<h2>Returns list of required API fields for objects of this class.</h2>
+<pre>getRequiredAPIFields(bool $create) : \string[]</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::getRequiredAPIFields()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$create</h4>
+<code>bool</code><p>True when object will be created. False when object will be updated.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\string[]</code></div>
+</div></div>
+</div>
+<a name="getSLAPlanExpiry" id="getSLAPlanExpiry"></a><div class="element clickable method public getSLAPlanExpiry" data-toggle="collapse" data-target=".getSLAPlanExpiry .collapse">
+<h2>Returns expiration date of Service Level Agreement plan assignment or null when expiration is disabled.</h2>
+<pre>getSLAPlanExpiry(string $format) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>see</th>
+<td>\http://www.php.net/manual/en/function.date.php</td>
+</tr>
+<tr>
+<th>filterBy</th>
+<td></td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$format</h4>
+<code>string</code><p>Output format of the date. If null the format set in client configuration is used.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getSLAPlanId" id="getSLAPlanId"></a><div class="element clickable method public getSLAPlanId" data-toggle="collapse" data-target=".getSLAPlanId .collapse">
+<h2>Return Service Level Agreement plan assigned to the user.</h2>
+<pre>getSLAPlanId() : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>filterBy</th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>int</code></div>
+</div></div>
+</div>
+<a name="getSalutation" id="getSalutation"></a><div class="element clickable method public getSalutation" data-toggle="collapse" data-target=".getSalutation .collapse">
+<h2>Returns salutation of the user.</h2>
+<pre>getSalutation() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>see</th>
+<td>\kyUser::SALUTATION</td>
+</tr>
+<tr>
+<th>filterBy</th>
+<td></td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getTimezone" id="getTimezone"></a><div class="element clickable method public getTimezone" data-toggle="collapse" data-target=".getTimezone .collapse">
+<h2>Returns timezone of the user.</h2>
+<pre>getTimezone() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>filterBy</th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getUserExpiry" id="getUserExpiry"></a><div class="element clickable method public getUserExpiry" data-toggle="collapse" data-target=".getUserExpiry .collapse">
+<h2>Returns expiration date of the user or null when expiration is disabled.</h2>
+<pre>getUserExpiry(string $format) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>see</th>
+<td>\http://www.php.net/manual/en/function.date.php</td>
+</tr>
+<tr>
+<th>filterBy</th>
+<td></td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$format</h4>
+<code>string</code><p>Output format of the date. If null the format set in client configuration is used.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getUserGroup" id="getUserGroup"></a><div class="element clickable method public getUserGroup" data-toggle="collapse" data-target=".getUserGroup .collapse">
+<h2>Returns user group of the user.</h2>
+<pre>getUserGroup(bool $reload) : <a href="../classes/kyUserGroup.html">\kyUserGroup</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Result is cached until the end of script.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$reload</h4>
+<code>bool</code><p>True to reload data from server. False to use the cached value (if present).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyUserGroup.html">\kyUserGroup</a></code></div>
+</div></div>
+</div>
+<a name="getUserGroupId" id="getUserGroupId"></a><div class="element clickable method public getUserGroupId" data-toggle="collapse" data-target=".getUserGroupId .collapse">
+<h2>Returns user group identifier of the user.</h2>
+<pre>getUserGroupId() : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>filterBy</th>
+<td></td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>int</code></div>
+</div></div>
+</div>
+<a name="getUserOrganization" id="getUserOrganization"></a><div class="element clickable method public getUserOrganization" data-toggle="collapse" data-target=".getUserOrganization .collapse">
+<h2>Returns user organization assigned to the user.</h2>
+<pre>getUserOrganization(bool $reload) : <a href="../classes/kyUserOrganization.html">\kyUserOrganization</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Result is cached until the end of script.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$reload</h4>
+<code>bool</code><p>True to reload data from server. False to use the cached value (if present).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyUserOrganization.html">\kyUserOrganization</a></code></div>
+</div></div>
+</div>
+<a name="getUserOrganizationId" id="getUserOrganizationId"></a><div class="element clickable method public getUserOrganizationId" data-toggle="collapse" data-target=".getUserOrganizationId .collapse">
+<h2>Returns identifier of user organization assigned to the user.</h2>
+<pre>getUserOrganizationId() : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>filterBy</th>
+<td></td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>int</code></div>
+</div></div>
+</div>
+<a name="getUserRole" id="getUserRole"></a><div class="element clickable method public getUserRole" data-toggle="collapse" data-target=".getUserRole .collapse">
+<h2>Returns role of the user.</h2>
+<pre>getUserRole() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>see</th>
+<td>\kyUser:ROLE</td>
+</tr>
+<tr>
+<th>filterBy</th>
+<td></td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="isNew" id="isNew"></a><div class="element clickable method public isNew" data-toggle="collapse" data-target=".isNew .collapse">
+<h2>Returns whether the object is new and not yet saved on the server.</h2>
+<pre>isNew() : bool</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::isNew()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="isReadOnly" id="isReadOnly"></a><div class="element clickable method public isReadOnly" data-toggle="collapse" data-target=".isReadOnly .collapse">
+<h2>Returns whether this object is read only.</h2>
+<pre>isReadOnly() : bool</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::isReadOnly()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="newTicket" id="newTicket"></a><div class="element clickable method public newTicket" data-toggle="collapse" data-target=".newTicket .collapse">
+<h2>Creates new ticket with this User as the author.</h2>
+<pre>newTicket(<a href="../classes/kyDepartment.html">\kyDepartment</a> $department, string $contents, string $subject) : <a href="../classes/kyTicket.html">\kyTicket</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$department</h4>
+<code><a href="../classes/kyDepartment.html">\kyDepartment</a></code><p>Department where the ticket will be created.</p></div>
+<div class="subelement argument">
+<h4>$contents</h4>
+<code>string</code><p>Contents of the first post.</p></div>
+<div class="subelement argument">
+<h4>$subject</h4>
+<code>string</code><p>Subject of the ticket.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyTicket.html">\kyTicket</a></code></div>
+</div></div>
+</div>
+<a name="refresh" id="refresh"></a><div class="element clickable method public refresh" data-toggle="collapse" data-target=".refresh .collapse">
+<h2>Refreshes the object data from server.</h2>
+<pre>refresh() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::refresh()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
+</div></div>
+</div>
+<a name="save" id="save"></a><div class="element clickable method public save" data-toggle="collapse" data-target=".save .collapse">
+<h2>Saves (creates or updates) the object to the server.</h2>
+<pre>save() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::save()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
+</div></div>
+</div>
+<a name="search" id="search"></a><div class="element clickable method public search" data-toggle="collapse" data-target=".search .collapse">
+<h2>Searches for users.</h2>
+<pre>search(string $query) : <a href="../classes/kyResultSet.html">\kyResultSet</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Performs server-side search of users. The search query is run against
+email, full name, phone, organization name and user group.</p></p>
+<table class="table table-bordered">
+<tr>
+<th>link</th>
+<td><a href="http://wiki.kayako.com/display/DEV/REST+-+UserSearch">http://wiki.kayako.com/display/DEV/REST+-+UserSearch</a></td>
+</tr>
+<tr>
+<th>since</th>
+<td>Kayako version 4.40.910</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$query</h4>
+<code>string</code><p>The search query.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyResultSet.html">\kyResultSet</a></code></div>
+</div></div>
+</div>
+<a name="setDesignation" id="setDesignation"></a><div class="element clickable method public setDesignation" data-toggle="collapse" data-target=".setDesignation .collapse">
+<h2>Sets designation of the user.</h2>
+<pre>setDesignation(string $designation) : <a href="../classes/kyUser.html">\kyUser</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$designation</h4>
+<code>string</code><p>Designation of the user.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyUser.html">\kyUser</a></code></div>
+</div></div>
+</div>
+<a name="setEnableDST" id="setEnableDST"></a><div class="element clickable method public setEnableDST" data-toggle="collapse" data-target=".setEnableDST .collapse">
+<h2>Sets whether the user has enabled daylight saving time.</h2>
+<pre>setEnableDST(bool $enable_dst) : <a href="../classes/kyUser.html">\kyUser</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$enable_dst</h4>
+<code>bool</code><p>True, to enable daylight saving time. False, to disable daylight saving time.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyUser.html">\kyUser</a></code></div>
+</div></div>
+</div>
+<a name="setFullName" id="setFullName"></a><div class="element clickable method public setFullName" data-toggle="collapse" data-target=".setFullName .collapse">
+<h2>Sets full name of the user.</h2>
+<pre>setFullName(string $full_name) : <a href="../classes/kyUser.html">\kyUser</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$full_name</h4>
+<code>string</code><p>Full name of the user.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyUser.html">\kyUser</a></code></div>
+</div></div>
+</div>
+<a name="setIsEnabled" id="setIsEnabled"></a><div class="element clickable method public setIsEnabled" data-toggle="collapse" data-target=".setIsEnabled .collapse">
+<h2>Sets whether the user is enabled.</h2>
+<pre>setIsEnabled(bool $is_enabled) : <a href="../classes/kyUser.html">\kyUser</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$is_enabled</h4>
+<code>bool</code><p>True, to enable the user. False, to disable the user.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyUser.html">\kyUser</a></code></div>
+</div></div>
+</div>
+<a name="setPassword" id="setPassword"></a><div class="element clickable method public setPassword" data-toggle="collapse" data-target=".setPassword .collapse">
+<h2>Sets password of the user.</h2>
+<pre>setPassword(string $password) : <a href="../classes/kyUser.html">\kyUser</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$password</h4>
+<code>string</code><p>Password of the user.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyUser.html">\kyUser</a></code></div>
+</div></div>
+</div>
+<a name="setPhone" id="setPhone"></a><div class="element clickable method public setPhone" data-toggle="collapse" data-target=".setPhone .collapse">
+<h2>Sets phone number of the user.</h2>
+<pre>setPhone(string $phone) : <a href="../classes/kyUser.html">\kyUser</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$phone</h4>
+<code>string</code><p>Phone number of the user.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyUser.html">\kyUser</a></code></div>
+</div></div>
+</div>
+<a name="setReadOnly" id="setReadOnly"></a><div class="element clickable method public setReadOnly" data-toggle="collapse" data-target=".setReadOnly .collapse">
+<h2>Sets whether this object is read only.</h2>
+<pre>setReadOnly(bool $read_only) : bool</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::setReadOnly()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$read_only</h4>
+<code>bool</code><p>Read only flag.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="setSLAPlanExpiry" id="setSLAPlanExpiry"></a><div class="element clickable method public setSLAPlanExpiry" data-toggle="collapse" data-target=".setSLAPlanExpiry .collapse">
+<h2>Sets expiration date of Service Level Agreement plan assignment.</h2>
+<pre>setSLAPlanExpiry(string | int | null $sla_plan_expiry) : <a href="../classes/kyUser.html">\kyUser</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td>\http://www.php.net/manual/en/function.strtotime.php</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$sla_plan_expiry</h4>
+<code>stringintnull</code><p>Date and time when Service Level Agreement plan for this user will expire (timestamp or string format understood by PHP strtotime). Null to disable expiration.</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyUser.html">\kyUser</a></code></div>
+</div></div>
+</div>
+<a name="setSLAPlanId" id="setSLAPlanId"></a><div class="element clickable method public setSLAPlanId" data-toggle="collapse" data-target=".setSLAPlanId .collapse">
+<h2>Sets identifier of the Service Level Agreement plan assigned to the user.</h2>
+<pre>setSLAPlanId(int $sla_plan_id) : <a href="../classes/kyUser.html">\kyUser</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$sla_plan_id</h4>
+<code>int</code><p>Service Level Agreement plan identifier.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyUser.html">\kyUser</a></code></div>
+</div></div>
+</div>
+<a name="setSalutation" id="setSalutation"></a><div class="element clickable method public setSalutation" data-toggle="collapse" data-target=".setSalutation .collapse">
+<h2>Sets salutation of the user.</h2>
+<pre>setSalutation(string $salutation) : <a href="../classes/kyUser.html">\kyUser</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td>\kyUser::SALUTATION</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$salutation</h4>
+<code>string</code><p>User salutation.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyUser.html">\kyUser</a></code></div>
+</div></div>
+</div>
+<a name="setSendWelcomeEmail" id="setSendWelcomeEmail"></a><div class="element clickable method public setSendWelcomeEmail" data-toggle="collapse" data-target=".setSendWelcomeEmail .collapse">
+<h2>Sets whether to send welcome email to new user.</h2>
+<pre>setSendWelcomeEmail(bool $send_welcome_email) : <a href="../classes/kyUser.html">\kyUser</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$send_welcome_email</h4>
+<code>bool</code><p>True, to send welcome email to new user. False, otherwise.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyUser.html">\kyUser</a></code></div>
+</div></div>
+</div>
+<a name="setTimezone" id="setTimezone"></a><div class="element clickable method public setTimezone" data-toggle="collapse" data-target=".setTimezone .collapse">
+<h2>Sets timezone of the user.</h2>
+<pre>setTimezone(string $timezone) : <a href="../classes/kyUser.html">\kyUser</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>See http://php.net/manual/en/timezones.php for list of available timezones.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$timezone</h4>
+<code>string</code><p>Timezone of the user.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyUser.html">\kyUser</a></code></div>
+</div></div>
+</div>
+<a name="setUserExpiry" id="setUserExpiry"></a><div class="element clickable method public setUserExpiry" data-toggle="collapse" data-target=".setUserExpiry .collapse">
+<h2>Sets expiration date of the user.</h2>
+<pre>setUserExpiry(string | int | null $user_expiry) : <a href="../classes/kyUser.html">\kyUser</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td>\http://www.php.net/manual/en/function.strtotime.php</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$user_expiry</h4>
+<code>stringintnull</code><p>Date and time when the user will expire (timestamp or string format understood by PHP strtotime). Null to disable expiration.</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyUser.html">\kyUser</a></code></div>
+</div></div>
+</div>
+<a name="setUserGroup" id="setUserGroup"></a><div class="element clickable method public setUserGroup" data-toggle="collapse" data-target=".setUserGroup .collapse">
+<h2>Sets user group for the user.</h2>
+<pre>setUserGroup(kyUserGroup $user_group) : <a href="../classes/kyUser.html">\kyUser</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$user_group</h4>
+<code><a href="../classes/kyUserGroup.html">\kyUserGroup</a></code><p>User group.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyUser.html">\kyUser</a></code></div>
+</div></div>
+</div>
+<a name="setUserGroupId" id="setUserGroupId"></a><div class="element clickable method public setUserGroupId" data-toggle="collapse" data-target=".setUserGroupId .collapse">
+<h2>Sets user group identifier of the user.</h2>
+<pre>setUserGroupId(int $user_group_id) : <a href="../classes/kyUser.html">\kyUser</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$user_group_id</h4>
+<code>int</code><p>User group identifier.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyUser.html">\kyUser</a></code></div>
+</div></div>
+</div>
+<a name="setUserOrganization" id="setUserOrganization"></a><div class="element clickable method public setUserOrganization" data-toggle="collapse" data-target=".setUserOrganization .collapse">
+<h2>Sets user organization assigned to the user.</h2>
+<pre>setUserOrganization(kyUserOrganization $user_organization) : <a href="../classes/kyUser.html">\kyUser</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$user_organization</h4>
+<code><a href="../classes/kyUserOrganization.html">\kyUserOrganization</a></code><p>User organization.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyUser.html">\kyUser</a></code></div>
+</div></div>
+</div>
+<a name="setUserOrganizationId" id="setUserOrganizationId"></a><div class="element clickable method public setUserOrganizationId" data-toggle="collapse" data-target=".setUserOrganizationId .collapse">
+<h2>Sets user organization assigned the user by its identifier.</h2>
+<pre>setUserOrganizationId(int $user_organization_id) : <a href="../classes/kyUser.html">\kyUser</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$user_organization_id</h4>
+<code>int</code><p>User organization identifier.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyUser.html">\kyUser</a></code></div>
+</div></div>
+</div>
+<a name="setUserRole" id="setUserRole"></a><div class="element clickable method public setUserRole" data-toggle="collapse" data-target=".setUserRole .collapse">
+<h2>Sets role of the user.</h2>
+<pre>setUserRole(string $user_role) : <a href="../classes/kyUser.html">\kyUser</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td>\kyUser:ROLE</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$user_role</h4>
+<code>string</code><p>User role.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyUser.html">\kyUser</a></code></div>
+</div></div>
+</div>
+<a name="toString" id="toString"></a><div class="element clickable method public toString" data-toggle="collapse" data-target=".toString .collapse">
+<h2>Should return short (one line) description of the object (it's title, name, etc.).</h2>
+<pre>toString() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="update" id="update"></a><div class="element clickable method public update" data-toggle="collapse" data-target=".update .collapse">
+<h2>Updates the object on the server and refreshes its local data.</h2>
+<pre>update() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::update()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
+</div></div>
+</div>
+<a name="getRESTClient" id="getRESTClient"></a><div class="element clickable method protected getRESTClient" data-toggle="collapse" data-target=".getRESTClient .collapse">
+<h2>Returns REST client.</h2>
+<pre>getRESTClient() : <a href="../classes/kyRESTClientInterface.html">\kyRESTClientInterface</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::getRESTClient()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyRESTClientInterface.html">\kyRESTClientInterface</a></code></div>
+</div></div>
+</div>
+<a name="parseData" id="parseData"></a><div class="element clickable method protected parseData" data-toggle="collapse" data-target=".parseData .collapse">
+<h2>Should use passed data to fill object properties.</h2>
+<pre>parseData(array $data) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>Object data from XML response.</p></div>
+</div></div>
+</div>
+<a name="initAPIFieldsAccessors" id="initAPIFieldsAccessors"></a><div class="element clickable method private initAPIFieldsAccessors" data-toggle="collapse" data-target=".initAPIFieldsAccessors .collapse">
+<h2>Builds API fields list.</h2>
+<pre>initAPIFieldsAccessors() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Scans protected and private properties of called class, searches for</p></p>
+<table class="table table-bordered">
+<tr>
+<th>apiField</th>
+<td>[name=field name] [accessor=setter/getter name] [getter=getter name] [setter=setter name] [required_create=true if field if required when creating object] [required_update=true if field if required when udpating object] [required=true if field if required when creating or updating object]
+and builds API field list with property name, description, setter and getter method names, and required flags.</td>
+</tr>
+<tr>
+<th>see</th>
+<td>\kyObjectBase::$_api_fields</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::initAPIFieldsAccessors()</td>
+</tr>
+</table>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a name="%24_filter_methods" id="$_filter_methods"> </a><div class="element clickable property protected $_filter_methods" data-toggle="collapse" data-target=".$_filter_methods .collapse">
+<h2>Cache for available filter methods.</h2>
+<pre>$_filter_methods : \string[]</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Format:
+array(
+ '<class name>' => array(
+        '<filter method name>' => '<get method name>',
+        ...repeat for every filtering enabled method...
+    ),
+    ...repeat for every object class...
+)</p></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::$$_filter_methods</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24_order_methods" id="$_order_methods"> </a><div class="element clickable property protected $_order_methods" data-toggle="collapse" data-target=".$_order_methods .collapse">
+<h2>Cache for available order methods.</h2>
+<pre>$_order_methods : \string[]</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Format:
+array(
+ '<class name>' => array(
+        '<order method name>' => '<get method name>',
+        ...repeat for every ordering enabled method...
+    ),
+    ...repeat for every object class...
+)</p></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::$$_order_methods</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24controller" id="$controller"> </a><div class="element clickable property protected $controller" data-toggle="collapse" data-target=".$controller .collapse">
+<h2>Default Kayako controller used to operate on this objects. Override in descending classes.</h2>
+<pre>$controller : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="%24dateline" id="$dateline"> </a><div class="element clickable property protected $dateline" data-toggle="collapse" data-target=".$dateline .collapse">
+<h2>Timestamp of when the user was created.</h2>
+<pre>$dateline : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24designation" id="$designation"> </a><div class="element clickable property protected $designation" data-toggle="collapse" data-target=".$designation .collapse">
+<h2>User designation.</h2>
+<pre>$designation : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24email" id="$email"> </a><div class="element clickable property protected $email" data-toggle="collapse" data-target=".$email .collapse">
+<h2>List of user's e-mail addresses.</h2>
+<pre>$email : \string[]</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td>required_create=true</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24enable_dst" id="$enable_dst"> </a><div class="element clickable property protected $enable_dst" data-toggle="collapse" data-target=".$enable_dst .collapse">
+<h2>If Daylight Saving Time is enabled for the user.</h2>
+<pre>$enable_dst : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24full_name" id="$full_name"> </a><div class="element clickable property protected $full_name" data-toggle="collapse" data-target=".$full_name .collapse">
+<h2>Full name of the user.</h2>
+<pre>$full_name : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td>required=true</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24id" id="$id"> </a><div class="element clickable property protected $id" data-toggle="collapse" data-target=".$id .collapse">
+<h2>User identifier.</h2>
+<pre>$id : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24is_enabled" id="$is_enabled"> </a><div class="element clickable property protected $is_enabled" data-toggle="collapse" data-target=".$is_enabled .collapse">
+<h2>Whether this user is enabled.</h2>
+<pre>$is_enabled : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24last_visit" id="$last_visit"> </a><div class="element clickable property protected $last_visit" data-toggle="collapse" data-target=".$last_visit .collapse">
+<h2>Timestamp of when the user last visited support center.</h2>
+<pre>$last_visit : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24object_xml_name" id="$object_xml_name"> </a><div class="element clickable property protected $object_xml_name" data-toggle="collapse" data-target=".$object_xml_name .collapse">
+<h2>Indicates the name of object element in XML response. Override in descending classes.</h2>
+<pre>$object_xml_name : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="%24password" id="$password"> </a><div class="element clickable property protected $password" data-toggle="collapse" data-target=".$password .collapse">
+<h2>User password.</h2>
+<pre>$password : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td>required_create=true</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24phone" id="$phone"> </a><div class="element clickable property protected $phone" data-toggle="collapse" data-target=".$phone .collapse">
+<h2>User phone number.</h2>
+<pre>$phone : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24read_only" id="$read_only"> </a><div class="element clickable property protected $read_only" data-toggle="collapse" data-target=".$read_only .collapse">
+<h2>Controls if the object can be created/updated/deleted. Override in descending classes.</h2>
+<pre>$read_only : bool</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::$$read_only</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24salutation" id="$salutation"> </a><div class="element clickable property protected $salutation" data-toggle="collapse" data-target=".$salutation .collapse">
+<h2>User salutation.</h2>
+<pre>$salutation : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>see</th>
+<td>\kyUser::SALUTATION</td>
+</tr>
+<tr>
+<th>apiField</th>
+<td></td>
+</tr>
+</table>
+</div></div>
+</div>
+<a name="%24send_welcome_email" id="$send_welcome_email"> </a><div class="element clickable property protected $send_welcome_email" data-toggle="collapse" data-target=".$send_welcome_email .collapse">
+<h2>Whether welcome e-mail should be send upon creation of the user.</h2>
+<pre>$send_welcome_email : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24sla_plan_expiry" id="$sla_plan_expiry"> </a><div class="element clickable property protected $sla_plan_expiry" data-toggle="collapse" data-target=".$sla_plan_expiry .collapse">
+<h2>Timestamp of when the Service Level Agreement plan associated to this user will expire.</h2>
+<pre>$sla_plan_expiry : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24sla_plan_id" id="$sla_plan_id"> </a><div class="element clickable property protected $sla_plan_id" data-toggle="collapse" data-target=".$sla_plan_id .collapse">
+<h2>Identifier of Service Level Agreement plan associated to this user.</h2>
+<pre>$sla_plan_id : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24timezone" id="$timezone"> </a><div class="element clickable property protected $timezone" data-toggle="collapse" data-target=".$timezone .collapse">
+<h2>Timezone of the user.</h2>
+<pre>$timezone : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24user_expiry" id="$user_expiry"> </a><div class="element clickable property protected $user_expiry" data-toggle="collapse" data-target=".$user_expiry .collapse">
+<h2>Timestamp of when the user will expire.</h2>
+<pre>$user_expiry : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24user_group_id" id="$user_group_id"> </a><div class="element clickable property protected $user_group_id" data-toggle="collapse" data-target=".$user_group_id .collapse">
+<h2>User group identifier.</h2>
+<pre>$user_group_id : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td>required_create=true</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24user_organization_id" id="$user_organization_id"> </a><div class="element clickable property protected $user_organization_id" data-toggle="collapse" data-target=".$user_organization_id .collapse">
+<h2>User organization identifier.</h2>
+<pre>$user_organization_id : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24user_role" id="$user_role"> </a><div class="element clickable property protected $user_role" data-toggle="collapse" data-target=".$user_role .collapse">
+<h2>User role.</h2>
+<pre>$user_role : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>see</th>
+<td>\kyUser::ROLE</td>
+</tr>
+<tr>
+<th>apiField</th>
+<td></td>
+</tr>
+</table>
+</div></div>
+</div>
+<a name="%24_api_fields" id="$_api_fields"> </a><div class="element clickable property private $_api_fields" data-toggle="collapse" data-target=".$_api_fields .collapse">
+<h2>Cache for API fields.</h2>
+<pre>$_api_fields : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Format:
+array(
+    '<class name>' => array(
+        '<api field name>' => array(
+            'property' => '<class property holding field value>',
+            'description' => '<description of the field>',
+            'getter' => '<value getter method or null if write-only>',
+            'setter' => '<value setter method or null if read-only>',
+            'required_create' => <present and true if this field is required for creating the object>,
+            'required_update' => <present and true if this field is required for updating the object>
+        ),
+        ...repeat for every class api field...
+    ),
+    ...repeat for every object class...
+)</p></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::$$_api_fields</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24user_group" id="$user_group"> </a><div class="element clickable property private $user_group" data-toggle="collapse" data-target=".$user_group .collapse">
+<h2>Group of the user.</h2>
+<pre>$user_group : <a href="../classes/kyUserGroup.html">\kyUserGroup</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="%24user_organization" id="$user_organization"> </a><div class="element clickable property private $user_organization" data-toggle="collapse" data-target=".$user_organization .collapse">
+<h2>Organization of the user.</h2>
+<pre>$user_organization : <a href="../classes/kyUserOrganization.html">\kyUserOrganization</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<h3>
+<i class="icon-custom icon-constant"></i> Constants</h3>
+<a name="FILES_DATA_NAME" id="FILES_DATA_NAME"> </a><div class="element clickable constant  FILES_DATA_NAME" data-toggle="collapse" data-target=".FILES_DATA_NAME .collapse">
+<h2>Data key for storing files to send as multipart/form-data.</h2>
+<pre>FILES_DATA_NAME : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::FILES_DATA_NAME</td>
+</tr></table>
+</div></div>
+</div>
+<a name="ROLE_MANAGER" id="ROLE_MANAGER"> </a><div class="element clickable constant  ROLE_MANAGER" data-toggle="collapse" data-target=".ROLE_MANAGER .collapse">
+<h2>ROLE_MANAGER</h2>
+<pre>ROLE_MANAGER </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="ROLE_USER" id="ROLE_USER"> </a><div class="element clickable constant  ROLE_USER" data-toggle="collapse" data-target=".ROLE_USER .collapse">
+<h2>ROLE_USER</h2>
+<pre>ROLE_USER </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="SALUTATION_DR" id="SALUTATION_DR"> </a><div class="element clickable constant  SALUTATION_DR" data-toggle="collapse" data-target=".SALUTATION_DR .collapse">
+<h2>SALUTATION_DR</h2>
+<pre>SALUTATION_DR </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="SALUTATION_MISS" id="SALUTATION_MISS"> </a><div class="element clickable constant  SALUTATION_MISS" data-toggle="collapse" data-target=".SALUTATION_MISS .collapse">
+<h2>SALUTATION_MISS</h2>
+<pre>SALUTATION_MISS </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="SALUTATION_MR" id="SALUTATION_MR"> </a><div class="element clickable constant  SALUTATION_MR" data-toggle="collapse" data-target=".SALUTATION_MR .collapse">
+<h2>SALUTATION_MR</h2>
+<pre>SALUTATION_MR </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="SALUTATION_MRS" id="SALUTATION_MRS"> </a><div class="element clickable constant  SALUTATION_MRS" data-toggle="collapse" data-target=".SALUTATION_MRS .collapse">
+<h2>SALUTATION_MRS</h2>
+<pre>SALUTATION_MRS </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a2</a> and<br>
+            generated on 2012-05-05T01:22:19+02:00.<br></footer></div>
+</div>
+</body>
+</html>

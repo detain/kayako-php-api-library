@@ -1,14 +1,11 @@
 <?php
-require_once('kyObjectBase.php');
-
 /**
- * Part of PHP client to REST API of Kayako v4 (Kayako Fusion).
- * Compatible with Kayako version >= 4.01.240.
- *
  * Kayako TicketTimeTrack object.
  *
- * @link http://wiki.kayako.com/display/DEV/REST+-+TicketTimeTrack
  * @author Tomasz Sawicki (https://github.com/Furgas)
+ * @link http://wiki.kayako.com/display/DEV/REST+-+TicketTimeTrack
+ * @since Kayako version 4.01.240
+ * @package Object\Ticket
  */
 class kyTicketTimeTrack extends kyObjectBase {
 
@@ -50,47 +47,136 @@ class kyTicketTimeTrack extends kyObjectBase {
 	static protected $controller = '/Tickets/TicketTimeTrack';
 	static protected $object_xml_name = 'timetrack';
 
-	private $id = null;
-	private $ticket_id = null;
-	private $time_worked = null;
-	private $time_billable = null;
-	private $bill_date = null;
-	private $work_date = null;
-	private $worker_staff_id = null;
-	private $worker_staff_name = null;
-	private $creator_staff_id = null;
-	private $creator_staff_name = null;
-	private $note_color = null;
-	private $contents = null;
+	/**
+	 * Ticket time track identifier.
+	 * @apiField
+	 * @var int
+	 */
+	protected $id;
 
+	/**
+	 * Ticket identifier.
+	 * @apiField required_create=true
+	 * @var int
+	 */
+	protected $ticket_id;
+
+	/**
+	 * Time worked (in seconds) in this ticket time track.
+	 * @apiField required_create=true alias=timespent
+	 * @var int
+	 */
+	protected $time_worked;
+
+	/**
+	 * Billable time (in seconds) in this ticket time track.
+	 * @apiField required_create=true
+	 * @var int
+	 */
+	protected $time_billable;
+
+	/**
+	 * Bill timestamp of this ticket time track.
+	 * @apiField required_create=true alias=billtimeline
+	 * @var int
+	 */
+	protected $bill_date;
+
+	/**
+	 * Work timestamp of this ticket time track.
+	 * @apiField required_create=true alias=worktimeline
+	 * @var int
+	 */
+	protected $work_date;
+
+	/**
+	 * Worker staff identifier.
+	 * @apiField
+	 * @var int
+	 */
+	protected $worker_staff_id;
+
+	/**
+	 * Worker staff full name.
+	 * @apiField
+	 * @var string
+	 */
+	protected $worker_staff_name;
+
+	/**
+	 * Creator staff identifier.
+	 * @apiField required_create=true alias=staffid
+	 * @var int
+	 */
+	protected $creator_staff_id;
+
+	/**
+	 * Creator staff full name.
+	 * @apiField
+	 * @var string
+	 */
+	protected $creator_staff_name;
+
+	/**
+	 * Ticket time track note color.
+	 *
+	 * @see kyTicketTimeTrack::COLOR constants.
+	 *
+	 * @apiField
+	 * @var int
+	 */
+	protected $note_color;
+
+	/**
+	 * Note contents of this ticket time track.
+	 * @apiField required_create=true
+	 * @var int
+	 */
+	protected $contents;
+
+	/**
+	 * The ticket that this time track will be connected with.
+	 * @var kyTicket
+	 */
+	private $ticket;
+
+	/**
+	 * Worker staff.
+	 * @var kyStaff
+	 */
 	private $worker_staff = null;
+
+	/**
+	 * Creator staff.
+	 * @var kyStaff
+	 */
 	private $creator_staff = null;
 
 	protected function parseData($data) {
 		$this->id = intval($data['_attributes']['id']);
-		$this->ticket_id = intval($data['_attributes']['ticketid']);
+		$this->ticket_id = ky_assure_positive_int($data['_attributes']['ticketid']);
 		$this->time_worked = $data['_attributes']['timeworked'];
 		$this->time_billable = $data['_attributes']['timebillable'];
-		$this->bill_date = intval($data['_attributes']['billdate']) > 0 ? date(self::$datetime_format, $data['_attributes']['billdate']) : null;
-		$this->work_date = intval($data['_attributes']['workdate']) > 0 ? date(self::$datetime_format, $data['_attributes']['workdate']) : null;
-		$this->worker_staff_id = intval($data['_attributes']['workerstaffid']);
+		$this->bill_date = ky_assure_positive_int($data['_attributes']['billdate']);
+		$this->work_date = ky_assure_positive_int($data['_attributes']['workdate']);
+		$this->worker_staff_id = ky_assure_positive_int($data['_attributes']['workerstaffid']);
 		$this->worker_staff_name = $data['_attributes']['workerstaffname'];
-		$this->creator_staff_id = intval($data['_attributes']['creatorstaffid']);
+		$this->creator_staff_id = ky_assure_positive_int($data['_attributes']['creatorstaffid']);
 		$this->creator_staff_name = $data['_attributes']['creatorstaffname'];
 		$this->note_color = intval($data['_attributes']['notecolor']);
 		$this->contents = $data['_contents'];
 	}
 
-	protected function buildData($method) {
-		$data = array();
+	public function buildData($create) {
+		$this->checkRequiredAPIFields($create);
 
-		//TODO: check if required parameters are present
+		$data = array();
 
 		$data['ticketid'] = $this->ticket_id;
 		$data['contents'] = $this->contents;
 		$data['staffid'] = $this->creator_staff_id;
-		$data['worktimeline'] = strtotime($this->work_date);
-		$data['billtimeline'] = strtotime($this->bill_date);
+		$data['worktimeline'] = $this->work_date;
+		$data['billtimeline'] = $this->bill_date;
 		$data['timespent'] = $this->time_worked;
 		$data['timebillable'] = $this->time_billable;
 		if (is_numeric($this->worker_staff_id))
@@ -126,7 +212,7 @@ class kyTicketTimeTrack extends kyObjectBase {
 	}
 
 	public function update() {
-		throw new Exception("You can't update objects of type kyTicketTimeTrack.");
+		throw new BadMethodCallException("You can't update objects of type kyTicketTimeTrack.");
 	}
 
 	public function toString() {
@@ -153,7 +239,39 @@ class kyTicketTimeTrack extends kyObjectBase {
 	 * @return kyTicketTimeTrack
 	 */
 	public function setTicketId($ticket_id) {
-		$this->ticket_id = $ticket_id;
+		$this->ticket_id = ky_assure_positive_int($ticket_id);
+		$this->ticket = null;
+		return $this;
+	}
+
+/**
+	 * Returns the ticket that this time track is connected with.
+	 *
+	 * Result is cached until the end of script.
+	 *
+	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
+	 * @return kyTicket
+	 */
+	public function getTicket($reload = false) {
+		if ($this->ticket !== null && !$reload)
+			return $this->ticket;
+
+		if ($this->ticket_id === null)
+			return null;
+
+		$this->ticket = kyTicket::get($this->ticket_id);
+		return $this->ticket;
+	}
+
+	/**
+	 * Sets the ticket that this time track will be connected with.
+	 *
+	 * @param kyTicket $ticket Ticket.
+	 * @return kyTicketTimeTrack
+	 */
+	public function setTicket($ticket) {
+		$this->ticket = ky_assure_object($ticket, 'kyTicket');
+		$this->ticket_id = $this->ticket !== null ? $this->ticket->getId() : null;
 		return $this;
 	}
 
@@ -162,25 +280,25 @@ class kyTicketTimeTrack extends kyObjectBase {
 	 *
 	 * @param bool $formatted True to format result nicely (ex. 02:30:00). False to return amount of seconds.
 	 * @return int|string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getTimeWorked($formatted = false) {
-		if ($formatted)
+		if ($formatted) {
 			return ky_seconds_format($this->time_worked);
-		else
-			return $this->time_worked;
+		}
+
+		return $this->time_worked;
 	}
 
 	/**
 	 * Sets worked time for this time track.
 	 *
-	 * @param mixed $time_worked Worked time in seconds or formatted as hh:mm.
-	 * @param bool $formatted True to indicate that time is formatted as hh:mm. False to indicate that time is provided in seconds.
+	 * @param string|int $time_worked Worked time (as seconds or formatted as hh:mm).
 	 * @return kyTicketTimeTrack
 	 */
-	public function setTimeWorked($time_worked, $formatted = false) {
-		if ($formatted) {
+	public function setTimeWorked($time_worked) {
+		if (!is_numeric($time_worked)) {
 			list($hours, $minutes) = explode(':', $time_worked);
 			$time_worked = (60 * 60 * $hours) + (60 * $minutes);
 		}
@@ -193,25 +311,25 @@ class kyTicketTimeTrack extends kyObjectBase {
 	 *
 	 * @param bool $formatted True to format result nicely (ex. 02:30:00). False to return amount of seconds.
 	 * @return int|string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getTimeBillable($formatted = false) {
-		if ($formatted)
+		if ($formatted) {
 			return ky_seconds_format($this->time_billable);
-		else
-			return $this->time_billable;
+		}
+
+		return $this->time_billable;
 	}
 
 	/**
 	 * Sets billable time for this time track.
 	 *
-	 * @param mixed $time_billable Billable time in seconds or formatted as hh:mm.
-	 * @param bool $formatted True to indicate that time is formatted as hh:mm. False to indicate that time is provided in seconds.
+	 * @param string|int $time_billable Billable time (as seconds or formatted as hh:mm).
 	 * @return kyTicketTimeTrack
 	 */
-	public function setTimeBillable($time_billable, $formatted = false) {
-		if ($formatted) {
+	public function setTimeBillable($time_billable) {
+		if (!is_numeric($time_billable)) {
 			list($hours, $minutes) = explode(':', $time_billable);
 			$time_billable = (60 * 60 * $hours) + (60 * $minutes);
 		}
@@ -222,70 +340,94 @@ class kyTicketTimeTrack extends kyObjectBase {
 	/**
 	 * Returns date and time when the work was executed.
 	 *
+	 * @see http://www.php.net/manual/en/function.date.php
+	 *
+	 * @param string $format Output format of the date. If null the format set in client configuration is used.
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
-	public function getWorkDate() {
-		return $this->work_date;
+	public function getWorkDate($format = null) {
+		if ($format === null) {
+			$format = kyConfig::get()->getDatetimeFormat();
+		}
+
+		return date($format, $this->work_date);
 	}
 
 	/**
 	 * Sets date and time when the work was executed.
 	 *
-	 * @param int $work_date Date and time when the work was executed.
+	 * @see http://www.php.net/manual/en/function.strtotime.php
+	 *
+	 * @param string|int $work_date Date and time when the work was executed (timestamp or string format understood by PHP strtotime).
 	 * @return kyTicketTimeTrack
 	 */
 	public function setWorkDate($work_date) {
-		$this->work_date = $work_date;
+		$this->work_date = is_numeric($work_date) ? $work_date : strtotime($work_date);
 		return $this;
 	}
 
 	/**
 	 * Returns date and time when to bill the worker.
 	 *
+	 * @see http://www.php.net/manual/en/function.date.php
+	 *
+	 * @param string $format Output format of the date. If null the format set in client configuration is used.
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
-	public function getBillDate() {
-		return $this->bill_date;
+	public function getBillDate($format = null) {
+		if ($format === null) {
+			$format = kyConfig::get()->getDatetimeFormat();
+		}
+
+		return date($format, $this->bill_date);
 	}
 
 	/**
 	 * Sets date and time when to bill the worker.
 	 *
-	 * @param int $bill_date Date and time when to bill the worker.
+	 * @see http://www.php.net/manual/en/function.strtotime.php
+	 *
+	 * @param string|int $bill_date Date and time when the work was executed (timestamp or string format understood by PHP strtotime).
 	 * @return kyTicketTimeTrack
 	 */
 	public function setBillDate($bill_date) {
-		$this->bill_date = $bill_date;
+		$this->bill_date = is_numeric($bill_date) ? $bill_date : strtotime($bill_date);
 		return $this;
 	}
 
 	/**
 	 * Shortcut function for setting worked time and when the work was executed.
 	 *
-	 * @param string $time_worked Worked time formatted as hh:mm.
-	 * @param string $work_date When the work was exectued. Default is the current datetime.
+	 * @see http://www.php.net/manual/en/function.strtotime.php
+	 *
+	 * @param string|int $time_worked Worked time (as seconds or formatted as hh:mm).
+	 * @param string $work_date Date and time when the work was exectued (timestamp or string format understood by PHP strtotime). Defaults to current datetime.
 	 */
 	public function setWorkedData($time_worked, $work_date = null) {
 		$this->setTimeWorked($time_worked, true);
-		if ($work_date === null)
-			$work_date = date(kyBase::$datetime_format);
+		if ($work_date === null) {
+			$work_date = time();
+		}
 		$this->setWorkDate($work_date);
 	}
 
 	/**
 	 * Shortcut function for setting billable time and when to bill the worker.
 	 *
-	 * @param string $time_billable Billable time formatted as hh:mm.
-	 * @param string $bill_date When to bill the worker. Default is the current datetime.
+	 * @see http://www.php.net/manual/en/function.strtotime.php
+	 *
+	 * @param string|int $time_billable Billable time (as seconds or formatted as hh:mm).
+	 * @param string $bill_date Date and time when to bill the worker (timestamp or string format understood by PHP strtotime). Defaults to current datetime.
 	 */
 	public function setBillingData($time_billable, $bill_date = null) {
-		$this->setTimeBillable($time_billable, true);
-		if ($bill_date === null)
-			$bill_date = date(kyBase::$datetime_format);
+		$this->setTimeBillable($time_billable);
+		if ($bill_date === null) {
+			$bill_date = time();
+		}
 		$this->setBillDate($bill_date);
 	}
 
@@ -293,8 +435,8 @@ class kyTicketTimeTrack extends kyObjectBase {
 	 * Returns identifier of staff user that has done the work.
 	 *
 	 * @return int
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getWorkerStaffId() {
 		return $this->worker_staff_id;
@@ -302,13 +444,12 @@ class kyTicketTimeTrack extends kyObjectBase {
 
 	/**
 	 * Sets the identifier of staff user that has done the work.
-	 * Invalidates worker staff cache.
 	 *
 	 * @param int $worker_staff_id Identifier of staff user that has done the work.
 	 * @return kyTicketTimeTrack
 	 */
 	public function setWorkerStaffId($worker_staff_id) {
-		$this->worker_staff_id = $worker_staff_id;
+		$this->worker_staff_id = ky_assure_positive_int($worker_staff_id);
 		$this->worker_staff = null;
 		return $this;
 	}
@@ -337,13 +478,10 @@ class kyTicketTimeTrack extends kyObjectBase {
 	 * @param kyStaff $worker_staff Staff user that has done the work.
 	 * @return kyTicketTimeTrack
 	 */
-	public function setWorkerStaff(kyStaff $worker_staff) {
-		if ($worker_staff === null)
-			return;
-
-		$this->worker_staff_id = $worker_staff->getId();
-		$this->worker_staff = $worker_staff;
-		$this->worker_staff_name = $worker_staff->getFullName();
+	public function setWorkerStaff($worker_staff) {
+		$this->worker_staff = ky_assure_object($worker_staff, 'kyStaff');
+		$this->worker_staff_id = $this->worker_staff !== null ? $this->worker_staff->getId() : null;
+		$this->worker_staff_name = $this->worker_staff !== null ? $this->worker_staff->getFullName() : null;
 		return $this;
 	}
 
@@ -351,8 +489,8 @@ class kyTicketTimeTrack extends kyObjectBase {
 	 * Returns full name of staff user that has done the work.
 	 *
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getWorkerStaffName() {
 		return $this->worker_staff_name;
@@ -362,8 +500,8 @@ class kyTicketTimeTrack extends kyObjectBase {
 	 * Returns identifier of staff user that created the time track.
 	 *
 	 * @return int
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getCreatorStaffId() {
 		return $this->creator_staff_id;
@@ -372,13 +510,12 @@ class kyTicketTimeTrack extends kyObjectBase {
 
 	/**
 	 * Sets the identifier of staff user that creates the time track.
-	 * Invalidates creator staff cache.
 	 *
 	 * @param int $creator_staff_id Identifier of staff user that creates the time track.
 	 * @return kyTicketTimeTrack
 	 */
 	public function setCreatorStaffId($creator_staff_id) {
-		$this->creator_staff_id = $creator_staff_id;
+		$this->creator_staff_id = ky_assure_positive_int($creator_staff_id);
 		$this->creator_staff = null;
 		return $this;
 	}
@@ -407,13 +544,10 @@ class kyTicketTimeTrack extends kyObjectBase {
 	 * @param kyStaff $creator_staff Staff user that creates the time track.
 	 * @return kyTicketTimeTrack
 	 */
-	public function setCreatorStaff(kyStaff $creator_staff) {
-		if ($creator_staff === null)
-			return;
-
-		$this->creator_staff_id = $creator_staff->getId();
-		$this->creator_staff = $creator_staff;
-		$this->creator_staff_name = $creator_staff->getFullName();
+	public function setCreatorStaff($creator_staff) {
+		$this->creator_staff = ky_assure_object($creator_staff, 'kyStaff');
+		$this->creator_staff_id = $this->creator_staff !== null ? $this->creator_staff->getId() : null;
+		$this->creator_staff_name = $this->creator_staff !== null ? $this->creator_staff->getFullName() : null;
 		return $this;
 	}
 
@@ -421,8 +555,8 @@ class kyTicketTimeTrack extends kyObjectBase {
 	 * Returns full name of staff user that created the time track.
 	 *
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getCreatorStaffName() {
 		return $this->creator_staff_name;
@@ -430,6 +564,8 @@ class kyTicketTimeTrack extends kyObjectBase {
 
 	/**
 	 * Returns color of the time track - one of kyTicketTimeTrack::COLOR_* constants.
+	 *
+	 * @see kyTicketTimeTrack::COLOR constants.
 	 *
 	 * @return int
 	 */
@@ -440,11 +576,13 @@ class kyTicketTimeTrack extends kyObjectBase {
 	/**
 	 * Sets color of the time track.
 	 *
+	 * @see kyTicketTimeTrack::COLOR constants.
+	 *
 	 * @param int $note_color Color of the time track - one of kyTicketTimeTrack::COLOR_* constants.
 	 * @return kyTicketTimeTrack
 	 */
 	public function setNoteColor($note_color) {
-		$this->note_color = $note_color;
+		$this->note_color = ky_assure_constant($note_color, $this, 'COLOR');
 		return $this;
 	}
 
@@ -452,7 +590,7 @@ class kyTicketTimeTrack extends kyObjectBase {
 	 * Returns contents of the time track.
 	 *
 	 * @return string
-	 * @filterBy()
+	 * @filterBy
 	 */
 	public function getContents() {
 		return $this->contents;
@@ -465,7 +603,7 @@ class kyTicketTimeTrack extends kyObjectBase {
 	 * @return kyTicketTimeTrack
 	 */
 	public function setContents($contents) {
-		$this->contents = $contents;
+		$this->contents = ky_assure_string($contents);
 		return $this;
 	}
 

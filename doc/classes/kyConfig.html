@@ -1,0 +1,460 @@
+<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>Kayako PHP API Library » \kyConfig</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">Kayako PHP API Library</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    Source Code Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Common.html"><i class="icon-folder-open"></i> Common</a></li>
+<li><a href="../packages/Object.html"><i class="icon-folder-open"></i> Object</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods</li>
+<li class="method public "><a href="#__construct" title="__construct :: Initializes client configuration object."><span class="description">Initializes client configuration object.</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#get" title="get :: Returns current library configuration."><span class="description">Returns current library configuration.</span><pre>get()</pre></a></li>
+<li class="method public "><a href="#getAPIKey" title="getAPIKey :: Returns Kayako REST API key."><span class="description">Returns Kayako REST API key.</span><pre>getAPIKey()</pre></a></li>
+<li class="method public "><a href="#getBaseURL" title="getBaseURL :: Returns base URL of Kayako REST API."><span class="description">Returns base URL of Kayako REST API.</span><pre>getBaseURL()</pre></a></li>
+<li class="method public "><a href="#getDateFormat" title="getDateFormat :: Returns default format of date object properties used in getters and setters."><span class="description">Returns default format of date object properties used in getters and setters.</span><pre>getDateFormat()</pre></a></li>
+<li class="method public "><a href="#getDatetimeFormat" title="getDatetimeFormat :: Returns default format of datetime object properties used in getters and setters."><span class="description">Returns default format of datetime object properties used in getters and setters.</span><pre>getDatetimeFormat()</pre></a></li>
+<li class="method public "><a href="#getRESTClient" title="getRESTClient :: Returns REST client instance."><span class="description">Returns REST client instance.</span><pre>getRESTClient()</pre></a></li>
+<li class="method public "><a href="#getSecretKey" title="getSecretKey :: Returns Kayako REST API secret key."><span class="description">Returns Kayako REST API secret key.</span><pre>getSecretKey()</pre></a></li>
+<li class="method public "><a href="#isControllerAsQuery" title='isControllerAsQuery :: Returns True if "e" parameter is used in URL query to identify Kayako controller (ex. http://example.kayako.com/api/?e=/Core/Test).'><span class="description">Returns True if "e" parameter is used in URL query to identify Kayako controller (ex. http://example.kayako.com/api/?e=/Core/Test).</span><pre>isControllerAsQuery()</pre></a></li>
+<li class="method public "><a href="#isDebugEnabled" title="isDebugEnabled :: Returns whether debug mode is enabled."><span class="description">Returns whether debug mode is enabled.</span><pre>isDebugEnabled()</pre></a></li>
+<li class="method public "><a href="#isPUTAsMemoryStream" title="isPUTAsMemoryStream :: Returns True if PUT is sent using in-memory stream (may not work on Windows)."><span class="description">Returns True if PUT is sent using in-memory stream (may not work on Windows).</span><pre>isPUTAsMemoryStream()</pre></a></li>
+<li class="method public "><a href="#set" title="set :: Sets the current library configuration."><span class="description">Sets the current library configuration.</span><pre>set()</pre></a></li>
+<li class="method public "><a href="#setAPIKey" title="setAPIKey :: Sets Kayako REST API key."><span class="description">Sets Kayako REST API key.</span><pre>setAPIKey()</pre></a></li>
+<li class="method public "><a href="#setBaseURL" title="setBaseURL :: Sets the base URL of Kayako REST API."><span class="description">Sets the base URL of Kayako REST API.</span><pre>setBaseURL()</pre></a></li>
+<li class="method public "><a href="#setControllerAsQuery" title="setControllerAsQuery :: Sets the way a Kayako controller is provided in request URL."><span class="description">Sets the way a Kayako controller is provided in request URL.</span><pre>setControllerAsQuery()</pre></a></li>
+<li class="method public "><a href="#setDateFormat" title="setDateFormat :: Sets default format of date object properties used in getters and setters."><span class="description">Sets default format of date object properties used in getters and setters.</span><pre>setDateFormat()</pre></a></li>
+<li class="method public "><a href="#setDatetimeFormat" title="setDatetimeFormat :: Sets default format of datetime object properties used in getters and setters."><span class="description">Sets default format of datetime object properties used in getters and setters.</span><pre>setDatetimeFormat()</pre></a></li>
+<li class="method public "><a href="#setDebugEnabled" title="setDebugEnabled :: Enables or disables debug mode."><span class="description">Enables or disables debug mode.</span><pre>setDebugEnabled()</pre></a></li>
+<li class="method public "><a href="#setPUTAsMemoryStream" title="setPUTAsMemoryStream :: Sets the way PUT requests are sent."><span class="description">Sets the way PUT requests are sent.</span><pre>setPUTAsMemoryStream()</pre></a></li>
+<li class="method public "><a href="#setRESTClient" title="setRESTClient :: Sets REST client."><span class="description">Sets REST client.</span><pre>setRESTClient()</pre></a></li>
+<li class="method public "><a href="#setSecretKey" title="setSecretKey :: Sets Kayako REST API secret key."><span class="description">Sets Kayako REST API secret key.</span><pre>setSecretKey()</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties</li>
+<li class="nav-header private">» Private</li>
+<li class="property private "><a href="#%24api_key" title="$api_key :: Kayako REST API key."><span class="description">Kayako REST API key.</span><pre>$api_key</pre></a></li>
+<li class="property private "><a href="#%24base_url" title="$base_url :: Base URL of Kayako REST API."><span class="description">Base URL of Kayako REST API.</span><pre>$base_url</pre></a></li>
+<li class="property private "><a href="#%24current_config" title="$current_config :: Current configuration."><span class="description">Current configuration.</span><pre>$current_config</pre></a></li>
+<li class="property private "><a href="#%24date_format" title="$date_format :: Default format of date object properties used in getters and setters."><span class="description">Default format of date object properties used in getters and setters.</span><pre>$date_format</pre></a></li>
+<li class="property private "><a href="#%24datetime_format" title="$datetime_format :: Default format of datetime object properties used in getters and setters."><span class="description">Default format of datetime object properties used in getters and setters.</span><pre>$datetime_format</pre></a></li>
+<li class="property private "><a href="#%24is_controller_as_query" title='$is_controller_as_query :: True to use "e" parameter in URL query to identify Kayako controller (ex. http://example.kayako.com/api/?e=/Core/Test).'><span class="description">True to use "e" parameter in URL query to identify Kayako controller (ex. http://example.kayako.com/api/?e=/Core/Test).</span><pre>$is_controller_as_query</pre></a></li>
+<li class="property private "><a href="#%24is_debug_enabled" title="$is_debug_enabled :: True to enable outputing REST requests and responses to error log."><span class="description">True to enable outputing REST requests and responses to error log.</span><pre>$is_debug_enabled</pre></a></li>
+<li class="property private "><a href="#%24is_put_as_memory_stream" title="$is_put_as_memory_stream :: True to PUT data using in-memory stream (may not work on Windows). False to PUT using post fields."><span class="description">True to PUT data using in-memory stream (may not work on Windows). False to PUT using post fields.</span><pre>$is_put_as_memory_stream</pre></a></li>
+<li class="property private "><a href="#%24rest_client" title="$rest_client :: REST client."><span class="description">REST client.</span><pre>$rest_client</pre></a></li>
+<li class="property private "><a href="#%24secret_key" title="$secret_key :: Kayako REST API secret key."><span class="description">Kayako REST API secret key.</span><pre>$secret_key</pre></a></li>
+</ul>
+</div>
+<div class="span8">
+<a name="%5CkyConfig" id="\kyConfig"></a><div href="../classes/kyConfig.html" class="element class">
+<p class="short_description">Class holding library configuration.</p>
+<div class="details">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>author</th>
+<td><a href="">Tomasz Sawicki (https://github.com/Furgas)</a></td>
+</tr>
+<tr>
+<th>package</th>
+<td><a href="..//packages/Common.html">Common</a></td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a name="__construct" id="__construct"></a><div class="element clickable method public __construct" data-toggle="collapse" data-target=".__construct .collapse">
+<h2>Initializes client configuration object.</h2>
+<pre>__construct(string $base_url, string $api_key, string $secret_key) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$base_url</h4>
+<code>string</code><p>Base URL of Kayako REST API.</p></div>
+<div class="subelement argument">
+<h4>$api_key</h4>
+<code>string</code><p>Kayako REST API key.</p></div>
+<div class="subelement argument">
+<h4>$secret_key</h4>
+<code>string</code><p>Kayako REST API secret key.</p></div>
+</div></div>
+</div>
+<a name="get" id="get"></a><div class="element clickable method public get" data-toggle="collapse" data-target=".get .collapse">
+<h2>Returns current library configuration.</h2>
+<pre>get() : <a href="../classes/kyConfig.html">\kyConfig</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyConfig.html">\kyConfig</a></code></div>
+</div></div>
+</div>
+<a name="getAPIKey" id="getAPIKey"></a><div class="element clickable method public getAPIKey" data-toggle="collapse" data-target=".getAPIKey .collapse">
+<h2>Returns Kayako REST API key.</h2>
+<pre>getAPIKey() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getBaseURL" id="getBaseURL"></a><div class="element clickable method public getBaseURL" data-toggle="collapse" data-target=".getBaseURL .collapse">
+<h2>Returns base URL of Kayako REST API.</h2>
+<pre>getBaseURL() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getDateFormat" id="getDateFormat"></a><div class="element clickable method public getDateFormat" data-toggle="collapse" data-target=".getDateFormat .collapse">
+<h2>Returns default format of date object properties used in getters and setters.</h2>
+<pre>getDateFormat() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td>\http://www.php.net/manual/en/function.date.php</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getDatetimeFormat" id="getDatetimeFormat"></a><div class="element clickable method public getDatetimeFormat" data-toggle="collapse" data-target=".getDatetimeFormat .collapse">
+<h2>Returns default format of datetime object properties used in getters and setters.</h2>
+<pre>getDatetimeFormat() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td>\http://www.php.net/manual/en/function.date.php</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getRESTClient" id="getRESTClient"></a><div class="element clickable method public getRESTClient" data-toggle="collapse" data-target=".getRESTClient .collapse">
+<h2>Returns REST client instance.</h2>
+<pre>getRESTClient() : <a href="../classes/kyRESTClientInterface.html">\kyRESTClientInterface</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyRESTClientInterface.html">\kyRESTClientInterface</a></code></div>
+</div></div>
+</div>
+<a name="getSecretKey" id="getSecretKey"></a><div class="element clickable method public getSecretKey" data-toggle="collapse" data-target=".getSecretKey .collapse">
+<h2>Returns Kayako REST API secret key.</h2>
+<pre>getSecretKey() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="isControllerAsQuery" id="isControllerAsQuery"></a><div class="element clickable method public isControllerAsQuery" data-toggle="collapse" data-target=".isControllerAsQuery .collapse">
+<h2>Returns True if "e" parameter is used in URL query to identify Kayako controller (ex. http://example.kayako.com/api/?e=/Core/Test).</h2>
+<pre>isControllerAsQuery() : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Returns False if Kayako controller is used as part of URL path (ex. http://example.kayako.com/api/Core/Test).</p></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="isDebugEnabled" id="isDebugEnabled"></a><div class="element clickable method public isDebugEnabled" data-toggle="collapse" data-target=".isDebugEnabled .collapse">
+<h2>Returns whether debug mode is enabled.</h2>
+<pre>isDebugEnabled() : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>When enabled, REST requests and responses are logged using error_log.</p></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="isPUTAsMemoryStream" id="isPUTAsMemoryStream"></a><div class="element clickable method public isPUTAsMemoryStream" data-toggle="collapse" data-target=".isPUTAsMemoryStream .collapse">
+<h2>Returns True if PUT is sent using in-memory stream (may not work on Windows).</h2>
+<pre>isPUTAsMemoryStream() : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Returns False when PUT is sent using post fields.
+See kyRESTClient::processRequest() for implementation details.</p></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="set" id="set"></a><div class="element clickable method public set" data-toggle="collapse" data-target=".set .collapse">
+<h2>Sets the current library configuration.</h2>
+<pre>set(kyConfig $config) : <a href="../classes/kyConfig.html">\kyConfig</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Should be called before before contacting the API.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$config</h4>
+<code><a href="../classes/kyConfig.html">\kyConfig</a></code><p>Configuration.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyConfig.html">\kyConfig</a></code></div>
+</div></div>
+</div>
+<a name="setAPIKey" id="setAPIKey"></a><div class="element clickable method public setAPIKey" data-toggle="collapse" data-target=".setAPIKey .collapse">
+<h2>Sets Kayako REST API key.</h2>
+<pre>setAPIKey(string $api_key) : <a href="../classes/kyConfig.html">\kyConfig</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$api_key</h4>
+<code>string</code><p>Kayako REST API key.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyConfig.html">\kyConfig</a></code></div>
+</div></div>
+</div>
+<a name="setBaseURL" id="setBaseURL"></a><div class="element clickable method public setBaseURL" data-toggle="collapse" data-target=".setBaseURL .collapse">
+<h2>Sets the base URL of Kayako REST API.</h2>
+<pre>setBaseURL(string $base_url) : <a href="../classes/kyConfig.html">\kyConfig</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$base_url</h4>
+<code>string</code><p>Base URL of Kayako REST API.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyConfig.html">\kyConfig</a></code></div>
+</div></div>
+</div>
+<a name="setControllerAsQuery" id="setControllerAsQuery"></a><div class="element clickable method public setControllerAsQuery" data-toggle="collapse" data-target=".setControllerAsQuery .collapse">
+<h2>Sets the way a Kayako controller is provided in request URL.</h2>
+<pre>setControllerAsQuery(bool $is_controller_as_query) : <a href="../classes/kyConfig.html">\kyConfig</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>True to use "e" parameter in URL query to identify Kayako controller (ex. http://example.kayako.com/api/?e=/Core/Test).
+False to put Kayako controller as part of URL path (ex. http://example.kayako.com/api/Core/Test).</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$is_controller_as_query</h4>
+<code>bool</code><p>True to put controller into "e" parameter in URL query. False to put controller as part of URL path.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyConfig.html">\kyConfig</a></code></div>
+</div></div>
+</div>
+<a name="setDateFormat" id="setDateFormat"></a><div class="element clickable method public setDateFormat" data-toggle="collapse" data-target=".setDateFormat .collapse">
+<h2>Sets default format of date object properties used in getters and setters.</h2>
+<pre>setDateFormat(string $date_format) : <a href="../classes/kyConfig.html">\kyConfig</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td>\http://www.php.net/manual/en/function.date.php</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$date_format</h4>
+<code>string</code><p>Default format of date object properties used in getters and setters.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyConfig.html">\kyConfig</a></code></div>
+</div></div>
+</div>
+<a name="setDatetimeFormat" id="setDatetimeFormat"></a><div class="element clickable method public setDatetimeFormat" data-toggle="collapse" data-target=".setDatetimeFormat .collapse">
+<h2>Sets default format of datetime object properties used in getters and setters.</h2>
+<pre>setDatetimeFormat(string $datetime_format) : <a href="../classes/kyConfig.html">\kyConfig</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td>\http://www.php.net/manual/en/function.date.php</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$datetime_format</h4>
+<code>string</code><p>Default format of datetime object properties used in getters and setters.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyConfig.html">\kyConfig</a></code></div>
+</div></div>
+</div>
+<a name="setDebugEnabled" id="setDebugEnabled"></a><div class="element clickable method public setDebugEnabled" data-toggle="collapse" data-target=".setDebugEnabled .collapse">
+<h2>Enables or disables debug mode.</h2>
+<pre>setDebugEnabled(bool $is_debug_enabled) : <a href="../classes/kyConfig.html">\kyConfig</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>When enabled, REST requests and responses are logged using error_log.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$is_debug_enabled</h4>
+<code>bool</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyConfig.html">\kyConfig</a></code></div>
+</div></div>
+</div>
+<a name="setPUTAsMemoryStream" id="setPUTAsMemoryStream"></a><div class="element clickable method public setPUTAsMemoryStream" data-toggle="collapse" data-target=".setPUTAsMemoryStream .collapse">
+<h2>Sets the way PUT requests are sent.</h2>
+<pre>setPUTAsMemoryStream(bool $is_put_as_memory_stream) : <a href="../classes/kyConfig.html">\kyConfig</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>See kyRESTClient::processRequest() for implementation details.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$is_put_as_memory_stream</h4>
+<code>bool</code><p>True to PUT data using in-memory stream (may not work on Windows). False to PUT using post fields.</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyConfig.html">\kyConfig</a></code></div>
+</div></div>
+</div>
+<a name="setRESTClient" id="setRESTClient"></a><div class="element clickable method public setRESTClient" data-toggle="collapse" data-target=".setRESTClient .collapse">
+<h2>Sets REST client.</h2>
+<pre>setRESTClient(kyRESTClientInterface $rest_client) : <a href="../classes/kyConfig.html">\kyConfig</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$rest_client</h4>
+<code><a href="../classes/kyRESTClientInterface.html">\kyRESTClientInterface</a></code><p>REST client instance.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyConfig.html">\kyConfig</a></code></div>
+</div></div>
+</div>
+<a name="setSecretKey" id="setSecretKey"></a><div class="element clickable method public setSecretKey" data-toggle="collapse" data-target=".setSecretKey .collapse">
+<h2>Sets Kayako REST API secret key.</h2>
+<pre>setSecretKey(string $secret_key) : <a href="../classes/kyConfig.html">\kyConfig</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$secret_key</h4>
+<code>string</code><p>Kayako REST API secret key.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyConfig.html">\kyConfig</a></code></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a name="%24api_key" id="$api_key"> </a><div class="element clickable property private $api_key" data-toggle="collapse" data-target=".$api_key .collapse">
+<h2>Kayako REST API key.</h2>
+<pre>$api_key : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="%24base_url" id="$base_url"> </a><div class="element clickable property private $base_url" data-toggle="collapse" data-target=".$base_url .collapse">
+<h2>Base URL of Kayako REST API.</h2>
+<pre>$base_url : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="%24current_config" id="$current_config"> </a><div class="element clickable property private $current_config" data-toggle="collapse" data-target=".$current_config .collapse">
+<h2>Current configuration.</h2>
+<pre>$current_config : <a href="../classes/kyConfig.html">\kyConfig</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="%24date_format" id="$date_format"> </a><div class="element clickable property private $date_format" data-toggle="collapse" data-target=".$date_format .collapse">
+<h2>Default format of date object properties used in getters and setters.</h2>
+<pre>$date_format : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="%24datetime_format" id="$datetime_format"> </a><div class="element clickable property private $datetime_format" data-toggle="collapse" data-target=".$datetime_format .collapse">
+<h2>Default format of datetime object properties used in getters and setters.</h2>
+<pre>$datetime_format : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="%24is_controller_as_query" id="$is_controller_as_query"> </a><div class="element clickable property private $is_controller_as_query" data-toggle="collapse" data-target=".$is_controller_as_query .collapse">
+<h2>True to use "e" parameter in URL query to identify Kayako controller (ex. http://example.kayako.com/api/?e=/Core/Test).</h2>
+<pre>$is_controller_as_query : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"><p>False to put Kayako controller as part of URL path (ex. http://example.kayako.com/api/Core/Test).</p></p></div></div>
+</div>
+<a name="%24is_debug_enabled" id="$is_debug_enabled"> </a><div class="element clickable property private $is_debug_enabled" data-toggle="collapse" data-target=".$is_debug_enabled .collapse">
+<h2>True to enable outputing REST requests and responses to error log.</h2>
+<pre>$is_debug_enabled : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="%24is_put_as_memory_stream" id="$is_put_as_memory_stream"> </a><div class="element clickable property private $is_put_as_memory_stream" data-toggle="collapse" data-target=".$is_put_as_memory_stream .collapse">
+<h2>True to PUT data using in-memory stream (may not work on Windows). False to PUT using post fields.</h2>
+<pre>$is_put_as_memory_stream : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"><p>See kyRESTClient::processRequest() for implementation details.</p></p></div></div>
+</div>
+<a name="%24rest_client" id="$rest_client"> </a><div class="element clickable property private $rest_client" data-toggle="collapse" data-target=".$rest_client .collapse">
+<h2>REST client.</h2>
+<pre>$rest_client : <a href="../classes/kyRESTClientInterface.html">\kyRESTClientInterface</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="%24secret_key" id="$secret_key"> </a><div class="element clickable property private $secret_key" data-toggle="collapse" data-target=".$secret_key .collapse">
+<h2>Kayako REST API secret key.</h2>
+<pre>$secret_key : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a2</a> and<br>
+            generated on 2012-05-05T01:22:18+02:00.<br></footer></div>
+</div>
+</body>
+</html>

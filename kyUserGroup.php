@@ -1,13 +1,11 @@
 <?php
-require_once('kyObjectBase.php');
-
 /**
- * Part of PHP client to REST API of Kayako v4 (Kayako Fusion).
- * Compatible with Kayako version >= 4.01.204.
- *
  * Kayako UserGroup object.
  *
  * @author Tomasz Sawicki (https://github.com/Furgas)
+ * @link http://wiki.kayako.com/display/DEV/REST+-+UserGroup
+ * @since Kayako version 4.01.204
+ * @package Object\User
  */
 class kyUserGroup extends kyObjectBase {
 
@@ -26,19 +24,47 @@ class kyUserGroup extends kyObjectBase {
 	static protected $controller = '/Base/UserGroup';
 	static protected $object_xml_name = 'usergroup';
 
-	private $id = null;
-	private $title = null;
-	private $type = null;
-	private $is_master = null;
+	/**
+	 * User group identifier.
+	 * @apiField
+	 * @var int
+	 */
+	protected $id;
+
+	/**
+	 * User group title.
+	 * @apiField required=true
+	 * @var string
+	 */
+	protected $title;
+
+	/**
+	 * User group type.
+	 *
+	 * @see kyUserGroup::TYPE constants.
+	 *
+	 * @apiField required_create=true alias=grouptype
+	 * @var string
+	 */
+	protected $type;
+
+	/**
+	 * Whether this user group is master group (built-in).
+	 * @apiField
+	 * @var bool
+	 */
+	protected $is_master;
 
 	protected function parseData($data) {
 		$this->id = intval($data['id']);
 		$this->title = $data['title'];
 		$this->type = $data['grouptype'];
-		$this->is_master = intval($data['ismaster']) === 0 ? false : true;
+		$this->is_master = ky_assure_bool($data['ismaster']);
 	}
 
-	protected function buildData($method) {
+	public function buildData($create) {
+		$this->checkRequiredAPIFields($create);
+
 		$data = array();
 
 		$data['title'] = $this->title;
@@ -59,8 +85,8 @@ class kyUserGroup extends kyObjectBase {
 	 * Returns title of the user group.
 	 *
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getTitle() {
 		return $this->title;
@@ -73,16 +99,18 @@ class kyUserGroup extends kyObjectBase {
 	 * @return kyUserGroup
 	 */
 	public function setTitle($title) {
-		$this->title = $title;
+		$this->title = ky_assure_string($title);
 		return $this;
 	}
 
 	/**
-	 * Returns type of the user group - one of kyUserGroup::TYPE_* constants.
+	 * Returns type of the user group.
+	 *
+	 * @see kyUserGroup::TYPE constants.
 	 *
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getType() {
 		return $this->type;
@@ -91,11 +119,13 @@ class kyUserGroup extends kyObjectBase {
 	/**
 	 * Sets type of the user group.
 	 *
-	 * @param string $type Type of the user group - one of kyUserGroup::TYPE_* constants
+	 * @see kyUserGroup::TYPE constants.
+	 *
+	 * @param string $type Type of the user group.
 	 * @return kyUserGroup
 	 */
 	public function setType($type) {
-		$this->type = $type;
+		$this->type = ky_assure_constant($type, $this, 'TYPE');
 		return $this;
 	}
 
@@ -103,7 +133,7 @@ class kyUserGroup extends kyObjectBase {
 	 * Returns whether the user group is master group (built-in).
 	 *
 	 * @return bool
-	 * @filterBy()
+	 * @filterBy
 	 */
 	public function getIsMaster() {
 		return $this->is_master;

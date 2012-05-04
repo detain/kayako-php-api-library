@@ -1,0 +1,373 @@
+<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>Kayako PHP API Library » \kyRESTClient</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">Kayako PHP API Library</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    Source Code Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Common.html"><i class="icon-folder-open"></i> Common</a></li>
+<li><a href="../packages/Object.html"><i class="icon-folder-open"></i> Object</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods</li>
+<li class="method public "><a href="#delete" title="delete :: Deletes object from server by sending DELETE request."><span class="description">Deletes object from server by sending DELETE request.</span><pre>delete()</pre></a></li>
+<li class="method public "><a href="#get" title="get :: Sends GET request to the server and returns parsed data."><span class="description">Sends GET request to the server and returns parsed data.</span><pre>get()</pre></a></li>
+<li class="method public "><a href="#post" title="post :: Creates object on the server by sending POST request and returns its data."><span class="description">Creates object on the server by sending POST request and returns its data.</span><pre>post()</pre></a></li>
+<li class="method public "><a href="#put" title="put :: Updates object on the server by sending PUT request and returns its new data."><span class="description">Updates object on the server by sending PUT request and returns its new data.</span><pre>put()</pre></a></li>
+<li class="method public "><a href="#setConfig" title="setConfig :: Injects library configuration."><span class="description">Injects library configuration.</span><pre>setConfig()</pre></a></li>
+<li class="nav-header protected">» Protected</li>
+<li class="method protected "><a href="#processRequest" title="processRequest :: Sends the request to Kayako server and returns parsed response."><span class="description">Sends the request to Kayako server and returns parsed response.</span><pre>processRequest()</pre></a></li>
+<li class="nav-header private">» Private</li>
+<li class="method private "><a href="#buildPostBody" title="buildPostBody :: Builds and returns POST/PUT request body."><span class="description">Builds and returns POST/PUT request body.</span><pre>buildPostBody()</pre></a></li>
+<li class="method private "><a href="#getRequestData" title="getRequestData :: Prepares URL (and returns it) and POST data (updates it via reference)."><span class="description">Prepares URL (and returns it) and POST data (updates it via reference).</span><pre>getRequestData()</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties</li>
+<li class="nav-header private">» Private</li>
+<li class="property private "><a href="#%24config" title="$config :: Library configuration."><span class="description">Library configuration.</span><pre>$config</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-constant"></i> Constants</li>
+<li class="constant  inherited"><a href="#METHOD_DELETE" title="METHOD_DELETE :: HTTP verb - DELETE. For deleting objects."><span class="description">HTTP verb - DELETE. For deleting objects.</span><pre>METHOD_DELETE</pre></a></li>
+<li class="constant  inherited"><a href="#METHOD_GET" title="METHOD_GET :: HTTP verb - GET. For getting objects."><span class="description">HTTP verb - GET. For getting objects.</span><pre>METHOD_GET</pre></a></li>
+<li class="constant  inherited"><a href="#METHOD_POST" title="METHOD_POST :: HTTP verb - POST. For creating object."><span class="description">HTTP verb - POST. For creating object.</span><pre>METHOD_POST</pre></a></li>
+<li class="constant  inherited"><a href="#METHOD_PUT" title="METHOD_PUT :: HTTP verb - PUT. For updating objects."><span class="description">HTTP verb - PUT. For updating objects.</span><pre>METHOD_PUT</pre></a></li>
+</ul>
+</div>
+<div class="span8">
+<a name="%5CkyRESTClient" id="\kyRESTClient"></a><div href="../classes/kyRESTClient.html" class="element class">
+<p class="short_description">Default REST client implementation.</p>
+<div class="details">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>author</th>
+<td><a href="">Tomasz Sawicki (https://github.com/Furgas)</a></td>
+</tr>
+<tr>
+<th>package</th>
+<td><a href="..//packages/Common.REST.html">Common\REST</a></td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a name="delete" id="delete"></a><div class="element clickable method public delete" data-toggle="collapse" data-target=".delete .collapse">
+<h2>Deletes object from server by sending DELETE request.</h2>
+<pre>delete(string $controller, array $parameters) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p></p></p>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td>\kyRESTClientInterface::delete()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$controller</h4>
+<code>string</code><p>Kayako controller to call.</p></div>
+<div class="subelement argument">
+<h4>$parameters</h4>
+<code>array</code><p>List of additional parameters (like object identifiers or search parameters).</p>
+</div>
+</div></div>
+</div>
+<a name="get" id="get"></a><div class="element clickable method public get" data-toggle="collapse" data-target=".get .collapse">
+<h2>Sends GET request to the server and returns parsed data.</h2>
+<pre>get(string $controller, array $parameters) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p></p></p>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td>\kyRESTClientInterface::get()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$controller</h4>
+<code>string</code><p>Kayako controller to call.</p></div>
+<div class="subelement argument">
+<h4>$parameters</h4>
+<code>array</code><p>Optional. List of additional parameters (like object identifiers or search parameters).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>XML parsed to array in @see ky_xml_to_array() style.</div>
+</div></div>
+</div>
+<a name="post" id="post"></a><div class="element clickable method public post" data-toggle="collapse" data-target=".post .collapse">
+<h2>Creates object on the server by sending POST request and returns its data.</h2>
+<pre>post(string $controller, array $parameters, array $data, array $files) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p><p>Format of $files parameter:</p>
+
+<pre>
+array(
+    '<parameter name>' =>
+        array('file_name' => '<file name>', 'contents' => '<file contents>'),
+    ...repeat...
+)
+</pre></p></p>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td>\kyRESTClientInterface::post()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$controller</h4>
+<code>string</code><p>Kayako controller to call.</p></div>
+<div class="subelement argument">
+<h4>$parameters</h4>
+<code>array</code><p>Optional. List of additional parameters (like object identifiers or search parameters).</p>
+</div>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>Optional. Data array with parameter name as key and parameter value as value.</p></div>
+<div class="subelement argument">
+<h4>$files</h4>
+<code>array</code><p>Optional. Array of files.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>XML parsed to array in @see ky_xml_to_array() style.</div>
+</div></div>
+</div>
+<a name="put" id="put"></a><div class="element clickable method public put" data-toggle="collapse" data-target=".put .collapse">
+<h2>Updates object on the server by sending PUT request and returns its new data.</h2>
+<pre>put(string $controller, array $parameters, array $data, array $files) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p><p>Format of $files parameter:</p>
+
+<pre>
+array(
+    '<parameter name>' =>
+        array('file_name' => '<file name>', 'contents' => '<file contents>'),
+    ...repeat...
+)
+</pre></p></p>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td>\kyRESTClientInterface::put()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$controller</h4>
+<code>string</code><p>Kayako controller to call.</p></div>
+<div class="subelement argument">
+<h4>$parameters</h4>
+<code>array</code><p>Optional. List of additional parameters (like object identifiers or search parameters).</p>
+</div>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>Optional. Data array with parameter name as key and parameter value as value.</p></div>
+<div class="subelement argument">
+<h4>$files</h4>
+<code>array</code><p>Optional. Array of files in form of: array('<parameter name>' => array('file_name' => '<file name>', 'contents' => '<file contents>'), ...).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>XML parsed to array in @see ky_xml_to_array() style.</div>
+</div></div>
+</div>
+<a name="setConfig" id="setConfig"></a><div class="element clickable method public setConfig" data-toggle="collapse" data-target=".setConfig .collapse">
+<h2>Injects library configuration.</h2>
+<pre>setConfig(kyConfig $config) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td>\kyRESTClientInterface::setConfig()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$config</h4>
+<code><a href="../classes/kyConfig.html">\kyConfig</a></code><p>Library configuration.</p></div>
+</div></div>
+</div>
+<a name="processRequest" id="processRequest"></a><div class="element clickable method protected processRequest" data-toggle="collapse" data-target=".processRequest .collapse">
+<h2>Sends the request to Kayako server and returns parsed response.</h2>
+<pre>processRequest(string $controller, string $method, array $parameters, array $data, array $files) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$controller</h4>
+<code>string</code><p>Kayako controller to call. Null to use default controller defined for object.</p></div>
+<div class="subelement argument">
+<h4>$method</h4>
+<code>string</code><p>HTTP verb.</p></div>
+<div class="subelement argument">
+<h4>$parameters</h4>
+<code>array</code><p>Optional. List of additional parameters (like object identifiers or search parameters).</p>
+</div>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>Optional. Data array with parameter name as key and parameter value as value.</p></div>
+<div class="subelement argument">
+<h4>$files</h4>
+<code>array</code><p>Optional. Array of files in form of: array('<parameter name>' => array('file_name' => '<file name>', 'contents' => '<file contents>'), ...).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a name="buildPostBody" id="buildPostBody"></a><div class="element clickable method private buildPostBody" data-toggle="collapse" data-target=".buildPostBody .collapse">
+<h2>Builds and returns POST/PUT request body.</h2>
+<pre>buildPostBody(array $data, array $files, array $headers) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>If files are provided the result is encoded using multipart/form-data otherwise application/x-www-form-urlencoded is used.
+Part of code are taken from https://github.com/fictivekin/Resty.php.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>Data array with parameter name as key and parameter value as value.</p></div>
+<div class="subelement argument">
+<h4>$files</h4>
+<code>array</code><p>Optional. Array of files in form of: array('<parameter name>' => array('file_name' => '<file name>', 'contents' => '<file contents>'), ...).</p>
+</div>
+<div class="subelement argument">
+<h4>$headers</h4>
+<code>array</code><p>Optional. Placeholder for headers.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getRequestData" id="getRequestData"></a><div class="element clickable method private getRequestData" data-toggle="collapse" data-target=".getRequestData .collapse">
+<h2>Prepares URL (and returns it) and POST data (updates it via reference).</h2>
+<pre>getRequestData(string $controller, string $method, array $parameters, array $data) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$controller</h4>
+<code>string</code><p>Kayako controller to call. Null to use default controller defined for object.</p></div>
+<div class="subelement argument">
+<h4>$method</h4>
+<code>string</code><p>HTTP verb.</p></div>
+<div class="subelement argument">
+<h4>$parameters</h4>
+<code>array</code><p>List of additional parameters (like object identifiers or search parameters).</p>
+</div>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>Placeholder for POST/PUT data.</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a name="%24config" id="$config"> </a><div class="element clickable property private $config" data-toggle="collapse" data-target=".$config .collapse">
+<h2>Library configuration.</h2>
+<pre>$config : <a href="../classes/kyConfig.html">\kyConfig</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<h3>
+<i class="icon-custom icon-constant"></i> Constants</h3>
+<a name="METHOD_DELETE" id="METHOD_DELETE"> </a><div class="element clickable constant  METHOD_DELETE" data-toggle="collapse" data-target=".METHOD_DELETE .collapse">
+<h2>HTTP verb - DELETE. For deleting objects.</h2>
+<pre>METHOD_DELETE : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyRESTClientInterface::METHOD_DELETE</td>
+</tr></table>
+</div></div>
+</div>
+<a name="METHOD_GET" id="METHOD_GET"> </a><div class="element clickable constant  METHOD_GET" data-toggle="collapse" data-target=".METHOD_GET .collapse">
+<h2>HTTP verb - GET. For getting objects.</h2>
+<pre>METHOD_GET : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyRESTClientInterface::METHOD_GET</td>
+</tr></table>
+</div></div>
+</div>
+<a name="METHOD_POST" id="METHOD_POST"> </a><div class="element clickable constant  METHOD_POST" data-toggle="collapse" data-target=".METHOD_POST .collapse">
+<h2>HTTP verb - POST. For creating object.</h2>
+<pre>METHOD_POST : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyRESTClientInterface::METHOD_POST</td>
+</tr></table>
+</div></div>
+</div>
+<a name="METHOD_PUT" id="METHOD_PUT"> </a><div class="element clickable constant  METHOD_PUT" data-toggle="collapse" data-target=".METHOD_PUT .collapse">
+<h2>HTTP verb - PUT. For updating objects.</h2>
+<pre>METHOD_PUT : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyRESTClientInterface::METHOD_PUT</td>
+</tr></table>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a2</a> and<br>
+            generated on 2012-05-05T01:22:18+02:00.<br></footer></div>
+</div>
+</body>
+</html>

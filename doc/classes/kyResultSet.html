@@ -1,0 +1,515 @@
+<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>Kayako PHP API Library » \kyResultSet</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">Kayako PHP API Library</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    Source Code Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Common.html"><i class="icon-folder-open"></i> Common</a></li>
+<li><a href="../packages/Object.html"><i class="icon-folder-open"></i> Object</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods</li>
+<li class="method public "><a href="#__call" title="__call :: Intercepts filtering and ordering method calls, prepares data and runs filtering or ordering."><span class="description">Intercepts filtering and ordering method calls, prepares data and runs filtering or ordering.</span><pre>__call()</pre></a></li>
+<li class="method public "><a href="#__construct" title="__construct :: Constructs a result set."><span class="description">Constructs a result set.</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#__toString" title="__toString :: Returns formatted list of objects in this result set."><span class="description">Returns formatted list of objects in this result set.</span><pre>__toString()</pre></a></li>
+<li class="method public "><a href="#collect" title="collect :: Collects results of method call on all objects in result set into an array."><span class="description">Collects results of method call on all objects in result set into an array.</span><pre>collect()</pre></a></li>
+<li class="method public "><a href="#compareObjects" title="compareObjects :: Compare two objects using values returned by calling indicated get method."><span class="description">Compare two objects using values returned by calling indicated get method.</span><pre>compareObjects()</pre></a></li>
+<li class="method public "><a href="#count" title="count :: Countable implementation."><span class="description">Countable implementation.</span><pre>count()</pre></a></li>
+<li class="method public "><a href="#current" title="current :: Iterator implementation."><span class="description">Iterator implementation.</span><pre>current()</pre></a></li>
+<li class="method public "><a href="#deleteAll" title="deleteAll :: Deletes from server all objects in this result sets."><span class="description">Deletes from server all objects in this result sets.</span><pre>deleteAll()</pre></a></li>
+<li class="method public "><a href="#filterBy" title="filterBy :: Filters objects in this result set and returns new result set."><span class="description">Filters objects in this result set and returns new result set.</span><pre>filterBy()</pre></a></li>
+<li class="method public "><a href="#first" title="first :: Returns first object in this result set."><span class="description">Returns first object in this result set.</span><pre>first()</pre></a></li>
+<li class="method public "><a href="#getObjectsClassName" title="getObjectsClassName :: Returns class name of objects in result set."><span class="description">Returns class name of objects in result set.</span><pre>getObjectsClassName()</pre></a></li>
+<li class="method public "><a href="#getPage" title="getPage :: Helper for paging results."><span class="description">Helper for paging results.</span><pre>getPage()</pre></a></li>
+<li class="method public "><a href="#getPageCount" title="getPageCount :: Returns number of pages to display all objects within this result set."><span class="description">Returns number of pages to display all objects within this result set.</span><pre>getPageCount()</pre></a></li>
+<li class="method public "><a href="#getRawArray" title="getRawArray :: Returns PHP array of objects from this result set."><span class="description">Returns PHP array of objects from this result set.</span><pre>getRawArray()</pre></a></li>
+<li class="method public "><a href="#key" title="key :: Iterator implementation."><span class="description">Iterator implementation.</span><pre>key()</pre></a></li>
+<li class="method public "><a href="#next" title="next :: Iterator implementation."><span class="description">Iterator implementation.</span><pre>next()</pre></a></li>
+<li class="method public "><a href="#offsetExists" title="offsetExists :: ArrayAccess implementation."><span class="description">ArrayAccess implementation.</span><pre>offsetExists()</pre></a></li>
+<li class="method public "><a href="#offsetGet" title="offsetGet :: ArrayAccess implementation."><span class="description">ArrayAccess implementation.</span><pre>offsetGet()</pre></a></li>
+<li class="method public "><a href="#offsetSet" title="offsetSet :: ArrayAccess implementation."><span class="description">ArrayAccess implementation.</span><pre>offsetSet()</pre></a></li>
+<li class="method public "><a href="#offsetUnset" title="offsetUnset :: ArrayAccess implementation."><span class="description">ArrayAccess implementation.</span><pre>offsetUnset()</pre></a></li>
+<li class="method public "><a href="#orderBy" title="orderBy :: Sorts objects in this result set."><span class="description">Sorts objects in this result set.</span><pre>orderBy()</pre></a></li>
+<li class="method public "><a href="#removeFilter" title="removeFilter :: Removes last (or more) filters in order they were applied."><span class="description">Removes last (or more) filters in order they were applied.</span><pre>removeFilter()</pre></a></li>
+<li class="method public "><a href="#removeFilters" title="removeFilters :: Removes all filters and returns the original result set."><span class="description">Removes all filters and returns the original result set.</span><pre>removeFilters()</pre></a></li>
+<li class="method public "><a href="#rewind" title="rewind :: Iterator implementation."><span class="description">Iterator implementation.</span><pre>rewind()</pre></a></li>
+<li class="method public "><a href="#valid" title="valid :: Iterator implementation."><span class="description">Iterator implementation.</span><pre>valid()</pre></a></li>
+<li class="nav-header private">» Private</li>
+<li class="method private "><a href="#filterObject" title="filterObject :: Checks if object values match filter values."><span class="description">Checks if object values match filter values.</span><pre>filterObject()</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties</li>
+<li class="nav-header private">» Private</li>
+<li class="property private "><a href="#%24class_name" title="$class_name :: Class name of objects in this result set."><span class="description">Class name of objects in this result set.</span><pre>$class_name</pre></a></li>
+<li class="property private "><a href="#%24object_keys" title="$object_keys :: Cached list of $objects array keys to avoid resetting internal pointer of $objects."><span class="description">Cached list of $objects array keys to avoid resetting internal pointer of $objects.</span><pre>$object_keys</pre></a></li>
+<li class="property private "><a href="#%24objects" title="$objects :: List of objects in this result set."><span class="description">List of objects in this result set.</span><pre>$objects</pre></a></li>
+<li class="property private "><a href="#%24operators" title="$operators :: List of valid filter operators."><span class="description">List of valid filter operators.</span><pre>$operators</pre></a></li>
+<li class="property private "><a href="#%24previous_result_set" title="$previous_result_set :: Optional result set which was the base of filtering operation producing this result set."><span class="description">Optional result set which was the base of filtering operation producing this result set.</span><pre>$previous_result_set</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-constant"></i> Constants</li>
+<li class="constant  "><a href="#COLLECT_PREFIX" title="COLLECT_PREFIX :: Prefix for collect methods."><span class="description">Prefix for collect methods.</span><pre>COLLECT_PREFIX</pre></a></li>
+<li class="constant  "><a href="#FILTER_PREFIX" title="FILTER_PREFIX :: Prefix for filter methods."><span class="description">Prefix for filter methods.</span><pre>FILTER_PREFIX</pre></a></li>
+<li class="constant  "><a href="#ORDER_PREFIX" title="ORDER_PREFIX :: Prefix for order methods."><span class="description">Prefix for order methods.</span><pre>ORDER_PREFIX</pre></a></li>
+</ul>
+</div>
+<div class="span8">
+<a name="%5CkyResultSet" id="\kyResultSet"></a><div href="../classes/kyResultSet.html" class="element class">
+<p class="short_description">List of objects on steroids.</p>
+<div class="details">
+<p class="long_description"><p>Class used for wrapping list of objects into result set with filtering,
+ordering and paging capabilities.</p></p>
+<table class="table table-bordered">
+<tr>
+<th>author</th>
+<td><a href="">Tomasz Sawicki (https://github.com/Furgas)</a></td>
+</tr>
+<tr>
+<th>package</th>
+<td><a href="..//packages/Common.html">Common</a></td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a name="__call" id="__call"></a><div class="element clickable method public __call" data-toggle="collapse" data-target=".__call .collapse">
+<h2>Intercepts filtering and ordering method calls, prepares data and runs filtering or ordering.</h2>
+<pre>__call(string $name, array $arguments) : <a href="../classes/kyResultSet.html">\kyResultSet</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>To get available filter methods, call kyObjectType::getAvailableFilterMethods().
+To get available order methods, call kyObjectType::getAvailableOrderMethods().</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><p>Method name.</p></div>
+<div class="subelement argument">
+<h4>$arguments</h4>
+<code>array</code><p>Method arguments.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyResultSet.html">\kyResultSet</a></code></div>
+</div></div>
+</div>
+<a name="__construct" id="__construct"></a><div class="element clickable method public __construct" data-toggle="collapse" data-target=".__construct .collapse">
+<h2>Constructs a result set.</h2>
+<pre>__construct(<a href="kyObjectBase.html#%5CkyObjectBase">\kyObjectBase[]</a> $objects, string $class_name, <a href="../classes/kyResultSet.html">\kyResultSet</a> $previous_result_set) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$objects</h4>
+<code><a href="kyObjectBase.html#%5CkyObjectBase">\kyObjectBase[]</a></code><p>List of objects in this result set.</p></div>
+<div class="subelement argument">
+<h4>$class_name</h4>
+<code>string</code><p>Optional. Class name of objects in this result set.</p></div>
+<div class="subelement argument">
+<h4>$previous_result_set</h4>
+<code><a href="../classes/kyResultSet.html">\kyResultSet</a></code><p>Optional result set which was the base of filtering operation producing this result set.</p></div>
+</div></div>
+</div>
+<a name="__toString" id="__toString"></a><div class="element clickable method public __toString" data-toggle="collapse" data-target=".__toString .collapse">
+<h2>Returns formatted list of objects in this result set.</h2>
+<pre>__toString() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"><p>Calls __toString method of every object.</p></p></div></div>
+</div>
+<a name="collect" id="collect"></a><div class="element clickable method public collect" data-toggle="collapse" data-target=".collect .collapse">
+<h2>Collects results of method call on all objects in result set into an array.</h2>
+<pre>collect(string $get_method_name) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>NOTICE: This method shouldn't be used directly in most cases. Use kyResultSet->collectXXX() instead.</p>
+
+<p>Additional method arguments will be passed as arguments to the get method.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$get_method_name</h4>
+<code>string</code><p>Name of the method to call on object.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a name="compareObjects" id="compareObjects"></a><div class="element clickable method public compareObjects" data-toggle="collapse" data-target=".compareObjects .collapse">
+<h2>Compare two objects using values returned by calling indicated get method.</h2>
+<pre>compareObjects(<a href="../classes/kyObjectBase.html">\kyObjectBase</a> $object1, <a href="../classes/kyObjectBase.html">\kyObjectBase</a> $object2, string $get_method_name, bool $asc) : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>NOTICE: Internal helper method for sorting.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$object1</h4>
+<code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code><p>First object to compare.</p></div>
+<div class="subelement argument">
+<h4>$object2</h4>
+<code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code><p>Second object to compare.</p></div>
+<div class="subelement argument">
+<h4>$get_method_name</h4>
+<code>string</code><p>Name of get method to call on each object to compare its values.</p></div>
+<div class="subelement argument">
+<h4>$asc</h4>
+<code>bool</code><p>True (default) to sort ascending. False to sort descending.</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>int</code></div>
+</div></div>
+</div>
+<a name="count" id="count"></a><div class="element clickable method public count" data-toggle="collapse" data-target=".count .collapse">
+<h2>Countable implementation.</h2>
+<pre>count() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="current" id="current"></a><div class="element clickable method public current" data-toggle="collapse" data-target=".current .collapse">
+<h2>Iterator implementation.</h2>
+<pre>current() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="deleteAll" id="deleteAll"></a><div class="element clickable method public deleteAll" data-toggle="collapse" data-target=".deleteAll .collapse">
+<h2>Deletes from server all objects in this result sets.</h2>
+<pre>deleteAll() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"><p>WARNING: Use carefully!</p></p></div></div>
+</div>
+<a name="filterBy" id="filterBy"></a><div class="element clickable method public filterBy" data-toggle="collapse" data-target=".filterBy .collapse">
+<h2>Filters objects in this result set and returns new result set.</h2>
+<pre>filterBy(string $get_method_name, array $filter_values) : <a href="../classes/kyResultSet.html">\kyResultSet</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Filtering is done by calling defined get method on all objects and comparing its result with provided filter values.
+Filter value can be any scalar value (integer, float, string or boolean) or array for special cases.
+Special cases for filter value:
+- array('~' "Perl regexp pattern") - running Perl regexp match against object value
+- array('>', filter_value) - values greater than provided
+= array('&lt;', filter_value) - values lesser than provided
+- array('>=', filter_value) - values greater or equal than provided
+- array('&lt;=', filter_value) - values lesser or equal than provided
+- array('!=', filter_value) - values other than provided</p>
+
+<p>NOTICE: This method shouldn't be used directly in most cases. Use kyResultSet->filterByXXX(filter_value1, filter_value2) instead. Call kyObjectType::getAvailableFilterMethods() for possible filter methods.</p>
+
+<p>Additional method arguments will be passed as arguments to the get method.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$get_method_name</h4>
+<code>string</code><p>Name of get method to call on every object for comparing its value with filter values.</p></div>
+<div class="subelement argument">
+<h4>$filter_values</h4>
+<code>array</code><p>List of filter values.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyResultSet.html">\kyResultSet</a></code></div>
+</div></div>
+</div>
+<a name="first" id="first"></a><div class="element clickable method public first" data-toggle="collapse" data-target=".first .collapse">
+<h2>Returns first object in this result set.</h2>
+<pre>first() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
+</div></div>
+</div>
+<a name="getObjectsClassName" id="getObjectsClassName"></a><div class="element clickable method public getObjectsClassName" data-toggle="collapse" data-target=".getObjectsClassName .collapse">
+<h2>Returns class name of objects in result set.</h2>
+<pre>getObjectsClassName() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getPage" id="getPage"></a><div class="element clickable method public getPage" data-toggle="collapse" data-target=".getPage .collapse">
+<h2>Helper for paging results.</h2>
+<pre>getPage(int $page_number, int $items_per_page) : <a href="../classes/kyResultSet.html">\kyResultSet</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Pass page number and maximum items count per page and it will return
+new result with items on specified page.</p>
+
+<p>NOTICE: Use the same maximum number of items per page for each page to get the proper behaviour.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$page_number</h4>
+<code>int</code><p>Page number, starting from 1.</p></div>
+<div class="subelement argument">
+<h4>$items_per_page</h4>
+<code>int</code><p>Maximum number of items per page (default 20).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyResultSet.html">\kyResultSet</a></code></div>
+</div></div>
+</div>
+<a name="getPageCount" id="getPageCount"></a><div class="element clickable method public getPageCount" data-toggle="collapse" data-target=".getPageCount .collapse">
+<h2>Returns number of pages to display all objects within this result set.</h2>
+<pre>getPageCount(int $items_per_page) : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$items_per_page</h4>
+<code>int</code><p>Maximum number of items per page (default 20).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>int</code></div>
+</div></div>
+</div>
+<a name="getRawArray" id="getRawArray"></a><div class="element clickable method public getRawArray" data-toggle="collapse" data-target=".getRawArray .collapse">
+<h2>Returns PHP array of objects from this result set.</h2>
+<pre>getRawArray() : <a href="kyObjectBase.html#%5CkyObjectBase">\kyObjectBase[]</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="kyObjectBase.html#%5CkyObjectBase">\kyObjectBase[]</a></code></div>
+</div></div>
+</div>
+<a name="key" id="key"></a><div class="element clickable method public key" data-toggle="collapse" data-target=".key .collapse">
+<h2>Iterator implementation.</h2>
+<pre>key() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="next" id="next"></a><div class="element clickable method public next" data-toggle="collapse" data-target=".next .collapse">
+<h2>Iterator implementation.</h2>
+<pre>next() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="offsetExists" id="offsetExists"></a><div class="element clickable method public offsetExists" data-toggle="collapse" data-target=".offsetExists .collapse">
+<h2>ArrayAccess implementation.</h2>
+<pre>offsetExists($offset) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$offset</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="offsetGet" id="offsetGet"></a><div class="element clickable method public offsetGet" data-toggle="collapse" data-target=".offsetGet .collapse">
+<h2>ArrayAccess implementation.</h2>
+<pre>offsetGet($offset) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$offset</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="offsetSet" id="offsetSet"></a><div class="element clickable method public offsetSet" data-toggle="collapse" data-target=".offsetSet .collapse">
+<h2>ArrayAccess implementation.</h2>
+<pre>offsetSet($offset, $value) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$offset</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$value</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="offsetUnset" id="offsetUnset"></a><div class="element clickable method public offsetUnset" data-toggle="collapse" data-target=".offsetUnset .collapse">
+<h2>ArrayAccess implementation.</h2>
+<pre>offsetUnset($offset) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$offset</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="orderBy" id="orderBy"></a><div class="element clickable method public orderBy" data-toggle="collapse" data-target=".orderBy .collapse">
+<h2>Sorts objects in this result set.</h2>
+<pre>orderBy(string $get_method_name, bool $asc) : <a href="../classes/kyResultSet.html">\kyResultSet</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Sorting is done by calling defined get method on all objects and using its result to sort objects.
+NOTICE: This method shouldn't be used directly in most cases. Use kyResultSet->orderByXXX() instead. Call kyObjectType::getAvailableOrderMethods() for possible order methods.
+WARNING: Calling this method resets internal pointer of objects array.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$get_method_name</h4>
+<code>string</code><p>Name of get method to call on every object to order based on its value.</p></div>
+<div class="subelement argument">
+<h4>$asc</h4>
+<code>bool</code><p>True (default) to sort ascending. False to sort descending.</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyResultSet.html">\kyResultSet</a></code></div>
+</div></div>
+</div>
+<a name="removeFilter" id="removeFilter"></a><div class="element clickable method public removeFilter" data-toggle="collapse" data-target=".removeFilter .collapse">
+<h2>Removes last (or more) filters in order they were applied.</h2>
+<pre>removeFilter(int $depth) : <a href="../classes/kyResultSet.html">\kyResultSet</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$depth</h4>
+<code>int</code><p>How many filters to remove.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyResultSet.html">\kyResultSet</a></code></div>
+</div></div>
+</div>
+<a name="removeFilters" id="removeFilters"></a><div class="element clickable method public removeFilters" data-toggle="collapse" data-target=".removeFilters .collapse">
+<h2>Removes all filters and returns the original result set.</h2>
+<pre>removeFilters() : <a href="../classes/kyResultSet.html">\kyResultSet</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyResultSet.html">\kyResultSet</a></code></div>
+</div></div>
+</div>
+<a name="rewind" id="rewind"></a><div class="element clickable method public rewind" data-toggle="collapse" data-target=".rewind .collapse">
+<h2>Iterator implementation.</h2>
+<pre>rewind() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="valid" id="valid"></a><div class="element clickable method public valid" data-toggle="collapse" data-target=".valid .collapse">
+<h2>Iterator implementation.</h2>
+<pre>valid() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="filterObject" id="filterObject"></a><div class="element clickable method private filterObject" data-toggle="collapse" data-target=".filterObject .collapse">
+<h2>Checks if object values match filter values.</h2>
+<pre>filterObject(array $filter_values, array $object_values) : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$filter_values</h4>
+<code>array</code><p>Filter values.</p></div>
+<div class="subelement argument">
+<h4>$object_values</h4>
+<code>array</code><p>Object values.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a name="%24class_name" id="$class_name"> </a><div class="element clickable property private $class_name" data-toggle="collapse" data-target=".$class_name .collapse">
+<h2>Class name of objects in this result set.</h2>
+<pre>$class_name : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="%24object_keys" id="$object_keys"> </a><div class="element clickable property private $object_keys" data-toggle="collapse" data-target=".$object_keys .collapse">
+<h2>Cached list of $objects array keys to avoid resetting internal pointer of $objects.</h2>
+<pre>$object_keys : \mixed[]</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="%24objects" id="$objects"> </a><div class="element clickable property private $objects" data-toggle="collapse" data-target=".$objects .collapse">
+<h2>List of objects in this result set.</h2>
+<pre>$objects : <a href="kyObjectBase.html#%5CkyObjectBase">\kyObjectBase[]</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="%24operators" id="$operators"> </a><div class="element clickable property private $operators" data-toggle="collapse" data-target=".$operators .collapse">
+<h2>List of valid filter operators.</h2>
+<pre>$operators : \string[]</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="%24previous_result_set" id="$previous_result_set"> </a><div class="element clickable property private $previous_result_set" data-toggle="collapse" data-target=".$previous_result_set .collapse">
+<h2>Optional result set which was the base of filtering operation producing this result set.</h2>
+<pre>$previous_result_set : <a href="../classes/kyResultSet.html">\kyResultSet</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<h3>
+<i class="icon-custom icon-constant"></i> Constants</h3>
+<a name="COLLECT_PREFIX" id="COLLECT_PREFIX"> </a><div class="element clickable constant  COLLECT_PREFIX" data-toggle="collapse" data-target=".COLLECT_PREFIX .collapse">
+<h2>Prefix for collect methods.</h2>
+<pre>COLLECT_PREFIX : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="FILTER_PREFIX" id="FILTER_PREFIX"> </a><div class="element clickable constant  FILTER_PREFIX" data-toggle="collapse" data-target=".FILTER_PREFIX .collapse">
+<h2>Prefix for filter methods.</h2>
+<pre>FILTER_PREFIX : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="ORDER_PREFIX" id="ORDER_PREFIX"> </a><div class="element clickable constant  ORDER_PREFIX" data-toggle="collapse" data-target=".ORDER_PREFIX .collapse">
+<h2>Prefix for order methods.</h2>
+<pre>ORDER_PREFIX : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a2</a> and<br>
+            generated on 2012-05-05T01:22:18+02:00.<br></footer></div>
+</div>
+</body>
+</html>

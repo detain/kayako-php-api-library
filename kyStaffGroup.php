@@ -1,34 +1,48 @@
 <?php
-require_once('kyObjectBase.php');
-
 /**
- * Part of PHP client to REST API of Kayako v4 (Kayako Fusion).
- * Compatible with Kayako version >= 4.01.204.
- *
  * Kayako StaffGroup object.
  *
- * @link http://wiki.kayako.com/display/DEV/REST+-+StaffGroup
  * @author Tomasz Sawicki (https://github.com/Furgas)
+ * @link http://wiki.kayako.com/display/DEV/REST+-+StaffGroup
+ * @since Kayako version 4.01.204
+ * @package Object\Staff
  */
 class kyStaffGroup extends kyObjectBase {
 
 	static protected $controller = '/Base/StaffGroup';
 	static protected $object_xml_name = 'staffgroup';
 
-	private $id = null;
-	private $title = null;
-	private $is_admin = false;
+	/**
+	 * Staff group identifier.
+	 * @apiField
+	 * @var int
+	 */
+	protected $id;
+
+	/**
+	 * Staff group title.
+	 * @apiField required=true
+	 * @var string
+	 */
+	protected $title;
+
+	/**
+	 * Is this administrator group.
+	 * @apiField required_create=true
+	 * @var bool
+	 */
+	protected $is_admin = false;
 
 	protected function parseData($data) {
 		$this->id = intval($data['id']);
 		$this->title = $data['title'];
-		$this->is_admin = intval($data['isadmin']) === 0 ? false : true;
+		$this->is_admin = ky_assure_bool($data['isadmin']);
 	}
 
-	protected function buildData($method) {
-		$data = array();
+	public function buildData($create) {
+		$this->checkRequiredAPIFields($create);
 
-		//TODO: check if required parameters are present
+		$data = array();
 
 		$data['title'] = $this->title;
 		$data['isadmin'] = $this->is_admin ? 1 : 0;
@@ -48,8 +62,8 @@ class kyStaffGroup extends kyObjectBase {
 	 * Returns title of the staff group.
 	 *
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getTitle() {
 		return $this->title;
@@ -62,7 +76,7 @@ class kyStaffGroup extends kyObjectBase {
 	 * @return kyStaffGroup
 	 */
 	public function setTitle($title) {
-		$this->title = $title;
+		$this->title = ky_assure_string($title);
 		return $this;
 	}
 
@@ -70,8 +84,8 @@ class kyStaffGroup extends kyObjectBase {
 	 * Returns whether staff members assigned to this group are Administrators.
 	 *
 	 * @return bool
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getIsAdmin() {
 		return $this->is_admin;
@@ -84,7 +98,7 @@ class kyStaffGroup extends kyObjectBase {
 	 * @return kyStaffGroup
 	 */
 	public function setIsAdmin($is_admin) {
-		$this->is_admin = $is_admin;
+		$this->is_admin = ky_assure_bool($is_admin);
 		return $this;
 	}
 

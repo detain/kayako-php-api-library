@@ -1,0 +1,1446 @@
+<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>Kayako PHP API Library » \kyTicketTimeTrack</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">Kayako PHP API Library</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    Source Code Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Common.html"><i class="icon-folder-open"></i> Common</a></li>
+<li><a href="../packages/Object.html"><i class="icon-folder-open"></i> Object</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods</li>
+<li class="method public inherited"><a href="#__construct" title="__construct :: Default constructor."><span class="description">Default constructor.</span><pre>__construct()</pre></a></li>
+<li class="method public inherited"><a href="#__get" title="__get :: Returns API field value."><span class="description">Returns API field value.</span><pre>__get()</pre></a></li>
+<li class="method public inherited"><a href="#__set" title="__set :: Sets API field value."><span class="description">Sets API field value.</span><pre>__set()</pre></a></li>
+<li class="method public inherited"><a href="#__toString" title="__toString :: Returns object description with it's type and identifier."><span class="description">Returns object description with it's type and identifier.</span><pre>__toString()</pre></a></li>
+<li class="method public "><a href="#buildData" title="buildData :: Should build the array of object data for creating or updating the object."><span class="description">Should build the array of object data for creating or updating the object.</span><pre>buildData()</pre></a></li>
+<li class="method public inherited"><a href="#checkRequiredAPIFields" title="checkRequiredAPIFields :: Checks wheter this object has all required fields set."><span class="description">Checks wheter this object has all required fields set.</span><pre>checkRequiredAPIFields()</pre></a></li>
+<li class="method public inherited"><a href="#create" title="create :: Creates an object on the server and refreshes its local data."><span class="description">Creates an object on the server and refreshes its local data.</span><pre>create()</pre></a></li>
+<li class="method public "><a href="#createNew" title="createNew :: Creates new ticket time track."><span class="description">Creates new ticket time track.</span><pre>createNew()</pre></a></li>
+<li class="method public inherited"><a href="#delete" title="delete :: Deletes the object on the server."><span class="description">Deletes the object on the server.</span><pre>delete()</pre></a></li>
+<li class="method public "><a href="#get" title="get :: Returns ticket time track."><span class="description">Returns ticket time track.</span><pre>get()</pre></a></li>
+<li class="method public inherited"><a href="#getAPIFields" title="getAPIFields :: Returns array of API fields."><span class="description">Returns array of API fields.</span><pre>getAPIFields()</pre></a></li>
+<li class="method public "><a href="#getAll" title="getAll :: Returns all time tracks of the ticket."><span class="description">Returns all time tracks of the ticket.</span><pre>getAll()</pre></a></li>
+<li class="method public inherited"><a href="#getAvailableFilterMethods" title="getAvailableFilterMethods :: Returns list of available filter methods for use in result sets with objects of this type."><span class="description">Returns list of available filter methods for use in result sets with objects of this type.</span><pre>getAvailableFilterMethods()</pre></a></li>
+<li class="method public inherited"><a href="#getAvailableOrderMethods" title="getAvailableOrderMethods :: Returns list of available order methods for use in result sets with objects of this type."><span class="description">Returns list of available order methods for use in result sets with objects of this type.</span><pre>getAvailableOrderMethods()</pre></a></li>
+<li class="method public "><a href="#getBillDate" title="getBillDate :: Returns date and time when to bill the worker."><span class="description">Returns date and time when to bill the worker.</span><pre>getBillDate()</pre></a></li>
+<li class="method public "><a href="#getContents" title="getContents :: Returns contents of the time track."><span class="description">Returns contents of the time track.</span><pre>getContents()</pre></a></li>
+<li class="method public inherited"><a href="#getController" title="getController :: Returns object controller."><span class="description">Returns object controller.</span><pre>getController()</pre></a></li>
+<li class="method public "><a href="#getCreatorStaff" title="getCreatorStaff :: Returns staff user that creates the time track."><span class="description">Returns staff user that creates the time track.</span><pre>getCreatorStaff()</pre></a></li>
+<li class="method public "><a href="#getCreatorStaffId" title="getCreatorStaffId :: Returns identifier of staff user that created the time track."><span class="description">Returns identifier of staff user that created the time track.</span><pre>getCreatorStaffId()</pre></a></li>
+<li class="method public "><a href="#getCreatorStaffName" title="getCreatorStaffName :: Returns full name of staff user that created the time track."><span class="description">Returns full name of staff user that created the time track.</span><pre>getCreatorStaffName()</pre></a></li>
+<li class="method public "><a href="#getId" title="getId :: Should return object identifier or complete list of identifiers as needed by API to identify the object (ex. ticket identifier and ticket post identifier in case of TicketPost)."><span class="description">Should return object identifier or complete list of identifiers as needed by API to identify the object (ex. ticket identifier and ticket post identifier in case of TicketPost).</span><pre>getId()</pre></a></li>
+<li class="method public "><a href="#getNoteColor" title="getNoteColor :: Returns color of the time track - one of kyTicketTimeTrack::COLOR_* constants."><span class="description">Returns color of the time track - one of kyTicketTimeTrack::COLOR_* constants.</span><pre>getNoteColor()</pre></a></li>
+<li class="method public inherited"><a href="#getRequiredAPIFields" title="getRequiredAPIFields :: Returns list of required API fields for objects of this class."><span class="description">Returns list of required API fields for objects of this class.</span><pre>getRequiredAPIFields()</pre></a></li>
+<li class="method public "><a href="#getTicket" title="getTicket :: Returns the ticket that this time track is connected with."><span class="description">Returns the ticket that this time track is connected with.</span><pre>getTicket()</pre></a></li>
+<li class="method public "><a href="#getTicketId" title="getTicketId :: Returns ticket identifier of this time track."><span class="description">Returns ticket identifier of this time track.</span><pre>getTicketId()</pre></a></li>
+<li class="method public "><a href="#getTimeBillable" title="getTimeBillable :: Returns billable time for this time track."><span class="description">Returns billable time for this time track.</span><pre>getTimeBillable()</pre></a></li>
+<li class="method public "><a href="#getTimeWorked" title="getTimeWorked :: Returns time worked for this time track."><span class="description">Returns time worked for this time track.</span><pre>getTimeWorked()</pre></a></li>
+<li class="method public "><a href="#getWorkDate" title="getWorkDate :: Returns date and time when the work was executed."><span class="description">Returns date and time when the work was executed.</span><pre>getWorkDate()</pre></a></li>
+<li class="method public "><a href="#getWorkerStaff" title="getWorkerStaff :: Returns staff user object that has done the work."><span class="description">Returns staff user object that has done the work.</span><pre>getWorkerStaff()</pre></a></li>
+<li class="method public "><a href="#getWorkerStaffId" title="getWorkerStaffId :: Returns identifier of staff user that has done the work."><span class="description">Returns identifier of staff user that has done the work.</span><pre>getWorkerStaffId()</pre></a></li>
+<li class="method public "><a href="#getWorkerStaffName" title="getWorkerStaffName :: Returns full name of staff user that has done the work."><span class="description">Returns full name of staff user that has done the work.</span><pre>getWorkerStaffName()</pre></a></li>
+<li class="method public inherited"><a href="#isNew" title="isNew :: Returns whether the object is new and not yet saved on the server."><span class="description">Returns whether the object is new and not yet saved on the server.</span><pre>isNew()</pre></a></li>
+<li class="method public inherited"><a href="#isReadOnly" title="isReadOnly :: Returns whether this object is read only."><span class="description">Returns whether this object is read only.</span><pre>isReadOnly()</pre></a></li>
+<li class="method public inherited"><a href="#refresh" title="refresh :: Refreshes the object data from server."><span class="description">Refreshes the object data from server.</span><pre>refresh()</pre></a></li>
+<li class="method public inherited"><a href="#save" title="save :: Saves (creates or updates) the object to the server."><span class="description">Saves (creates or updates) the object to the server.</span><pre>save()</pre></a></li>
+<li class="method public "><a href="#setBillDate" title="setBillDate :: Sets date and time when to bill the worker."><span class="description">Sets date and time when to bill the worker.</span><pre>setBillDate()</pre></a></li>
+<li class="method public "><a href="#setBillingData" title="setBillingData :: Shortcut function for setting billable time and when to bill the worker."><span class="description">Shortcut function for setting billable time and when to bill the worker.</span><pre>setBillingData()</pre></a></li>
+<li class="method public "><a href="#setContents" title="setContents :: Sets contents of the time track."><span class="description">Sets contents of the time track.</span><pre>setContents()</pre></a></li>
+<li class="method public "><a href="#setCreatorStaff" title="setCreatorStaff :: Sets staff user that creates the time track."><span class="description">Sets staff user that creates the time track.</span><pre>setCreatorStaff()</pre></a></li>
+<li class="method public "><a href="#setCreatorStaffId" title="setCreatorStaffId :: Sets the identifier of staff user that creates the time track."><span class="description">Sets the identifier of staff user that creates the time track.</span><pre>setCreatorStaffId()</pre></a></li>
+<li class="method public "><a href="#setNoteColor" title="setNoteColor :: Sets color of the time track."><span class="description">Sets color of the time track.</span><pre>setNoteColor()</pre></a></li>
+<li class="method public inherited"><a href="#setReadOnly" title="setReadOnly :: Sets whether this object is read only."><span class="description">Sets whether this object is read only.</span><pre>setReadOnly()</pre></a></li>
+<li class="method public "><a href="#setTicket" title="setTicket :: Sets the ticket that this time track will be connected with."><span class="description">Sets the ticket that this time track will be connected with.</span><pre>setTicket()</pre></a></li>
+<li class="method public "><a href="#setTicketId" title="setTicketId :: Sets ticket identifier of the time track."><span class="description">Sets ticket identifier of the time track.</span><pre>setTicketId()</pre></a></li>
+<li class="method public "><a href="#setTimeBillable" title="setTimeBillable :: Sets billable time for this time track."><span class="description">Sets billable time for this time track.</span><pre>setTimeBillable()</pre></a></li>
+<li class="method public "><a href="#setTimeWorked" title="setTimeWorked :: Sets worked time for this time track."><span class="description">Sets worked time for this time track.</span><pre>setTimeWorked()</pre></a></li>
+<li class="method public "><a href="#setWorkDate" title="setWorkDate :: Sets date and time when the work was executed."><span class="description">Sets date and time when the work was executed.</span><pre>setWorkDate()</pre></a></li>
+<li class="method public "><a href="#setWorkedData" title="setWorkedData :: Shortcut function for setting worked time and when the work was executed."><span class="description">Shortcut function for setting worked time and when the work was executed.</span><pre>setWorkedData()</pre></a></li>
+<li class="method public "><a href="#setWorkerStaff" title="setWorkerStaff :: Sets staff user that has done the work."><span class="description">Sets staff user that has done the work.</span><pre>setWorkerStaff()</pre></a></li>
+<li class="method public "><a href="#setWorkerStaffId" title="setWorkerStaffId :: Sets the identifier of staff user that has done the work."><span class="description">Sets the identifier of staff user that has done the work.</span><pre>setWorkerStaffId()</pre></a></li>
+<li class="method public "><a href="#toString" title="toString :: Should return short (one line) description of the object (it's title, name, etc.)."><span class="description">Should return short (one line) description of the object (it's title, name, etc.).</span><pre>toString()</pre></a></li>
+<li class="method public "><a href="#update" title="update :: Updates the object on the server and refreshes its local data."><span class="description">Updates the object on the server and refreshes its local data.</span><pre>update()</pre></a></li>
+<li class="nav-header protected">» Protected</li>
+<li class="method protected inherited"><a href="#getRESTClient" title="getRESTClient :: Returns REST client."><span class="description">Returns REST client.</span><pre>getRESTClient()</pre></a></li>
+<li class="method protected "><a href="#parseData" title="parseData :: Should use passed data to fill object properties."><span class="description">Should use passed data to fill object properties.</span><pre>parseData()</pre></a></li>
+<li class="nav-header private">» Private</li>
+<li class="method private inherited"><a href="#initAPIFieldsAccessors" title="initAPIFieldsAccessors :: Builds API fields list."><span class="description">Builds API fields list.</span><pre>initAPIFieldsAccessors()</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties</li>
+<li class="nav-header protected">» Protected</li>
+<li class="property protected inherited"><a href="#%24_filter_methods" title="$_filter_methods :: Cache for available filter methods."><span class="description">Cache for available filter methods.</span><pre>$_filter_methods</pre></a></li>
+<li class="property protected inherited"><a href="#%24_order_methods" title="$_order_methods :: Cache for available order methods."><span class="description">Cache for available order methods.</span><pre>$_order_methods</pre></a></li>
+<li class="property protected "><a href="#%24bill_date" title="$bill_date :: Bill timestamp of this ticket time track."><span class="description">Bill timestamp of this ticket time track.</span><pre>$bill_date</pre></a></li>
+<li class="property protected "><a href="#%24contents" title="$contents :: Note contents of this ticket time track."><span class="description">Note contents of this ticket time track.</span><pre>$contents</pre></a></li>
+<li class="property protected "><a href="#%24controller" title="$controller :: Default Kayako controller used to operate on this objects. Override in descending classes."><span class="description">Default Kayako controller used to operate on this objects. Override in descending classes.</span><pre>$controller</pre></a></li>
+<li class="property protected "><a href="#%24creator_staff_id" title="$creator_staff_id :: Creator staff identifier."><span class="description">Creator staff identifier.</span><pre>$creator_staff_id</pre></a></li>
+<li class="property protected "><a href="#%24creator_staff_name" title="$creator_staff_name :: Creator staff full name."><span class="description">Creator staff full name.</span><pre>$creator_staff_name</pre></a></li>
+<li class="property protected "><a href="#%24id" title="$id :: Ticket time track identifier."><span class="description">Ticket time track identifier.</span><pre>$id</pre></a></li>
+<li class="property protected "><a href="#%24note_color" title="$note_color :: Ticket time track note color."><span class="description">Ticket time track note color.</span><pre>$note_color</pre></a></li>
+<li class="property protected "><a href="#%24object_xml_name" title="$object_xml_name :: Indicates the name of object element in XML response. Override in descending classes."><span class="description">Indicates the name of object element in XML response. Override in descending classes.</span><pre>$object_xml_name</pre></a></li>
+<li class="property protected inherited"><a href="#%24read_only" title="$read_only :: Controls if the object can be created/updated/deleted. Override in descending classes."><span class="description">Controls if the object can be created/updated/deleted. Override in descending classes.</span><pre>$read_only</pre></a></li>
+<li class="property protected "><a href="#%24ticket_id" title="$ticket_id :: Ticket identifier."><span class="description">Ticket identifier.</span><pre>$ticket_id</pre></a></li>
+<li class="property protected "><a href="#%24time_billable" title="$time_billable :: Billable time (in seconds) in this ticket time track."><span class="description">Billable time (in seconds) in this ticket time track.</span><pre>$time_billable</pre></a></li>
+<li class="property protected "><a href="#%24time_worked" title="$time_worked :: Time worked (in seconds) in this ticket time track."><span class="description">Time worked (in seconds) in this ticket time track.</span><pre>$time_worked</pre></a></li>
+<li class="property protected "><a href="#%24work_date" title="$work_date :: Work timestamp of this ticket time track."><span class="description">Work timestamp of this ticket time track.</span><pre>$work_date</pre></a></li>
+<li class="property protected "><a href="#%24worker_staff_id" title="$worker_staff_id :: Worker staff identifier."><span class="description">Worker staff identifier.</span><pre>$worker_staff_id</pre></a></li>
+<li class="property protected "><a href="#%24worker_staff_name" title="$worker_staff_name :: Worker staff full name."><span class="description">Worker staff full name.</span><pre>$worker_staff_name</pre></a></li>
+<li class="nav-header private">» Private</li>
+<li class="property private inherited"><a href="#%24_api_fields" title="$_api_fields :: Cache for API fields."><span class="description">Cache for API fields.</span><pre>$_api_fields</pre></a></li>
+<li class="property private "><a href="#%24creator_staff" title="$creator_staff :: Creator staff."><span class="description">Creator staff.</span><pre>$creator_staff</pre></a></li>
+<li class="property private "><a href="#%24ticket" title="$ticket :: The ticket that this time track will be connected with."><span class="description">The ticket that this time track will be connected with.</span><pre>$ticket</pre></a></li>
+<li class="property private "><a href="#%24worker_staff" title="$worker_staff :: Worker staff."><span class="description">Worker staff.</span><pre>$worker_staff</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-constant"></i> Constants</li>
+<li class="constant  "><a href="#COLOR_BLUE" title="COLOR_BLUE :: Color of time track - blue."><span class="description">Color of time track - blue.</span><pre>COLOR_BLUE</pre></a></li>
+<li class="constant  "><a href="#COLOR_GREEN" title="COLOR_GREEN :: Color of time track - green."><span class="description">Color of time track - green.</span><pre>COLOR_GREEN</pre></a></li>
+<li class="constant  "><a href="#COLOR_PURPLE" title="COLOR_PURPLE :: Color of time track - purple."><span class="description">Color of time track - purple.</span><pre>COLOR_PURPLE</pre></a></li>
+<li class="constant  "><a href="#COLOR_RED" title="COLOR_RED :: Color of time track - red."><span class="description">Color of time track - red.</span><pre>COLOR_RED</pre></a></li>
+<li class="constant  "><a href="#COLOR_YELLOW" title="COLOR_YELLOW :: Color of time track - yellow."><span class="description">Color of time track - yellow.</span><pre>COLOR_YELLOW</pre></a></li>
+<li class="constant  inherited"><a href="#FILES_DATA_NAME" title="FILES_DATA_NAME :: Data key for storing files to send as multipart/form-data."><span class="description">Data key for storing files to send as multipart/form-data.</span><pre>FILES_DATA_NAME</pre></a></li>
+</ul>
+</div>
+<div class="span8">
+<a name="%5CkyTicketTimeTrack" id="\kyTicketTimeTrack"></a><div href="../classes/kyTicketTimeTrack.html" class="element class">
+<p class="short_description">Kayako TicketTimeTrack object.</p>
+<div class="details">
+<p class="long_description"><p>All objects interacting with Kayako REST API should extend this class and
+define:
+* Kayako controller
+* XML element name holding object's data in REST response</p></p>
+<table class="table table-bordered">
+<tr>
+<th>author</th>
+<td><a href="">Tomasz Sawicki (https://github.com/Furgas)</a></td>
+</tr>
+<tr>
+<th>link</th>
+<td><a href="http://wiki.kayako.com/display/DEV/REST+-+TicketTimeTrack">http://wiki.kayako.com/display/DEV/REST+-+TicketTimeTrack</a></td>
+</tr>
+<tr>
+<th>since</th>
+<td>Kayako version 4.01.240</td>
+</tr>
+<tr>
+<th>package</th>
+<td><a href="..//packages/Object.Ticket.html">Object\Ticket</a></td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a name="__construct" id="__construct"></a><div class="element clickable method public __construct" data-toggle="collapse" data-target=".__construct .collapse">
+<h2>Default constructor.</h2>
+<pre>__construct(array $data) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::__construct()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>Object data from XML response converted into array.</p></div>
+</div></div>
+</div>
+<a name="__get" id="__get"></a><div class="element clickable method public __get" data-toggle="collapse" data-target=".__get .collapse">
+<h2>Returns API field value.</h2>
+<pre>__get(string $api_field_name) : mixed</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Returns API field value based on API field name used by Kayako.</p></p>
+<table class="table table-bordered">
+<tr>
+<th>link</th>
+<td><a href="http://wiki.kayako.com/display/DEV/REST+API+Reference">http://wiki.kayako.com/display/DEV/REST+API+Reference</a></td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::__get()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$api_field_name</h4>
+<code>string</code><p>API field name.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="__set" id="__set"></a><div class="element clickable method public __set" data-toggle="collapse" data-target=".__set .collapse">
+<h2>Sets API field value.</h2>
+<pre>__set(string $api_field_name, mixed $value) : mixed</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Sets API field value based on API field name used by Kayako.</p></p>
+<table class="table table-bordered">
+<tr>
+<th>link</th>
+<td><a href="http://wiki.kayako.com/display/DEV/REST+API+Reference">http://wiki.kayako.com/display/DEV/REST+API+Reference</a></td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::__set()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$api_field_name</h4>
+<code>string</code><p>API field name.</p></div>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>mixed</code><p>API field value.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="__toString" id="__toString"></a><div class="element clickable method public __toString" data-toggle="collapse" data-target=".__toString .collapse">
+<h2>Returns object description with it's type and identifier.</h2>
+<pre>__toString() : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Calls toString() method to get the object description.</p></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::__toString()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="buildData" id="buildData"></a><div class="element clickable method public buildData" data-toggle="collapse" data-target=".buildData .collapse">
+<h2>Should build the array of object data for creating or updating the object.</h2>
+<pre>buildData(bool $create) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Values must be set in format accepted by REST API.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$create</h4>
+<code>bool</code><p>Indicates if the result will be used to create (true) or update (false) an object.</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a name="checkRequiredAPIFields" id="checkRequiredAPIFields"></a><div class="element clickable method public checkRequiredAPIFields" data-toggle="collapse" data-target=".checkRequiredAPIFields .collapse">
+<h2>Checks wheter this object has all required fields set.</h2>
+<pre>checkRequiredAPIFields(bool $create, bool $throw_exception) : \string[] | bool</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::checkRequiredAPIFields()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$create</h4>
+<code>bool</code><p>True when object will be created. False when object will be updated.</p></div>
+<div class="subelement argument">
+<h4>$throw_exception</h4>
+<code>bool</code><p>True to throw an exception on missing fields. False to return list of missing fields or true when there are none.</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/kyException.html">\kyException</a></code></th>
+<td>When there are missing field values and $throw_exception is true.</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\string[]</code><code>bool</code>List of missing API fields or true when there are none.</div>
+</div></div>
+</div>
+<a name="create" id="create"></a><div class="element clickable method public create" data-toggle="collapse" data-target=".create .collapse">
+<h2>Creates an object on the server and refreshes its local data.</h2>
+<pre>create() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::create()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
+</div></div>
+</div>
+<a name="createNew" id="createNew"></a><div class="element clickable method public createNew" data-toggle="collapse" data-target=".createNew .collapse">
+<h2>Creates new ticket time track.</h2>
+<pre>createNew(kyTicket $ticket, string $contents, kyStaff $staff, string $time_worked, string $time_billable) : <a href="../classes/kyTicketTimeTrack.html">\kyTicketTimeTrack</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$ticket</h4>
+<code><a href="../classes/kyTicket.html">\kyTicket</a></code><p>Ticket to attach the timetrack to.</p></div>
+<div class="subelement argument">
+<h4>$contents</h4>
+<code>string</code><p>Note contents.</p></div>
+<div class="subelement argument">
+<h4>$staff</h4>
+<code><a href="../classes/kyStaff.html">\kyStaff</a></code><p>Staff user - both creator and worker.</p>
+</div>
+<div class="subelement argument">
+<h4>$time_worked</h4>
+<code>string</code><p>Worked time formatted as hh:mm. Work date will be set to current datetime.</p></div>
+<div class="subelement argument">
+<h4>$time_billable</h4>
+<code>string</code><p>Billable time formatted as hh:mm. Bill date will be set to current datetime.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyTicketTimeTrack.html">\kyTicketTimeTrack</a></code></div>
+</div></div>
+</div>
+<a name="delete" id="delete"></a><div class="element clickable method public delete" data-toggle="collapse" data-target=".delete .collapse">
+<h2>Deletes the object on the server.</h2>
+<pre>delete() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::delete()</td>
+</tr></table>
+</div></div>
+</div>
+<a name="get" id="get"></a><div class="element clickable method public get" data-toggle="collapse" data-target=".get .collapse">
+<h2>Returns ticket time track.</h2>
+<pre>get(int $ticket_id, int $id) : <a href="../classes/kyTicketTimeTrack.html">\kyTicketTimeTrack</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$ticket_id</h4>
+<code>int</code><p>Ticket identifier.</p></div>
+<div class="subelement argument">
+<h4>$id</h4>
+<code>int</code><p>Ticket time track identifier.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyTicketTimeTrack.html">\kyTicketTimeTrack</a></code></div>
+</div></div>
+</div>
+<a name="getAPIFields" id="getAPIFields"></a><div class="element clickable method public getAPIFields" data-toggle="collapse" data-target=".getAPIFields .collapse">
+<h2>Returns array of API fields.</h2>
+<pre>getAPIFields() : \string[]</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Format of returned array:</p>
+
+<pre>
+array(
+    '<api field name>' => Field description. (getter: <getter name>, setter: <setter name>),
+    ...repeat...
+)
+</pre></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::getAPIFields()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>\string[]</code></div>
+</div></div>
+</div>
+<a name="getAll" id="getAll"></a><div class="element clickable method public getAll" data-toggle="collapse" data-target=".getAll .collapse">
+<h2>Returns all time tracks of the ticket.</h2>
+<pre>getAll(int $ticket_id) : <a href="../classes/kyResultSet.html">\kyResultSet</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$ticket_id</h4>
+<code>int</code><p>Ticket identifier.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyResultSet.html">\kyResultSet</a></code></div>
+</div></div>
+</div>
+<a name="getAvailableFilterMethods" id="getAvailableFilterMethods"></a><div class="element clickable method public getAvailableFilterMethods" data-toggle="collapse" data-target=".getAvailableFilterMethods .collapse">
+<h2>Returns list of available filter methods for use in result sets with objects of this type.</h2>
+<pre>getAvailableFilterMethods(bool $filter_names_only) : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Optionaly you can return get method names used to filter objects.</p></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::getAvailableFilterMethods()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$filter_names_only</h4>
+<code>bool</code><p>True (default) to return array('filterByXXX', 'filterByYYY', ...). False to return array('filterByXXX' => 'getXXX', 'filterByYYY' => 'YYY', ...).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a name="getAvailableOrderMethods" id="getAvailableOrderMethods"></a><div class="element clickable method public getAvailableOrderMethods" data-toggle="collapse" data-target=".getAvailableOrderMethods .collapse">
+<h2>Returns list of available order methods for use in result sets with objects of this type.</h2>
+<pre>getAvailableOrderMethods(bool $order_names_only) : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Optionaly you can return get method names used to order objects.</p></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::getAvailableOrderMethods()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$order_names_only</h4>
+<code>bool</code><p>True (default) to return array('orderByXXX', 'orderByYYY', ...). False to return array('orderByXXX' => 'getXXX', 'orderByYYY' => 'YYY', ...).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a name="getBillDate" id="getBillDate"></a><div class="element clickable method public getBillDate" data-toggle="collapse" data-target=".getBillDate .collapse">
+<h2>Returns date and time when to bill the worker.</h2>
+<pre>getBillDate(string $format) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>see</th>
+<td>\http://www.php.net/manual/en/function.date.php</td>
+</tr>
+<tr>
+<th>filterBy</th>
+<td></td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$format</h4>
+<code>string</code><p>Output format of the date. If null the format set in client configuration is used.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getContents" id="getContents"></a><div class="element clickable method public getContents" data-toggle="collapse" data-target=".getContents .collapse">
+<h2>Returns contents of the time track.</h2>
+<pre>getContents() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>filterBy</th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getController" id="getController"></a><div class="element clickable method public getController" data-toggle="collapse" data-target=".getController .collapse">
+<h2>Returns object controller.</h2>
+<pre>getController() : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::getController()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getCreatorStaff" id="getCreatorStaff"></a><div class="element clickable method public getCreatorStaff" data-toggle="collapse" data-target=".getCreatorStaff .collapse">
+<h2>Returns staff user that creates the time track.</h2>
+<pre>getCreatorStaff(bool $reload) : <a href="../classes/kyStaff.html">\kyStaff</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Result is cached until the end of script.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$reload</h4>
+<code>bool</code><p>True to reload data from server. False to use the cached value (if present).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyStaff.html">\kyStaff</a></code></div>
+</div></div>
+</div>
+<a name="getCreatorStaffId" id="getCreatorStaffId"></a><div class="element clickable method public getCreatorStaffId" data-toggle="collapse" data-target=".getCreatorStaffId .collapse">
+<h2>Returns identifier of staff user that created the time track.</h2>
+<pre>getCreatorStaffId() : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>filterBy</th>
+<td></td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>int</code></div>
+</div></div>
+</div>
+<a name="getCreatorStaffName" id="getCreatorStaffName"></a><div class="element clickable method public getCreatorStaffName" data-toggle="collapse" data-target=".getCreatorStaffName .collapse">
+<h2>Returns full name of staff user that created the time track.</h2>
+<pre>getCreatorStaffName() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>filterBy</th>
+<td></td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getId" id="getId"></a><div class="element clickable method public getId" data-toggle="collapse" data-target=".getId .collapse">
+<h2>Should return object identifier or complete list of identifiers as needed by API to identify the object (ex. ticket identifier and ticket post identifier in case of TicketPost).</h2>
+<pre>getId(bool $complete) : int | array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$complete</h4>
+<code>bool</code><p>True to return complete list of identifiers as needed by API to identify the object.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>int</code><code>array</code>
+</div>
+</div></div>
+</div>
+<a name="getNoteColor" id="getNoteColor"></a><div class="element clickable method public getNoteColor" data-toggle="collapse" data-target=".getNoteColor .collapse">
+<h2>Returns color of the time track - one of kyTicketTimeTrack::COLOR_* constants.</h2>
+<pre>getNoteColor() : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td>\kyTicketTimeTrack::COLOR</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>int</code></div>
+</div></div>
+</div>
+<a name="getRequiredAPIFields" id="getRequiredAPIFields"></a><div class="element clickable method public getRequiredAPIFields" data-toggle="collapse" data-target=".getRequiredAPIFields .collapse">
+<h2>Returns list of required API fields for objects of this class.</h2>
+<pre>getRequiredAPIFields(bool $create) : \string[]</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::getRequiredAPIFields()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$create</h4>
+<code>bool</code><p>True when object will be created. False when object will be updated.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\string[]</code></div>
+</div></div>
+</div>
+<a name="getTicket" id="getTicket"></a><div class="element clickable method public getTicket" data-toggle="collapse" data-target=".getTicket .collapse">
+<h2>Returns the ticket that this time track is connected with.</h2>
+<pre>getTicket(bool $reload) : <a href="../classes/kyTicket.html">\kyTicket</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Result is cached until the end of script.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$reload</h4>
+<code>bool</code><p>True to reload data from server. False to use the cached value (if present).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyTicket.html">\kyTicket</a></code></div>
+</div></div>
+</div>
+<a name="getTicketId" id="getTicketId"></a><div class="element clickable method public getTicketId" data-toggle="collapse" data-target=".getTicketId .collapse">
+<h2>Returns ticket identifier of this time track.</h2>
+<pre>getTicketId() : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>int</code></div>
+</div></div>
+</div>
+<a name="getTimeBillable" id="getTimeBillable"></a><div class="element clickable method public getTimeBillable" data-toggle="collapse" data-target=".getTimeBillable .collapse">
+<h2>Returns billable time for this time track.</h2>
+<pre>getTimeBillable(bool $formatted) : int | string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>filterBy</th>
+<td></td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$formatted</h4>
+<code>bool</code><p>True to format result nicely (ex. 02:30:00). False to return amount of seconds.</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>int</code><code>string</code>
+</div>
+</div></div>
+</div>
+<a name="getTimeWorked" id="getTimeWorked"></a><div class="element clickable method public getTimeWorked" data-toggle="collapse" data-target=".getTimeWorked .collapse">
+<h2>Returns time worked for this time track.</h2>
+<pre>getTimeWorked(bool $formatted) : int | string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>filterBy</th>
+<td></td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$formatted</h4>
+<code>bool</code><p>True to format result nicely (ex. 02:30:00). False to return amount of seconds.</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>int</code><code>string</code>
+</div>
+</div></div>
+</div>
+<a name="getWorkDate" id="getWorkDate"></a><div class="element clickable method public getWorkDate" data-toggle="collapse" data-target=".getWorkDate .collapse">
+<h2>Returns date and time when the work was executed.</h2>
+<pre>getWorkDate(string $format) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>see</th>
+<td>\http://www.php.net/manual/en/function.date.php</td>
+</tr>
+<tr>
+<th>filterBy</th>
+<td></td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$format</h4>
+<code>string</code><p>Output format of the date. If null the format set in client configuration is used.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getWorkerStaff" id="getWorkerStaff"></a><div class="element clickable method public getWorkerStaff" data-toggle="collapse" data-target=".getWorkerStaff .collapse">
+<h2>Returns staff user object that has done the work.</h2>
+<pre>getWorkerStaff(bool $reload) : <a href="../classes/kyStaff.html">\kyStaff</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Result is cached until the end of script.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$reload</h4>
+<code>bool</code><p>True to reload data from server. False to use the cached value (if present).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyStaff.html">\kyStaff</a></code></div>
+</div></div>
+</div>
+<a name="getWorkerStaffId" id="getWorkerStaffId"></a><div class="element clickable method public getWorkerStaffId" data-toggle="collapse" data-target=".getWorkerStaffId .collapse">
+<h2>Returns identifier of staff user that has done the work.</h2>
+<pre>getWorkerStaffId() : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>filterBy</th>
+<td></td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>int</code></div>
+</div></div>
+</div>
+<a name="getWorkerStaffName" id="getWorkerStaffName"></a><div class="element clickable method public getWorkerStaffName" data-toggle="collapse" data-target=".getWorkerStaffName .collapse">
+<h2>Returns full name of staff user that has done the work.</h2>
+<pre>getWorkerStaffName() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>filterBy</th>
+<td></td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="isNew" id="isNew"></a><div class="element clickable method public isNew" data-toggle="collapse" data-target=".isNew .collapse">
+<h2>Returns whether the object is new and not yet saved on the server.</h2>
+<pre>isNew() : bool</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::isNew()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="isReadOnly" id="isReadOnly"></a><div class="element clickable method public isReadOnly" data-toggle="collapse" data-target=".isReadOnly .collapse">
+<h2>Returns whether this object is read only.</h2>
+<pre>isReadOnly() : bool</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::isReadOnly()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="refresh" id="refresh"></a><div class="element clickable method public refresh" data-toggle="collapse" data-target=".refresh .collapse">
+<h2>Refreshes the object data from server.</h2>
+<pre>refresh() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::refresh()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
+</div></div>
+</div>
+<a name="save" id="save"></a><div class="element clickable method public save" data-toggle="collapse" data-target=".save .collapse">
+<h2>Saves (creates or updates) the object to the server.</h2>
+<pre>save() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::save()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
+</div></div>
+</div>
+<a name="setBillDate" id="setBillDate"></a><div class="element clickable method public setBillDate" data-toggle="collapse" data-target=".setBillDate .collapse">
+<h2>Sets date and time when to bill the worker.</h2>
+<pre>setBillDate(string | int $bill_date) : <a href="../classes/kyTicketTimeTrack.html">\kyTicketTimeTrack</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td>\http://www.php.net/manual/en/function.strtotime.php</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$bill_date</h4>
+<code>stringint</code><p>Date and time when the work was executed (timestamp or string format understood by PHP strtotime).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyTicketTimeTrack.html">\kyTicketTimeTrack</a></code></div>
+</div></div>
+</div>
+<a name="setBillingData" id="setBillingData"></a><div class="element clickable method public setBillingData" data-toggle="collapse" data-target=".setBillingData .collapse">
+<h2>Shortcut function for setting billable time and when to bill the worker.</h2>
+<pre>setBillingData(string | int $time_billable, string $bill_date) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td>\http://www.php.net/manual/en/function.strtotime.php</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$time_billable</h4>
+<code>stringint</code><p>Billable time (as seconds or formatted as hh:mm).</p>
+</div>
+<div class="subelement argument">
+<h4>$bill_date</h4>
+<code>string</code><p>Date and time when to bill the worker (timestamp or string format understood by PHP strtotime). Defaults to current datetime.</p>
+</div>
+</div></div>
+</div>
+<a name="setContents" id="setContents"></a><div class="element clickable method public setContents" data-toggle="collapse" data-target=".setContents .collapse">
+<h2>Sets contents of the time track.</h2>
+<pre>setContents(string $contents) : <a href="../classes/kyTicketTimeTrack.html">\kyTicketTimeTrack</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$contents</h4>
+<code>string</code><p>Contents of the time track.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyTicketTimeTrack.html">\kyTicketTimeTrack</a></code></div>
+</div></div>
+</div>
+<a name="setCreatorStaff" id="setCreatorStaff"></a><div class="element clickable method public setCreatorStaff" data-toggle="collapse" data-target=".setCreatorStaff .collapse">
+<h2>Sets staff user that creates the time track.</h2>
+<pre>setCreatorStaff(<a href="../classes/kyStaff.html">\kyStaff</a> $creator_staff) : <a href="../classes/kyTicketTimeTrack.html">\kyTicketTimeTrack</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$creator_staff</h4>
+<code><a href="../classes/kyStaff.html">\kyStaff</a></code><p>Staff user that creates the time track.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyTicketTimeTrack.html">\kyTicketTimeTrack</a></code></div>
+</div></div>
+</div>
+<a name="setCreatorStaffId" id="setCreatorStaffId"></a><div class="element clickable method public setCreatorStaffId" data-toggle="collapse" data-target=".setCreatorStaffId .collapse">
+<h2>Sets the identifier of staff user that creates the time track.</h2>
+<pre>setCreatorStaffId(int $creator_staff_id) : <a href="../classes/kyTicketTimeTrack.html">\kyTicketTimeTrack</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$creator_staff_id</h4>
+<code>int</code><p>Identifier of staff user that creates the time track.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyTicketTimeTrack.html">\kyTicketTimeTrack</a></code></div>
+</div></div>
+</div>
+<a name="setNoteColor" id="setNoteColor"></a><div class="element clickable method public setNoteColor" data-toggle="collapse" data-target=".setNoteColor .collapse">
+<h2>Sets color of the time track.</h2>
+<pre>setNoteColor(int $note_color) : <a href="../classes/kyTicketTimeTrack.html">\kyTicketTimeTrack</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td>\kyTicketTimeTrack::COLOR</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$note_color</h4>
+<code>int</code><p>Color of the time track - one of kyTicketTimeTrack::COLOR_* constants.</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyTicketTimeTrack.html">\kyTicketTimeTrack</a></code></div>
+</div></div>
+</div>
+<a name="setReadOnly" id="setReadOnly"></a><div class="element clickable method public setReadOnly" data-toggle="collapse" data-target=".setReadOnly .collapse">
+<h2>Sets whether this object is read only.</h2>
+<pre>setReadOnly(bool $read_only) : bool</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::setReadOnly()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$read_only</h4>
+<code>bool</code><p>Read only flag.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="setTicket" id="setTicket"></a><div class="element clickable method public setTicket" data-toggle="collapse" data-target=".setTicket .collapse">
+<h2>Sets the ticket that this time track will be connected with.</h2>
+<pre>setTicket(<a href="../classes/kyTicket.html">\kyTicket</a> $ticket) : <a href="../classes/kyTicketTimeTrack.html">\kyTicketTimeTrack</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$ticket</h4>
+<code><a href="../classes/kyTicket.html">\kyTicket</a></code><p>Ticket.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyTicketTimeTrack.html">\kyTicketTimeTrack</a></code></div>
+</div></div>
+</div>
+<a name="setTicketId" id="setTicketId"></a><div class="element clickable method public setTicketId" data-toggle="collapse" data-target=".setTicketId .collapse">
+<h2>Sets ticket identifier of the time track.</h2>
+<pre>setTicketId(int $ticket_id) : <a href="../classes/kyTicketTimeTrack.html">\kyTicketTimeTrack</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$ticket_id</h4>
+<code>int</code><p>Ticket identifier of the time track</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyTicketTimeTrack.html">\kyTicketTimeTrack</a></code></div>
+</div></div>
+</div>
+<a name="setTimeBillable" id="setTimeBillable"></a><div class="element clickable method public setTimeBillable" data-toggle="collapse" data-target=".setTimeBillable .collapse">
+<h2>Sets billable time for this time track.</h2>
+<pre>setTimeBillable(string | int $time_billable) : <a href="../classes/kyTicketTimeTrack.html">\kyTicketTimeTrack</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$time_billable</h4>
+<code>stringint</code><p>Billable time (as seconds or formatted as hh:mm).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyTicketTimeTrack.html">\kyTicketTimeTrack</a></code></div>
+</div></div>
+</div>
+<a name="setTimeWorked" id="setTimeWorked"></a><div class="element clickable method public setTimeWorked" data-toggle="collapse" data-target=".setTimeWorked .collapse">
+<h2>Sets worked time for this time track.</h2>
+<pre>setTimeWorked(string | int $time_worked) : <a href="../classes/kyTicketTimeTrack.html">\kyTicketTimeTrack</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$time_worked</h4>
+<code>stringint</code><p>Worked time (as seconds or formatted as hh:mm).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyTicketTimeTrack.html">\kyTicketTimeTrack</a></code></div>
+</div></div>
+</div>
+<a name="setWorkDate" id="setWorkDate"></a><div class="element clickable method public setWorkDate" data-toggle="collapse" data-target=".setWorkDate .collapse">
+<h2>Sets date and time when the work was executed.</h2>
+<pre>setWorkDate(string | int $work_date) : <a href="../classes/kyTicketTimeTrack.html">\kyTicketTimeTrack</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td>\http://www.php.net/manual/en/function.strtotime.php</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$work_date</h4>
+<code>stringint</code><p>Date and time when the work was executed (timestamp or string format understood by PHP strtotime).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyTicketTimeTrack.html">\kyTicketTimeTrack</a></code></div>
+</div></div>
+</div>
+<a name="setWorkedData" id="setWorkedData"></a><div class="element clickable method public setWorkedData" data-toggle="collapse" data-target=".setWorkedData .collapse">
+<h2>Shortcut function for setting worked time and when the work was executed.</h2>
+<pre>setWorkedData(string | int $time_worked, string $work_date) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td>\http://www.php.net/manual/en/function.strtotime.php</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$time_worked</h4>
+<code>stringint</code><p>Worked time (as seconds or formatted as hh:mm).</p>
+</div>
+<div class="subelement argument">
+<h4>$work_date</h4>
+<code>string</code><p>Date and time when the work was exectued (timestamp or string format understood by PHP strtotime). Defaults to current datetime.</p>
+</div>
+</div></div>
+</div>
+<a name="setWorkerStaff" id="setWorkerStaff"></a><div class="element clickable method public setWorkerStaff" data-toggle="collapse" data-target=".setWorkerStaff .collapse">
+<h2>Sets staff user that has done the work.</h2>
+<pre>setWorkerStaff(<a href="../classes/kyStaff.html">\kyStaff</a> $worker_staff) : <a href="../classes/kyTicketTimeTrack.html">\kyTicketTimeTrack</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$worker_staff</h4>
+<code><a href="../classes/kyStaff.html">\kyStaff</a></code><p>Staff user that has done the work.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyTicketTimeTrack.html">\kyTicketTimeTrack</a></code></div>
+</div></div>
+</div>
+<a name="setWorkerStaffId" id="setWorkerStaffId"></a><div class="element clickable method public setWorkerStaffId" data-toggle="collapse" data-target=".setWorkerStaffId .collapse">
+<h2>Sets the identifier of staff user that has done the work.</h2>
+<pre>setWorkerStaffId(int $worker_staff_id) : <a href="../classes/kyTicketTimeTrack.html">\kyTicketTimeTrack</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$worker_staff_id</h4>
+<code>int</code><p>Identifier of staff user that has done the work.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyTicketTimeTrack.html">\kyTicketTimeTrack</a></code></div>
+</div></div>
+</div>
+<a name="toString" id="toString"></a><div class="element clickable method public toString" data-toggle="collapse" data-target=".toString .collapse">
+<h2>Should return short (one line) description of the object (it's title, name, etc.).</h2>
+<pre>toString() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="update" id="update"></a><div class="element clickable method public update" data-toggle="collapse" data-target=".update .collapse">
+<h2>Updates the object on the server and refreshes its local data.</h2>
+<pre>update() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
+</div></div>
+</div>
+<a name="getRESTClient" id="getRESTClient"></a><div class="element clickable method protected getRESTClient" data-toggle="collapse" data-target=".getRESTClient .collapse">
+<h2>Returns REST client.</h2>
+<pre>getRESTClient() : <a href="../classes/kyRESTClientInterface.html">\kyRESTClientInterface</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::getRESTClient()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyRESTClientInterface.html">\kyRESTClientInterface</a></code></div>
+</div></div>
+</div>
+<a name="parseData" id="parseData"></a><div class="element clickable method protected parseData" data-toggle="collapse" data-target=".parseData .collapse">
+<h2>Should use passed data to fill object properties.</h2>
+<pre>parseData(array $data) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>Object data from XML response.</p></div>
+</div></div>
+</div>
+<a name="initAPIFieldsAccessors" id="initAPIFieldsAccessors"></a><div class="element clickable method private initAPIFieldsAccessors" data-toggle="collapse" data-target=".initAPIFieldsAccessors .collapse">
+<h2>Builds API fields list.</h2>
+<pre>initAPIFieldsAccessors() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Scans protected and private properties of called class, searches for</p></p>
+<table class="table table-bordered">
+<tr>
+<th>apiField</th>
+<td>[name=field name] [accessor=setter/getter name] [getter=getter name] [setter=setter name] [required_create=true if field if required when creating object] [required_update=true if field if required when udpating object] [required=true if field if required when creating or updating object]
+and builds API field list with property name, description, setter and getter method names, and required flags.</td>
+</tr>
+<tr>
+<th>see</th>
+<td>\kyObjectBase::$_api_fields</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::initAPIFieldsAccessors()</td>
+</tr>
+</table>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a name="%24_filter_methods" id="$_filter_methods"> </a><div class="element clickable property protected $_filter_methods" data-toggle="collapse" data-target=".$_filter_methods .collapse">
+<h2>Cache for available filter methods.</h2>
+<pre>$_filter_methods : \string[]</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Format:
+array(
+ '<class name>' => array(
+        '<filter method name>' => '<get method name>',
+        ...repeat for every filtering enabled method...
+    ),
+    ...repeat for every object class...
+)</p></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::$$_filter_methods</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24_order_methods" id="$_order_methods"> </a><div class="element clickable property protected $_order_methods" data-toggle="collapse" data-target=".$_order_methods .collapse">
+<h2>Cache for available order methods.</h2>
+<pre>$_order_methods : \string[]</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Format:
+array(
+ '<class name>' => array(
+        '<order method name>' => '<get method name>',
+        ...repeat for every ordering enabled method...
+    ),
+    ...repeat for every object class...
+)</p></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::$$_order_methods</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24bill_date" id="$bill_date"> </a><div class="element clickable property protected $bill_date" data-toggle="collapse" data-target=".$bill_date .collapse">
+<h2>Bill timestamp of this ticket time track.</h2>
+<pre>$bill_date : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td>required_create=true alias=billtimeline</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24contents" id="$contents"> </a><div class="element clickable property protected $contents" data-toggle="collapse" data-target=".$contents .collapse">
+<h2>Note contents of this ticket time track.</h2>
+<pre>$contents : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td>required_create=true</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24controller" id="$controller"> </a><div class="element clickable property protected $controller" data-toggle="collapse" data-target=".$controller .collapse">
+<h2>Default Kayako controller used to operate on this objects. Override in descending classes.</h2>
+<pre>$controller : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="%24creator_staff_id" id="$creator_staff_id"> </a><div class="element clickable property protected $creator_staff_id" data-toggle="collapse" data-target=".$creator_staff_id .collapse">
+<h2>Creator staff identifier.</h2>
+<pre>$creator_staff_id : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td>required_create=true alias=staffid</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24creator_staff_name" id="$creator_staff_name"> </a><div class="element clickable property protected $creator_staff_name" data-toggle="collapse" data-target=".$creator_staff_name .collapse">
+<h2>Creator staff full name.</h2>
+<pre>$creator_staff_name : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24id" id="$id"> </a><div class="element clickable property protected $id" data-toggle="collapse" data-target=".$id .collapse">
+<h2>Ticket time track identifier.</h2>
+<pre>$id : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24note_color" id="$note_color"> </a><div class="element clickable property protected $note_color" data-toggle="collapse" data-target=".$note_color .collapse">
+<h2>Ticket time track note color.</h2>
+<pre>$note_color : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>see</th>
+<td>\kyTicketTimeTrack::COLOR</td>
+</tr>
+<tr>
+<th>apiField</th>
+<td></td>
+</tr>
+</table>
+</div></div>
+</div>
+<a name="%24object_xml_name" id="$object_xml_name"> </a><div class="element clickable property protected $object_xml_name" data-toggle="collapse" data-target=".$object_xml_name .collapse">
+<h2>Indicates the name of object element in XML response. Override in descending classes.</h2>
+<pre>$object_xml_name : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="%24read_only" id="$read_only"> </a><div class="element clickable property protected $read_only" data-toggle="collapse" data-target=".$read_only .collapse">
+<h2>Controls if the object can be created/updated/deleted. Override in descending classes.</h2>
+<pre>$read_only : bool</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::$$read_only</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24ticket_id" id="$ticket_id"> </a><div class="element clickable property protected $ticket_id" data-toggle="collapse" data-target=".$ticket_id .collapse">
+<h2>Ticket identifier.</h2>
+<pre>$ticket_id : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td>required_create=true</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24time_billable" id="$time_billable"> </a><div class="element clickable property protected $time_billable" data-toggle="collapse" data-target=".$time_billable .collapse">
+<h2>Billable time (in seconds) in this ticket time track.</h2>
+<pre>$time_billable : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td>required_create=true</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24time_worked" id="$time_worked"> </a><div class="element clickable property protected $time_worked" data-toggle="collapse" data-target=".$time_worked .collapse">
+<h2>Time worked (in seconds) in this ticket time track.</h2>
+<pre>$time_worked : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td>required_create=true alias=timespent</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24work_date" id="$work_date"> </a><div class="element clickable property protected $work_date" data-toggle="collapse" data-target=".$work_date .collapse">
+<h2>Work timestamp of this ticket time track.</h2>
+<pre>$work_date : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td>required_create=true alias=worktimeline</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24worker_staff_id" id="$worker_staff_id"> </a><div class="element clickable property protected $worker_staff_id" data-toggle="collapse" data-target=".$worker_staff_id .collapse">
+<h2>Worker staff identifier.</h2>
+<pre>$worker_staff_id : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24worker_staff_name" id="$worker_staff_name"> </a><div class="element clickable property protected $worker_staff_name" data-toggle="collapse" data-target=".$worker_staff_name .collapse">
+<h2>Worker staff full name.</h2>
+<pre>$worker_staff_name : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24_api_fields" id="$_api_fields"> </a><div class="element clickable property private $_api_fields" data-toggle="collapse" data-target=".$_api_fields .collapse">
+<h2>Cache for API fields.</h2>
+<pre>$_api_fields : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Format:
+array(
+    '<class name>' => array(
+        '<api field name>' => array(
+            'property' => '<class property holding field value>',
+            'description' => '<description of the field>',
+            'getter' => '<value getter method or null if write-only>',
+            'setter' => '<value setter method or null if read-only>',
+            'required_create' => <present and true if this field is required for creating the object>,
+            'required_update' => <present and true if this field is required for updating the object>
+        ),
+        ...repeat for every class api field...
+    ),
+    ...repeat for every object class...
+)</p></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::$$_api_fields</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24creator_staff" id="$creator_staff"> </a><div class="element clickable property private $creator_staff" data-toggle="collapse" data-target=".$creator_staff .collapse">
+<h2>Creator staff.</h2>
+<pre>$creator_staff : <a href="../classes/kyStaff.html">\kyStaff</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="%24ticket" id="$ticket"> </a><div class="element clickable property private $ticket" data-toggle="collapse" data-target=".$ticket .collapse">
+<h2>The ticket that this time track will be connected with.</h2>
+<pre>$ticket : <a href="../classes/kyTicket.html">\kyTicket</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="%24worker_staff" id="$worker_staff"> </a><div class="element clickable property private $worker_staff" data-toggle="collapse" data-target=".$worker_staff .collapse">
+<h2>Worker staff.</h2>
+<pre>$worker_staff : <a href="../classes/kyStaff.html">\kyStaff</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<h3>
+<i class="icon-custom icon-constant"></i> Constants</h3>
+<a name="COLOR_BLUE" id="COLOR_BLUE"> </a><div class="element clickable constant  COLOR_BLUE" data-toggle="collapse" data-target=".COLOR_BLUE .collapse">
+<h2>Color of time track - blue.</h2>
+<pre>COLOR_BLUE : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="COLOR_GREEN" id="COLOR_GREEN"> </a><div class="element clickable constant  COLOR_GREEN" data-toggle="collapse" data-target=".COLOR_GREEN .collapse">
+<h2>Color of time track - green.</h2>
+<pre>COLOR_GREEN : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="COLOR_PURPLE" id="COLOR_PURPLE"> </a><div class="element clickable constant  COLOR_PURPLE" data-toggle="collapse" data-target=".COLOR_PURPLE .collapse">
+<h2>Color of time track - purple.</h2>
+<pre>COLOR_PURPLE : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="COLOR_RED" id="COLOR_RED"> </a><div class="element clickable constant  COLOR_RED" data-toggle="collapse" data-target=".COLOR_RED .collapse">
+<h2>Color of time track - red.</h2>
+<pre>COLOR_RED : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="COLOR_YELLOW" id="COLOR_YELLOW"> </a><div class="element clickable constant  COLOR_YELLOW" data-toggle="collapse" data-target=".COLOR_YELLOW .collapse">
+<h2>Color of time track - yellow.</h2>
+<pre>COLOR_YELLOW : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="FILES_DATA_NAME" id="FILES_DATA_NAME"> </a><div class="element clickable constant  FILES_DATA_NAME" data-toggle="collapse" data-target=".FILES_DATA_NAME .collapse">
+<h2>Data key for storing files to send as multipart/form-data.</h2>
+<pre>FILES_DATA_NAME : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::FILES_DATA_NAME</td>
+</tr></table>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a2</a> and<br>
+            generated on 2012-05-05T01:22:19+02:00.<br></footer></div>
+</div>
+</body>
+</html>

@@ -1,22 +1,25 @@
 <?php
-require_once('kyCustomFieldGroupBase.php');
-
 /**
- * Part of PHP client to REST API of Kayako v4 (Kayako Fusion).
- * Compatible with Kayako version >= 4.01.240.
- *
  * Kayako TicketCustomField object.
  *
  * @author Tomasz Sawicki (https://github.com/Furgas)
+ * @link http://wiki.kayako.com/display/DEV/REST+-+TicketCustomField
+ * @since Kayako version 4.01.220
+ * @package Object\Ticket
  */
 class kyTicketCustomFieldGroup extends kyCustomFieldGroupBase {
 
 	static protected $controller = '/Tickets/TicketCustomField';
 
-	private $ticket_id;
+	/**
+	 * Ticket identifier.
+	 * @var int
+	 */
+	protected $ticket_id;
 
 	function __construct($ticket_id, $data = null) {
 		parent::__construct($data);
+		$this->type = kyCustomFieldGroupBase::TYPE_TICKET;
 		$this->ticket_id = $ticket_id;
 	}
 
@@ -27,7 +30,7 @@ class kyTicketCustomFieldGroup extends kyCustomFieldGroupBase {
 	 * @return kyResultSet
 	 */
 	static public function getAll($ticket_id) {
-		$result = static::_get(array($ticket_id));
+		$result = self::getRESTClient()->get(static::$controller, array($ticket_id));
 		$objects = array();
 		if (array_key_exists(static::$object_xml_name, $result)) {
 			foreach ($result[static::$object_xml_name] as $object_data) {
@@ -38,7 +41,7 @@ class kyTicketCustomFieldGroup extends kyCustomFieldGroupBase {
 	}
 
 	/**
-	 * Returns ticket identifier, this group is associated with.
+	 * Returns identifier of the ticket that this group is associated with.
 	 *
 	 * @return int
 	 */

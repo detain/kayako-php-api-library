@@ -1,0 +1,1217 @@
+<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>Kayako PHP API Library » \kyTicketStatus</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">Kayako PHP API Library</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    Source Code Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Common.html"><i class="icon-folder-open"></i> Common</a></li>
+<li><a href="../packages/Object.html"><i class="icon-folder-open"></i> Object</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods</li>
+<li class="method public inherited"><a href="#__construct" title="__construct :: Default constructor."><span class="description">Default constructor.</span><pre>__construct()</pre></a></li>
+<li class="method public inherited"><a href="#__get" title="__get :: Returns API field value."><span class="description">Returns API field value.</span><pre>__get()</pre></a></li>
+<li class="method public inherited"><a href="#__set" title="__set :: Sets API field value."><span class="description">Sets API field value.</span><pre>__set()</pre></a></li>
+<li class="method public inherited"><a href="#__toString" title="__toString :: Returns object description with it's type and identifier."><span class="description">Returns object description with it's type and identifier.</span><pre>__toString()</pre></a></li>
+<li class="method public inherited"><a href="#buildData" title="buildData :: Should build the array of object data for creating or updating the object."><span class="description">Should build the array of object data for creating or updating the object.</span><pre>buildData()</pre></a></li>
+<li class="method public inherited"><a href="#checkRequiredAPIFields" title="checkRequiredAPIFields :: Checks wheter this object has all required fields set."><span class="description">Checks wheter this object has all required fields set.</span><pre>checkRequiredAPIFields()</pre></a></li>
+<li class="method public inherited"><a href="#create" title="create :: Creates an object on the server and refreshes its local data."><span class="description">Creates an object on the server and refreshes its local data.</span><pre>create()</pre></a></li>
+<li class="method public inherited"><a href="#createNew" title="createNew :: Creates new object. Compatible with method chaining."><span class="description">Creates new object. Compatible with method chaining.</span><pre>createNew()</pre></a></li>
+<li class="method public inherited"><a href="#delete" title="delete :: Deletes the object on the server."><span class="description">Deletes the object on the server.</span><pre>delete()</pre></a></li>
+<li class="method public inherited"><a href="#get" title="get :: Fetches the object from server."><span class="description">Fetches the object from server.</span><pre>get()</pre></a></li>
+<li class="method public inherited"><a href="#getAPIFields" title="getAPIFields :: Returns array of API fields."><span class="description">Returns array of API fields.</span><pre>getAPIFields()</pre></a></li>
+<li class="method public inherited"><a href="#getAll" title="getAll :: Fetches objects from server."><span class="description">Fetches objects from server.</span><pre>getAll()</pre></a></li>
+<li class="method public inherited"><a href="#getAvailableFilterMethods" title="getAvailableFilterMethods :: Returns list of available filter methods for use in result sets with objects of this type."><span class="description">Returns list of available filter methods for use in result sets with objects of this type.</span><pre>getAvailableFilterMethods()</pre></a></li>
+<li class="method public inherited"><a href="#getAvailableOrderMethods" title="getAvailableOrderMethods :: Returns list of available order methods for use in result sets with objects of this type."><span class="description">Returns list of available order methods for use in result sets with objects of this type.</span><pre>getAvailableOrderMethods()</pre></a></li>
+<li class="method public inherited"><a href="#getController" title="getController :: Returns object controller."><span class="description">Returns object controller.</span><pre>getController()</pre></a></li>
+<li class="method public "><a href="#getDepartment" title="getDepartment :: Returns linked department."><span class="description">Returns linked department.</span><pre>getDepartment()</pre></a></li>
+<li class="method public "><a href="#getDepartmentId" title="getDepartmentId :: Returns linked department identifier."><span class="description">Returns linked department identifier.</span><pre>getDepartmentId()</pre></a></li>
+<li class="method public "><a href="#getDisplayCount" title="getDisplayCount :: Returns whether ticket count for this status is displayed in the filter ticket tree."><span class="description">Returns whether ticket count for this status is displayed in the filter ticket tree.</span><pre>getDisplayCount()</pre></a></li>
+<li class="method public "><a href="#getDisplayIcon" title="getDisplayIcon :: Returns path to icon displayed in GUI for this ticket status."><span class="description">Returns path to icon displayed in GUI for this ticket status.</span><pre>getDisplayIcon()</pre></a></li>
+<li class="method public "><a href="#getDisplayOrder" title="getDisplayOrder :: Returns ticket status display order."><span class="description">Returns ticket status display order.</span><pre>getDisplayOrder()</pre></a></li>
+<li class="method public "><a href="#getId" title="getId :: Should return object identifier or complete list of identifiers as needed by API to identify the object (ex. ticket identifier and ticket post identifier in case of TicketPost)."><span class="description">Should return object identifier or complete list of identifiers as needed by API to identify the object (ex. ticket identifier and ticket post identifier in case of TicketPost).</span><pre>getId()</pre></a></li>
+<li class="method public "><a href="#getMarkAsResolved" title="getMarkAsResolved :: Returns whether tickets with this status are marked as resolved/closed."><span class="description">Returns whether tickets with this status are marked as resolved/closed.</span><pre>getMarkAsResolved()</pre></a></li>
+<li class="method public inherited"><a href="#getRequiredAPIFields" title="getRequiredAPIFields :: Returns list of required API fields for objects of this class."><span class="description">Returns list of required API fields for objects of this class.</span><pre>getRequiredAPIFields()</pre></a></li>
+<li class="method public "><a href="#getResetDueTime" title="getResetDueTime :: Returns whether Kayako will automatically clear the due time for a ticket when the ticket status changes to this status."><span class="description">Returns whether Kayako will automatically clear the due time for a ticket when the ticket status changes to this status.</span><pre>getResetDueTime()</pre></a></li>
+<li class="method public "><a href="#getStaffGroupIds" title="getStaffGroupIds :: Returns list of identifiers of staff groups which can change ticket status to this status."><span class="description">Returns list of identifiers of staff groups which can change ticket status to this status.</span><pre>getStaffGroupIds()</pre></a></li>
+<li class="method public "><a href="#getStaffGroups" title="getStaffGroups :: Returns list of staff groups which can change ticket status to this status."><span class="description">Returns list of staff groups which can change ticket status to this status.</span><pre>getStaffGroups()</pre></a></li>
+<li class="method public "><a href="#getStaffVisibilityCustom" title="getStaffVisibilityCustom :: Returns whether a ticket status can be changed to this status only by the selected staff teams."><span class="description">Returns whether a ticket status can be changed to this status only by the selected staff teams.</span><pre>getStaffVisibilityCustom()</pre></a></li>
+<li class="method public "><a href="#getStatusBackgroundColor" title="getStatusBackgroundColor :: Returns background color associated with this ticket status in GUI."><span class="description">Returns background color associated with this ticket status in GUI.</span><pre>getStatusBackgroundColor()</pre></a></li>
+<li class="method public "><a href="#getStatusColor" title="getStatusColor :: Returns font color associated with this ticket status in GUI."><span class="description">Returns font color associated with this ticket status in GUI.</span><pre>getStatusColor()</pre></a></li>
+<li class="method public "><a href="#getTitle" title="getTitle :: Returns ticket status title."><span class="description">Returns ticket status title.</span><pre>getTitle()</pre></a></li>
+<li class="method public "><a href="#getTriggerSurvey" title="getTriggerSurvey :: If whether whenever a ticket is changed to this ticket status a survey email will be dispatched to the user asking for rating and comments."><span class="description">If whether whenever a ticket is changed to this ticket status a survey email will be dispatched to the user asking for rating and comments.</span><pre>getTriggerSurvey()</pre></a></li>
+<li class="method public "><a href="#getType" title="getType :: Returns type of this ticket status."><span class="description">Returns type of this ticket status.</span><pre>getType()</pre></a></li>
+<li class="method public "><a href="#isAvailableInDepartment" title="isAvailableInDepartment :: Returns whether this ticket status is visible under specified department."><span class="description">Returns whether this ticket status is visible under specified department.</span><pre>isAvailableInDepartment()</pre></a></li>
+<li class="method public inherited"><a href="#isNew" title="isNew :: Returns whether the object is new and not yet saved on the server."><span class="description">Returns whether the object is new and not yet saved on the server.</span><pre>isNew()</pre></a></li>
+<li class="method public inherited"><a href="#isReadOnly" title="isReadOnly :: Returns whether this object is read only."><span class="description">Returns whether this object is read only.</span><pre>isReadOnly()</pre></a></li>
+<li class="method public "><a href="#isVisibleToStaffGroup" title="isVisibleToStaffGroup :: Returns whether this ticket status can be set by specified staff group."><span class="description">Returns whether this ticket status can be set by specified staff group.</span><pre>isVisibleToStaffGroup()</pre></a></li>
+<li class="method public inherited"><a href="#refresh" title="refresh :: Refreshes the object data from server."><span class="description">Refreshes the object data from server.</span><pre>refresh()</pre></a></li>
+<li class="method public inherited"><a href="#save" title="save :: Saves (creates or updates) the object to the server."><span class="description">Saves (creates or updates) the object to the server.</span><pre>save()</pre></a></li>
+<li class="method public inherited"><a href="#setReadOnly" title="setReadOnly :: Sets whether this object is read only."><span class="description">Sets whether this object is read only.</span><pre>setReadOnly()</pre></a></li>
+<li class="method public "><a href="#toString" title="toString :: Should return short (one line) description of the object (it's title, name, etc.)."><span class="description">Should return short (one line) description of the object (it's title, name, etc.).</span><pre>toString()</pre></a></li>
+<li class="method public inherited"><a href="#update" title="update :: Updates the object on the server and refreshes its local data."><span class="description">Updates the object on the server and refreshes its local data.</span><pre>update()</pre></a></li>
+<li class="nav-header protected">» Protected</li>
+<li class="method protected inherited"><a href="#getRESTClient" title="getRESTClient :: Returns REST client."><span class="description">Returns REST client.</span><pre>getRESTClient()</pre></a></li>
+<li class="method protected "><a href="#parseData" title="parseData :: Should use passed data to fill object properties."><span class="description">Should use passed data to fill object properties.</span><pre>parseData()</pre></a></li>
+<li class="nav-header private">» Private</li>
+<li class="method private inherited"><a href="#initAPIFieldsAccessors" title="initAPIFieldsAccessors :: Builds API fields list."><span class="description">Builds API fields list.</span><pre>initAPIFieldsAccessors()</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties</li>
+<li class="nav-header protected">» Protected</li>
+<li class="property protected inherited"><a href="#%24_filter_methods" title="$_filter_methods :: Cache for available filter methods."><span class="description">Cache for available filter methods.</span><pre>$_filter_methods</pre></a></li>
+<li class="property protected inherited"><a href="#%24_order_methods" title="$_order_methods :: Cache for available order methods."><span class="description">Cache for available order methods.</span><pre>$_order_methods</pre></a></li>
+<li class="property protected "><a href="#%24controller" title="$controller :: Default Kayako controller used to operate on this objects. Override in descending classes."><span class="description">Default Kayako controller used to operate on this objects. Override in descending classes.</span><pre>$controller</pre></a></li>
+<li class="property protected "><a href="#%24department_id" title="$department_id :: Linked department identifier."><span class="description">Linked department identifier.</span><pre>$department_id</pre></a></li>
+<li class="property protected "><a href="#%24display_count" title="$display_count :: If ticket count for this status is displayed in the filter ticket tree."><span class="description">If ticket count for this status is displayed in the filter ticket tree.</span><pre>$display_count</pre></a></li>
+<li class="property protected "><a href="#%24display_icon" title="$display_icon :: Path to icon displayed in GUI for this ticket status."><span class="description">Path to icon displayed in GUI for this ticket status.</span><pre>$display_icon</pre></a></li>
+<li class="property protected "><a href="#%24display_order" title="$display_order :: Ticket status display order."><span class="description">Ticket status display order.</span><pre>$display_order</pre></a></li>
+<li class="property protected "><a href="#%24id" title="$id :: Ticket status identifier."><span class="description">Ticket status identifier.</span><pre>$id</pre></a></li>
+<li class="property protected "><a href="#%24mark_as_resolved" title="$mark_as_resolved :: If tickets with this status are marked as resolved/closed."><span class="description">If tickets with this status are marked as resolved/closed.</span><pre>$mark_as_resolved</pre></a></li>
+<li class="property protected "><a href="#%24object_xml_name" title="$object_xml_name :: Indicates the name of object element in XML response. Override in descending classes."><span class="description">Indicates the name of object element in XML response. Override in descending classes.</span><pre>$object_xml_name</pre></a></li>
+<li class="property protected "><a href="#%24read_only" title="$read_only :: Controls if the object can be created/updated/deleted. Override in descending classes."><span class="description">Controls if the object can be created/updated/deleted. Override in descending classes.</span><pre>$read_only</pre></a></li>
+<li class="property protected "><a href="#%24reset_due_time" title="$reset_due_time :: If enabled, Kayako will automatically clear the due time for a ticket when the ticket status changes to this status."><span class="description">If enabled, Kayako will automatically clear the due time for a ticket when the ticket status changes to this status.</span><pre>$reset_due_time</pre></a></li>
+<li class="property protected "><a href="#%24staff_group_ids" title="$staff_group_ids :: Identifiers of staff groups which can change ticket status to this status."><span class="description">Identifiers of staff groups which can change ticket status to this status.</span><pre>$staff_group_ids</pre></a></li>
+<li class="property protected "><a href="#%24staff_visibility_custom" title="$staff_visibility_custom :: If enabled, a ticket status can be changed to this status only by the selected staff teams."><span class="description">If enabled, a ticket status can be changed to this status only by the selected staff teams.</span><pre>$staff_visibility_custom</pre></a></li>
+<li class="property protected "><a href="#%24status_bg_color" title="$status_bg_color :: Background color associated with this ticket status in GUI."><span class="description">Background color associated with this ticket status in GUI.</span><pre>$status_bg_color</pre></a></li>
+<li class="property protected "><a href="#%24status_color" title="$status_color :: Font color associated with this ticket status in GUI."><span class="description">Font color associated with this ticket status in GUI.</span><pre>$status_color</pre></a></li>
+<li class="property protected "><a href="#%24title" title="$title :: Ticket status title."><span class="description">Ticket status title.</span><pre>$title</pre></a></li>
+<li class="property protected "><a href="#%24trigger_survey" title="$trigger_survey :: If enabled, whenever a ticket is changed to this ticket status a survey email will be dispatched to the user asking for rating and comments."><span class="description">If enabled, whenever a ticket is changed to this ticket status a survey email will be dispatched to the user asking for rating and comments.</span><pre>$trigger_survey</pre></a></li>
+<li class="property protected "><a href="#%24type" title="$type :: Type of ticket status."><span class="description">Type of ticket status.</span><pre>$type</pre></a></li>
+<li class="nav-header private">» Private</li>
+<li class="property private inherited"><a href="#%24_api_fields" title="$_api_fields :: Cache for API fields."><span class="description">Cache for API fields.</span><pre>$_api_fields</pre></a></li>
+<li class="property private "><a href="#%24department" title="$department :: Linked department."><span class="description">Linked department.</span><pre>$department</pre></a></li>
+<li class="property private "><a href="#%24staff_groups" title="$staff_groups :: Staff groups which can change ticket status to this status."><span class="description">Staff groups which can change ticket status to this status.</span><pre>$staff_groups</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-constant"></i> Constants</li>
+<li class="constant  inherited"><a href="#FILES_DATA_NAME" title="FILES_DATA_NAME :: Data key for storing files to send as multipart/form-data."><span class="description">Data key for storing files to send as multipart/form-data.</span><pre>FILES_DATA_NAME</pre></a></li>
+<li class="constant  "><a href="#TYPE_PRIVATE" title="TYPE_PRIVATE :: "><span class="description">TYPE_PRIVATE</span><pre>TYPE_PRIVATE</pre></a></li>
+<li class="constant  "><a href="#TYPE_PUBLIC" title="TYPE_PUBLIC :: "><span class="description">TYPE_PUBLIC</span><pre>TYPE_PUBLIC</pre></a></li>
+</ul>
+</div>
+<div class="span8">
+<a name="%5CkyTicketStatus" id="\kyTicketStatus"></a><div href="../classes/kyTicketStatus.html" class="element class">
+<p class="short_description">Kayako TicketStatus object.</p>
+<div class="details">
+<p class="long_description"><p>All objects interacting with Kayako REST API should extend this class and
+define:
+* Kayako controller
+* XML element name holding object's data in REST response</p></p>
+<table class="table table-bordered">
+<tr>
+<th>author</th>
+<td><a href="">Tomasz Sawicki (https://github.com/Furgas)</a></td>
+</tr>
+<tr>
+<th>link</th>
+<td><a href="http://wiki.kayako.com/display/DEV/REST+-+TicketStatus">http://wiki.kayako.com/display/DEV/REST+-+TicketStatus</a></td>
+</tr>
+<tr>
+<th>since</th>
+<td>Kayako version 4.01.240</td>
+</tr>
+<tr>
+<th>package</th>
+<td><a href="..//packages/Object.Ticket.html">Object\Ticket</a></td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a name="__construct" id="__construct"></a><div class="element clickable method public __construct" data-toggle="collapse" data-target=".__construct .collapse">
+<h2>Default constructor.</h2>
+<pre>__construct(array $data) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::__construct()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>Object data from XML response converted into array.</p></div>
+</div></div>
+</div>
+<a name="__get" id="__get"></a><div class="element clickable method public __get" data-toggle="collapse" data-target=".__get .collapse">
+<h2>Returns API field value.</h2>
+<pre>__get(string $api_field_name) : mixed</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Returns API field value based on API field name used by Kayako.</p></p>
+<table class="table table-bordered">
+<tr>
+<th>link</th>
+<td><a href="http://wiki.kayako.com/display/DEV/REST+API+Reference">http://wiki.kayako.com/display/DEV/REST+API+Reference</a></td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::__get()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$api_field_name</h4>
+<code>string</code><p>API field name.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="__set" id="__set"></a><div class="element clickable method public __set" data-toggle="collapse" data-target=".__set .collapse">
+<h2>Sets API field value.</h2>
+<pre>__set(string $api_field_name, mixed $value) : mixed</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Sets API field value based on API field name used by Kayako.</p></p>
+<table class="table table-bordered">
+<tr>
+<th>link</th>
+<td><a href="http://wiki.kayako.com/display/DEV/REST+API+Reference">http://wiki.kayako.com/display/DEV/REST+API+Reference</a></td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::__set()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$api_field_name</h4>
+<code>string</code><p>API field name.</p></div>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>mixed</code><p>API field value.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="__toString" id="__toString"></a><div class="element clickable method public __toString" data-toggle="collapse" data-target=".__toString .collapse">
+<h2>Returns object description with it's type and identifier.</h2>
+<pre>__toString() : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Calls toString() method to get the object description.</p></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::__toString()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="buildData" id="buildData"></a><div class="element clickable method public buildData" data-toggle="collapse" data-target=".buildData .collapse">
+<h2>Should build the array of object data for creating or updating the object.</h2>
+<pre>buildData(bool $create) : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Values must be set in format accepted by REST API.</p></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::buildData()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$create</h4>
+<code>bool</code><p>Indicates if the result will be used to create (true) or update (false) an object.</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a name="checkRequiredAPIFields" id="checkRequiredAPIFields"></a><div class="element clickable method public checkRequiredAPIFields" data-toggle="collapse" data-target=".checkRequiredAPIFields .collapse">
+<h2>Checks wheter this object has all required fields set.</h2>
+<pre>checkRequiredAPIFields(bool $create, bool $throw_exception) : \string[] | bool</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::checkRequiredAPIFields()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$create</h4>
+<code>bool</code><p>True when object will be created. False when object will be updated.</p></div>
+<div class="subelement argument">
+<h4>$throw_exception</h4>
+<code>bool</code><p>True to throw an exception on missing fields. False to return list of missing fields or true when there are none.</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/kyException.html">\kyException</a></code></th>
+<td>When there are missing field values and $throw_exception is true.</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\string[]</code><code>bool</code>List of missing API fields or true when there are none.</div>
+</div></div>
+</div>
+<a name="create" id="create"></a><div class="element clickable method public create" data-toggle="collapse" data-target=".create .collapse">
+<h2>Creates an object on the server and refreshes its local data.</h2>
+<pre>create() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::create()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
+</div></div>
+</div>
+<a name="createNew" id="createNew"></a><div class="element clickable method public createNew" data-toggle="collapse" data-target=".createNew .collapse">
+<h2>Creates new object. Compatible with method chaining.</h2>
+<pre>createNew() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::createNew()</td>
+</tr></table>
+</div></div>
+</div>
+<a name="delete" id="delete"></a><div class="element clickable method public delete" data-toggle="collapse" data-target=".delete .collapse">
+<h2>Deletes the object on the server.</h2>
+<pre>delete() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::delete()</td>
+</tr></table>
+</div></div>
+</div>
+<a name="get" id="get"></a><div class="element clickable method public get" data-toggle="collapse" data-target=".get .collapse">
+<h2>Fetches the object from server.</h2>
+<pre>get(int | array $id) : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::get()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$id</h4>
+<code>intarray</code><p>Object identifier or list of identifiers (ex. ticket identifier and ticket post identifier when fetching TicketPost).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
+</div></div>
+</div>
+<a name="getAPIFields" id="getAPIFields"></a><div class="element clickable method public getAPIFields" data-toggle="collapse" data-target=".getAPIFields .collapse">
+<h2>Returns array of API fields.</h2>
+<pre>getAPIFields() : \string[]</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Format of returned array:</p>
+
+<pre>
+array(
+    '<api field name>' => Field description. (getter: <getter name>, setter: <setter name>),
+    ...repeat...
+)
+</pre></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::getAPIFields()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>\string[]</code></div>
+</div></div>
+</div>
+<a name="getAll" id="getAll"></a><div class="element clickable method public getAll" data-toggle="collapse" data-target=".getAll .collapse">
+<h2>Fetches objects from server.</h2>
+<pre>getAll(array $search_parameters) : <a href="../classes/kyResultSet.html">\kyResultSet</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::getAll()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$search_parameters</h4>
+<code>array</code><p>Optional. Additional search parameters.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyResultSet.html">\kyResultSet</a></code></div>
+</div></div>
+</div>
+<a name="getAvailableFilterMethods" id="getAvailableFilterMethods"></a><div class="element clickable method public getAvailableFilterMethods" data-toggle="collapse" data-target=".getAvailableFilterMethods .collapse">
+<h2>Returns list of available filter methods for use in result sets with objects of this type.</h2>
+<pre>getAvailableFilterMethods(bool $filter_names_only) : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Optionaly you can return get method names used to filter objects.</p></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::getAvailableFilterMethods()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$filter_names_only</h4>
+<code>bool</code><p>True (default) to return array('filterByXXX', 'filterByYYY', ...). False to return array('filterByXXX' => 'getXXX', 'filterByYYY' => 'YYY', ...).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a name="getAvailableOrderMethods" id="getAvailableOrderMethods"></a><div class="element clickable method public getAvailableOrderMethods" data-toggle="collapse" data-target=".getAvailableOrderMethods .collapse">
+<h2>Returns list of available order methods for use in result sets with objects of this type.</h2>
+<pre>getAvailableOrderMethods(bool $order_names_only) : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Optionaly you can return get method names used to order objects.</p></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::getAvailableOrderMethods()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$order_names_only</h4>
+<code>bool</code><p>True (default) to return array('orderByXXX', 'orderByYYY', ...). False to return array('orderByXXX' => 'getXXX', 'orderByYYY' => 'YYY', ...).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a name="getController" id="getController"></a><div class="element clickable method public getController" data-toggle="collapse" data-target=".getController .collapse">
+<h2>Returns object controller.</h2>
+<pre>getController() : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::getController()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getDepartment" id="getDepartment"></a><div class="element clickable method public getDepartment" data-toggle="collapse" data-target=".getDepartment .collapse">
+<h2>Returns linked department.</h2>
+<pre>getDepartment(bool $reload) : <a href="../classes/kyDepartment.html">\kyDepartment</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>If a ticket status is linked to a department, it will be visible only under the linked department.
+Result is cached until the end of script.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$reload</h4>
+<code>bool</code><p>True to reload data from server. False to use the cached value (if present).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyDepartment.html">\kyDepartment</a></code></div>
+</div></div>
+</div>
+<a name="getDepartmentId" id="getDepartmentId"></a><div class="element clickable method public getDepartmentId" data-toggle="collapse" data-target=".getDepartmentId .collapse">
+<h2>Returns linked department identifier.</h2>
+<pre>getDepartmentId() : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>If a ticket status is linked to a department, it will be visible only under the linked department.</p></p>
+<table class="table table-bordered"><tr>
+<th>filterBy</th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>int</code></div>
+</div></div>
+</div>
+<a name="getDisplayCount" id="getDisplayCount"></a><div class="element clickable method public getDisplayCount" data-toggle="collapse" data-target=".getDisplayCount .collapse">
+<h2>Returns whether ticket count for this status is displayed in the filter ticket tree.</h2>
+<pre>getDisplayCount() : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>filterBy</th>
+<td></td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="getDisplayIcon" id="getDisplayIcon"></a><div class="element clickable method public getDisplayIcon" data-toggle="collapse" data-target=".getDisplayIcon .collapse">
+<h2>Returns path to icon displayed in GUI for this ticket status.</h2>
+<pre>getDisplayIcon() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getDisplayOrder" id="getDisplayOrder"></a><div class="element clickable method public getDisplayOrder" data-toggle="collapse" data-target=".getDisplayOrder .collapse">
+<h2>Returns ticket status display order.</h2>
+<pre>getDisplayOrder() : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>filterBy</th>
+<td></td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>int</code></div>
+</div></div>
+</div>
+<a name="getId" id="getId"></a><div class="element clickable method public getId" data-toggle="collapse" data-target=".getId .collapse">
+<h2>Should return object identifier or complete list of identifiers as needed by API to identify the object (ex. ticket identifier and ticket post identifier in case of TicketPost).</h2>
+<pre>getId(bool $complete) : int | array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$complete</h4>
+<code>bool</code><p>True to return complete list of identifiers as needed by API to identify the object.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>int</code><code>array</code>
+</div>
+</div></div>
+</div>
+<a name="getMarkAsResolved" id="getMarkAsResolved"></a><div class="element clickable method public getMarkAsResolved" data-toggle="collapse" data-target=".getMarkAsResolved .collapse">
+<h2>Returns whether tickets with this status are marked as resolved/closed.</h2>
+<pre>getMarkAsResolved() : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>filterBy</th>
+<td></td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="getRequiredAPIFields" id="getRequiredAPIFields"></a><div class="element clickable method public getRequiredAPIFields" data-toggle="collapse" data-target=".getRequiredAPIFields .collapse">
+<h2>Returns list of required API fields for objects of this class.</h2>
+<pre>getRequiredAPIFields(bool $create) : \string[]</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::getRequiredAPIFields()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$create</h4>
+<code>bool</code><p>True when object will be created. False when object will be updated.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\string[]</code></div>
+</div></div>
+</div>
+<a name="getResetDueTime" id="getResetDueTime"></a><div class="element clickable method public getResetDueTime" data-toggle="collapse" data-target=".getResetDueTime .collapse">
+<h2>Returns whether Kayako will automatically clear the due time for a ticket when the ticket status changes to this status.</h2>
+<pre>getResetDueTime() : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>filterBy</th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="getStaffGroupIds" id="getStaffGroupIds"></a><div class="element clickable method public getStaffGroupIds" data-toggle="collapse" data-target=".getStaffGroupIds .collapse">
+<h2>Returns list of identifiers of staff groups which can change ticket status to this status.</h2>
+<pre>getStaffGroupIds() : \int[]</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>filterBy</th>
+<td>name=StaffGroupId</td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td>name=StaffGroupId</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>\int[]</code></div>
+</div></div>
+</div>
+<a name="getStaffGroups" id="getStaffGroups"></a><div class="element clickable method public getStaffGroups" data-toggle="collapse" data-target=".getStaffGroups .collapse">
+<h2>Returns list of staff groups which can change ticket status to this status.</h2>
+<pre>getStaffGroups(bool $reload) : <a href="../classes/kyResultSet.html">\kyResultSet</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Result is cached until the end of script.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$reload</h4>
+<code>bool</code><p>True to reload data from server. False to use the cached value (if present).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyResultSet.html">\kyResultSet</a></code></div>
+</div></div>
+</div>
+<a name="getStaffVisibilityCustom" id="getStaffVisibilityCustom"></a><div class="element clickable method public getStaffVisibilityCustom" data-toggle="collapse" data-target=".getStaffVisibilityCustom .collapse">
+<h2>Returns whether a ticket status can be changed to this status only by the selected staff teams.</h2>
+<pre>getStaffVisibilityCustom() : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>filterBy</th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="getStatusBackgroundColor" id="getStatusBackgroundColor"></a><div class="element clickable method public getStatusBackgroundColor" data-toggle="collapse" data-target=".getStatusBackgroundColor .collapse">
+<h2>Returns background color associated with this ticket status in GUI.</h2>
+<pre>getStatusBackgroundColor() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>This color is used for the "General Tab Bar" in Kayako GUI when viewing the ticket.</p></p>
+<table class="table table-bordered"><tr>
+<th>filterBy</th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getStatusColor" id="getStatusColor"></a><div class="element clickable method public getStatusColor" data-toggle="collapse" data-target=".getStatusColor .collapse">
+<h2>Returns font color associated with this ticket status in GUI.</h2>
+<pre>getStatusColor() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>filterBy</th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getTitle" id="getTitle"></a><div class="element clickable method public getTitle" data-toggle="collapse" data-target=".getTitle .collapse">
+<h2>Returns ticket status title.</h2>
+<pre>getTitle() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>filterBy</th>
+<td></td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getTriggerSurvey" id="getTriggerSurvey"></a><div class="element clickable method public getTriggerSurvey" data-toggle="collapse" data-target=".getTriggerSurvey .collapse">
+<h2>If whether whenever a ticket is changed to this ticket status a survey email will be dispatched to the user asking for rating and comments.</h2>
+<pre>getTriggerSurvey() : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>filterBy</th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="getType" id="getType"></a><div class="element clickable method public getType" data-toggle="collapse" data-target=".getType .collapse">
+<h2>Returns type of this ticket status.</h2>
+<pre>getType() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>see</th>
+<td>\kyTicketStatus::TYPE</td>
+</tr>
+<tr>
+<th>filterBy</th>
+<td></td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="isAvailableInDepartment" id="isAvailableInDepartment"></a><div class="element clickable method public isAvailableInDepartment" data-toggle="collapse" data-target=".isAvailableInDepartment .collapse">
+<h2>Returns whether this ticket status is visible under specified department.</h2>
+<pre>isAvailableInDepartment(<a href="../classes/kyDepartment.html">\kyDepartment</a> | int $department) : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>filterBy</th>
+<td></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$department</h4>
+<code><a href="../classes/kyDepartment.html">\kyDepartment</a>int</code><p>Department or its identifier.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="isNew" id="isNew"></a><div class="element clickable method public isNew" data-toggle="collapse" data-target=".isNew .collapse">
+<h2>Returns whether the object is new and not yet saved on the server.</h2>
+<pre>isNew() : bool</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::isNew()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="isReadOnly" id="isReadOnly"></a><div class="element clickable method public isReadOnly" data-toggle="collapse" data-target=".isReadOnly .collapse">
+<h2>Returns whether this object is read only.</h2>
+<pre>isReadOnly() : bool</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::isReadOnly()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="isVisibleToStaffGroup" id="isVisibleToStaffGroup"></a><div class="element clickable method public isVisibleToStaffGroup" data-toggle="collapse" data-target=".isVisibleToStaffGroup .collapse">
+<h2>Returns whether this ticket status can be set by specified staff group.</h2>
+<pre>isVisibleToStaffGroup(<a href="../classes/kyStaffGroup.html">\kyStaffGroup</a> | int $staff_group) : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>filterBy</th>
+<td></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$staff_group</h4>
+<code><a href="../classes/kyStaffGroup.html">\kyStaffGroup</a>int</code><p>Staff group or its identifier.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="refresh" id="refresh"></a><div class="element clickable method public refresh" data-toggle="collapse" data-target=".refresh .collapse">
+<h2>Refreshes the object data from server.</h2>
+<pre>refresh() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::refresh()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
+</div></div>
+</div>
+<a name="save" id="save"></a><div class="element clickable method public save" data-toggle="collapse" data-target=".save .collapse">
+<h2>Saves (creates or updates) the object to the server.</h2>
+<pre>save() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::save()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
+</div></div>
+</div>
+<a name="setReadOnly" id="setReadOnly"></a><div class="element clickable method public setReadOnly" data-toggle="collapse" data-target=".setReadOnly .collapse">
+<h2>Sets whether this object is read only.</h2>
+<pre>setReadOnly(bool $read_only) : bool</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::setReadOnly()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$read_only</h4>
+<code>bool</code><p>Read only flag.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="toString" id="toString"></a><div class="element clickable method public toString" data-toggle="collapse" data-target=".toString .collapse">
+<h2>Should return short (one line) description of the object (it's title, name, etc.).</h2>
+<pre>toString() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="update" id="update"></a><div class="element clickable method public update" data-toggle="collapse" data-target=".update .collapse">
+<h2>Updates the object on the server and refreshes its local data.</h2>
+<pre>update() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::update()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
+</div></div>
+</div>
+<a name="getRESTClient" id="getRESTClient"></a><div class="element clickable method protected getRESTClient" data-toggle="collapse" data-target=".getRESTClient .collapse">
+<h2>Returns REST client.</h2>
+<pre>getRESTClient() : <a href="../classes/kyRESTClientInterface.html">\kyRESTClientInterface</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::getRESTClient()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyRESTClientInterface.html">\kyRESTClientInterface</a></code></div>
+</div></div>
+</div>
+<a name="parseData" id="parseData"></a><div class="element clickable method protected parseData" data-toggle="collapse" data-target=".parseData .collapse">
+<h2>Should use passed data to fill object properties.</h2>
+<pre>parseData(array $data) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>Object data from XML response.</p></div>
+</div></div>
+</div>
+<a name="initAPIFieldsAccessors" id="initAPIFieldsAccessors"></a><div class="element clickable method private initAPIFieldsAccessors" data-toggle="collapse" data-target=".initAPIFieldsAccessors .collapse">
+<h2>Builds API fields list.</h2>
+<pre>initAPIFieldsAccessors() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Scans protected and private properties of called class, searches for</p></p>
+<table class="table table-bordered">
+<tr>
+<th>apiField</th>
+<td>[name=field name] [accessor=setter/getter name] [getter=getter name] [setter=setter name] [required_create=true if field if required when creating object] [required_update=true if field if required when udpating object] [required=true if field if required when creating or updating object]
+and builds API field list with property name, description, setter and getter method names, and required flags.</td>
+</tr>
+<tr>
+<th>see</th>
+<td>\kyObjectBase::$_api_fields</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::initAPIFieldsAccessors()</td>
+</tr>
+</table>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a name="%24_filter_methods" id="$_filter_methods"> </a><div class="element clickable property protected $_filter_methods" data-toggle="collapse" data-target=".$_filter_methods .collapse">
+<h2>Cache for available filter methods.</h2>
+<pre>$_filter_methods : \string[]</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Format:
+array(
+ '<class name>' => array(
+        '<filter method name>' => '<get method name>',
+        ...repeat for every filtering enabled method...
+    ),
+    ...repeat for every object class...
+)</p></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::$$_filter_methods</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24_order_methods" id="$_order_methods"> </a><div class="element clickable property protected $_order_methods" data-toggle="collapse" data-target=".$_order_methods .collapse">
+<h2>Cache for available order methods.</h2>
+<pre>$_order_methods : \string[]</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Format:
+array(
+ '<class name>' => array(
+        '<order method name>' => '<get method name>',
+        ...repeat for every ordering enabled method...
+    ),
+    ...repeat for every object class...
+)</p></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::$$_order_methods</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24controller" id="$controller"> </a><div class="element clickable property protected $controller" data-toggle="collapse" data-target=".$controller .collapse">
+<h2>Default Kayako controller used to operate on this objects. Override in descending classes.</h2>
+<pre>$controller : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="%24department_id" id="$department_id"> </a><div class="element clickable property protected $department_id" data-toggle="collapse" data-target=".$department_id .collapse">
+<h2>Linked department identifier.</h2>
+<pre>$department_id : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>If a ticket status is linked to a department, it will be visible only under the linked department.</p></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24display_count" id="$display_count"> </a><div class="element clickable property protected $display_count" data-toggle="collapse" data-target=".$display_count .collapse">
+<h2>If ticket count for this status is displayed in the filter ticket tree.</h2>
+<pre>$display_count : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24display_icon" id="$display_icon"> </a><div class="element clickable property protected $display_icon" data-toggle="collapse" data-target=".$display_icon .collapse">
+<h2>Path to icon displayed in GUI for this ticket status.</h2>
+<pre>$display_icon : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24display_order" id="$display_order"> </a><div class="element clickable property protected $display_order" data-toggle="collapse" data-target=".$display_order .collapse">
+<h2>Ticket status display order.</h2>
+<pre>$display_order : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24id" id="$id"> </a><div class="element clickable property protected $id" data-toggle="collapse" data-target=".$id .collapse">
+<h2>Ticket status identifier.</h2>
+<pre>$id : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24mark_as_resolved" id="$mark_as_resolved"> </a><div class="element clickable property protected $mark_as_resolved" data-toggle="collapse" data-target=".$mark_as_resolved .collapse">
+<h2>If tickets with this status are marked as resolved/closed.</h2>
+<pre>$mark_as_resolved : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24object_xml_name" id="$object_xml_name"> </a><div class="element clickable property protected $object_xml_name" data-toggle="collapse" data-target=".$object_xml_name .collapse">
+<h2>Indicates the name of object element in XML response. Override in descending classes.</h2>
+<pre>$object_xml_name : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="%24read_only" id="$read_only"> </a><div class="element clickable property protected $read_only" data-toggle="collapse" data-target=".$read_only .collapse">
+<h2>Controls if the object can be created/updated/deleted. Override in descending classes.</h2>
+<pre>$read_only : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="%24reset_due_time" id="$reset_due_time"> </a><div class="element clickable property protected $reset_due_time" data-toggle="collapse" data-target=".$reset_due_time .collapse">
+<h2>If enabled, Kayako will automatically clear the due time for a ticket when the ticket status changes to this status.</h2>
+<pre>$reset_due_time : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24staff_group_ids" id="$staff_group_ids"> </a><div class="element clickable property protected $staff_group_ids" data-toggle="collapse" data-target=".$staff_group_ids .collapse">
+<h2>Identifiers of staff groups which can change ticket status to this status.</h2>
+<pre>$staff_group_ids : \int[]</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td>name=staffgroupid</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24staff_visibility_custom" id="$staff_visibility_custom"> </a><div class="element clickable property protected $staff_visibility_custom" data-toggle="collapse" data-target=".$staff_visibility_custom .collapse">
+<h2>If enabled, a ticket status can be changed to this status only by the selected staff teams.</h2>
+<pre>$staff_visibility_custom : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>see</th>
+<td>\kyTicketStatus::$staff_group_ids</td>
+</tr>
+<tr>
+<th>apiField</th>
+<td></td>
+</tr>
+</table>
+</div></div>
+</div>
+<a name="%24status_bg_color" id="$status_bg_color"> </a><div class="element clickable property protected $status_bg_color" data-toggle="collapse" data-target=".$status_bg_color .collapse">
+<h2>Background color associated with this ticket status in GUI.</h2>
+<pre>$status_bg_color : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>This color is used for the "General Tab Bar" in Kayako GUI when viewing the ticket.</p></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24status_color" id="$status_color"> </a><div class="element clickable property protected $status_color" data-toggle="collapse" data-target=".$status_color .collapse">
+<h2>Font color associated with this ticket status in GUI.</h2>
+<pre>$status_color : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24title" id="$title"> </a><div class="element clickable property protected $title" data-toggle="collapse" data-target=".$title .collapse">
+<h2>Ticket status title.</h2>
+<pre>$title : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24trigger_survey" id="$trigger_survey"> </a><div class="element clickable property protected $trigger_survey" data-toggle="collapse" data-target=".$trigger_survey .collapse">
+<h2>If enabled, whenever a ticket is changed to this ticket status a survey email will be dispatched to the user asking for rating and comments.</h2>
+<pre>$trigger_survey : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24type" id="$type"> </a><div class="element clickable property protected $type" data-toggle="collapse" data-target=".$type .collapse">
+<h2>Type of ticket status.</h2>
+<pre>$type : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>see</th>
+<td>\kyTicketStatus::TYPE</td>
+</tr>
+<tr>
+<th>apiField</th>
+<td></td>
+</tr>
+</table>
+</div></div>
+</div>
+<a name="%24_api_fields" id="$_api_fields"> </a><div class="element clickable property private $_api_fields" data-toggle="collapse" data-target=".$_api_fields .collapse">
+<h2>Cache for API fields.</h2>
+<pre>$_api_fields : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Format:
+array(
+    '<class name>' => array(
+        '<api field name>' => array(
+            'property' => '<class property holding field value>',
+            'description' => '<description of the field>',
+            'getter' => '<value getter method or null if write-only>',
+            'setter' => '<value setter method or null if read-only>',
+            'required_create' => <present and true if this field is required for creating the object>,
+            'required_update' => <present and true if this field is required for updating the object>
+        ),
+        ...repeat for every class api field...
+    ),
+    ...repeat for every object class...
+)</p></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::$$_api_fields</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24department" id="$department"> </a><div class="element clickable property private $department" data-toggle="collapse" data-target=".$department .collapse">
+<h2>Linked department.</h2>
+<pre>$department : <a href="../classes/kyDepartment.html">\kyDepartment</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="%24staff_groups" id="$staff_groups"> </a><div class="element clickable property private $staff_groups" data-toggle="collapse" data-target=".$staff_groups .collapse">
+<h2>Staff groups which can change ticket status to this status.</h2>
+<pre>$staff_groups : <a href="kyStaffGroup.html#%5CkyStaffGroup">\kyStaffGroup[]</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<h3>
+<i class="icon-custom icon-constant"></i> Constants</h3>
+<a name="FILES_DATA_NAME" id="FILES_DATA_NAME"> </a><div class="element clickable constant  FILES_DATA_NAME" data-toggle="collapse" data-target=".FILES_DATA_NAME .collapse">
+<h2>Data key for storing files to send as multipart/form-data.</h2>
+<pre>FILES_DATA_NAME : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::FILES_DATA_NAME</td>
+</tr></table>
+</div></div>
+</div>
+<a name="TYPE_PRIVATE" id="TYPE_PRIVATE"> </a><div class="element clickable constant  TYPE_PRIVATE" data-toggle="collapse" data-target=".TYPE_PRIVATE .collapse">
+<h2>TYPE_PRIVATE</h2>
+<pre>TYPE_PRIVATE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="TYPE_PUBLIC" id="TYPE_PUBLIC"> </a><div class="element clickable constant  TYPE_PUBLIC" data-toggle="collapse" data-target=".TYPE_PUBLIC .collapse">
+<h2>TYPE_PUBLIC</h2>
+<pre>TYPE_PUBLIC </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a2</a> and<br>
+            generated on 2012-05-05T01:22:19+02:00.<br></footer></div>
+</div>
+</body>
+</html>

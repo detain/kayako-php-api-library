@@ -1,40 +1,99 @@
 <?php
-require_once('kyObjectBase.php');
-
 /**
- * Part of PHP client to REST API of Kayako v4 (Kayako Fusion).
- * Compatible with Kayako version >= 4.01.204.
- *
  * Kayako TicketAttachment object.
  *
  * @author Tomasz Sawicki (https://github.com/Furgas)
+ * @link http://wiki.kayako.com/display/DEV/REST+-+TicketAttachment
+ * @since Kayako version 4.01.240
+ * @package Object\Ticket
  */
 class kyTicketAttachment extends kyObjectBase {
 	static protected $controller = '/Tickets/TicketAttachment';
 	static protected $object_xml_name = 'attachment';
 
-	private $id = null;
-	private $ticket_id = null;
-	private $ticket_post_id = null;
-	private $file_name = null;
-	private $file_size = null;
-	private $file_type = null;
-	private $dateline = null;
-	private $contents = null;
+	/**
+	 * Ticket attachment identifier.
+	 * @apiField
+	 * @var int
+	 */
+	protected $id;
+
+	/**
+	 * Identifier of ticket that this attachment is attached to.
+	 * @apiField required_create=true
+	 * @var int
+	 */
+	protected $ticket_id;
+
+	/**
+	 * Identifier of ticket post that this attachment is attached to.
+	 * @apiField required_create=true
+	 * @var int
+	 */
+	protected $ticket_post_id;
+
+	/**
+	 * Attachment file name.
+	 * @apiField required_create=true
+	 * @var string
+	 */
+	protected $file_name;
+
+	/**
+	 * Attachment size in bytes.
+	 * @apiField
+	 * @var int
+	 */
+	protected $file_size;
+
+	/**
+	 * Attachment MIME type.
+	 * @apiField
+	 * @var string
+	 */
+	protected $file_type;
+
+	/**
+	 * Timestamp of when this attachment was created.
+	 * @apiField
+	 * @var int
+	 */
+	protected $dateline;
+
+	/**
+	 * Raw contents of attachment.
+	 * @apiField required_create=true
+	 * @var string
+	 */
+	protected $contents;
+
+	/**
+	 * Ticket with this attachment.
+	 * @var kyTicket
+	 */
+	private $ticket = null;
+
+	/**
+	 * Ticket post with this attachment.
+	 * @var kyTicketPost
+	 */
+	private $ticket_post = null;
 
 	protected function parseData($data) {
 		$this->id = intval($data['id']);
-		$this->ticket_id = intval($data['ticketid']);
-		$this->ticket_post_id = intval($data['ticketpostid']);
+		$this->ticket_id = ky_assure_positive_int($data['ticketid']);
+		$this->ticket_post_id = ky_assure_positive_int($data['ticketpostid']);
 		$this->file_name = $data['filename'];
 		$this->file_size = intval($data['filesize']);
 		$this->file_type = $data['filetype'];
-		$this->dateline = intval($data['dateline']) > 0 ? date(self::$datetime_format, $data['dateline']) : null;
+		$this->dateline = ky_assure_positive_int($data['dateline']);
 		if (array_key_exists('contents', $data) && strlen($data['contents']) > 0)
 			$this->contents = base64_decode($data['contents']);
 	}
 
-	protected function buildData($method) {
+	public function buildData($create) {
+		$this->checkRequiredAPIFields($create);
+
 		$data = array();
 
 		$data['ticketid'] = $this->ticket_id;
@@ -60,10 +119,10 @@ class kyTicketAttachment extends kyObjectBase {
 	}
 
 	/**
-	 * Returns ticket (post) attachment.
+	 * Returns ticket attachment.
 	 *
 	 * @param int $ticket_id Ticket identifier.
-	 * @param int $id Ticket attachement identifier.
+	 * @param int $id Ticket attachment identifier.
 	 * @return kyTicketAttachment
 	 */
 	static public function get($ticket_id, $id) {
@@ -71,11 +130,11 @@ class kyTicketAttachment extends kyObjectBase {
 	}
 
 	public function update() {
-		throw new Exception("You can't update objects of type kyTicketAttachment.");
+		throw new BadMethodCallException("You can't update objects of type kyTicketAttachment.");
 	}
 
 	public function delete() {
-		static::_delete(array($this->ticket_id, $this->id));
+		self::getRESTClient()->delete(static::$controller, array($this->ticket_id, $this->id));
 	}
 
 	public function toString() {
@@ -87,6 +146,7 @@ class kyTicketAttachment extends kyObjectBase {
 	}
 
 	/**
+	 * Returns identifier of the ticket this attachment belongs to.
 	 *
 	 * @return int
 	 */
@@ -95,17 +155,38 @@ class kyTicketAttachment extends kyObjectBase {
 	}
 
 	/**
+	 * Sets identifier of the ticket this attachment will belong to.
 	 *
-	 * @param int $ticket_id
+	 * @param int $ticket_id Ticket identifier.
 	 * @return kyTicketAttachment
 	 */
 	public function setTicketId($ticket_id) {
-		$this->ticket_id = $ticket_id;
+		$this->ticket_id = ky_assure_positive_int($ticket_id);
+		$this->ticket = null;
 		return $this;
 	}
 
 	/**
+	 * Returns the ticket this attachment belongs to.
 	 *
+	 * Result is cached until the end of script.
+	 *
+	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
+	 * @return kyTicket
+	 */
+	public function getTicket($reload = false) {
+		if ($this->ticket !== null && !$reload)
+			return $this->ticket;
+
+		if ($this->ticket_id === null)
+			return null;
+
+		$this->ticket = kyTicket::get($this->ticket_id);
+		return $this->ticket;
+	}
+
+	/**
+	 * Returns identifier of the ticket post this attachment is attached to.
 	 * @return int
 	 */
 	public function getTicketPostId() {
@@ -113,71 +194,118 @@ class kyTicketAttachment extends kyObjectBase {
 	}
 
 	/**
-	 *
-	 * @param int $ticket_post_id
+	 * Sets identifier of the ticket post this attachment will be attached to.
+	 * @param int $ticket_post_id Ticket post identifier.
 	 * @return kyTicketAttachment
 	 */
 	public function setTicketPostId($ticket_post_id) {
-		$this->ticket_post_id = $ticket_post_id;
+		$this->ticket_post_id = ky_assure_positive_int($ticket_post_id);
+		$this->ticket_post = null;
 		return $this;
 	}
 
 	/**
+	 * Returns the ticket post this attachment is attached to.
+	 *
+	 * Result is cached until the end of script.
+	 *
+	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
+	 * @return kyTicketPost
+	 */
+	public function getTicketPost($reload = false) {
+		if ($this->ticket_post !== null && !$reload)
+			return $this->ticket_post;
+
+		if ($this->ticket_id === null || $this->ticket_post_id === null)
+			return null;
+
+		$this->ticket_post = kyTicketPost::get($this->ticket_id, $this->ticket_post_id);
+		return $this->ticket_post;
+	}
+
+	/**
+	 * Sets the ticket post this attachment will be attached to.
+	 *
+	 * Automatically sets the ticket.
+	 *
+	 * @param kyTicketPost $ticket_post Ticket post.
+	 */
+	public function setTicketPost($ticket_post) {
+		$this->ticket_post = ky_assure_object($ticket_post, 'kyTicketPost');
+		$this->ticket_post_id = $this->ticket_post !== null ? $this->ticket_post->getId() : null;
+		$this->ticked = $this->ticket_post !== null ? $this->ticket_post->getTicket() : null;
+		$this->ticked_id = $this->ticket !== null ? $this->ticket->getId() : null;
+	}
+
+	/**
+	 * Returns attachment file name.
 	 *
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getFileName() {
 		return $this->file_name;
 	}
 
 	/**
+	 * Sets the attachment file name.
 	 *
-	 * @param string $file_name
+	 * @param string $file_name File name.
 	 * @return kyTicketAttachment
 	 */
 	public function setFileName($file_name) {
-		$this->file_name = $file_name;
+		$this->file_name = ky_assure_string($file_name);
 		return $this;
 	}
 
 	/**
+	 * Returns attachment file size.
 	 *
 	 * @param bool $formatted True to format result nicely (KB, MB, and so on).
 	 * @return mixed
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getFileSize($formatted = false) {
-		if ($formatted)
+		if ($formatted) {
 			return ky_bytes_format($this->file_size);
-		else
-			return $this->file_size;
+		}
+
+		return $this->file_size;
 	}
 
 	/**
+	 * Returns attachment MIME type.
 	 *
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getFileType() {
 		return $this->file_type;
 	}
 
 	/**
+	 * Returns date and time of when this attachment was created.
 	 *
+	 * @see http://www.php.net/manual/en/function.date.php
+	 *
+	 * @param string $format Output format of the date. If null the format set in client configuration is used.
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
-	public function getDateline() {
-		return $this->dateline;
+	public function getDateline($format = null) {
+		if ($format === null) {
+			$format = kyConfig::get()->getDatetimeFormat();
+		}
+
+		return date($format, $this->dateline);
 	}
 
 	/**
-	 * Return raw contents of the attachment (base64 decoded).
+	 * Return raw contents of the attachment (NOT base64 encoded).
 	 *
 	 * @param bool $auto_fetch True to automatically fetch the contents of the attachment if not present.
 	 * @return string
@@ -191,9 +319,9 @@ class kyTicketAttachment extends kyObjectBase {
 	}
 
 	/**
-	 * Sets raw contents of the attachment (base64 decoded).
+	 * Sets raw contents of the attachment (NOT base64 encoded).
 	 *
-	 * @param string $contents Raw contents of the attachment (base64 decoded).
+	 * @param string $contents Raw contents of the attachment (NOT base64 encoded).
 	 * @return kyTicketAttachment
 	 */
 	public function setContents(&$contents) {
@@ -211,11 +339,11 @@ class kyTicketAttachment extends kyObjectBase {
 	public function setContentsFromFile($file_path, $file_name = null) {
 		$contents = file_get_contents($file_path);
 		if ($contents === false)
-			throw new Exception(sprintf("Error reading contents of %s.", $file_path));
+			throw new kyException(sprintf("Error reading contents of %s.", $file_path));
 
 		$this->contents =& $contents;
 		if ($file_name === null)
-			$file_name = pathinfo($file_path, PATHINFO_BASENAME);
+			$file_name = basename($file_path);
 		$this->file_name = $file_name;
 		return $this;
 	}

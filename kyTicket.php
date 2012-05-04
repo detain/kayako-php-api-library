@@ -1,16 +1,13 @@
 <?php
-require_once('kyObjectBase.php');
-
 /**
- * Part of PHP client to REST API of Kayako v4 (Kayako Fusion). Compatible with version 4.01.240.
- * Compatible with Kayako version >= 4.01.240.
- *
  * Kayako Ticket object.
  *
- * @link http://wiki.kayako.com/display/DEV/REST+-+Ticket
  * @author Tomasz Sawicki (https://github.com/Furgas)
+ * @link http://wiki.kayako.com/display/DEV/REST+-+Ticket
+ * @since Kayako version 4.40.1079
+ * @package Object\Ticket
  */
-class kyTicket extends kyObjectBase {
+class kyTicket extends kyObjectWithCustomFieldsBase {
 
 	const FLAG_NONE = 0;
 	const FLAG_PURPLE = 1;
@@ -102,54 +99,378 @@ class kyTicket extends kyObjectBase {
 
 	static protected $controller = '/Tickets/Ticket';
 	static protected $object_xml_name = 'ticket';
+	static protected $custom_field_group_class = 'kyTicketCustomFieldGroup';
+	static protected $object_id_field = 'ticketid';
 
+	/**
+	 * Default status identifier for new tickets.
+	 * @see kyTicket::setDefaults
+	 * @var int
+	 */
 	static private $default_status_id = null;
+
+	/**
+	 * Default priority identifier for new tickets.
+	 * @see kyTicket::setDefaults
+	 * @var int
+	 */
 	static private $default_priority_id = null;
+
+	/**
+	 * Default type identifier for new tickets.
+	 * @see kyTicket::setDefaults
+	 * @var int
+	 */
 	static private $default_type_id = null;
+
+	/**
+	 * Default status identifier for new tickets.
+	 * @see kyTicket::setDefaults
+	 * @var int
+	 */
 	static private $auto_create_user = true;
 
-	private $id = null;
-	private $flag_type = null;
-	private $display_id = null;
-	private $department_id = null;
-	private $status_id = null;
-	private $priority_id = null;
-	private $type_id = null;
-	private $user_id = null;
-	private $user_organization_name = null;
-	private $user_organization_id = null;
-	private $owner_staff_id = null;
-	private $owner_staff_name = null;
-	private $full_name = null;
-	private $email = null;
-	private $last_replier = null;
-	private $subject = null;
-	private $creation_time = null;
-	private $last_activity = null;
-	private $last_staff_reply = null;
-	private $last_user_reply = null;
-	private $sla_plan_id = null;
-	private $next_reply_due = null;
-	private $resolution_due = null;
-	private $replies = null;
-	private $ip_address = null;
-	private $creator = null;
-	private $creation_mode = null;
-	private $creation_type = null;
-	private $is_escalated = null;
-	private $escalation_rule_id = null;
-	private $tags = null;
-	private $watchers = array();
-	private $workflows = array();
-	private $notes = null;
-	private $time_tracks = null;
-	private $posts = null;
-	private $attachments = null;
-	private $custom_field_groups = null;
-	static private $statistics = null;
+	/**
+	 * Ticket identifier.
+	 * @apiField
+	 * @var int
+	 */
+	protected $id;
 
-	private $contents = null;
-	private $creator_id = null;
+	/**
+	 * Ticket flag type.
+	 *
+	 * @see kyTicket::FLAG constants.
+	 *
+	 * @apiField
+	 * @var int
+	 */
+	protected $flag_type;
+
+	/**
+	 * Ticket display identifier.
+	 * @apiField
+	 * @var string
+	 */
+	protected $display_id;
+
+	/**
+	 * Ticket department identifier.
+	 * @apiField required_create=true
+	 * @var int
+	 */
+	protected $department_id;
+
+	/**
+	 * Ticket status identifier.
+	 * @apiField required_create=true
+	 * @var int
+	 */
+	protected $status_id;
+
+	/**
+	 * Ticket priority identifier.
+	 * @apiField required_create=true
+	 * @var int
+	 */
+	protected $priority_id;
+
+	/**
+	 * Ticket type identifier.
+	 * @apiField required_create=true
+	 * @var int
+	 */
+	protected $type_id;
+
+	/**
+	 * Identifier of the user ticket was created by.
+	 * @apiField
+	 * @var int
+	 */
+	protected $user_id;
+
+	/**
+	 * Name of the organization of the user ticket was created by.
+	 * @apiField
+	 * @var string
+	 */
+	protected $user_organization_name;
+
+	/**
+	 * Identifier of the organization of the user ticket was created by.
+	 * @apiField
+	 * @var int
+	 */
+	protected $user_organization_id;
+
+	/**
+	 * Identifier of staff user who owns the ticket.
+	 * @apiField
+	 * @var int
+	 */
+	protected $owner_staff_id;
+
+	/**
+	 * Full name of staff user who owns the ticket.
+	 * @apiField
+	 * @var string
+	 */
+	protected $owner_staff_name;
+
+	/**
+	 * Full name of creator of the ticket.
+	 * @apiField required_create=true
+	 * @var int
+	 */
+	protected $full_name;
+
+	/**
+	 * E-mail of creator of the ticket.
+	 * @apiField required_create=true
+	 * @var string
+	 */
+	protected $email;
+
+	/**
+	 * Full name of the last replier to this ticket.
+	 * @apiField
+	 * @var string
+	 */
+	protected $last_replier;
+
+	/**
+	 * Ticket subject.
+	 * @apiField required_create=true
+	 * @var string
+	 */
+	protected $subject;
+
+	/**
+	 * Timestamp of when this ticket was created.
+	 * @apiField
+	 * @var int
+	 */
+	protected $creation_time;
+
+	/**
+	 * Timestamp of last activity in this ticket.
+	 * @apiField
+	 * @var int
+	 */
+	protected $last_activity;
+
+	/**
+	 * Timestamp of last staff user reply.
+	 * @apiField
+	 * @var int
+	 */
+	protected $last_staff_reply;
+
+	/**
+	 * Timestamp of last user reply.
+	 * @apiField
+	 * @var int
+	 */
+	protected $last_user_reply;
+
+	/**
+	 * Service Level Agreement plan identifier.
+	 * @apiField
+	 * @var int
+	 */
+	protected $sla_plan_id;
+
+	/**
+	 * Timestamp of when the next replay is due.
+	 * @apiField
+	 * @var int
+	 */
+	protected $next_reply_due;
+
+	/**
+	 * Timestamp of when resolution of the ticket is due.
+	 * @apiField
+	 * @var int
+	 */
+	protected $resolution_due;
+
+	/**
+	 * Reply count.
+	 * @apiField
+	 * @var int
+	 */
+	protected $replies;
+
+	/**
+	 * IP address from which the ticket was created.
+	 * @apiField
+	 * @var string
+	 */
+	protected $ip_address;
+
+	/**
+	 * Type of the ticket creator.
+	 *
+	 * @see kyTicket::CREATOR constants.
+	 *
+	 * @apiField
+	 * @var int
+	 */
+	protected $creator;
+
+	/**
+	 * Ticket creation mode.
+	 *
+	 * @see kyTicket::CREATION_MODE constants.
+	 *
+	 * @apiField
+	 * @var int
+	 */
+	protected $creation_mode;
+
+	/**
+	 * Ticket creation type.
+	 *
+	 * @see kyTicket::CREATION_TYPE constants.
+	 *
+	 * @apiField alias=type
+	 * @var int
+	 */
+	protected $creation_type;
+
+	/**
+	 * Is this ticket escalated.
+	 * @apiField
+	 * @var bool
+	 */
+	protected $is_escalated;
+
+	/**
+	 * Escalation rule identifier.
+	 * @apiField
+	 * @var int
+	 */
+	protected $escalation_rule_id;
+
+	/**
+	 * Template group identifier.
+	 * @apiField
+	 * @var int
+	 */
+	protected $template_group_id;
+
+	/**
+	 * Ticket tags.
+	 * @apiField
+	 * @var string
+	 */
+	protected $tags;
+
+	/**
+	 * Ticket watchers.
+	 * @apiField
+	 * @var array
+	 */
+	protected $watchers;
+
+	/**
+	 * Ticket workflows.
+	 * @apiField
+	 * @var array
+	 */
+	protected $workflows;
+
+	/**
+	 * Identifier os staff user who will create this ticket.
+	 * @apiField
+	 * @var int
+	 */
+	protected $staff_id;
+
+	/**
+	 * Ticket contents.
+	 * @apiField required_create=true
+	 * @var string
+	 */
+	protected $contents = null;
+
+	/**
+	 * Ticket status.
+	 * @var kyTicketStatus
+	 */
+	private $status;
+
+	/**
+	 * Ticket priority.
+	 * @var kyTicketPriority
+	 */
+	private $priority;
+
+	/**
+	 * Ticket type.
+	 * @var kyTicketType
+	 */
+	private $type;
+
+	/**
+	 * User, the creator of this ticket.
+	 * @var kyUser
+	 */
+	private $user;
+
+	/**
+	 * Organization of user who created this ticket.
+	 * @var kyUserOrganization
+	 */
+	private $user_organization;
+
+	/**
+	 * Staff user, the creator of this ticket.
+	 * @var kyStaff
+	 */
+	private $staff;
+
+	/**
+	 * Staff user who is the owner of this ticket.
+	 * @var kyStaff
+	 */
+	private $owner_staff;
+
+	/**
+	 * Department of this ticket.
+	 * @var kyDepartment
+	 */
+	private $department = null;
+
+	/**
+	 * List of ticket notes.
+	 * @var kyTicketNote[]
+	 */
+	private $notes = null;
+
+	/**
+	 * List of ticket time tracks.
+	 * @var kyTicketTimeTrack[]
+	 */
+	private $time_tracks = null;
+
+	/**
+	 * List of ticket posts.
+	 * @var kyTicketPost[]
+	 */
+	private $posts = null;
+
+	/**
+	 * List of ticket attachments.
+	 * @var kyTicketAttachment[]
+	 */
+	private $attachments = null;
+
+	/**
+	 * Tickets statistic.
+	 * @var array
+	 */
+	static private $statistics = null;
 
 	/**
 	 * Sets default status, priority and type for newly created tickets.
@@ -170,46 +491,47 @@ class kyTicket extends kyObjectBase {
 		$this->id = intval($data['_attributes']['id']);
 		$this->flag_type = intval($data['_attributes']['flagtype']);
 		$this->display_id = $data['displayid'];
-		$this->department_id = intval($data['departmentid']);
-		$this->status_id = intval($data['statusid']);
-		$this->priority_id = intval($data['priorityid']);
-		$this->type_id = intval($data['typeid']);
-		$this->user_id = intval($data['userid']);
+		$this->department_id = ky_assure_positive_int($data['departmentid']);
+		$this->status_id = ky_assure_positive_int($data['statusid']);
+		$this->priority_id = ky_assure_positive_int($data['priorityid']);
+		$this->type_id = ky_assure_positive_int($data['typeid']);
+		$this->user_id = ky_assure_positive_int($data['userid']);
 		$this->user_organization_name = $data['userorganization'];
-		$this->user_organization_id = intval($data['userorganizationid']);
-		$this->owner_staff_id = intval($data['ownerstaffid']);
-		if ($this->owner_staff_id === 0)
-			$this->owner_staff_id = null;
+		$this->user_organization_id = ky_assure_positive_int($data['userorganizationid']);
+		$this->owner_staff_id = ky_assure_positive_int($data['ownerstaffid']);
 		$this->owner_staff_name = $data['ownerstaffname'];
 		$this->full_name = $data['fullname'];
 		$this->email = $data['email'];
 		$this->last_replier = $data['lastreplier'];
 		$this->subject = $data['subject'];
-		$this->creation_time = intval($data['creationtime']) > 0 ? date(self::$datetime_format, $data['creationtime']) : null;
-		$this->last_activity = intval($data['lastactivity']) > 0 ? date(self::$datetime_format, $data['lastactivity']) : null;
-		$this->last_staff_reply = intval($data['laststaffreply']) > 0 ? date(self::$datetime_format, $data['laststaffreply']) : null;
-		$this->last_user_reply = intval($data['lastuserreply']) > 0 ? date(self::$datetime_format, $data['lastuserreply']) : null;
-		$this->sla_plan_id = intval($data['slaplanid']);
-		$this->next_reply_due = intval($data['nextreplydue']) > 0 ? date(self::$datetime_format, $data['nextreplydue']) : null;
-		$this->resolution_due = intval($data['resolutiondue']) > 0 ? date(self::$datetime_format, $data['resolutiondue']) : null;
+		$this->creation_time = ky_assure_positive_int($data['creationtime']);
+		$this->last_activity = ky_assure_positive_int($data['lastactivity']);
+		$this->last_staff_reply = ky_assure_positive_int($data['laststaffreply']);
+		$this->last_user_reply = ky_assure_positive_int($data['lastuserreply']);
+		$this->sla_plan_id = ky_assure_positive_int($data['slaplanid']);
+		$this->next_reply_due = ky_assure_positive_int($data['nextreplydue']);
+		$this->resolution_due = ky_assure_positive_int($data['resolutiondue']);
 		$this->replies = intval($data['replies']);
 		$this->ip_address = $data['ipaddress'];
 		$this->creator = intval($data['creator']);
 		$this->creation_mode = intval($data['creationmode']);
 		$this->creation_type = intval($data['creationtype']);
-		$this->is_escalated = intval($data['isescalated']) === 0 ? false : true;
-		$this->escalation_rule_id = intval($data['escalationruleid']);
+		$this->is_escalated = ky_assure_bool($data['isescalated']);
+		$this->escalation_rule_id = ky_assure_positive_int($data['escalationruleid']);
+		$this->template_group_id = ky_assure_positive_int($data['templategroupid']);
 		$this->tags = $data['tags'];
 
+		$this->watchers = array();
 		if (array_key_exists('watcher', $data)) {
 			foreach ($data['watcher'] as $watcher) {
-				$this->watchers[] = array('staff_id' => $watcher['_attributes']['staffid'], 'name' => $watcher['_attributes']['name']);
+				$this->watchers[] = array('staff_id' => intval($watcher['_attributes']['staffid']), 'name' => $watcher['_attributes']['name']);
 			}
 		}
 
+		$this->workflows = array();
 		if (array_key_exists('workflow', $data)) {
 			foreach ($data['workflow'] as $workflow) {
-				$this->workflows[] = array('id' => $workflow['_attributes']['id'], 'title' => $workflow['_attributes']['title']);
+				$this->workflows[] = array('id' => intval($workflow['_attributes']['id']), 'title' => $workflow['_attributes']['title']);
 			}
 		}
 
@@ -219,9 +541,9 @@ class kyTicket extends kyObjectBase {
 		if (array_key_exists('note', $data)) {
 			foreach ($data['note'] as $note_data) {
 				/*
-				 * Workaround for TimeTrack object - if "timeworked" key is present than it's a time track.
+				 * Includes workaround for old format of TimeTrack object - if "timeworked" key is present than it's a time track.
 				 */
-				if (array_key_exists('timeworked', $note_data['_attributes'])) {
+				if ($note_data['_attributes']['type'] === 'timetrack' || array_key_exists('timeworked', $note_data['_attributes'])) {
 					if ($this->time_tracks === null)
 						$this->time_tracks = array();
 
@@ -246,33 +568,51 @@ class kyTicket extends kyObjectBase {
 		}
 	}
 
-	protected function buildData($method) {
+	public function buildData($create) {
+		$this->checkRequiredAPIFields($create);
+
 		$data = array();
 
 		$data['subject'] = $this->subject;
 		$data['fullname'] = $this->full_name;
 		$data['email'] = $this->email;
-		$data['contents'] = $this->contents;
 		$data['departmentid'] = $this->department_id;
 		$data['ticketstatusid'] = $this->status_id;
 		$data['ticketpriorityid'] = $this->priority_id;
 		$data['tickettypeid'] = $this->type_id;
-		switch ($this->creator) {
-			case self::CREATOR_STAFF:
-				$data['staffid']  = $this->creator_id;
-				break;
-			case self::CREATOR_USER:
-				$data['userid']  = $this->creator_id;
-				break;
-			case self::CREATOR_AUTO:
-				$data['autouserid'] = true;
-				break;
+
+		if ($this->owner_staff_id > 0) {
+			$data['ownerstaffid'] = $this->owner_staff_id;
 		}
 
-		if ($this->owner_staff_id > 0)
-			$data['ownerstaffid'] = $this->owner_staff_id;
+		$data['templategroupid'] = $this->template_group_id;
 
-		$data['type'] = $this->creation_type;
+		if ($create) {
+			switch ($this->creator) {
+				case self::CREATOR_STAFF:
+					$data['staffid']  = $this->staff_id;
+				break;
+
+				case self::CREATOR_USER:
+					$data['userid']  = $this->user_id;
+				break;
+
+				case self::CREATOR_AUTO:
+					if (self::$auto_create_user) {
+						$data['autouserid'] = 1;
+						break;
+					}
+
+				default:
+					throw new kyException("Value for API fields 'staffid' or 'userid' is required or automatic ticket user creation should be enabled for this operation to complete.");
+				break;
+			}
+
+			$data['contents'] = $this->contents;
+			$data['type'] = $this->creation_type;
+ 		} else {
+ 			$data['userid'] = $this->user_id;
+ 		}
 
 		return $data;
 	}
@@ -298,7 +638,7 @@ class kyTicket extends kyObjectBase {
 
 		//department
 		if (count($department_ids) === 0)
-			throw new Exception('You must provide at least one department to search for tickets.');
+			throw new InvalidArgumentException('You must provide at least one department to search for tickets.');
 
 		$ticket_status_ids = array();
 		if ($ticket_statuses instanceof kyTicketStatus) {
@@ -361,7 +701,7 @@ class kyTicket extends kyObjectBase {
 			$data[$area] = 1;
 		}
 
-		$result = static::_post(array(), $data, '/Tickets/TicketSearch');
+		$result = self::getRESTClient()->post('/Tickets/TicketSearch', array(), $data);
 
 		$objects = array();
 		if (array_key_exists(static::$object_xml_name, $result)) {
@@ -381,359 +721,578 @@ class kyTicket extends kyObjectBase {
 	}
 
 	/**
-	 * Sets the creator of this ticket.
+	 * Sets the creator (User or Staff) of this post.
 	 *
-	 * @param int $type Creator type. One of self::CREATOR_* constants.
-	 * @param string $full_name Full name of creator.
-	 * @param string $email E-mail of creator.
-	 * @param int $id Creator (user of staff) identifier. Not necessary for type CREATOR_AUTO.
+	 * @see kyTicket::CREATOR constants.
+	 *
+	 * @param int|kyUser|kyStaff $creator User identifier OR staff identifier OR user OR staff user.
+	 * @param int $type Creator type. Required only when $creator is an identifier.
 	 * @return kyTicket
 	 */
-	public function setCreator($type, $full_name, $email, $id = null) {
-		$this->creator = $type;
-		$this->full_name = $full_name;
-		$this->email = $email;
-		$this->creator_id = $id;
+	public function setCreator($creator, $type = null) {
+		if (is_numeric($creator)) {
+			switch ($type) {
+				case self::CREATOR_USER:
+					$this->setUserId($creator);
+				break;
+
+				case self::CREATOR_STAFF:
+					$this->setStaffId($creator);
+				break;
+			}
+		} elseif ($creator instanceof kyUser) {
+			$this->setUser($creator);
+		} elseif ($creator instanceof kyStaff) {
+			$this->setStaff($creator);
+		}
+
 		return $this;
 	}
 
 	/**
+	 * Sets the creator to be automatically created (or assigned) by the server based on specified data.
+	 *
+	 * @param string $full_name Full name of the creator.
+	 * @param string $email E-mail of the creator.
+	 * @return kyTicket
+	 */
+	public function setCreatorAuto($full_name, $email) {
+		$this->setFullName($full_name);
+		$this->setEmail($email);
+		$this->creator = self::CREATOR_AUTO;
+
+		$this->user = null;
+		$this->user_id = null;
+		$this->staff = null;
+		$this->staff_id = null;
+		return $this;
+	}
+
+	/**
+	 * Returns flag type for the ticket.
+	 *
+	 * @see kyTicket::FLAG constants.
 	 *
 	 * @return int
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getFlagType() {
 		return $this->flag_type;
 	}
 
 	/**
+	 * Return display identifier of the ticket.
 	 *
-	 * @return int
-	 * @filterBy()
-	 * @orderBy()
+	 * @return string
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getDisplayId() {
 		return $this->display_id;
 	}
 
 	/**
+	 * Returns identifier of department associated with the ticket.
 	 *
 	 * @return int
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getDepartmentId() {
 		return $this->department_id;
 	}
 
 	/**
+	 * Sets identifier of department the ticket belongs to.
 	 *
-	 * @param int $department_id
+	 * @param int $department_id Department identifier.
 	 * @return kyTicket
 	 */
 	public function setDepartmentId($department_id) {
-		$this->department_id = $department_id;
+		$this->department_id = ky_assure_positive_int($department_id);
+		$this->department = null;
 		return $this;
 	}
 
 	/**
+	 * Returns department object associated with the ticket.
 	 *
-	 * @todo Cache the result in object private field.
+	 * Result is cached until the end of script.
+	 *
+	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyDepartment
 	 */
-	public function getDepartment() {
-		if ($this->department_id === null || $this->department_id <= 0)
+	public function getDepartment($reload = false) {
+		if ($this->department !== null && !$reload)
+			return $this->department;
+
+		if ($this->department_id === null)
 			return null;
 
-		return kyDepartment::get($this->department_id);
+		$this->department = kyDepartment::get($this->department_id);
+		return $this->department;
 	}
 
 	/**
+	 * Sets the department the ticket belongs to.
 	 *
-	 * @param kyDepartment $department
+	 * @param kyDepartment $department Department.
 	 * @return kyTicket
 	 */
 	public function setDepartment($department) {
-		$this->department_id = $department->getId();
+		$this->department = ky_assure_object($department, 'kyDepartment');
+		$this->department_id = $this->department !== null ? $this->department->getId() : null;
 		return $this;
 	}
 
 	/**
+	 * Returns identifier of this ticket status.
 	 *
 	 * @return int
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getStatusId() {
 		return $this->status_id;
 	}
 
 	/**
+	 * Sets identifier of this ticket status.
 	 *
-	 * @param int $status_id
+	 * @param int $ticket_status_id Ticket status identifier.
 	 * @return kyTicket
 	 */
-	public function setStatusId($status_id) {
-		$this->status_id = $status_id;
+	public function setStatusId($ticket_status_id) {
+		$this->status_id = ky_assure_positive_int($ticket_status_id);
+		$this->status = null;
 		return $this;
 	}
 
 	/**
+	 * Returns ticket status.
 	 *
-	 * @todo Cache the result in object private field.
+	 * Result is cached until the end of script.
+	 *
+	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyTicketStatus
 	 */
-	public function getStatus() {
-		if ($this->status_id === null || $this->status_id <= 0)
+	public function getStatus($reload = false) {
+		if ($this->status !== null && !$reload)
+			return $this->status;
+
+		if ($this->status_id === null)
 			return null;
 
-		return kyTicketStatus::get($this->status_id);
+		$this->status = kyTicketStatus::get($this->status_id);
+		return $this->status;
 	}
 
 	/**
+	 * Sets ticket status.
 	 *
-	 * @param kyTicketStatus $ticket_status
+	 * @param kyTicketStatus $ticket_status Ticket status.
 	 * @return kyTicket
 	 */
 	public function setStatus($ticket_status) {
-		$this->status_id = $ticket_status->getId();
+		$this->status = ky_assure_object($ticket_status, 'kyTicketStatus');
+		$this->status_id = $this->status !== null ? $this->status->getId() : null;
 		return $this;
 	}
 
 	/**
+	 * Returns identifier of this ticket priority.
 	 *
 	 * @return int
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getPriorityId() {
 		return $this->priority_id;
 	}
 
 	/**
-	 *
-	 * @param int $priority_id
+	 * Sets identifier of this ticket priority.
+	 * @param int $ticket_priority_id Ticket priority identifier.
 	 * @return kyTicket
 	 */
-	public function setPriorityId($priority_id) {
-		$this->priority_id = $priority_id;
+	public function setPriorityId($ticket_priority_id) {
+		$this->priority_id = ky_assure_positive_int($ticket_priority_id);
+		$this->priority = null;
 		return $this;
 	}
 
 	/**
+	 * Returns this ticket priority.
 	 *
-	 * @todo Cache the result in object private field.
+	 * Result is cached until the end of script.
+	 *
+	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyTicketPriority
 	 */
-	public function getPriority() {
-		if ($this->priority_id === null || $this->priority_id <= 0)
+	public function getPriority($reload = false) {
+		if ($this->priority !== null && !$reload)
+			return $this->priority;
+
+		if ($this->priority_id === null)
 			return null;
 
-		return kyTicketPriority::get($this->priority_id);
+		$this->priority = kyTicketPriority::get($this->priority_id);
+		return $this->priority;
 	}
 
 	/**
+	 * Sets this ticket priority.
 	 *
 	 * @param kyTicketPriority $ticket_priority
 	 * @return kyTicket
 	 */
 	public function setPriority($ticket_priority) {
-		$this->priority_id = $ticket_priority->getId();
+		$this->priority = ky_assure_object($ticket_priority, 'kyTicketPriority');
+		$this->priority_id = $this->priority !== null ? $this->priority->getId() : null;
 		return $this;
 	}
 
 	/**
+	 * Returns identifier of this ticket type.
 	 *
 	 * @return int
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getTypeId() {
 		return $this->type_id;
 	}
 
 	/**
+	 * Sets identifier of this ticket type.
 	 *
-	 * @param int $type_id
+	 * @param int $ticket_type_id Ticket type identifier.
 	 * @return kyTicket
 	 */
-	public function setTypeId($type_id) {
-		$this->type_id = $type_id;
+	public function setTypeId($ticket_type_id) {
+		$this->type_id = ky_assure_positive_int($ticket_type_id);
+		$this->type = null;
 		return $this;
 	}
 
 	/**
+	 * Returns this ticket type.
 	 *
-	 * @todo Cache the result in object private field.
+	 * Result is cached until the end of script.
+	 *
+	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyTicketType
 	 */
-	public function getType() {
-		if ($this->type_id === null || $this->type_id <= 0)
+	public function getType($reload = false) {
+		if ($this->type !== null && !$reload)
+			return $this->type;
+
+		if ($this->type_id === null)
 			return null;
 
-		return kyTicketType::get($this->type_id);
+		$this->type = kyTicketType::get($this->type_id);
+		return $this->type;
 	}
 
 	/**
+	 * Sets this ticket type.
 	 *
-	 * @param kyTicketType $ticket_type
+	 * @param kyTicketType $ticket_type Ticket type.
 	 * @return kyTicket
 	 */
 	public function setType($ticket_type) {
-		$this->type_id = $ticket_type->getId();
+		$this->type = ky_assure_object($ticket_type, 'kyTicketType');
+		$this->type_id = $this->type !== null ? $this->type->getId() : null;
 		return $this;
 	}
 
 	/**
+	 * Returns identifier of user, the creator of this ticket.
 	 *
 	 * @return int
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getUserId() {
 		return $this->user_id;
 	}
 
 	/**
+	 * Sets identifier of user, the creator of this ticket.
 	 *
-	 * @todo Cache the result in object private field.
-	 * @return kyUser
+	 * @param int $user_id User identifier.
+	 * @return kyTicket
 	 */
-	public function getUser() {
-		if ($this->user_id === null || $this->user_id <= 0)
-			return null;
+	public function setUserId($user_id) {
+		$this->user_id = ky_assure_positive_int($user_id);
+		$this->creator = $this->user_id > 0 ? self::CREATOR_USER : null;
+		$this->user = $this->user_id > 0 ? kyUser::get($this->user_id) : null;
+		if ($this->user !== null) {
+			$this->full_name = $this->user->getFullName();
+			$this->email = $this->user->getEmail();
+		}
 
-		return kyUser::get($this->user_id);
+		$this->staff_id = null;
+		$this->staff = null;
+		return $this;
 	}
 
 	/**
+	 * Returns user, the creator of this ticket.
+	 *
+	 * Result is cached until the end of script.
+	 *
+	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
+	 * @return kyUser
+	 */
+	public function getUser($reload = false) {
+		if ($this->user !== null && !$reload)
+			return $this->user;
+
+		if ($this->user_id === null)
+			return null;
+
+		$this->user = kyUser::get($this->user_id);
+		return $this->user;
+	}
+
+	/**
+	 * Sets user, the creator of this post.
+	 *
+	 * @param kyUser $user User.
+	 * @return kyTicketPost
+	 */
+	public function setUser($user) {
+		$this->user = ky_assure_object($user, 'kyUser');
+		$this->user_id = $this->user !== null ? $this->user->getId() : null;
+		$this->creator = $this->user !== null ? self::CREATOR_USER : null;
+		if ($this->user !== null) {
+			$this->full_name = $this->user->getFullName();
+			$this->email = $this->user->getEmail();
+		}
+
+		$this->staff_id = null;
+		$this->staff = null;
+		return $this;
+	}
+
+	/**
+	 * Returns name of organization the user who created the ticket belongs to.
 	 *
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getUserOrganizationName() {
 		return $this->user_organization_name;
 	}
 
 	/**
+	 * Returns identifier of organization the user who created the ticket belongs to.
 	 *
 	 * @return int
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getUserOrganizationId() {
 		return $this->user_organization_id;
 	}
 
 	/**
+	 * Return organization the user who created the ticket belongs to.
 	 *
-	 * @todo Cache the result in object private field.
+	 * Result is cached until the end of script.
+	 *
+	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyUserOrganization
 	 */
-	public function getUserOrganization() {
-		if ($this->user_organization_id === null || $this->user_organization_id <= 0)
+	public function getUserOrganization($reload = false) {
+		if ($this->user_organization !== null && !$reload)
+			return $this->user_organization;
+
+		if ($this->user_organization_id === null)
 			return null;
 
-		return kyUserOrganization::get($this->user_organization_id);
+		$this->user_organization = kyUserOrganization::get($this->user_organization_id);
+		return $this->user_organization;
 	}
 
 	/**
+	 * Sets identifier of staff user, the creator of this ticket.
+	 *
+	 * @param int $staff_id Staff user identifier.
+	 * @return kyTicketPost
+	 */
+	public function setStaffId($staff_id) {
+		$this->staff_id = ky_assure_positive_int($staff_id);
+		$this->creator = $this->staff_id > 0 ? self::CREATOR_STAFF : null;
+		$this->staff = $this->staff_id > 0 ? kyStaff::get($this->staff_id) : null;
+		if ($this->staff !== null) {
+			$this->full_name = $this->staff->getFullName();
+			$this->email = $this->staff->getEmail();
+		}
+
+		$this->user_id = null;
+		$this->user = null;
+		return $this;
+	}
+
+	/**
+	 * Sets staff user, the creator of this ticket.
+	 *
+	 * @param kyStaff $staff Staff user.
+	 * @return kyTicketPost
+	 */
+	public function setStaff($staff) {
+		$this->staff = ky_assure_object($staff, 'kyStaff');
+		$this->staff_id = $this->staff !== null ? $this->staff->getId() : null;
+		$this->creator = $this->staff !== null ? self::CREATOR_STAFF : null;
+		if ($this->staff !== null) {
+			$this->full_name = $this->staff->getFullName();
+			$this->email = $this->staff->getEmail();
+		}
+
+		$this->user_id = null;
+		$this->user = null;
+		return $this;
+	}
+
+	/**
+	 * Returns full name of the staff user, owner of this ticket.
 	 *
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getOwnerStaffName() {
 		return $this->owner_staff_name;
 	}
 
 	/**
+	 * Returns identifier of the staff user, owner of this ticket.
 	 *
 	 * @return int
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getOwnerStaffId() {
 		return $this->owner_staff_id;
 	}
 
 	/**
+	 * Sets identifier of the staff user, owner of this ticket.
 	 *
-	 * @param int $owner_staff_id
+	 * @param int $owner_staff_id Staff user identifier.
 	 * @return kyTicket
 	 */
 	public function setOwnerStaffId($owner_staff_id) {
-		$this->owner_staff_id = $owner_staff_id;
+		$this->owner_staff_id = ky_assure_positive_int($owner_staff_id);
+		$this->owner_staff = null;
 		return $this;
 	}
 
 	/**
+	 * Return staff user, owner of this ticket.
 	 *
-	 * @todo Cache the result in object private field.
+	 * Result is cached until the end of script.
+	 *
+	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyStaff
 	 */
-	public function getOwnerStaff() {
-		if ($this->owner_staff_id === null || $this->owner_staff_id <= 0)
+	public function getOwnerStaff($reload = false) {
+		if ($this->owner_staff !== null && !$reload)
+			return $this->owner_staff;
+
+		if ($this->owner_staff_id === null)
 			return null;
 
-		return kyStaff::get($this->owner_staff_id);
+		$this->owner_staff = kyStaff::get($this->owner_staff_id);
+		return $this->owner_staff;
 	}
 
 	/**
+	 * Sets staff user, owner of this ticket.
 	 *
-	 * @param kyStaff $owner_staff
+	 * @param kyStaff $owner_staff Staff user.
 	 * @return kyTicket
 	 */
 	public function setOwnerStaff($owner_staff) {
-		$this->owner_staff_id = $owner_staff->getId();
+		$this->owner_staff = ky_assure_object($owner_staff, 'kyStaff');
+		$this->owner_staff_id = $this->owner_staff !== null ? $this->owner_staff->getId() : null;
 		return $this;
 	}
 
 	/**
+	 * Returns the creator full name.
 	 *
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getFullName() {
 		return $this->full_name;
 	}
 
 	/**
+	 * Sets the creator full name.
+	 *
+	 * @param string $full_name Creator full name.
+	 * @return kyTicket
+	 */
+	public function setFullName($full_name) {
+		$this->full_name = ky_assure_string($full_name);
+		return $this;
+	}
+
+	/**
+	 * Return the creator e-mail address.
 	 *
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getEmail() {
 		return $this->email;
 	}
 
 	/**
+	 * Sets the creator e-mail address.
+	 *
+	 * @param string $email Creator e-mail.
+	 * @return kyTicket
+	 */
+	public function setEmail($email) {
+		$this->email = ky_assure_string($email);
+		return $this;
+	}
+
+	/**
+	 * Returns full name of the last person replied to this ticket.
 	 *
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getLastReplier() {
 		return $this->last_replier;
 	}
 
 	/**
+	 * Returns the subject of this ticket.
 	 *
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getSubject() {
 		return $this->subject;
 	}
 
 	/**
+	 * Sets the subject of this ticket.
 	 *
-	 * @param string $subject
+	 * @param string $subject Ticket subject.
 	 * @return kyTicket
 	 */
 	public function setSubject($subject) {
@@ -742,165 +1301,266 @@ class kyTicket extends kyObjectBase {
 	}
 
 	/**
+	 * Returns date and time this ticket was created.
 	 *
+	 * @see http://www.php.net/manual/en/function.date.php
+	 *
+	 * @param string $format Output format of the date. If null the format set in client configuration is used.
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
-	public function getCreationTime() {
-		return $this->creation_time;
+	public function getCreationTime($format = null) {
+		if ($format === null) {
+			$format = kyConfig::get()->getDatetimeFormat();
+		}
+
+		return date($format, $this->creation_time);
 	}
 
 	/**
+	 * Returns date and time of last activity on this ticket.
 	 *
+	 * @see http://www.php.net/manual/en/function.date.php
+	 *
+	 * @param string $format Output format of the date. If null the format set in client configuration is used.
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
-	public function getLastActivity() {
-		return $this->last_activity;
+	public function getLastActivity($format = null) {
+		if ($format === null) {
+			$format = kyConfig::get()->getDatetimeFormat();
+		}
+
+		return date($format, $this->last_activity);
 	}
 
 	/**
+	 * Returns date and time of last staff user reply to this ticket.
 	 *
+	 * @see http://www.php.net/manual/en/function.date.php
+	 *
+	 * @param string $format Output format of the date. If null the format set in client configuration is used.
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
-	public function getLastStaffReply() {
-		return $this->last_staff_reply;
+	public function getLastStaffReply($format = null) {
+		if ($this->last_staff_reply == 0)
+			return null;
+
+		if ($format === null) {
+			$format = kyConfig::get()->getDatetimeFormat();
+		}
+
+		return date($format, $this->last_staff_reply);
 	}
 
 	/**
+	 * Returns date and time of last user reply to this ticket.
 	 *
+	 * @see http://www.php.net/manual/en/function.date.php
+	 *
+	 * @param string $format Output format of the date. If null the format set in client configuration is used.
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
-	public function getLastUserReply() {
-		return $this->last_user_reply;
+	public function getLastUserReply($format = null) {
+		if ($this->last_user_reply == 0)
+			return null;
+
+		if ($format === null) {
+			$format = kyConfig::get()->getDatetimeFormat();
+		}
+
+		return date($format, $this->last_user_reply);
 	}
 
 	/**
+	 * Returns Service Level Agreement plan identifier.
 	 *
 	 * @return int
-	 * @filterBy()
+	 * @filterBy
 	 */
 	public function getSLAPlanId() {
 		return $this->sla_plan_id;
 	}
 
 	/**
+	 * Returns next ticket reply due date and time.
 	 *
+	 * @see http://www.php.net/manual/en/function.date.php
+	 *
+	 * @param string $format Output format of the date. If null the format set in client configuration is used.
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
-	public function getNextReplyDue() {
-		return $this->next_reply_due;
+	public function getNextReplyDue($format = null) {
+		if ($this->next_reply_due == 0)
+			return null;
+
+		if ($format === null) {
+			$format = kyConfig::get()->getDatetimeFormat();
+		}
+
+		return date($format, $this->next_reply_due);
 	}
 
 	/**
+	 * Returns ticket resolution due date and time.
 	 *
+	 * @see http://www.php.net/manual/en/function.date.php
+	 *
+	 * @param string $format Output format of the date. If null the format set in client configuration is used.
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
-	public function getResolutionDue() {
-		return $this->resolution_due;
+	public function getResolutionDue($format = null) {
+		if ($this->resolution_due == 0)
+			return null;
+
+		if ($format === null) {
+			$format = kyConfig::get()->getDatetimeFormat();
+		}
+
+		return date($format, $this->resolution_due);
 	}
 
 	/**
+	 * Returns replies count.
 	 *
 	 * @return int
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getReplies() {
 		return $this->replies;
 	}
 
 	/**
+	 * Returns IP address from which this post was created.
 	 *
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getIPAddress() {
 		return $this->ip_address;
 	}
 
 	/**
+	 * Returns creator type.
+	 *
+	 * @see kyTicket::CREATOR constants.
 	 *
 	 * @return int
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getCreatorType() {
 		return $this->creator;
 	}
 
 	/**
+	 * Returns creation mode.
+	 *
+	 * @see kyTicket::CREATION_MODE constants.
 	 *
 	 * @return int
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getCreationMode() {
 		return $this->creation_mode;
 	}
 
 	/**
+	 * Returns creation type.
+	 *
+	 * @see kyTicket::CREATION_TYPE constants.
 	 *
 	 * @return int
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getCreationType() {
 		return $this->creation_type;
 	}
 
 	/**
+	 * Sets the creation type for this ticket.
 	 *
-	 * @param int $creation_type
+	 * @see kyTicket::CREATION_TYPE constants.
+	 *
+	 * @param int $creation_type Creation type.
 	 * @return kyTicket
 	 */
 	public function setCreationType($creation_type) {
-		$this->creation_type = $creation_type;
+		$this->creation_type = ky_assure_constant($creation_type, $this, 'CREATION_TYPE');
 		return $this;
 	}
 
 	/**
+	 * Returns whether this ticket has escalated.
 	 *
 	 * @return bool
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getIsEscalated() {
 		return $this->is_escalated;
 	}
 
 	/**
+	 * Returns escalation rule identifier.
 	 *
 	 * @return int
-	 * @filterBy()
+	 * @filterBy
 	 */
 	public function getEscalationRuleId() {
 		return $this->escalation_rule_id;
 	}
 
 	/**
+	 * Returns ticket tags.
 	 *
 	 * @return string
-	 * @filterBy()
+	 * @filterBy
 	 */
 	public function getTags() {
 		return $this->tags;
 	}
 
 	/**
+	* Returns template group identifier.
+	*
+	* @return int
+	* @filterBy
+	* @orderBy
+	*/
+	public function getTemplateGroupId() {
+		return $this->template_group_id;
+	}
+
+	/**
+	 * Sets the template group identifier.
+	 *
+	 * @param int $template_group_id Template group identifier.
+	 * @return kyTicket
+	 */
+	public function setTemplateGroupId($template_group_id) {
+		$this->template_group_id = ky_assure_positive_int($template_group_id);
+		return $this;
+	}
+
+	/**
 	 * Returns tickets watchers.
 	 * Format of returned array:
+	 * <pre>
 	 * array(
 	 *   array(
 	 *     'staff_id' => <staff identifier>,
@@ -908,16 +1568,18 @@ class kyTicket extends kyObjectBase {
 	 *   ),
 	 *   ...
 	 * )
+	 * </pre>
 	 *
 	 * @return array
 	 */
 	public function getWatchers() {
-		return $this->watchers;
+		return ky_assure_array($this->watchers);
 	}
 
 	/**
 	 * Returns tickets workflows.
 	 * Format of returned array:
+	 * <pre>
 	 * array(
 	 *   array(
 	 *     'id' => <workflow identifier>,
@@ -925,54 +1587,61 @@ class kyTicket extends kyObjectBase {
 	 *   ),
 	 *   ...
 	 * )
+	 * </pre>
 	 *
 	 * @return array
 	 */
 	public function getWorkflows() {
-		return $this->workflows;
+		return ky_assure_array($this->workflows);
 	}
 
 	/**
-	 * Returns list of ticket notes. Result is cached.
+	 * Returns list of ticket notes.
+	 *
+	 * Result is cached till the end of script.
 	 *
 	 * @param bool $reload True to reload notes from server.
 	 * @return kyResultSet
 	 */
 	public function getNotes($reload = false) {
 		if ($this->notes === null || $reload) {
-			$this->notes = kyTicketNote::getAll($this->getId());
+			$this->notes = kyTicketNote::getAll($this->getId())->getRawArray();
 		}
 		return new kyResultSet($this->notes);
 	}
 
 	/**
-	 * Returns list of ticket time tracks. Result is cached.
+	 * Returns list of ticket time tracks.
+	 *
+	 * Result is cached till the end of script.
 	 *
 	 * @param bool $reload True to reload time tracks from server.
 	 * @return kyResultSet
 	 */
 	public function getTimeTracks($reload = false) {
 		if ($this->time_tracks === null || $reload) {
-			$this->time_tracks = kyTicketTimeTrack::getAll($this->getId());
+			$this->time_tracks = kyTicketTimeTrack::getAll($this->getId())->getRawArray();
 		}
 		return new kyResultSet($this->time_tracks);
 	}
 
 	/**
-	 * Returns list of ticket posts. Result is cached.
+	 * Returns list of ticket posts.
+	 *
+	 * Result is cached till the end of script.
 	 *
 	 * @param bool $reload True to reload posts from server.
 	 * @return kyResultSet
 	 */
 	public function getPosts($reload = false) {
 		if ($this->posts === null || $reload) {
-			$this->posts = kyTicketPost::getAll($this->getId());
+			$this->posts = kyTicketPost::getAll($this->getId())->getRawArray();
 		}
 		return new kyResultSet($this->posts);
 	}
 
 	/**
-	 * Returns first post of ticket.
+	 * Returns first post of this ticket.
 	 *
 	 * @return kyTicketPost
 	 */
@@ -981,41 +1650,29 @@ class kyTicket extends kyObjectBase {
 	}
 
 	/**
-	 * Returns list of attachments in all posts of this ticket. Result is cached.
+	 * Returns list of attachments in all posts of this ticket.
+	 *
+	 * Result is cached till the end of script.
 	 *
 	 * @param bool $reload True to reload attachments from server.
 	 * @return kyTicketAttachment[]
 	 */
 	public function getAttachments($reload = false) {
 		if ($this->attachments === null || $reload) {
-			$this->attachments = kyTicketAttachment::getAll($this->id);
+			$this->attachments = kyTicketAttachment::getAll($this->id)->getRawArray();
 		}
-		return $this->attachments;
+		return new kyResultSet($this->attachments);
 	}
 
 	/**
+	 * Sets the contents of this ticket (first ticket post).
 	 *
-	 * @param string $contents
+	 * @param string $contents Ticket contents.
 	 * @return kyTicket
 	 */
 	public function setContents($contents) {
-		$this->contents = $contents;
+		$this->contents = ky_assure_string($contents);
 		return $this;
-	}
-
-	/**
-	 * Returns list of custom field groups for this ticket.
-	 * Result is cached until the end of script.
-	 *
-	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
-	 * @return
-	 */
-	public function getCustomFieldGroups($reload = false) {
-		if ($this->custom_field_groups !== null && !$reload)
-			return $this->custom_field_groups;
-
-		$this->custom_field_groups = kyTicketCustomFieldGroup::getAll($this->getId());
-		return $this->custom_field_groups;
 	}
 
 	/**
@@ -1049,11 +1706,7 @@ class kyTicket extends kyObjectBase {
 	 */
 	static public function createNew(kyDepartment $department, $creator, $contents, $subject) {
 		$new_ticket = self::createNewGeneric($department, $contents, $subject);
-		if ($creator instanceOf kyUser) {
-			$new_ticket->setCreator(self::CREATOR_USER, $creator->getFullName(), $creator->getEmail(), $creator->getId());
-		} elseif ($creator instanceOf kyStaff) {
-			$new_ticket->setCreator(self::CREATOR_STAFF, $creator->getFullName(), $creator->getEmail(), $creator->getId());
-		}
+		$new_ticket->setCreator($creator);
 		return $new_ticket;
 	}
 
@@ -1070,7 +1723,7 @@ class kyTicket extends kyObjectBase {
 	 */
 	static public function createNewAuto(kyDepartment $department, $creator_full_name, $creator_email, $contents, $subject) {
 		$new_ticket = self::createNewGeneric($department, $contents, $subject);
-		$new_ticket->setCreator(self::CREATOR_AUTO, $creator_full_name, $creator_email);
+		$new_ticket->setCreatorAuto($creator_full_name, $creator_email);
 		return $new_ticket;
 	}
 
@@ -1080,11 +1733,10 @@ class kyTicket extends kyObjectBase {
 	 *
 	 * @param kyUser|kyStaff $creator Creator (User or Staff) of new post.
 	 * @param string $contents Contents of new post.
-	 * @param string $subject Subject of new post (it's not displayed anywhere in Kayako so I don't see why it's required in API hence the default value).
 	 * @return kyTicketPost
 	 */
-	public function newPost($creator, $contents, $subject = 'No subject') {
-		return kyTicketPost::createNew($this, $creator, $contents, $subject);
+	public function newPost($creator, $contents) {
+		return kyTicketPost::createNew($this, $creator, $contents);
 	}
 
 	/**
@@ -1116,6 +1768,7 @@ class kyTicket extends kyObjectBase {
 	/**
 	 * Returns statistics for all tickets in database. Result is cached.
 	 * Format or result:
+	 * <pre>
 	 * 	array(
 	 * 		'departments' => array( //statistics per department (if there are no tickets in department then there will be no record with its id here)
 	 * 			<department id> => array( //tickets assigned to department with this id
@@ -1176,6 +1829,7 @@ class kyTicket extends kyObjectBase {
 	 * 			)
 	 * 		)
 	 * 	)
+	 * </pre>
 	 *
 	 * @param bool $reload True to reload statistics data from server.
 	 * @return array
@@ -1185,13 +1839,13 @@ class kyTicket extends kyObjectBase {
 			return self::$statistics;
 
 		self::$statistics = array('departments' => array(), 'ticket_statuses' => array(), 'ticket_owners' => array());
-		$raw_stats = static::_get(array(), '/Tickets/TicketCount');
+		$raw_stats = self::getRESTClient()->get('/Tickets/TicketCount', array());
 
 		foreach ($raw_stats['departments'][0]['department'] as $department_raw_stats) {
 			$department_id = intval($department_raw_stats['_attributes']['id']);
 
 			$department_stats = array();
-			$department_stats['last_activity'] = intval($department_raw_stats['lastactivity']) > 0 ? date(self::$datetime_format, $department_raw_stats['lastactivity']) : null;
+			$department_stats['last_activity'] = intval($department_raw_stats['lastactivity']) > 0 ? date(kyConfig::get()->getDatetimeFormat(), $department_raw_stats['lastactivity']) : null;
 			$department_stats['total_items'] = $department_raw_stats['totalitems'];
 			$department_stats['total_unresolved_items'] = $department_raw_stats['totalunresolveditems'];
 
@@ -1199,7 +1853,7 @@ class kyTicket extends kyObjectBase {
 				$ticket_status_id = intval($ticket_status_raw_stats['_attributes']['id']);
 
 				$ticket_status_stats = array();
-				$ticket_status_stats['last_activity'] = intval($ticket_status_raw_stats['_attributes']['lastactivity']) > 0 ? date(self::$datetime_format, $ticket_status_raw_stats['_attributes']['lastactivity']) : null;
+				$ticket_status_stats['last_activity'] = intval($ticket_status_raw_stats['_attributes']['lastactivity']) > 0 ? date(kyConfig::get()->getDatetimeFormat(), $ticket_status_raw_stats['_attributes']['lastactivity']) : null;
 				$ticket_status_stats['total_items'] = $ticket_status_raw_stats['_attributes']['totalitems'];
 
 				$department_stats['ticket_statuses'][$ticket_status_id] = $ticket_status_stats;
@@ -1210,7 +1864,7 @@ class kyTicket extends kyObjectBase {
 				$ticket_type_id = intval($ticket_type_raw_stats['_attributes']['id']);
 
 				$ticket_type_stats = array();
-				$ticket_type_stats['last_activity'] = intval($ticket_type_raw_stats['_attributes']['lastactivity']) > 0 ? date(self::$datetime_format, $ticket_type_raw_stats['_attributes']['lastactivity']) : null;
+				$ticket_type_stats['last_activity'] = intval($ticket_type_raw_stats['_attributes']['lastactivity']) > 0 ? date(kyConfig::get()->getDatetimeFormat(), $ticket_type_raw_stats['_attributes']['lastactivity']) : null;
 				$ticket_type_stats['total_items'] = $ticket_type_raw_stats['_attributes']['totalitems'];
 				$ticket_type_stats['total_unresolved_items'] = $ticket_type_raw_stats['_attributes']['totalunresolveditems'];
 
@@ -1221,7 +1875,7 @@ class kyTicket extends kyObjectBase {
 				$staff_id = intval($owner_staff_raw_stats['_attributes']['id']);
 
 				$owner_staff_stats = array();
-				$owner_staff_stats['last_activity'] = intval($owner_staff_raw_stats['_attributes']['lastactivity']) > 0 ? date(self::$datetime_format, $owner_staff_raw_stats['_attributes']['lastactivity']) : null;
+				$owner_staff_stats['last_activity'] = intval($owner_staff_raw_stats['_attributes']['lastactivity']) > 0 ? date(kyConfig::get()->getDatetimeFormat(), $owner_staff_raw_stats['_attributes']['lastactivity']) : null;
 				$owner_staff_stats['total_items'] = $owner_staff_raw_stats['_attributes']['totalitems'];
 				$owner_staff_stats['total_unresolved_items'] = $owner_staff_raw_stats['_attributes']['totalunresolveditems'];
 
@@ -1236,7 +1890,7 @@ class kyTicket extends kyObjectBase {
 			$ticket_status_id = intval($ticket_status_raw_stats['_attributes']['id']);
 
 			$ticket_status_stats = array();
-			$ticket_status_stats['last_activity'] = intval($ticket_status_raw_stats['_attributes']['lastactivity']) > 0 ? date(self::$datetime_format, $ticket_status_raw_stats['_attributes']['lastactivity']) : null;
+			$ticket_status_stats['last_activity'] = intval($ticket_status_raw_stats['_attributes']['lastactivity']) > 0 ? date(kyConfig::get()->getDatetimeFormat(), $ticket_status_raw_stats['_attributes']['lastactivity']) : null;
 			$ticket_status_stats['total_items'] = $ticket_status_raw_stats['_attributes']['totalitems'];
 
 			self::$statistics['ticket_statuses'][$ticket_status_id] = $ticket_status_stats;
@@ -1246,7 +1900,7 @@ class kyTicket extends kyObjectBase {
 			$staff_id = intval($owner_staff_raw_stats['_attributes']['id']);
 
 			$owner_staff_stats = array();
-			$owner_staff_stats['last_activity'] = intval($owner_staff_raw_stats['_attributes']['lastactivity']) > 0 ? date(self::$datetime_format, $owner_staff_raw_stats['_attributes']['lastactivity']) : null;
+			$owner_staff_stats['last_activity'] = intval($owner_staff_raw_stats['_attributes']['lastactivity']) > 0 ? date(kyConfig::get()->getDatetimeFormat(), $owner_staff_raw_stats['_attributes']['lastactivity']) : null;
 			$owner_staff_stats['total_items'] = $owner_staff_raw_stats['_attributes']['totalitems'];
 			$owner_staff_stats['total_unresolved_items'] = $owner_staff_raw_stats['_attributes']['totalunresolveditems'];
 

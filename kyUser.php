@@ -1,13 +1,11 @@
 <?php
-require_once('kyObjectBase.php');
-
 /**
- * Part of PHP client to REST API of Kayako v4 (Kayako Fusion).
- * Compatible with Kayako version >= 4.01.204.
- *
  * Kayako User object.
  *
  * @author Tomasz Sawicki (https://github.com/Furgas)
+ * @link http://wiki.kayako.com/display/DEV/REST+-+User
+ * @since Kayako version 4.01.204
+ * @package Object\User
  */
 class kyUser extends kyObjectBase {
 
@@ -22,78 +20,206 @@ class kyUser extends kyObjectBase {
 	static protected $controller = '/Base/User';
 	static protected $object_xml_name = 'user';
 
-	private $id = null;
-	private $user_group_id = null;
-	private $user_role = self::ROLE_USER;
-	private $user_organization_id = null;
-	private $salutation = null;
-	private $user_expiry = null;
-	private $full_name = null;
-	private $email = array();
-	private $designation = null;
-	private $phone = null;
-	private $dateline = null;
-	private $last_visit = null;
-	private $is_enabled = true;
-	private $timezone = 'GMT';
-	private $enable_dst = false;
-	private $sla_plan_id = null;
-	private $sla_plan_expiry = null;
-	private $password = null;
-	private $send_welcome_email = null;
+	/**
+	 * User identifier.
+	 * @apiField
+	 * @var int
+	 */
+	protected $id;
 
+	/**
+	 * User group identifier.
+	 * @apiField required_create=true
+	 * @var int
+	 */
+	protected $user_group_id;
+
+	/**
+	 * User role.
+	 *
+	 * @see kyUser::ROLE constants.
+	 *
+	 * @apiField
+	 * @var string
+	 */
+	protected $user_role = self::ROLE_USER;
+
+	/**
+	 * User organization identifier.
+	 * @apiField
+	 * @var int
+	 */
+	protected $user_organization_id;
+
+	/**
+	 * User salutation.
+	 *
+	 * @see kyUser::SALUTATION constants.
+	 *
+	 * @apiField
+	 * @var string
+	 */
+	protected $salutation;
+
+	/**
+	 * Timestamp of when the user will expire.
+	 * @apiField
+	 * @var int
+	 */
+	protected $user_expiry = 0;
+
+	/**
+	 * Full name of the user.
+	 * @apiField required=true
+	 * @var string
+	 */
+	protected $full_name;
+
+	/**
+	 * List of user's e-mail addresses.
+	 * @apiField required_create=true
+	 * @var string[]
+	 */
+	protected $email = array();
+
+	/**
+	 * User designation.
+	 * @apiField
+	 * @var string
+	 */
+	protected $designation;
+
+	/**
+	 * User phone number.
+	 * @apiField
+	 * @var string
+	 */
+	protected $phone;
+
+	/**
+	 * Timestamp of when the user was created.
+	 * @apiField
+	 * @var int
+	 */
+	protected $dateline;
+
+	/**
+	 * Timestamp of when the user last visited support center.
+	 * @apiField
+	 * @var int
+	 */
+	protected $last_visit;
+
+	/**
+	 * Whether this user is enabled.
+	 * @apiField
+	 * @var bool
+	 */
+	protected $is_enabled = true;
+
+	/**
+	 * Timezone of the user.
+	 * @apiField
+	 * @var string
+	 */
+	protected $timezone;
+
+	/**
+	 * If Daylight Saving Time is enabled for the user.
+	 * @apiField
+	 * @var bool
+	 */
+	protected $enable_dst = false;
+
+	/**
+	 * Identifier of Service Level Agreement plan associated to this user.
+	 * @apiField
+	 * @var int
+	 */
+	protected $sla_plan_id;
+
+	/**
+	 * Timestamp of when the Service Level Agreement plan associated to this user will expire.
+	 * @apiField
+	 * @var int
+	 */
+	protected $sla_plan_expiry;
+
+	/**
+	 * Whether welcome e-mail should be send upon creation of the user.
+	 * @apiField
+	 * @var bool
+	 */
+	protected $send_welcome_email = true;
+
+	/**
+	 * User password.
+	 * @apiField required_create=true
+	 * @var string
+	 */
+	protected $password;
+
+	/**
+	 * Group of the user.
+	 * @var kyUserGroup
+	 */
 	private $user_group = null;
+
+	/**
+	 * Organization of the user.
+	 * @var kyUserOrganization
+	 */
 	private $user_organization = null;
 
 	protected function parseData($data) {
 		$this->id = intval($data['id']);
-		$this->user_group_id = intval($data['usergroupid']);
+		$this->user_group_id = ky_assure_positive_int($data['usergroupid']);
 		$this->user_role = $data['userrole'];
-		$this->user_organization_id = intval($data['userorganizationid']);
+		$this->user_organization_id = ky_assure_positive_int($data['userorganizationid']);
 		$this->salutation = $data['salutation'];
-		$this->user_expiry = intval($data['userexpiry']) > 0 ? date(self::$datetime_format, $data['userexpiry']) : null;
+		$this->user_expiry = ky_assure_positive_int($data['userexpiry']);
 		$this->full_name = $data['fullname'];
 		$this->email = $data['email'];
 		if (is_string($this->email))
 			$this->email = array($this->email);
 		$this->designation = $data['designation'];
 		$this->phone = $data['phone'];
-		$this->dateline = date(self::$datetime_format, $data['dateline']);
-		$this->last_visit = intval($data['lastvisit']) > 0 ? date(self::$datetime_format, $data['lastvisit']) : null;
-		$this->is_enabled = intval($data['isenabled']) === 0 ? false : true;
+		$this->dateline = ky_assure_positive_int($data['dateline']);
+		$this->last_visit = ky_assure_positive_int($data['lastvisit']);
+		$this->is_enabled = ky_assure_bool($data['isenabled']);
 		$this->timezone = $data['timezone'];
-		$this->enable_dst = intval($data['enabledst']) === 0 ? false : true;
-		$this->sla_plan_id = intval($data['slaplanid']);
-		$this->sla_plan_expiry = intval($data['slaplanexpiry']) > 0 ? date(self::$datetime_format, $data['slaplanexpiry']) : null;
+		$this->enable_dst = ky_assure_bool($data['enabledst']);
+		$this->sla_plan_id = ky_assure_positive_int($data['slaplanid']);
+		$this->sla_plan_expiry = ky_assure_positive_int($data['slaplanexpiry']);
 	}
 
-	protected function buildData($method) {
+	public function buildData($create) {
+		$this->checkRequiredAPIFields($create);
+
 		$data = array();
 
 		$data['usergroupid'] = $this->user_group_id;
 		$data['userrole'] = $this->user_role;
 		$data['userorganizationid'] = $this->user_organization_id;
 		$data['salutation'] = $this->salutation;
-		$data['userexpiry'] = 0;
-		if ($this->user_expiry !== null)
-			$data['userexpiry'] = strtotime($this->user_expiry);
+		$data['userexpiry'] = $this->user_expiry !== null ? $this->user_expiry : 0;
 		$data['fullname'] = $this->full_name;
 		$data['email'] = $this->email;
 		$data['designation'] = $this->designation;
 		$data['phone'] = $this->phone;
 		$data['isenabled'] = $this->is_enabled ? 1 : 0;
-
 		$data['timezone'] = $this->timezone;
 		$data['enabledst'] = $this->enable_dst ? 1 : 0;
 		$data['slaplanid'] = $this->sla_plan_id;
-		$data['slaplanexpiry'] = 0;
-		if ($this->sla_plan_expiry !== null)
-			$this->sla_plan_expiry = strtotime($data['slaplanexpiry']);
+		$data['slaplanexpiry'] = $this->sla_plan_expiry !== null ? $this->sla_plan_expiry : 0;
 
-		if (strlen($this->password) > 0)
+		if ($create) {
 			$data['password'] = $this->password;
-		if ($this->send_welcome_email !== null)
-			$data['sendwelcomeemail'] = $this->send_welcome_email ? 1 : 0;
+
+			if ($this->send_welcome_email !== null) {
+				$data['sendwelcomeemail'] = $this->send_welcome_email ? 1 : 0;
+			}
+		}
 
 		return $data;
 	}
@@ -118,6 +244,33 @@ class kyUser extends kyObjectBase {
 		return parent::getAll($search_parameters);
 	}
 
+	/**
+	 * Searches for users.
+	 *
+	 * Performs server-side search of users. The search query is run against
+	 * email, full name, phone, organization name and user group.
+	 *
+	 * @link http://wiki.kayako.com/display/DEV/REST+-+UserSearch
+	 * @since Kayako version 4.40.1148
+	 *
+	 * @param string $query The search query.
+	 * @return kyResultSet
+	 */
+	static public function search($query) {
+		$data = array();
+		$data['query'] = $query;
+
+		$result = self::getRESTClient()->post('/Base/UserSearch', array(), $data);
+
+		$objects = array();
+		if (array_key_exists(static::$object_xml_name, $result)) {
+			foreach ($result[static::$object_xml_name] as $object_data) {
+				$objects[] = new static($object_data);
+			}
+		}
+		return new kyResultSet($objects);
+	}
+
 	public function toString() {
 		return sprintf("%s (email: %s)", $this->getFullName(), $this->getEmail());
 	}
@@ -130,8 +283,8 @@ class kyUser extends kyObjectBase {
 	 * Returns user group identifier of the user.
 	 *
 	 * @return int
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getUserGroupId() {
 		return $this->user_group_id;
@@ -139,13 +292,12 @@ class kyUser extends kyObjectBase {
 
 	/**
 	 * Sets user group identifier of the user.
-	 * Invalidates user group cache.
 	 *
 	 * @param int $user_group_id User group identifier.
 	 * @return kyUser
 	 */
 	public function setUserGroupId($user_group_id) {
-		$this->user_group_id = $user_group_id;
+		$this->user_group_id = ky_assure_positive_int($user_group_id);
 		$this->user_group = null;
 		return $this;
 	}
@@ -161,7 +313,7 @@ class kyUser extends kyObjectBase {
 		if ($this->user_group !== null && !$reload)
 			return $this->user_group;
 
-		if ($this->user_group_id === null || $this->user_group_id <= 0)
+		if ($this->user_group_id === null)
 			return null;
 
 		$this->user_group = kyUserGroup::get($this->user_group_id);
@@ -175,17 +327,19 @@ class kyUser extends kyObjectBase {
 	 * @return kyUser
 	 */
 	public function setUserGroup(kyUserGroup $user_group) {
-		$this->user_group_id = $user_group->getId();
-		$this->user_group = $user_group;
+		$this->user_group = ky_assure_object($user_group, 'kyUserGroup');
+		$this->user_group_id = $this->user_group !== null ? $this->user_group->getId() : null;
 		return $this;
 	}
 
 	/**
 	 * Returns role of the user.
 	 *
+	 * @see kyUser:ROLE constants.
+	 *
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getUserRole() {
 		return $this->user_role;
@@ -194,11 +348,13 @@ class kyUser extends kyObjectBase {
 	/**
 	 * Sets role of the user.
 	 *
-	 * @param string $user_role User role - one of self::ROLE_* constants.
+	 * @see kyUser:ROLE constants.
+	 *
+	 * @param string $user_role User role.
 	 * @return kyUser
 	 */
 	public function setUserRole($user_role) {
-		$this->user_role = $user_role;
+		$this->user_role = ky_assure_constant($user_role, $this, 'ROLE');
 		return $this;
 	}
 
@@ -206,8 +362,8 @@ class kyUser extends kyObjectBase {
 	 * Returns identifier of user organization assigned to the user.
 	 *
 	 * @return int
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getUserOrganizationId() {
 		return $this->user_organization_id;
@@ -215,13 +371,12 @@ class kyUser extends kyObjectBase {
 
 	/**
 	 * Sets user organization assigned the user by its identifier.
-	 * Invalidates user organization cache.
 	 *
 	 * @param int $user_organization_id User organization identifier.
 	 * @return kyUser
 	 */
 	public function setUserOrganizationId($user_organization_id) {
-		$this->user_organization_id = $user_organization_id;
+		$this->user_organization_id = ky_assure_positive_int($user_organization_id);
 		$this->user_organization = null;
 		return $this;
 	}
@@ -237,7 +392,7 @@ class kyUser extends kyObjectBase {
 		if ($this->user_organization !== null && !$reload)
 			return $this->user_organization;
 
-		if ($this->user_organization_id === null || $this->user_organization_id <= 0)
+		if ($this->user_organization_id === null)
 			return null;
 
 		$this->user_organization = kyUserOrganization::get($this->user_organization_id);
@@ -251,17 +406,19 @@ class kyUser extends kyObjectBase {
 	 * @return kyUser
 	 */
 	public function setUserOrganization(kyUserOrganization $user_organization) {
-		$this->user_organization_id = $user_organization->getId();
-		$this->user_organization = $user_organization;
+		$this->user_organization = ky_assure_object($user_organization, 'kyUserOrganization');
+		$this->user_organization_id = $this->user_organization !== null ? $this->user_organization->getId() : null;
 		return $this;
 	}
 
 	/**
-	 * Returns salutation of the user - one of kyUser::SALUTATION_ constants.
+	 * Returns salutation of the user.
+	 *
+	 * @see kyUser::SALUTATION constants.
 	 *
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getSalutation() {
 		return $this->salutation;
@@ -270,33 +427,44 @@ class kyUser extends kyObjectBase {
 	/**
 	 * Sets salutation of the user.
 	 *
-	 * @param string $salutation User salutation - one of kyUser::SALUTATION_ constants.
+	 * @see kyUser::SALUTATION constants.
+	 *
+	 * @param string $salutation User salutation.
 	 * @return kyUser
 	 */
 	public function setSalutation($salutation) {
-		$this->salutation = $salutation;
+		$this->salutation = ky_assure_constant($salutation, $this, 'SALUTATION');
 		return $this;
 	}
 
 	/**
 	 * Returns expiration date of the user or null when expiration is disabled.
 	 *
+	 * @see http://www.php.net/manual/en/function.date.php
+	 *
+	 * @param string $format Output format of the date. If null the format set in client configuration is used.
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
-	public function getUserExpiry() {
-		return $this->user_expiry;
+	public function getUserExpiry($format = null) {
+		if ($format === null) {
+			$format = kyConfig::get()->getDatetimeFormat();
+		}
+
+		return date($format, $this->user_expiry);
 	}
 
 	/**
 	 * Sets expiration date of the user.
 	 *
-	 * @param string $user_expiry User expiration date or null to disable expiration.
+	 * @see http://www.php.net/manual/en/function.strtotime.php
+	 *
+	 * @param string|int|null $user_expiry Date and time when the user will expire (timestamp or string format understood by PHP strtotime). Null to disable expiration.
 	 * @return kyUser
 	 */
 	public function setUserExpiry($user_expiry) {
-		$this->user_expiry = $user_expiry;
+		$this->user_expiry = is_numeric($user_expiry) || $user_expiry === null ? ky_assure_positive_int($user_expiry) : strtotime($user_expiry);
 		return $this;
 	}
 
@@ -304,8 +472,8 @@ class kyUser extends kyObjectBase {
 	 * Returns full name of the user.
 	 *
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getFullName() {
 		return $this->full_name;
@@ -318,7 +486,7 @@ class kyUser extends kyObjectBase {
 	 * @return kyUser
 	 */
 	public function setFullName($full_name) {
-		$this->full_name = $full_name;
+		$this->full_name = ky_assure_string($full_name);
 		return $this;
 	}
 
@@ -335,7 +503,7 @@ class kyUser extends kyObjectBase {
 	 * Returns list of user e-mails.
 	 *
 	 * @return string[]
-	 * @filterBy(Email)
+	 * @filterBy name=Email
 	 */
 	public function getEmails() {
 		return $this->email;
@@ -348,17 +516,21 @@ class kyUser extends kyObjectBase {
 	 * @param bool $clear Clear the list before adding.
 	 */
 	public function addEmail($email, $clear = false) {
-		if ($clear)
+		if ($clear) {
 			$this->email = array();
-		$this->email[] = $email;
+		}
+
+		if ($email !== null) {
+			$this->email[] = ky_assure_string($email);
+		}
 	}
 
 	/**
 	 * Return designation of the user.
 	 *
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getDesignation() {
 		return $this->designation;
@@ -371,7 +543,7 @@ class kyUser extends kyObjectBase {
 	 * @return kyUser
 	 */
 	public function setDesignation($designation) {
-		$this->designation = $designation;
+		$this->designation = ky_assure_string($designation);
 		return $this;
 	}
 
@@ -379,7 +551,7 @@ class kyUser extends kyObjectBase {
 	 * Returns phone number of the user.
 	 *
 	 * @return string
-	 * @filterBy()
+	 * @filterBy
 	 */
 	public function getPhone() {
 		return $this->phone;
@@ -392,37 +564,51 @@ class kyUser extends kyObjectBase {
 	 * @return kyUser
 	 */
 	public function setPhone($phone) {
-		$this->phone = $phone;
+		$this->phone = ky_assure_string($phone);
 		return $this;
 	}
 
 	/**
 	 * Returns date and time when the user was created.
 	 *
+	 * @see http://www.php.net/manual/en/function.date.php
+	 *
+	 * @param string $format Output format of the date. If null the format set in client configuration is used.
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
-	public function getDateline() {
-		return $this->dateline;
+	public function getDateline($format = null) {
+		if ($format === null) {
+			$format = kyConfig::get()->getDatetimeFormat();
+		}
+
+		return date($format, $this->dateline);
 	}
 
 	/**
 	 * Returns date and time when the user last logged in.
 	 *
+	 * @see http://www.php.net/manual/en/function.date.php
+	 *
+	 * @param string $format Output format of the date. If null the format set in client configuration is used.
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
-	public function getLastVisit() {
-		return $this->last_visit;
+	public function getLastVisit($format = null) {
+		if ($format === null) {
+			$format = kyConfig::get()->getDatetimeFormat();
+		}
+
+		return date($format, $this->last_visit);
 	}
 
 	/**
 	 * Returns whether the user is enabled.
 	 *
 	 * @return bool
-	 * @filterBy()
+	 * @filterBy
 	 */
 	public function getIsEnabled() {
 		return $this->is_enabled;
@@ -435,7 +621,7 @@ class kyUser extends kyObjectBase {
 	 * @return kyUser
 	 */
 	public function setIsEnabled($is_enabled) {
-		$this->is_enabled = $is_enabled;
+		$this->is_enabled = ky_assure_bool($is_enabled);
 		return $this;
 	}
 
@@ -443,7 +629,7 @@ class kyUser extends kyObjectBase {
 	 * Returns timezone of the user.
 	 *
 	 * @return string
-	 * @filterBy()
+	 * @filterBy
 	 */
 	public function getTimezone() {
 		return $this->timezone;
@@ -457,7 +643,7 @@ class kyUser extends kyObjectBase {
 	 * @return kyUser
 	 */
 	public function setTimezone($timezone) {
-		$this->timezone = $timezone;
+		$this->timezone = ky_assure_string($timezone);
 		return $this;
 	}
 
@@ -465,7 +651,7 @@ class kyUser extends kyObjectBase {
 	 * Returns whether the user has enabled daylight saving time.
 	 *
 	 * @return bool
-	 * @filterBy()
+	 * @filterBy
 	 */
 	public function getEnableDST() {
 		return $this->enable_dst;
@@ -478,7 +664,7 @@ class kyUser extends kyObjectBase {
 	 * @return kyUser
 	 */
 	public function setEnableDST($enable_dst) {
-		$this->enable_dst = $enable_dst;
+		$this->enable_dst = ky_assure_bool($enable_dst);
 		return $this;
 	}
 
@@ -486,42 +672,51 @@ class kyUser extends kyObjectBase {
 	 * Return Service Level Agreement plan assigned to the user.
 	 *
 	 * @return int
-	 * @filterBy()
+	 * @filterBy
 	 */
 	public function getSLAPlanId() {
 		return $this->sla_plan_id;
 	}
 
 	/**
-	 * Sets Service Level Agreement plan assigned to the user.
+	 * Sets identifier of the Service Level Agreement plan assigned to the user.
 	 *
 	 * @param int $sla_plan_id Service Level Agreement plan identifier.
 	 * @return kyUser
 	 */
 	public function setSLAPlanId($sla_plan_id) {
-		$this->sla_plan_id = $sla_plan_id;
+		$this->sla_plan_id = ky_assure_positive_int($sla_plan_id);
 		return $this;
 	}
 
 	/**
 	 * Returns expiration date of Service Level Agreement plan assignment or null when expiration is disabled.
 	 *
+	 * @see http://www.php.net/manual/en/function.date.php
+	 *
+	 * @param string $format Output format of the date. If null the format set in client configuration is used.
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
-	public function getSLAPlanExpiry() {
-		return $this->sla_plan_expiry;
+	public function getSLAPlanExpiry($format = null) {
+		if ($format === null) {
+			$format = kyConfig::get()->getDatetimeFormat();
+		}
+
+		return date($format, $this->sla_plan_expiry);
 	}
 
 	/**
 	 * Sets expiration date of Service Level Agreement plan assignment.
 	 *
-	 * @param string $sla_plan_expiry Service Level Agreement plan expiration date or null to disable expiration.
+	 * @see http://www.php.net/manual/en/function.strtotime.php
+	 *
+	 * @param string|int|null $sla_plan_expiry Date and time when Service Level Agreement plan for this user will expire (timestamp or string format understood by PHP strtotime). Null to disable expiration.
 	 * @return kyUser
 	 */
 	public function setSLAPlanExpiry($sla_plan_expiry) {
-		$this->sla_plan_expiry = $sla_plan_expiry;
+		$this->sla_plan_expiry = is_numeric($sla_plan_expiry) || $sla_plan_expiry === null ? ky_assure_positive_int($sla_plan_expiry) : strtotime($sla_plan_expiry);
 		return $this;
 	}
 
@@ -532,7 +727,7 @@ class kyUser extends kyObjectBase {
 	 * @return kyUser
 	 */
 	public function setPassword($password) {
-		$this->password = $password;
+		$this->password = ky_assure_string($password);
 		return $this;
 	}
 
@@ -543,7 +738,7 @@ class kyUser extends kyObjectBase {
 	 * @return kyUser
 	 */
 	public function setSendWelcomeEmail($send_welcome_email) {
-		$this->send_welcome_email = $send_welcome_email;
+		$this->send_welcome_email = ky_assure_bool($send_welcome_email);
 		return $this;
 	}
 

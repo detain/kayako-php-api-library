@@ -1,41 +1,131 @@
 <?php
-require_once('kyObjectBase.php');
-
 /**
- * Part of PHP client to REST API of Kayako v4 (Kayako Fusion).
- * Compatible with Kayako version >= 4.01.204.
- *
  * Kayako Staff object.
  *
- * @link http://wiki.kayako.com/display/DEV/REST+-+Staff
  * @author Tomasz Sawicki (https://github.com/Furgas)
+ * @link http://wiki.kayako.com/display/DEV/REST+-+Staff
+ * @since Kayako version 4.01.204
+ * @package Object\Staff
  */
 class kyStaff extends kyObjectBase {
 
 	static protected $controller = '/Base/Staff';
 	static protected $object_xml_name = 'staff';
 
-	private $id = null;
-	private $staff_group_id = null;
-	private $first_name = null;
-	private $last_name = null;
-	private $full_name = null;
-	private $user_name = null;
-	private $email = null;
-	private $designation = null;
-	private $greeting = null;
-	private $signature = null;
-	private $mobile_number = null;
-	private $is_enabled = true;
-	private $timezone = 'GMT';
-	private $enable_dst = false;
-	private $password = null;
+	/**
+	 * Staff identifier.
+	 * @apiField
+	 * @var int
+	 */
+	protected $id;
 
+	/**
+	 * Staff group identifier.
+	 * @apiField required_create=true
+	 * @var int
+	 */
+	protected $staff_group_id;
+
+	/**
+	 * Staff first name.
+	 * @apiField required=true
+	 * @var string
+	 */
+	protected $first_name;
+
+	/**
+	 * Staff last name.
+	 * @apiField required=true
+	 * @var string
+	 */
+	protected $last_name;
+
+	/**
+	 * Staff full name.
+	 * @apiField
+	 * @var string
+	 */
+	protected $full_name;
+
+	/**
+	 * Staff username (login).
+	 * @apiField required_create=true
+	 * @var string
+	 */
+	protected $user_name;
+
+	/**
+	 * Staff e-mail.
+	 * @apiField required_create=true
+	 * @var string
+	 */
+	protected $email;
+
+	/**
+	 * Staff designation.
+	 * @apiField
+	 * @var string
+	 */
+	protected $designation;
+
+	/**
+	 * Staff livechat greeting message.
+	 * @apiField
+	 * @var string
+	 */
+	protected $greeting;
+
+	/**
+	 * Staff signature appended to posts.
+	 * @apiField
+	 * @var string
+	 */
+	protected $signature;
+
+	/**
+	 * Staff mobile number.
+	 * @apiField
+	 * @var string
+	 */
+	protected $mobile_number;
+
+	/**
+	 * Is this staff enabled.
+	 * @apiField
+	 * @var bool
+	 */
+	protected $is_enabled = true;
+
+	/**
+	 * Staff timezone.
+	 * @apiField
+	 * @var string
+	 */
+	protected $timezone = 'GMT';
+
+	/**
+	 * Is Daylight Saving Time enabled.
+	 * @apiField
+	 * @var bool
+	 */
+	protected $enable_dst = false;
+
+	/**
+	 * Staff password.
+	 * @apiField required_create=true
+	 * @var string
+	 */
+	protected $password;
+
+	/**
+	 * Staff group.
+	 * @var kyStaffGroup
+	 */
 	private $staff_group = null;
 
 	protected function parseData($data) {
 		$this->id = intval($data['id']);
-		$this->staff_group_id = intval($data['staffgroupid']);
+		$this->staff_group_id = ky_assure_positive_int($data['staffgroupid']);
 		$this->first_name = $data['firstname'];
 		$this->last_name = $data['lastname'];
 		$this->full_name = $data['fullname'];
@@ -44,15 +134,15 @@ class kyStaff extends kyObjectBase {
 		$this->designation = $data['designation'];
 		$this->greeting = $data['greeting'];
 		$this->mobile_number = $data['mobilenumber'];
-		$this->is_enabled = intval($data['isenabled']) === 0 ? false : true;
+		$this->is_enabled = ky_assure_bool($data['isenabled']);
 		$this->timezone = $data['timezone'];
-		$this->enable_dst = intval($data['enabledst']) === 0 ? false : true;
+		$this->enable_dst = ky_assure_bool($data['enabledst']);
 	}
 
-	protected function buildData($method) {
-		$data = array();
+	public function buildData($create) {
+		$this->checkRequiredAPIFields($create);
 
-		//TODO: check if required parameters are present
+		$data = array();
 
 		$data['staffgroupid'] = $this->staff_group_id;
 		$data['firstname'] = $this->first_name;
@@ -85,8 +175,8 @@ class kyStaff extends kyObjectBase {
 	 * Returns staff group identifier of the staff user.
 	 *
 	 * @return int
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getStaffGroupId() {
 		return $this->staff_group_id;
@@ -94,13 +184,12 @@ class kyStaff extends kyObjectBase {
 
 	/**
 	 * Sets staff group identifier for the staff user.
-	 * Invalidates staff group cache.
 	 *
 	 * @param int $staff_group_id Staff group identifier.
 	 * @return kyStaff
 	 */
 	public function setStaffGroupId($staff_group_id) {
-		$this->staff_group_id = $staff_group_id;
+		$this->staff_group_id = ky_assure_positive_int($staff_group_id);
 		$this->staff_group = null;
 		return $this;
 	}
@@ -129,9 +218,9 @@ class kyStaff extends kyObjectBase {
 	 * @param kyStaffGroup $staff_group Staff group object.
 	 * @return kyStaff
 	 */
-	public function setStaffGroup(kyStaffGroup $staff_group) {
-		$this->staff_group_id = $staff_group->getId();
-		$this->staff_group = $staff_group;
+	public function setStaffGroup($staff_group) {
+		$this->staff_group = ky_assure_object($staff_group, 'kyStaffGroup');
+		$this->staff_group_id = $this->staff_group !== null ? $staff_group->getId() : null;
 		return $this;
 	}
 
@@ -139,8 +228,8 @@ class kyStaff extends kyObjectBase {
 	 * Returns first name of the staff user.
 	 *
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getFirstName() {
 		return $this->first_name;
@@ -153,7 +242,7 @@ class kyStaff extends kyObjectBase {
 	 * @return kyStaff
 	 */
 	public function setFirstName($first_name) {
-		$this->first_name = $first_name;
+		$this->first_name = ky_assure_string($first_name);
 		return $this;
 	}
 
@@ -161,8 +250,8 @@ class kyStaff extends kyObjectBase {
 	 * Returns last name of the staff user.
 	 *
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getLastName() {
 		return $this->last_name;
@@ -175,7 +264,7 @@ class kyStaff extends kyObjectBase {
 	 * @return kyStaff
 	 */
 	public function setLastName($last_name) {
-		$this->last_name = $last_name;
+		$this->last_name = ky_assure_string($last_name);
 		return $this;
 	}
 
@@ -183,8 +272,8 @@ class kyStaff extends kyObjectBase {
 	 * Returns full name of the staff user.
 	 *
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getFullName() {
 		return $this->full_name;
@@ -194,8 +283,8 @@ class kyStaff extends kyObjectBase {
 	 * Returns login username of the staff user.
 	 *
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getUserName() {
 		return $this->user_name;
@@ -208,7 +297,7 @@ class kyStaff extends kyObjectBase {
 	 * @return kyStaff
 	 */
 	public function setUserName($user_name) {
-		$this->user_name = $user_name;
+		$this->user_name = ky_assure_string($user_name);
 		return $this;
 	}
 
@@ -216,8 +305,8 @@ class kyStaff extends kyObjectBase {
 	 * Returns e-mail address of the staff user.
 	 *
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getEmail() {
 		return $this->email;
@@ -230,7 +319,7 @@ class kyStaff extends kyObjectBase {
 	 * @return kyStaff
 	 */
 	public function setEmail($email) {
-		$this->email = $email;
+		$this->email = ky_assure_string($email);
 		return $this;
 	}
 
@@ -238,8 +327,8 @@ class kyStaff extends kyObjectBase {
 	 * Returns designation of the staff user.
 	 *
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getDesignation() {
 		return $this->designation;
@@ -252,7 +341,7 @@ class kyStaff extends kyObjectBase {
 	 * @return kyStaff
 	 */
 	public function setDesignation($designation) {
-		$this->designation = $designation;
+		$this->designation = ky_assure_string($designation);
 		return $this;
 	}
 
@@ -260,7 +349,7 @@ class kyStaff extends kyObjectBase {
 	 * Returns default greeting message when the staff user accepts a live chat request.
 	 *
 	 * @return string
-	 * @filterBy()
+	 * @filterBy
 	 */
 	public function getGreeting() {
 		return $this->greeting;
@@ -273,7 +362,7 @@ class kyStaff extends kyObjectBase {
 	 * @return kyStaff
 	 */
 	public function setGreeting($greeting) {
-		$this->greeting = $greeting;
+		$this->greeting = ky_assure_string($greeting);
 		return $this;
 	}
 
@@ -294,7 +383,7 @@ class kyStaff extends kyObjectBase {
 	 * @return kyStaff
 	 */
 	public function setSignature($signature) {
-		$this->signature = $signature;
+		$this->signature = ky_assure_string($signature);
 		return $this;
 	}
 
@@ -302,7 +391,7 @@ class kyStaff extends kyObjectBase {
 	 * Returns mobile number of the staff user.
 	 *
 	 * @return string
-	 * @filterBy()
+	 * @filterBy
 	 */
 	public function getMobileNumber() {
 		return $this->mobile_number;
@@ -315,7 +404,7 @@ class kyStaff extends kyObjectBase {
 	 * @return kyStaff
 	 */
 	public function setMobileNumber($mobile_number) {
-		$this->mobile_number = $mobile_number;
+		$this->mobile_number = ky_assure_string($mobile_number);
 		return $this;
 	}
 
@@ -323,8 +412,8 @@ class kyStaff extends kyObjectBase {
 	 * Returns whether the staff user is enabled.
 	 *
 	 * @return bool
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getIsEnabled() {
 		return $this->is_enabled;
@@ -338,7 +427,7 @@ class kyStaff extends kyObjectBase {
 	 * @return kyStaff
 	 */
 	public function setIsEnabled($is_enabled) {
-		$this->is_enabled = $is_enabled;
+		$this->is_enabled = ky_assure_bool($is_enabled);
 		return $this;
 	}
 
@@ -356,17 +445,18 @@ class kyStaff extends kyObjectBase {
 	 *
 	 * @param string $timezone Timezone of the staff user.
 	 * @return kyStaff
-	 * @filterBy()
+	 * @filterBy
 	 */
 	public function setTimezone($timezone) {
-		$this->timezone = $timezone;
+		$this->timezone = ky_assure_string($timezone);
 		return $this;
 	}
 
 	/**
+	 * Returns whether Daylight Saving Time is enabled for the staff user.
 	 *
 	 * @return bool
-	 * @filterBy()
+	 * @filterBy
 	 */
 	public function getEnableDST() {
 		return $this->enable_dst;
@@ -380,7 +470,7 @@ class kyStaff extends kyObjectBase {
 	 * @return kyStaff
 	 */
 	public function setEnableDST($enable_dst) {
-		$this->enable_dst = $enable_dst;
+		$this->enable_dst = ky_assure_bool($enable_dst);
 		return $this;
 	}
 
@@ -391,7 +481,7 @@ class kyStaff extends kyObjectBase {
 	 * @return kyStaff
 	 */
 	public function setPassword($password) {
-		$this->password = $password;
+		$this->password = ky_assure_string($password);
 		return $this;
 	}
 

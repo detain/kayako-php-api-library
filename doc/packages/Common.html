@@ -1,0 +1,391 @@
+<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>Kayako PHP API Library » Common</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">Kayako PHP API Library</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    Source Code Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Common.html"><i class="icon-folder-open"></i> Common</a></li>
+<li><a href="../packages/Object.html"><i class="icon-folder-open"></i> Object</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-map-marker"></i> Packages</li>
+<li>
+<a href="../packages/Common.html" title="Common"><i class="icon-folder-open"></i>Common</a><ul class="nav nav-list nav-packages"><li>
+<a href="../packages/Common.REST.html" title="REST"><i class="icon-folder-open"></i>REST</a><ul class="nav nav-list nav-packages"></ul>
+</li></ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-function"></i> Functions</li>
+<li class="function  "><a href="#ky_assure_array" title="ky_assure_array :: Returns specified value as array."><span class="description">Returns specified value as array.</span><pre>ky_assure_array</pre></a></li>
+<li class="function  "><a href="#ky_assure_bool" title="ky_assure_bool :: Returns specified value as bool."><span class="description">Returns specified value as bool.</span><pre>ky_assure_bool</pre></a></li>
+<li class="function  "><a href="#ky_assure_constant" title="ky_assure_constant :: Assures that specified value is proper constant value."><span class="description">Assures that specified value is proper constant value.</span><pre>ky_assure_constant</pre></a></li>
+<li class="function  "><a href="#ky_assure_int" title="ky_assure_int :: Returns specified value as int."><span class="description">Returns specified value as int.</span><pre>ky_assure_int</pre></a></li>
+<li class="function  "><a href="#ky_assure_object" title="ky_assure_object :: Returns specified object only if it is an instance of specified class."><span class="description">Returns specified object only if it is an instance of specified class.</span><pre>ky_assure_object</pre></a></li>
+<li class="function  "><a href="#ky_assure_positive_int" title="ky_assure_positive_int :: Returns specified value as positive int."><span class="description">Returns specified value as positive int.</span><pre>ky_assure_positive_int</pre></a></li>
+<li class="function  "><a href="#ky_assure_string" title="ky_assure_string :: Returns specified value as string."><span class="description">Returns specified value as string.</span><pre>ky_assure_string</pre></a></li>
+<li class="function  "><a href="#ky_bytes_format" title="ky_bytes_format :: Outputs formatted bytes."><span class="description">Outputs formatted bytes.</span><pre>ky_bytes_format</pre></a></li>
+<li class="function  "><a href="#ky_get_post_value" title="ky_get_post_value :: Returns field value from POST data."><span class="description">Returns field value from POST data.</span><pre>ky_get_post_value</pre></a></li>
+<li class="function  "><a href="#ky_get_tag_parameters" title="ky_get_tag_parameters :: Returns custom PHPDoc tag parameter list."><span class="description">Returns custom PHPDoc tag parameter list.</span><pre>ky_get_tag_parameters</pre></a></li>
+<li class="function  "><a href="#ky_seconds_format" title="ky_seconds_format :: Outputs seconds in hh:mm:ss format."><span class="description">Outputs seconds in hh:mm:ss format.</span><pre>ky_seconds_format</pre></a></li>
+<li class="function  "><a href="#ky_usort_comparison" title="ky_usort_comparison :: Helper function for sorting array with parametrized callback."><span class="description">Helper function for sorting array with parametrized callback.</span><pre>ky_usort_comparison</pre></a></li>
+<li class="function  "><a href="#ky_xml_to_array" title="ky_xml_to_array :: Transforms XML data to array."><span class="description">Transforms XML data to array.</span><pre>ky_xml_to_array</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-class"></i> Classes</li>
+<li><a href="#kyConfig" title="Class holding library configuration.">kyConfig</a></li>
+<li><a href="#kyException" title="Base exception class used by library.">kyException</a></li>
+<li><a href="#kyUsort" title="Helper class for sorting array with parametrized callback.">kyUsort</a></li>
+<li><a href="#kyResultSet" title="List of objects on steroids.">kyResultSet</a></li>
+</ul>
+</div>
+<div class="span8 package-contents">
+<ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span>
+</li>
+<li class="active"><a href="../packages/Common.html">Common</a></li>
+</ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-function"></i> Functions</h3>
+<a name="ky_assure_array" id="ky_assure_array"></a><div class="element clickable function  ky_assure_array" data-toggle="collapse" data-target=".ky_assure_array .collapse">
+<h2>Returns specified value as array.</h2>
+<pre>ky_assure_array(mixed $value, mixed $value_on_null) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>mixed</code><p>Value.</p></div>
+<div class="subelement argument">
+<h4>$value_on_null</h4>
+<code>mixed</code><p>What to return if value is null.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="ky_assure_bool" id="ky_assure_bool"></a><div class="element clickable function  ky_assure_bool" data-toggle="collapse" data-target=".ky_assure_bool .collapse">
+<h2>Returns specified value as bool.</h2>
+<pre>ky_assure_bool(mixed $value) : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>mixed</code><p>Value.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="ky_assure_constant" id="ky_assure_constant"></a><div class="element clickable function  ky_assure_constant" data-toggle="collapse" data-target=".ky_assure_constant .collapse">
+<h2>Assures that specified value is proper constant value.</h2>
+<pre>ky_assure_constant(mixed $value, string | object $object_or_class_name, string $constant_prefix, mixed $value_on_invalid_constant) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>mixed</code><p>Value.</p></div>
+<div class="subelement argument">
+<h4>$object_or_class_name</h4>
+<code>stringobject</code><p>Object or class name with constants.</p></div>
+<div class="subelement argument">
+<h4>$constant_prefix</h4>
+<code>string</code><p>Constants prefix (without last '_').</p>
+</div>
+<div class="subelement argument">
+<h4>$value_on_invalid_constant</h4>
+<code>mixed</code><p>What to return if value is not a valid constant.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="ky_assure_int" id="ky_assure_int"></a><div class="element clickable function  ky_assure_int" data-toggle="collapse" data-target=".ky_assure_int .collapse">
+<h2>Returns specified value as int.</h2>
+<pre>ky_assure_int(mixed $value, int | null $value_on_null) : int | null</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>mixed</code><p>Value.</p></div>
+<div class="subelement argument">
+<h4>$value_on_null</h4>
+<code>intnull</code><p>What to return if value is null.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>int</code><code>null</code>
+</div>
+</div></div>
+</div>
+<a name="ky_assure_object" id="ky_assure_object"></a><div class="element clickable function  ky_assure_object" data-toggle="collapse" data-target=".ky_assure_object .collapse">
+<h2>Returns specified object only if it is an instance of specified class.</h2>
+<pre>ky_assure_object(object $object, string $class_name, mixed $value_on_invalid_object) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$object</h4>
+<code>object</code><p>Object.</p></div>
+<div class="subelement argument">
+<h4>$class_name</h4>
+<code>string</code><p>Class name to check for.</p></div>
+<div class="subelement argument">
+<h4>$value_on_invalid_object</h4>
+<code>mixed</code><p>What to return if object is not an instance os specified class.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="ky_assure_positive_int" id="ky_assure_positive_int"></a><div class="element clickable function  ky_assure_positive_int" data-toggle="collapse" data-target=".ky_assure_positive_int .collapse">
+<h2>Returns specified value as positive int.</h2>
+<pre>ky_assure_positive_int(mixed $value, int | null $value_on_non_positive) : int | null</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>mixed</code><p>Value.</p></div>
+<div class="subelement argument">
+<h4>$value_on_non_positive</h4>
+<code>intnull</code><p>What to return if value non-positive (including null).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>int</code><code>null</code>
+</div>
+</div></div>
+</div>
+<a name="ky_assure_string" id="ky_assure_string"></a><div class="element clickable function  ky_assure_string" data-toggle="collapse" data-target=".ky_assure_string .collapse">
+<h2>Returns specified value as string.</h2>
+<pre>ky_assure_string(mixed $value, string | null $value_on_null) : string | null</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>mixed</code><p>Value.</p></div>
+<div class="subelement argument">
+<h4>$value_on_null</h4>
+<code>stringnull</code><p>What to return if value is null.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code><code>null</code>
+</div>
+</div></div>
+</div>
+<a name="ky_bytes_format" id="ky_bytes_format"></a><div class="element clickable function  ky_bytes_format" data-toggle="collapse" data-target=".ky_bytes_format .collapse">
+<h2>Outputs formatted bytes.</h2>
+<pre>ky_bytes_format(int $bytes) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$bytes</h4>
+<code>int</code><p>Bytes.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="ky_get_post_value" id="ky_get_post_value"></a><div class="element clickable function  ky_get_post_value" data-toggle="collapse" data-target=".ky_get_post_value .collapse">
+<h2>Returns field value from POST data.</h2>
+<pre>ky_get_post_value(<a href="../classes/kyCustomFieldDefinition.html">\kyCustomFieldDefinition</a> $custom_field_definition) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$custom_field_definition</h4>
+<code><a href="../classes/kyCustomFieldDefinition.html">\kyCustomFieldDefinition</a></code><p>Custom field definition.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>Field value.</div>
+</div></div>
+</div>
+<a name="ky_get_tag_parameters" id="ky_get_tag_parameters"></a><div class="element clickable function  ky_get_tag_parameters" data-toggle="collapse" data-target=".ky_get_tag_parameters .collapse">
+<h2>Returns custom PHPDoc tag parameter list.</h2>
+<pre>ky_get_tag_parameters(string $comment, string $tag_name) : bool | array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"><p>Custom PHPDoc used by this library tags have following format:</p></p>
+<table class="table table-bordered"><tr>
+<th>tagName</th>
+<td>parameter1=value parameter2=value ...</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$comment</h4>
+<code>string</code><p>PHPDoc block.</p></div>
+<div class="subelement argument">
+<h4>$tag_name</h4>
+<code>string</code><p>Custom tag name.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>bool</code><code>array</code>List of parameters (may be empty if tag is parameter-less) or false when tag was not found.</div>
+</div></div>
+</div>
+<a name="ky_seconds_format" id="ky_seconds_format"></a><div class="element clickable function  ky_seconds_format" data-toggle="collapse" data-target=".ky_seconds_format .collapse">
+<h2>Outputs seconds in hh:mm:ss format.</h2>
+<pre>ky_seconds_format(int $seconds) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$seconds</h4>
+<code>int</code><p>Seconds.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="ky_usort_comparison" id="ky_usort_comparison"></a><div class="element clickable function  ky_usort_comparison" data-toggle="collapse" data-target=".ky_usort_comparison .collapse">
+<h2>Helper function for sorting array with parametrized callback.</h2>
+<pre>ky_usort_comparison(callback $callback, array $arguments) : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$callback</h4>
+<code>callback</code><p>Sorting callback.</p></div>
+<div class="subelement argument">
+<h4>$arguments</h4>
+<code>array</code><p>List of arguments to sorting callback.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>int</code></div>
+</div></div>
+</div>
+<a name="ky_xml_to_array" id="ky_xml_to_array"></a><div class="element clickable function  ky_xml_to_array" data-toggle="collapse" data-target=".ky_xml_to_array .collapse">
+<h2>Transforms XML data to array.</h2>
+<pre>ky_xml_to_array(string $xml, \string[] $namespaces) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$xml</h4>
+<code>string</code><p>XML data.</p></div>
+<div class="subelement argument">
+<h4>$namespaces</h4>
+<code>\string[]</code><p>List of namespaces to include in parsing or empty to include all namespaces.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<a name="kyConfig" id="kyConfig"></a><div class="element ajax clickable class" href="../classes/kyConfig.html">
+<h1>kyConfig<a href="../classes/kyConfig.html">¶</a>
+</h1>
+<p class="short_description">Class holding library configuration.</p>
+<div class="details collapse"></div>
+<a href="../classes/kyConfig.html" class="more">« More »</a>
+</div>
+<a name="kyException" id="kyException"></a><div class="element ajax clickable class" href="../classes/kyException.html">
+<h1>kyException<a href="../classes/kyException.html">¶</a>
+</h1>
+<p class="short_description">Base exception class used by library.</p>
+<div class="details collapse"></div>
+<a href="../classes/kyException.html" class="more">« More »</a>
+</div>
+<a name="kyResultSet" id="kyResultSet"></a><div class="element ajax clickable class" href="../classes/kyResultSet.html">
+<h1>kyResultSet<a href="../classes/kyResultSet.html">¶</a>
+</h1>
+<p class="short_description">List of objects on steroids.</p>
+<div class="details collapse"></div>
+<a href="../classes/kyResultSet.html" class="more">« More »</a>
+</div>
+<a name="kyUsort" id="kyUsort"></a><div class="element ajax clickable class" href="../classes/kyUsort.html">
+<h1>kyUsort<a href="../classes/kyUsort.html">¶</a>
+</h1>
+<p class="short_description">Helper class for sorting array with parametrized callback.</p>
+<div class="details collapse"></div>
+<a href="../classes/kyUsort.html" class="more">« More »</a>
+</div>
+<ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../packages/Common.html">Common</a></li>
+<span class="divider">\</span><li class="active"><a href="../packages/Common.REST.html">REST</a></li>
+</ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<a name="kyRESTClientInterface" id="kyRESTClientInterface"></a><div class="element ajax clickable interface" href="../classes/kyRESTClientInterface.html">
+<h1>kyRESTClientInterface<a href="../classes/kyRESTClientInterface.html">¶</a>
+</h1>
+<p class="short_description">Interface of REST client.</p>
+<div class="details collapse"></div>
+<a href="../classes/kyRESTClientInterface.html" class="more">« More »</a>
+</div>
+<a name="kyRESTClient" id="kyRESTClient"></a><div class="element ajax clickable class" href="../classes/kyRESTClient.html">
+<h1>kyRESTClient<a href="../classes/kyRESTClient.html">¶</a>
+</h1>
+<p class="short_description">Default REST client implementation.</p>
+<div class="details collapse"></div>
+<a href="../classes/kyRESTClient.html" class="more">« More »</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a2</a> and<br>
+            generated on 2012-05-05T01:22:18+02:00.<br></footer></div>
+</div>
+</body>
+</html>

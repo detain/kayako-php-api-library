@@ -1,10 +1,12 @@
 <?php
 /**
- * Part of PHP client to REST API of Kayako v4 (Kayako Fusion).
+ * List of objects on steroids.
  *
- * Class for wrapping list of objects into result set with filtering, ordering and paging capabilities.
+ * Class used for wrapping list of objects into result set with filtering,
+ * ordering and paging capabilities.
  *
  * @author Tomasz Sawicki (https://github.com/Furgas)
+ * @package Common
  */
 class kyResultSet implements Iterator, Countable, ArrayAccess {
 
@@ -26,6 +28,10 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	 */
 	const COLLECT_PREFIX = "collect";
 
+	/**
+	 * List of valid filter operators.
+	 * @var string[]
+	 */
 	static private $operators = array("~", ">", ">=", "<", "<=", "!=");
 
 	/**
@@ -56,21 +62,33 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	 * Constructs a result set.
 	 *
 	 * @param kyObjectBase[] $objects List of objects in this result set.
+	 * @param string $class_name Optional. Class name of objects in this result set.
 	 * @param kyResultSet $previous_result_set Optional result set which was the base of filtering operation producing this result set.
 	 */
-	function __construct($objects, $previous_result_set = null) {
+	function __construct($objects, $class_name = null, $previous_result_set = null) {
 		if ($objects instanceof kyResultSet) {
 			$objects = $objects->getRawArray();
 		}
 
-		if (count($objects) > 0) {
-			$first_object = reset($objects);
-			$this->class_name = get_class($first_object);
+		if (strlen($class_name) > 0) {
+			$this->class_name = $class_name;
+		} elseif (count($objects) > 0) {
+			//get class name of first object
+			$this->class_name = get_class(reset($objects));
 		}
 
 		$this->objects = $objects;
 		$this->object_keys = array_keys($objects);
 		$this->previous_result_set = $previous_result_set;
+	}
+
+	/**
+	 * Returns class name of objects in result set.
+	 *
+	 * @return string
+	 */
+	public function getObjectsClassName() {
+		return $this->class_name;
 	}
 
 	/**
@@ -137,7 +155,7 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	 */
     public function offsetSet($offset, $value) {
     	if (!is_object($value) || (strlen($this->class_name) > 0 && get_class($value) !== $this->class_name))
-    		throw new Exception(sprintf('The result set can only hold objects of type "%s"', $this->class_name));
+    		throw new DomainException(sprintf('The result set can only hold objects of type "%s"', $this->class_name));
 
     	$this->objects[$offset] = $value;
     	$this->object_keys = array_keys($this->objects);
@@ -165,6 +183,7 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 
 	/**
 	 * Filters objects in this result set and returns new result set.
+	 *
 	 * Filtering is done by calling defined get method on all objects and comparing its result with provided filter values.
 	 * Filter value can be any scalar value (integer, float, string or boolean) or array for special cases.
 	 * Special cases for filter value:
@@ -177,6 +196,8 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	 *
 	 * NOTICE: This method shouldn't be used directly in most cases. Use kyResultSet->filterByXXX(filter_value1, filter_value2) instead. Call kyObjectType::getAvailableFilterMethods() for possible filter methods.
 	 *
+	 * Additional method arguments will be passed as arguments to the get method.
+	 *
 	 * @param string $get_method_name Name of get method to call on every object for comparing its value with filter values.
 	 * @param array $filter_values List of filter values.
 	 * @return kyResultSet
@@ -184,21 +205,24 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	public function filterBy($get_method_name, $filter_values) {
 		if (!is_array($filter_values)) {
 			$filter_values = array($filter_values);
-		} elseif (count($filter_values) === 1) {
-			//support for collect
-			$first_filter_value = reset($filter_values);
-			if (is_array($first_filter_value)) {
-				$operator_or_not = reset($first_filter_value);
-				if (count($first_filter_value) !== 2 || !in_array($operator_or_not, self::$operators)) {
-					$filter_values = $first_filter_value;
-				}
+		}
+		//pack single filter with operator into additional array
+		elseif (count($filter_values) === 2) {
+			$operator_or_not = reset($filter_values);
+			if (is_string($operator_or_not) && in_array($operator_or_not, self::$operators)) {
+				$filter_values = array($filter_values);
 			}
+		}
+
+		$get_method_arguments = array();
+		if (func_num_args() > 2) {
+			$get_method_arguments = array_splice(func_get_args(), 2);
 		}
 
 		$filtered_objects = array();
 		foreach ($this->object_keys as $key) {
 			$object = $this->objects[$key];
-			$object_values = $object->$get_method_name();
+			$object_values = call_user_func_array(array($object, $get_method_name), $get_method_arguments);
 			if (!is_array($object_values)) {
 				$object_values = array($object_values);
 			}
@@ -208,7 +232,7 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 			}
 		}
 
-		return new kyResultSet($filtered_objects, $this);
+		return new kyResultSet($filtered_objects, $this->getObjectsClassName(), $this);
 	}
 
 	/**
@@ -222,15 +246,30 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	 * @return kyResultSet
 	 */
 	public function orderBy($get_method_name, $asc = true) {
-		usort($this->objects, ky_usort_comparison(array("kyResultSet", "compareObjects"), $get_method_name, $asc));
+		usort($this->objects, ky_usort_comparison(array("kyResultSet", "compareObjects"), array($get_method_name, $asc)));
 		$this->object_keys = array_keys($this->objects);
 		return $this;
 	}
 
-	public function collect($get_method_name, $get_arguments = array()) {
+	/**
+	 * Collects results of method call on all objects in result set into an array.
+	 *
+	 * NOTICE: This method shouldn't be used directly in most cases. Use kyResultSet->collectXXX() instead.
+	 *
+	 * Additional method arguments will be passed as arguments to the get method.
+	 *
+	 * @param string $get_method_name Name of the method to call on object.
+	 * @return array
+	 */
+	public function collect($get_method_name) {
+		$get_method_arguments = array();
+		if (func_num_args() > 1) {
+			$get_method_arguments = array_splice(func_get_args(), 1);
+		}
+
 		$collect_result = array();
 		foreach ($this->object_keys as $key) {
-			$collect_result[] = $this->objects[$key]->$get_method_name(array_shift($get_arguments), array_shift($get_arguments), array_shift($get_arguments));
+			$collect_result[] = call_user_func_array(array($this->objects[$key], $get_method_name), $get_method_arguments);
 		}
 		return $collect_result;
 	}
@@ -274,8 +313,11 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	}
 
 	/**
-	 * Helper for paging results. Pass page number and maximum items count per page
-	 * and it will return new result with items on specified page.
+	 * Helper for paging results.
+	 *
+	 * Pass page number and maximum items count per page and it will return
+	 * new result with items on specified page.
+	 *
 	 * NOTICE: Use the same maximum number of items per page for each page to get the proper behaviour.
 	 *
 	 * @param int $page_number Page number, starting from 1.
@@ -292,7 +334,7 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 		foreach ($page_object_keys as $object_key) {
 			$page_objects[] = $this->objects[$object_key];
 		}
-		return new kyResultSet($page_objects);
+		return new kyResultSet($page_objects, $this->getObjectsClassName());
 	}
 
 	/**
@@ -320,17 +362,17 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	public function __call($name, $arguments) {
 		if (stripos($name, self::FILTER_PREFIX) === 0) {
 			if (count($this->object_keys) === 0)
-				return new kyResultSet($this->objects, $this);
+				return new kyResultSet($this->objects, $this->getObjectsClassName());
 
 			$filter_name = strtolower($name);
-			$filter_values = $arguments;
 
 			$class_name = $this->class_name;
 			$available_filtering = array_change_key_case($class_name::getAvailableFilterMethods(false));
 
 			if (array_key_exists($filter_name, $available_filtering)) {
 				$get_method_name = $available_filtering[$filter_name];
-				return $this->filterBy($get_method_name, $filter_values);
+				array_unshift($arguments, $get_method_name);
+				return call_user_func_array(array($this, 'filterBy'), $arguments);
 			}
 		} elseif (stripos($name, self::ORDER_PREFIX) === 0) {
 			if (count($this->object_keys) === 0)
@@ -355,7 +397,8 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 			}
 		} elseif (stripos($name, self::COLLECT_PREFIX) === 0) {
 			$get_method_name = preg_replace(sprintf('/^%s/', self::COLLECT_PREFIX), 'get', $name);
-			return $this->collect($get_method_name, $arguments);
+			array_unshift($arguments, $get_method_name);
+			return call_user_func_array(array($this, 'collect'), $arguments);
 		}
 
 		trigger_error(sprintf('Call to undefined method %s::%s()', get_class($this), $name), E_USER_ERROR);

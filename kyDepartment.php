@@ -1,14 +1,11 @@
 <?php
-require_once('kyObjectBase.php');
-
 /**
- * Part of PHP client to REST API of Kayako v4 (Kayako Fusion).
- * Compatible with Kayako version >= 4.01.204.
- *
  * Kayako Department object.
  *
- * @link http://wiki.kayako.com/display/DEV/REST+-+Department
  * @author Tomasz Sawicki (https://github.com/Furgas)
+ * @link http://wiki.kayako.com/display/DEV/REST+-+Department
+ * @since Kayako version 4.01.204
+ * @package Object
  */
 class kyDepartment extends kyObjectBase {
 
@@ -43,16 +40,73 @@ class kyDepartment extends kyObjectBase {
 	static protected $controller = '/Base/Department';
 	static protected $object_xml_name = 'department';
 
-	private $id = null;
-	private $title = null;
-	private $type = null;
-	private $module = null;
-	private $display_order = null;
-	private $parent_department_id = null;
-	private $user_visibility_custom = false;
-	private $user_group_ids = array();
+	/**
+	 * Department identifier.
+	 * @apiField
+	 * @var int
+	 */
+	protected $id;
 
+	/**
+	 * Department title.
+	 * @apiField required=true
+	 * @var string
+	 */
+	protected $title;
+
+	/**
+	 * Department type.
+	 * @apiField required_create=true
+	 * @var int
+	 */
+	protected $type;
+
+	/**
+	 * Department module.
+	 * @apiField required_create=true
+	 * @var int
+	 */
+	protected $module;
+
+	/**
+	 * Department display order.
+	 * @apiField
+	 * @var int
+	 */
+	protected $display_order;
+
+	/**
+	 * Parent department identifier.
+	 * @apiField
+	 * @var int
+	 */
+	protected $parent_department_id;
+
+	/**
+	 * If this department is visible to specific user groups only.
+	 * @see kyDepartment::$user_group_ids
+	 * @apiField
+	 * @var bool
+	 */
+	protected $user_visibility_custom = false;
+
+	/**
+	 * User group identifiers this department is visible to.
+	 * @apiField name=usergroups
+	 * @var int[]
+	 */
+	protected $user_group_ids = array();
+
+	/**
+	 * Parent department.
+	 * @var kyDepartment
+	 */
 	private $parent_department = null;
+
+	/**
+	 * User groups this department is visible to.
+	 * @var kyUserGroup[]
+	 */
 	private $user_groups = null;
 
 	protected function parseData($data) {
@@ -61,9 +115,7 @@ class kyDepartment extends kyObjectBase {
 		$this->type = $data['type'];
 		$this->module = $data['module'];
 		$this->display_order = intval($data['displayorder']);
-		$this->parent_department_id = intval($data['parentdepartmentid']);
-		if ($this->parent_department_id <= 0)
-			$this->parent_department_id = null;
+		$this->parent_department_id = ky_assure_positive_int($data['parentdepartmentid']);
 		$this->user_visibility_custom = intval($data['uservisibilitycustom']) === 0 ? false : true;
 		if ($this->user_visibility_custom && is_array($data['usergroups'])) {
 			$this->user_group_ids = array();
@@ -77,10 +129,10 @@ class kyDepartment extends kyObjectBase {
 		}
 	}
 
-	protected function buildData($method) {
-		$data = array();
+	public function buildData($create) {
+		$this->checkRequiredAPIFields($create);
 
-		//TODO: check if required parameters are present
+		$data = array();
 
 		$data['title'] = $this->title;
 		$data['type'] = $this->type;
@@ -113,8 +165,8 @@ class kyDepartment extends kyObjectBase {
 	 * Returns title of the department.
 	 *
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getTitle() {
 		return $this->title;
@@ -127,16 +179,18 @@ class kyDepartment extends kyObjectBase {
 	 * @return kyDepartment
 	 */
 	public function setTitle($title) {
-		$this->title = $title;
+		$this->title = ky_assure_string($title);
 		return $this;
 	}
 
 	/**
-	 * Return type of the department - one of kyDepartment::TYPE_* constants.
+	 * Return type of the department.
+	 *
+	 * @see kyDepartment::TYPE constants.
 	 *
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getType() {
 		return $this->type;
@@ -145,20 +199,24 @@ class kyDepartment extends kyObjectBase {
 	/**
 	 * Sets type of the department.
 	 *
-	 * @param string $type Type of the department - one of kyDepartment::TYPE_* constants.
+	 * @see kyDepartment::TYPE constants.
+	 *
+	 * @param string $type Type of the department.
 	 * @return kyDepartment
 	 */
 	public function setType($type) {
-		$this->type = $type;
+		$this->type = ky_assure_constant($type, $this, 'TYPE');
 		return $this;
 	}
 
 	/**
-	 * Returns module the department is associated with - one of kyDepartment::MODULE_* constants.
+	 * Returns module the department is associated with.
+	 *
+	 * @see kyDepartment::MODULE constants.
 	 *
 	 * @return string
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getModule() {
 		return $this->module;
@@ -167,11 +225,13 @@ class kyDepartment extends kyObjectBase {
 	/**
 	 * Sets module the department will be associated with.
 	 *
-	 * @param string $module Module the department will be associated with - one of kyDepartment::MODULE_* constants.
+	 * @see kyDepartment::MODULE constants.
+	 *
+	 * @param string $module Module the department will be associated with.
 	 * @return kyDepartment
 	 */
 	public function setModule($module) {
-		$this->module = $module;
+		$this->module = ky_assure_constant($module, $this, 'MODULE');
 		return $this;
 	}
 
@@ -179,8 +239,8 @@ class kyDepartment extends kyObjectBase {
 	 * Returns display order of the department.
 	 *
 	 * @return int
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getDisplayOrder() {
 		return $this->display_order;
@@ -193,7 +253,7 @@ class kyDepartment extends kyObjectBase {
 	 * @return kyDepartment
 	 */
 	public function setDisplayOrder($display_order) {
-		$this->display_order = $display_order;
+		$this->display_order = ky_assure_int($display_order, 0);
 		return $this;
 	}
 
@@ -201,8 +261,8 @@ class kyDepartment extends kyObjectBase {
 	 * Returns identifier of parent department for this department.
 	 *
 	 * @return int
-	 * @filterBy()
-	 * @orderBy()
+	 * @filterBy
+	 * @orderBy
 	 */
 	public function getParentDepartmentId() {
 		return $this->parent_department_id;
@@ -210,13 +270,12 @@ class kyDepartment extends kyObjectBase {
 
 	/**
 	 * Sets the identifier of parent department for this department.
-	 * Invalidates parent department cache.
 	 *
 	 * @param int $parent_department_id Identifier of department that will be the parent for this department.
 	 * @return kyDepartment
 	 */
 	public function setParentDepartmentId($parent_department_id) {
-		$this->parent_department_id = $parent_department_id;
+		$this->parent_department_id = ky_assure_positive_int($parent_department_id);
 		$this->parent_department = null;
 		return $this;
 	}
@@ -245,13 +304,9 @@ class kyDepartment extends kyObjectBase {
 	 * @param kyDepartment $parent_department Department object that will be the parent for this department.
 	 * @return kyDepartment
 	 */
-	public function setParentDepartment(kyDepartment $parent_department) {
-		if ($parent_department === null) {
-			$this->parent_department_id = $this->parent_department = null;
-		} else {
-			$this->parent_department_id = $parent_department->getId();
-			$this->parent_department = $parent_department;
-		}
+	public function setParentDepartment($parent_department) {
+		$this->parent_department = ky_assure_object($parent_department, 'kyDepartment');
+		$this->parent_department_id = $this->parent_department !== null ? $this->parent_department->getId() : null;
 		return $this;
 	}
 
@@ -260,7 +315,7 @@ class kyDepartment extends kyObjectBase {
 	 * Use getUserGroupIds to get their identifiers or getUserGroups to get the objects.
 	 *
 	 * @return bool
-	 * @filterBy()
+	 * @filterBy
 	 */
 	public function getUserVisibilityCustom() {
 		return $this->user_visibility_custom;
@@ -275,7 +330,7 @@ class kyDepartment extends kyObjectBase {
 	 * @return kyDepartment
 	 */
 	public function setUserVisibilityCustom($user_visibility_custom) {
-		$this->user_visibility_custom = $user_visibility_custom;
+		$this->user_visibility_custom = ky_assure_bool($user_visibility_custom);
 		if ($this->user_visibility_custom === false) {
 			$this->user_group_ids = array();
 			$this->user_groups = null;
@@ -287,7 +342,7 @@ class kyDepartment extends kyObjectBase {
 	 * Returns identifiers of user groups that can be assigned to this department.
 	 *
 	 * @return array
-	 * @filterBy(UserGroupId)
+	 * @filterBy name=UserGroupId
 	 */
 	public function getUserGroupIds() {
 		return $this->user_group_ids;
@@ -300,7 +355,25 @@ class kyDepartment extends kyObjectBase {
 	 * @return kyDepartment
 	 */
 	public function setUserGroupIds($user_group_ids) {
-		$this->user_group_ids = $user_group_ids;
+		//normalization to array
+		if (!is_array($user_group_ids)) {
+			if (is_numeric($user_group_ids)) {
+				$user_group_ids = array($user_group_ids);
+			} else {
+				$user_group_ids = array();
+			}
+		}
+
+		//normalization to positive integer values
+		$this->user_group_ids = array();
+		foreach ($user_group_ids as $user_group_id) {
+			$user_group_id = ky_assure_positive_int($user_group_id);
+			if ($user_group_id === null)
+				continue;
+
+			$this->user_group_ids[] = $user_group_id;
+		}
+
 		return $this;
 	}
 
@@ -308,16 +381,40 @@ class kyDepartment extends kyObjectBase {
 	 * Returns user groups that can be assigned to this department.
 	 * Result is cached until the end of script.
 	 *
+	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyResultSet
 	 */
 	public function getUserGroups($reload = false) {
 		$user_groups = array();
 		foreach ($this->user_group_ids as $user_group_id) {
-			if (!is_array($this->user_groups) || !array_key_exists($user_group_id, $this->user_groups) || $reload)
+			if (!is_array($this->user_groups) || !array_key_exists($user_group_id, $this->user_groups) || $reload) {
 				$this->user_groups[$user_group_id] = kyUserGroup::get($user_group_id);
-			$user_groups[] = $this->user_groups[$user_group_id];
+			}
 		}
-		return new kyResultSet($user_groups);
+		return new kyResultSet(array_values($this->user_groups));
+	}
+
+	/**
+	 * Returns whether this department is visible to specified user group.
+	 *
+	 * @param kyUserGroup|int $user_group User group or its identifier.
+	 * @return bool
+	 * @filterBy
+	 */
+	public function isVisibleToUserGroup($user_group) {
+		if ($this->type !== self::TYPE_PUBLIC)
+			return false;
+
+		if ($this->user_visibility_custom === false)
+			return true;
+
+		if ($user_group instanceof kyUserGroup) {
+			$user_group_id = $user_group->getId();
+		} else {
+			$user_group_id = intval($user_group);
+		}
+
+		return in_array($user_group_id, $this->user_group_ids);
 	}
 
 	/**
