@@ -6,6 +6,8 @@
  * @link http://wiki.kayako.com/display/DEV/REST+-+TicketNote
  * @since Kayako version 4.01.240
  * @package Object\Ticket
+ *
+ * @noinspection PhpDocSignatureInspection
  */
 class kyTicketNote extends kyObjectBase {
 

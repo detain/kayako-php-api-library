@@ -17,6 +17,12 @@ class kyTicketCustomFieldGroup extends kyCustomFieldGroupBase {
 	 */
 	protected $ticket_id;
 
+	/**
+	 * Constructor.
+	 *
+	 * @param int $ticket_id Ticket identifier.
+	 * @param array|null $data Object data from XML response converted into array.
+	 */
 	function __construct($ticket_id, $data = null) {
 		parent::__construct($data);
 		$this->type = kyCustomFieldGroupBase::TYPE_TICKET;

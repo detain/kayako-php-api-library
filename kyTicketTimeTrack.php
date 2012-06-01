@@ -6,6 +6,8 @@
  * @link http://wiki.kayako.com/display/DEV/REST+-+TicketTimeTrack
  * @since Kayako version 4.01.240
  * @package Object\Ticket
+ *
+ * @noinspection PhpDocSignatureInspection
  */
 class kyTicketTimeTrack extends kyObjectBase {
 

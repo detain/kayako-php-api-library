@@ -115,6 +115,7 @@ class kyRESTClient implements kyRESTClientInterface {
 	 * @param array $parameters Optional. List of additional parameters (like object identifiers or search parameters).
 	 * @param array $data Optional. Data array with parameter name as key and parameter value as value.
 	 * @param array $files Optional. Array of files in form of: array('<parameter name>' => array('file_name' => '<file name>', 'contents' => '<file contents>'), ...).
+	 * @throws kyException
 	 * @return array
 	 */
 	protected function processRequest($controller, $method, $parameters = array(), $data = array(), $files = array()) {

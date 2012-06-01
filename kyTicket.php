@@ -6,6 +6,8 @@
  * @link http://wiki.kayako.com/display/DEV/REST+-+Ticket
  * @since Kayako version 4.40.1079
  * @package Object\Ticket
+ *
+ * @noinspection PhpDocSignatureInspection
  */
 class kyTicket extends kyObjectWithCustomFieldsBase {
 
@@ -621,9 +623,10 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * Searches for tickets based on provided data. You must provide at least one department identifier.
 	 *
 	 * @param kyDepartment|kyResultSet $departments Non-empty list of department identifiers.
-	 * @param kyTicketStatus|kyResultSet $ticket_statuses List of ticket status identifiers.
-	 * @param kyStaff|kyResultSet $owner_staffs List of staff (ticket owners) identifiers.
-	 * @param kyUser|kyResultSet $users List of user (ticket creators) identifiers.
+	 * @param array|kyResultSet|kyTicketStatus $ticket_statuses List of ticket status identifiers.
+	 * @param array|kyResultSet|kyStaff $owner_staffs List of staff (ticket owners) identifiers.
+	 * @param array|kyResultSet|kyUser $users List of user (ticket creators) identifiers.
+	 * @throws InvalidArgumentException
 	 * @return kyResultSet
 	 */
 	static public function getAll($departments, $ticket_statuses = array(), $owner_staffs = array(), $users = array()) {
@@ -1622,6 +1625,7 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 		if ($this->time_tracks === null || $reload) {
 			$this->time_tracks = kyTicketTimeTrack::getAll($this->getId())->getRawArray();
 		}
+		/** @noinspection PhpParamsInspection */
 		return new kyResultSet($this->time_tracks);
 	}
 
@@ -1637,6 +1641,7 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 		if ($this->posts === null || $reload) {
 			$this->posts = kyTicketPost::getAll($this->getId())->getRawArray();
 		}
+		/** @noinspection PhpParamsInspection */
 		return new kyResultSet($this->posts);
 	}
 
@@ -1661,6 +1666,7 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 		if ($this->attachments === null || $reload) {
 			$this->attachments = kyTicketAttachment::getAll($this->id)->getRawArray();
 		}
+		/** @noinspection PhpParamsInspection */
 		return new kyResultSet($this->attachments);
 	}
 

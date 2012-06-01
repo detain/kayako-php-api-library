@@ -6,6 +6,8 @@
  * @link http://wiki.kayako.com/display/DEV/REST+-+TicketAttachment
  * @since Kayako version 4.01.240
  * @package Object\Ticket
+ *
+ * @noinspection PhpDocSignatureInspection
  */
 class kyTicketAttachment extends kyObjectBase {
 	static protected $controller = '/Tickets/TicketAttachment';
@@ -233,8 +235,8 @@ class kyTicketAttachment extends kyObjectBase {
 	public function setTicketPost($ticket_post) {
 		$this->ticket_post = ky_assure_object($ticket_post, 'kyTicketPost');
 		$this->ticket_post_id = $this->ticket_post !== null ? $this->ticket_post->getId() : null;
-		$this->ticked = $this->ticket_post !== null ? $this->ticket_post->getTicket() : null;
-		$this->ticked_id = $this->ticket !== null ? $this->ticket->getId() : null;
+		$this->ticket = $this->ticket_post !== null ? $this->ticket_post->getTicket() : null;
+		$this->ticket_id = $this->ticket !== null ? $this->ticket->getId() : null;
 	}
 
 	/**
@@ -334,6 +336,7 @@ class kyTicketAttachment extends kyObjectBase {
 	 *
 	 * @param string $file_path Path to file.
 	 * @param string $file_name Optional. Use to set filename other than physical file.
+	 * @throws kyException
 	 * @return kyTicketAttachment
 	 */
 	public function setContentsFromFile($file_path, $file_name = null) {

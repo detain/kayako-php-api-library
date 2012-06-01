@@ -6,6 +6,8 @@
  * @link http://wiki.kayako.com/display/DEV/REST+-+User
  * @since Kayako version 4.01.204
  * @package Object\User
+ *
+ * @noinspection PhpDocSignatureInspection
  */
 class kyUser extends kyObjectBase {
 
@@ -235,8 +237,9 @@ class kyUser extends kyObjectBase {
 	static public function getAll($starting_user_id = null, $max_items = null) {
 		$search_parameters = array('Filter');
 		if (is_numeric($starting_user_id) && $starting_user_id > 0) {
-			if (!is_numeric($max_items) || $max_items <= 0)
-				$limit = 1000;
+			if (!is_numeric($max_items) || $max_items <= 0) {
+				$max_items = 1000;
+			}
 			$search_parameters[] = $starting_user_id;
 			$search_parameters[] = $max_items;
 		}

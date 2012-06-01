@@ -71,6 +71,7 @@ class kyCustomField extends kyObjectBase {
 	 *
 	 * @param kyCustomFieldGroupBase $custom_field_group Custom field group this field belongs to.
 	 * @param array $data Object data from XML response.
+	 * @throws DomainException
 	 * @return kyCustomField
 	 */
 	static public function createByType($custom_field_group, $data) {
@@ -93,6 +94,7 @@ class kyCustomField extends kyObjectBase {
 			case kyCustomFieldDefinition::TYPE_FILE:
 				return new kyCustomFieldFile($custom_field_group, $data);
 		}
+		throw new DomainException("Unknown custom field type.");
 	}
 
 	protected function parseData($data) {
@@ -223,6 +225,7 @@ class kyCustomField extends kyObjectBase {
 		if ($this->definition !== null && !$reload)
 			return $this->definition;
 
+		/** @noinspection PhpUndefinedMethodInspection */
 		$this->definition = kyCustomFieldDefinition::getAll()->filterByName($this->getName())->first();
 		return $this->definition;
 	}

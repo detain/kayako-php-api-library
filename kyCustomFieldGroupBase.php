@@ -113,6 +113,7 @@ abstract class kyCustomFieldGroupBase extends kyObjectBase {
 	 * @return kyResultSet
 	 */
 	public function getFields() {
+		/** @noinspection PhpParamsInspection */
 		return new kyResultSet($this->fields, 'kyCustomField');
 	}
 }

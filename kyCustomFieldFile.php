@@ -5,6 +5,8 @@
  * @author Tomasz Sawicki (https://github.com/Furgas)
  * @since Kayako version 4.40.1079
  * @package Object\CustomField
+ *
+ * @noinspection PhpDocSignatureInspection
  */
 class kyCustomFieldFile extends kyCustomField {
 
@@ -106,6 +108,7 @@ class kyCustomFieldFile extends kyCustomField {
 	 *
 	 * @param string $file_path Path to file.
 	 * @param string $file_name Optional. Use to set file name other than physical file.
+	 * @throws kyException
 	 * @return kyCustomFieldFile
 	 */
 	public function setContentsFromFile($file_path, $file_name = null) {

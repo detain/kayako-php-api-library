@@ -69,10 +69,12 @@ function getDepartmentsTree() {
 /**
  * Returns ticket custom fields in the form of array:
  * array(
- * 	'<custom field group title>' => array(<custom field object>, ... ),
- * 	...
+ *     '<custom field group title>' => array(<custom field object>, ... ),
+ *     ...
  * )
  *
+ * @param kyTicket $ticket Ticket.
+ * @param bool $file_custom_field_present Placeholder to indicate if there is file custom field.
  * @return array
  */
 function get_ticket_custom_fields(kyTicket $ticket, &$file_custom_field_present) {
@@ -317,6 +319,7 @@ switch ($page) {
 	case 'custom_fields': //we are submitting Custom Fields form
 		$ticket_id = get_post_value('ticket_id', $form_valid, $fields_valid);
 
+		/** @var $ticket kyTicket */
 		$ticket = kyTicket::get($ticket_id);
 
 		//load ticket custom fields; check if there is a file custom field (for proper form encoding)
@@ -528,6 +531,7 @@ if ($render === 'general') {
 //we are submitting the ticket; we are doing this before rendering Custom Fields form because there is no way to load them before creating the ticket (see http://dev.kayako.com/browse/SWIFT-2391 for improvement request)
 if ($render === 'submit') {
 	//load the department we've chosen in Department form
+	/** @var $department kyDepartment */
 	$department = kyDepartment::get($department_id);
 
 	//load default ticket status (based on DEFAULT_TICKET_STATUS_NAME constant defined at top of the file)
@@ -537,6 +541,7 @@ if ($render === 'submit') {
 	kyTicket::setDefaults($status_id, $priority_id, $type_id);
 
 	//create the ticket
+	/** @var $ticket kyTicket */
 	$ticket = kyTicket::createNewAuto($department, $creator_full_name, $creator_email, $contents, $subject)
 		->create();
 

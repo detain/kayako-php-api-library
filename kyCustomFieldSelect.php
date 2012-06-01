@@ -5,6 +5,8 @@
  * @author Tomasz Sawicki (https://github.com/Furgas)
  * @since Kayako version 4.40.1079
  * @package Object\CustomField
+ *
+ * @noinspection PhpDocSignatureInspection
  */
 class kyCustomFieldSelect extends kyCustomField {
 
@@ -35,7 +37,7 @@ class kyCustomFieldSelect extends kyCustomField {
 	 * Sets the field selected option.
 	 *
 	 * @param kyCustomFieldOption $option Field option.
-	 * @return kyCustomFieldWithOptions
+	 * @return kyCustomFieldSelect
 	 */
 	public function setSelectedOption($option) {
 		$this->option = ky_assure_object($option, 'kyCustomFieldOption');
@@ -55,6 +57,7 @@ class kyCustomFieldSelect extends kyCustomField {
 
 	/**
 	 * Returns selected field option.
+	 *
 	 * @see kyCustomField::getValue()
 	 * @see kyCustomFieldSelect::getSelectedOption()
 	 *
@@ -66,11 +69,12 @@ class kyCustomFieldSelect extends kyCustomField {
 
 	/**
 	 * Sets the option for this field.
+	 *
 	 * @see kyCustomField::setValue()
 	 * @see kyCustomField::setSelectedOption()
 	 *
 	 * @param mixed $value Identifier of field option OR value of field option OR an option.
-	 * @return kyCustomFieldWithOptions
+	 * @return kyCustomFieldSelect
 	 */
 	public function setValue($value) {
 		$this->setSelectedOption($this->getOption($value));

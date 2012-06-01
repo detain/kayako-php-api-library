@@ -28,7 +28,7 @@ abstract class kyObjectWithCustomFieldsBase extends kyObjectBase {
 
 	/**
 	 * Object custom field groups.
-	 * @var kyResult
+	 * @var kyResultSet
 	 */
 	protected $custom_field_groups = null;
 
@@ -49,7 +49,8 @@ abstract class kyObjectWithCustomFieldsBase extends kyObjectBase {
 	 * Result is cached until the end of script.
 	 *
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
-	 * @return
+	 * @throws BadMethodCallException
+	 * @return kyResultSet
 	 */
 	protected function loadCustomFieldGroups($reload = false) {
 		if ($this->isNew())
@@ -60,6 +61,7 @@ abstract class kyObjectWithCustomFieldsBase extends kyObjectBase {
 
 		$custom_field_group_class = static::$custom_field_group_class;
 
+		/** @noinspection PhpUndefinedMethodInspection */
 		$this->custom_field_groups = $custom_field_group_class::getAll($this->getId());
 		$this->initFields();
 
@@ -75,6 +77,7 @@ abstract class kyObjectWithCustomFieldsBase extends kyObjectBase {
 		foreach ($this->custom_field_groups as $custom_field_groups) {
 			/* @var $custom_field_groups kyCustomFieldGroupBase */
 			foreach ($custom_field_groups->getFields() as $field) {
+				/** @var $field kyCustomField */
 				$this->custom_fields[$field->getName()] = $field;
 			}
 		}
@@ -129,7 +132,7 @@ abstract class kyObjectWithCustomFieldsBase extends kyObjectBase {
 	 * @return mixed
 	 */
 	public function getCustomFieldValue($name) {
-		$this->getCustomField($name)->getValue($value);
+		$this->getCustomField($name)->getValue();
 	}
 
 	/**
@@ -152,15 +155,18 @@ abstract class kyObjectWithCustomFieldsBase extends kyObjectBase {
 	 * @throws Exception
 	 */
 	public function setCustomFieldValuesFromPOST() {
-		$custom_field_values = array();
 		foreach ($this->getCustomFields() as $custom_field) {
 			/* @var $custom_field kyCustomField */
-			if (!$custom_field->getDefinition()->getIsUserEditable())
-				continue;
 
+			/** @var $custom_field_definition kyCustomFieldDefinition */
 			$custom_field_definition = $custom_field->getDefinition();
 
+			if (!$custom_field_definition->getIsUserEditable())
+			continue;
+
+
 			if ($custom_field_definition->getType() === kyCustomFieldDefinition::TYPE_FILE) {
+				/** @var $custom_field kyCustomFieldFile */
 				if (array_key_exists($custom_field->getName(), $_FILES) && $_FILES[$custom_field->getName()]['error'] != UPLOAD_ERR_NO_FILE) {
 					if ($_FILES[$custom_field->getName()]['error'] != UPLOAD_ERR_OK || !is_uploaded_file($_FILES[$custom_field->getName()]['tmp_name']))
 						throw new kyException(sprintf("Error uploading file '%s'.", $custom_field->getTitle()));
@@ -172,7 +178,7 @@ abstract class kyObjectWithCustomFieldsBase extends kyObjectBase {
 						throw new kyException(sprintf("Field '%s' is required.", $custom_field->getTitle()));
 				}
 			} else {
-				$custom_field->setValue(ky_get_post_value($custom_field));
+				$custom_field->setValue(ky_get_post_value($custom_field_definition));
 			}
 		}
 	}
@@ -185,7 +191,7 @@ abstract class kyObjectWithCustomFieldsBase extends kyObjectBase {
 	public function updateCustomFields() {
 		//ignore saving fields if they weren't even loaded
 		if ($this->custom_field_groups === null)
-			return;
+			return $this;
 
 		$custom_field_group_class = static::$custom_field_group_class;
 
@@ -197,10 +203,11 @@ abstract class kyObjectWithCustomFieldsBase extends kyObjectBase {
 		}
 
 		if (count($data) === 0)
-			return;
+			return $this;
 
 		//prepare URL controller and parameters
 		$parameters = array(static::$object_id_field => $this->getId());
+		/** @noinspection PhpUndefinedMethodInspection */
 		$controller = $custom_field_group_class::getController();
 
 		//get files from data

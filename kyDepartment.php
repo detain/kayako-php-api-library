@@ -6,6 +6,8 @@
  * @link http://wiki.kayako.com/display/DEV/REST+-+Department
  * @since Kayako version 4.01.204
  * @package Object
+ *
+ * @noinspection PhpDocSignatureInspection
  */
 class kyDepartment extends kyObjectBase {
 
@@ -385,7 +387,6 @@ class kyDepartment extends kyObjectBase {
 	 * @return kyResultSet
 	 */
 	public function getUserGroups($reload = false) {
-		$user_groups = array();
 		foreach ($this->user_group_ids as $user_group_id) {
 			if (!is_array($this->user_groups) || !array_key_exists($user_group_id, $this->user_groups) || $reload) {
 				$this->user_groups[$user_group_id] = kyUserGroup::get($user_group_id);
@@ -427,7 +428,7 @@ class kyDepartment extends kyObjectBase {
 	 */
 	public function addUserGroup(kyUserGroup $user_group, $clear = false) {
 		if ($clear) {
-			$this->user_group = array();
+			$this->user_groups = array();
 			$this->user_group_ids = array();
 		}
 

@@ -61,11 +61,15 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	/**
 	 * Constructs a result set.
 	 *
-	 * @param kyObjectBase[] $objects List of objects in this result set.
+	 * @param kyObjectBase[]|kyResultSet $objects List of objects in this result set.
 	 * @param string $class_name Optional. Class name of objects in this result set.
 	 * @param kyResultSet $previous_result_set Optional result set which was the base of filtering operation producing this result set.
 	 */
 	function __construct($objects, $class_name = null, $previous_result_set = null) {
+		if ($objects === null) {
+			$objects = array();
+		}
+
 		if ($objects instanceof kyResultSet) {
 			$objects = $objects->getRawArray();
 		}
@@ -137,7 +141,7 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	 * ArrayAccess implementation.
 	 */
     public function offsetExists($offset) {
-    	return in_array($name, $this->object_keys);
+    	return in_array($offset, $this->object_keys);
     }
 
 	/**
@@ -367,6 +371,7 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 			$filter_name = strtolower($name);
 
 			$class_name = $this->class_name;
+			/** @noinspection PhpUndefinedMethodInspection */
 			$available_filtering = array_change_key_case($class_name::getAvailableFilterMethods(false));
 
 			if (array_key_exists($filter_name, $available_filtering)) {
@@ -387,6 +392,7 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 			}
 
 			$class_name = $this->class_name;
+			/** @noinspection PhpUndefinedMethodInspection */
 			$available_ordering = array_change_key_case($class_name::getAvailableOrderMethods(false));
 
 			$order_name = strtolower($name);
@@ -402,6 +408,7 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 		}
 
 		trigger_error(sprintf('Call to undefined method %s::%s()', get_class($this), $name), E_USER_ERROR);
+		return $this;
 	}
 
 	/**
@@ -440,7 +447,6 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 
 				if (is_array($filter_value) && count($filter_value) === 2) {
 					$adv_filter_operator = reset($filter_value);
-					$unknown_filter = false;
 					$adv_filter_value = end($filter_value);
 					switch ($adv_filter_operator) {
 						case '~':

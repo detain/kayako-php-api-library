@@ -84,6 +84,7 @@ class kyConfig {
 	/**
 	 * Returns current library configuration.
 	 *
+	 * @throws kyException
 	 * @return kyConfig
 	 */
 	static public function get() {

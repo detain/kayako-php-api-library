@@ -243,11 +243,7 @@ initKayako();
 		var timezoneElement = document.getElementById('timezone');
 		var timezoneSelectedOption = timezoneElement.options[timezoneElement.selectedIndex];
 		var enabledDST = timezoneSelectedOption.getAttribute('enabledst');
-		if (enabledDST == 'enable') {
-			enableDSTElement.checked = true;
-		} else {
-			enableDSTElement.checked = false;
-		}
+		enableDSTElement.checked = enabledDST == 'enable';
 	}
 	</script>
 </head>

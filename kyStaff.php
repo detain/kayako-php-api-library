@@ -6,6 +6,8 @@
  * @link http://wiki.kayako.com/display/DEV/REST+-+Staff
  * @since Kayako version 4.01.204
  * @package Object\Staff
+ *
+ * @noinspection PhpDocSignatureInspection
  */
 class kyStaff extends kyObjectBase {
 

@@ -6,6 +6,8 @@
  * @link http://wiki.kayako.com/display/DEV/REST+-+UserGroup
  * @since Kayako version 4.01.204
  * @package Object\User
+ *
+ * @noinspection PhpDocSignatureInspection
  */
 class kyUserGroup extends kyObjectBase {
 

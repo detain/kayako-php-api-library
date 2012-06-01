@@ -48,6 +48,7 @@ if (!function_exists('ky_xml_to_array')) {
 		$has_children = false;
 
 		foreach ($xml->children() as $element) {
+			/** @var $element SimpleXMLElement */
 
 			$has_children = true;
 
@@ -173,7 +174,7 @@ if (!function_exists('ky_usort_comparison')) {
 	 *
 	 * @param callback $callback Sorting callback.
 	 * @param array $arguments List of arguments to sorting callback.
-	 * @return int
+	 * @return callback
 	 */
 	function ky_usort_comparison($callback, $arguments) {
 	    $usorter = new kyUsort($callback, $arguments);
@@ -186,6 +187,7 @@ if (!function_exists('ky_get_post_value')) {
 	 * Returns field value from POST data.
 	 *
 	 * @param kyCustomFieldDefinition $custom_field_definition Custom field definition.
+	 * @throws kyException
 	 * @return mixed Field value.
 	 */
 	function ky_get_post_value($custom_field_definition) {
@@ -193,7 +195,7 @@ if (!function_exists('ky_get_post_value')) {
 		$field_name = $custom_field_definition->getName();
 		$required = $custom_field_definition->getIsRequired();
 		$regexp = $custom_field_definition->getRegexpValidate();
-		$as_array = $custom_field_definitiongetType() === kyCustomFieldDefinition::TYPE_CHECKBOX || $custom_field_definition->getType() === kyCustomFieldDefinition::TYPE_MULTI_SELECT;
+		$as_array = $custom_field_definition->getType() === kyCustomFieldDefinition::TYPE_CHECKBOX || $custom_field_definition->getType() === kyCustomFieldDefinition::TYPE_MULTI_SELECT;
 
 		if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 			return null;

@@ -6,6 +6,8 @@
  * @link http://wiki.kayako.com/display/DEV/REST+-+TicketPost
  * @since Kayako version 4.01.240
  * @package Object\Ticket
+ *
+ * @noinspection PhpDocSignatureInspection
  */
 class kyTicketPost extends kyObjectBase {
 	/**
@@ -698,6 +700,7 @@ class kyTicketPost extends kyObjectBase {
 				}
 			}
 		}
+		/** @noinspection PhpParamsInspection */
 		return new kyResultSet($this->attachments);
 	}
 
@@ -724,9 +727,10 @@ class kyTicketPost extends kyObjectBase {
 	 *
 	 * @param string $contents Raw contents of the file.
 	 * @param string $file_name Filename.
+	 * @return kyTicketAttachment
 	 */
 	public function newAttachment($contents, $file_name) {
-		return kyTicketAttachment::createNewFromFile($this, $file_path, $file_name);
+		return kyTicketAttachment::createNew($this, $contents, $file_name);
 	}
 
 	/**
@@ -735,6 +739,7 @@ class kyTicketPost extends kyObjectBase {
 	 *
 	 * @param string $file_path Path to file.
 	 * @param string $file_name Optional. Use to set filename other than physical file.
+	 * @return kyTicketAttachment
 	 */
 	public function newAttachmentFromFile($file_path, $file_name = null) {
 		return kyTicketAttachment::createNewFromFile($this, $file_path, $file_name);

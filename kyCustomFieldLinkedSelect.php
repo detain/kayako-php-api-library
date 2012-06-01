@@ -5,6 +5,8 @@
  * @author Tomasz Sawicki (https://github.com/Furgas)
  * @since Kayako version 4.40.1079
  * @package Object\CustomField
+ *
+ * @noinspection PhpDocSignatureInspection
  */
 class kyCustomFieldLinkedSelect extends kyCustomFieldSelect {
 
@@ -18,6 +20,7 @@ class kyCustomFieldLinkedSelect extends kyCustomFieldSelect {
 		parent::parseData($data);
 
 		if (strpos($data['_contents'], self::PARENT_CHILD_SEPARATOR) !== false) {
+			/** @noinspection PhpUnusedLocalVariableInspection */
 			list($parent_value, $child_value) = explode(self::PARENT_CHILD_SEPARATOR, $data['_contents']);
 			$this->option = $this->getOption($child_value);
 		}

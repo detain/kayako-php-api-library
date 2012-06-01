@@ -10,23 +10,36 @@
 class kyCustomFieldDefinition extends kyObjectBase {
 
 	const TYPE_TEXT = 1;
+
 	const TYPE_TEXTAREA = 2;
+
 	const TYPE_PASSWORD = 3;
+
 	const TYPE_CHECKBOX = 4;
+
 	const TYPE_RADIO = 5;
+
 	const TYPE_SELECT = 6;
+
 	const TYPE_MULTI_SELECT = 7;
+
 	const TYPE_CUSTOM = 8;
+
 	const TYPE_LINKED_SELECT = 9;
+
 	const TYPE_DATE = 10;
+
 	const TYPE_FILE = 11;
 
 	static protected $controller = '/Base/CustomField';
+
 	static protected $object_xml_name = 'customfield';
+
 	protected $read_only = true;
 
 	/**
 	 * Field identifier.
+	 *
 	 * @apiField name=customfieldid
 	 * @var int
 	 */
@@ -34,6 +47,7 @@ class kyCustomFieldDefinition extends kyObjectBase {
 
 	/**
 	 * Field group identifier.
+	 *
 	 * @apiField name=customfieldgroupid
 	 * @var int
 	 */
@@ -41,6 +55,7 @@ class kyCustomFieldDefinition extends kyObjectBase {
 
 	/**
 	 * Field type.
+	 *
 	 * @apiField name=fieldtype
 	 * @var int
 	 */
@@ -48,6 +63,7 @@ class kyCustomFieldDefinition extends kyObjectBase {
 
 	/**
 	 * Field name.
+	 *
 	 * @apiField name=fieldname
 	 * @var string
 	 */
@@ -55,6 +71,7 @@ class kyCustomFieldDefinition extends kyObjectBase {
 
 	/**
 	 * Field title.
+	 *
 	 * @apiField
 	 * @var string
 	 */
@@ -62,6 +79,7 @@ class kyCustomFieldDefinition extends kyObjectBase {
 
 	/**
 	 * Field default value.
+	 *
 	 * @apiField
 	 * @var string
 	 */
@@ -69,6 +87,7 @@ class kyCustomFieldDefinition extends kyObjectBase {
 
 	/**
 	 * Field required flag.
+	 *
 	 * @apiField
 	 * @var bool
 	 */
@@ -76,6 +95,7 @@ class kyCustomFieldDefinition extends kyObjectBase {
 
 	/**
 	 * Field user editable flag.
+	 *
 	 * @apiField name=usereditable
 	 * @var bool
 	 */
@@ -83,6 +103,7 @@ class kyCustomFieldDefinition extends kyObjectBase {
 
 	/**
 	 * Field staff editable flag.
+	 *
 	 * @apiField name=staffeditable
 	 * @var bool
 	 */
@@ -90,6 +111,7 @@ class kyCustomFieldDefinition extends kyObjectBase {
 
 	/**
 	 * Field PERL regexp for value validation.
+	 *
 	 * @apiField
 	 * @var string
 	 */
@@ -97,6 +119,7 @@ class kyCustomFieldDefinition extends kyObjectBase {
 
 	/**
 	 * Field display order.
+	 *
 	 * @apiField
 	 * @var int
 	 */
@@ -104,6 +127,7 @@ class kyCustomFieldDefinition extends kyObjectBase {
 
 	/**
 	 * Field encryption flag.
+	 *
 	 * @apiField name=encryptindb
 	 * @var bool
 	 */
@@ -111,6 +135,7 @@ class kyCustomFieldDefinition extends kyObjectBase {
 
 	/**
 	 * Field description.
+	 *
 	 * @apiField
 	 * @var string
 	 */
@@ -118,12 +143,14 @@ class kyCustomFieldDefinition extends kyObjectBase {
 
 	/**
 	 * Field possible options.
+	 *
 	 * @var kyCustomFieldOption[]
 	 */
 	private $options = null;
 
 	/**
 	 * Cache for all field definitions.
+	 *
 	 * @var kyCustomFieldDefinition[]
 	 */
 	static private $definitions = null;
@@ -241,17 +268,16 @@ class kyCustomFieldDefinition extends kyObjectBase {
 			case self::TYPE_TEXTAREA:
 			case self::TYPE_PASSWORD:
 				return $this->default_value;
-			break;
+				break;
 
 			case self::TYPE_DATE:
 				return date(kyConfig::get()->getDateFormat(), $this->default_value);
-			break;
+				break;
 
 			default:
 				return null;
-			break;
+				break;
 		}
-
 	}
 
 	/**
@@ -394,6 +420,7 @@ class kyCustomFieldDefinition extends kyObjectBase {
 			case self::TYPE_MULTI_SELECT:
 			case self::TYPE_RADIO:
 			case self::TYPE_SELECT:
+				/** @noinspection PhpUndefinedMethodInspection */
 				return $this->getOptions()->filterByIsSelected();
 			default:
 				return new kyResultSet(array(), 'kyCustomFieldOption');
