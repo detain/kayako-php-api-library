@@ -356,10 +356,17 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 
 	/**
 	 * Template group identifier.
-	 * @apiField
+	 * @apiField getter=getTemplateGroupId setter=setTemplateGroup alias=templategroup
 	 * @var int
 	 */
 	protected $template_group_id;
+
+	/**
+	 * Template group name.
+	 * @apiField getter=getTemplateGroupName setter=setTemplateGroup
+	 * @var string
+	 */
+	protected $template_group_name;
 
 	/**
 	 * Ticket tags.
@@ -521,6 +528,7 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 		$this->is_escalated = ky_assure_bool($data['isescalated']);
 		$this->escalation_rule_id = ky_assure_positive_int($data['escalationruleid']);
 		$this->template_group_id = ky_assure_positive_int($data['templategroupid']);
+		$this->template_group_name = $data['templategroupname'];
 		$this->tags = $data['tags'];
 
 		$this->watchers = array();
@@ -587,7 +595,7 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 			$data['ownerstaffid'] = $this->owner_staff_id;
 		}
 
-		$data['templategroupid'] = $this->template_group_id;
+		$data['templategroup'] = is_numeric($this->template_group_id) ? $this->template_group_id : $this->template_group_name;
 
 		if ($create) {
 			switch ($this->creator) {
@@ -1551,12 +1559,53 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 
 	/**
 	 * Sets the template group identifier.
+     * Resets template group name.
 	 *
 	 * @param int $template_group_id Template group identifier.
 	 * @return kyTicket
 	 */
 	public function setTemplateGroupId($template_group_id) {
 		$this->template_group_id = ky_assure_positive_int($template_group_id);
+        $this->template_group_name = null;
+		return $this;
+	}
+
+	/**
+	* Returns template group name.
+	*
+	* @return string
+	* @filterBy
+	* @orderBy
+	*/
+	public function getTemplateGroupName() {
+		return $this->template_group_name;
+	}
+
+	/**
+	 * Sets the template group name.
+     * Resets template group identifier.
+	 *
+	 * @param string $template_group_name Template group name.
+	 * @return kyTicket
+	 */
+	public function setTemplateGroupName($template_group_name) {
+		$this->template_group_name = ky_assure_string($template_group_name);
+        $this->template_group_id = null;
+		return $this;
+	}
+
+	/**
+	 * Sets the template group. You can provide name or identifier.
+	 *
+	 * @param string|int $template_group_id_or_name Template group name or identifier.
+	 * @return kyTicket
+	 */
+	public function setTemplateGroup($template_group_id_or_name) {
+        if (is_numeric($template_group_id_or_name)) {
+            $this->setTemplateGroupId($template_group_id_or_name);
+        } else {
+            $this->setTemplateGroupName($template_group_id_or_name);
+        }
 		return $this;
 	}
 
