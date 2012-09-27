@@ -241,27 +241,33 @@ abstract class kyObjectBase {
 		return $this;
 	}
 
-	/**
-	 * Creates an object on the server and refreshes its local data.
-	 *
-	 * @throws BadMethodCallException
-	 * @return kyObjectBase
-	 */
+    /**
+     * Creates an object on the server and refreshes its local data.
+     *
+     * @throws BadMethodCallException
+     * @throws kyException
+     * @return kyObjectBase
+     */
 	public function create() {
 		if ($this->read_only)
 			throw new BadMethodCallException(sprintf("You can't create new objects of type %s.", get_called_class()));
 
 		$result = self::getRESTClient()->post(static::$controller, array(), $this->buildData(true));
+
+        if (count($result) === 0)
+            throw new kyException("No data returned by the server after creating the object.");
+
 		$this->parseData($result[static::$object_xml_name][0]);
 		return $this;
 	}
 
-	/**
-	 * Updates the object on the server and refreshes its local data.
-	 *
-	 * @throws BadMethodCallException
-	 * @return kyObjectBase
-	 */
+    /**
+     * Updates the object on the server and refreshes its local data.
+     *
+     * @throws BadMethodCallException
+     * @throws kyException
+     * @return kyObjectBase
+     */
 	public function update() {
 		if ($this->read_only)
 			throw new BadMethodCallException(sprintf("You can't update objects of type %s.", get_called_class()));
@@ -270,7 +276,11 @@ abstract class kyObjectBase {
 			throw new BadMethodCallException(sprintf("You can't update object before it was created. Create it first.", get_called_class()));
 
 		$result = self::getRESTClient()->put(static::$controller, $this->getId(true), $this->buildData(false));
-		$this->parseData($result[static::$object_xml_name][0]);
+
+        if (count($result) === 0)
+            throw new kyException("No data returned by the server after updating the object.");
+
+        $this->parseData($result[static::$object_xml_name][0]);
 		return $this;
 	}
 
