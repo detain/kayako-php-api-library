@@ -31,13 +31,6 @@ class kyConfig {
 	private $rest_client = null;
 
 	/**
-	 * True to PUT data using in-memory stream (may not work on Windows). False to PUT using post fields.
-	 * See kyRESTClient::processRequest() for implementation details.
-	 * @var bool
-	 */
-	private $is_put_as_memory_stream = true;
-
-	/**
 	 * Default format of datetime object properties used in getters and setters.
 	 * @var string
 	 */
@@ -202,29 +195,6 @@ class kyConfig {
 	 */
 	public function setRESTClient(kyRESTClientInterface $rest_client) {
 		$this->rest_client = $rest_client;
-		return $this;
-	}
-
-	/**
-	 * Returns True if PUT is sent using in-memory stream (may not work on Windows).
-	 * Returns False when PUT is sent using post fields.
-	 * See kyRESTClient::processRequest() for implementation details.
-	 *
-	 * @return bool
-	 */
-	public function isPUTAsMemoryStream() {
-		return $this->is_put_as_memory_stream;
-	}
-
-	/**
-	 * Sets the way PUT requests are sent.
-	 * See kyRESTClient::processRequest() for implementation details.
-	 *
-	 * @param bool $is_put_as_memory_stream True to PUT data using in-memory stream (may not work on Windows). False to PUT using post fields.
-	 * @return kyConfig
-	 */
-	public function setPUTAsMemoryStream($is_put_as_memory_stream) {
-		$this->is_put_as_memory_stream = $is_put_as_memory_stream;
 		return $this;
 	}
 

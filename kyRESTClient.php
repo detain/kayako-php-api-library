@@ -132,7 +132,6 @@ class kyRESTClient implements kyRESTClientInterface {
 			CURLOPT_CONNECTTIMEOUT => 2,
 			CURLOPT_FORBID_REUSE => true,
 			CURLOPT_FRESH_CONNECT => true,
-			CURLOPT_HTTPHEADER => $headers,
 			CURLOPT_URL => $url
 		);
 
@@ -144,18 +143,8 @@ class kyRESTClient implements kyRESTClientInterface {
 				$curl_options[CURLOPT_POST] = true;
 				break;
 			case self::METHOD_PUT:
-				if ($this->config->isPUTAsMemoryStream()) {
-					$fh = fopen('php://memory', 'rw');
-					fwrite($fh, $request_body);
-					rewind($fh);
-
-					$curl_options[CURLOPT_INFILE] = $fh;
-					$curl_options[CURLOPT_INFILESIZE] = strlen($request_body);
-					$curl_options[CURLOPT_PUT] = true;
-				} else {
-					$curl_options[CURLOPT_CUSTOMREQUEST] = 'PUT';
-					$curl_options[CURLOPT_POSTFIELDS] = $request_body;
-				}
+                $curl_options[CURLOPT_CUSTOMREQUEST] = 'PUT';
+                $curl_options[CURLOPT_POSTFIELDS] = $request_body;
 				break;
 			case self::METHOD_DELETE:
 				$curl_options[CURLOPT_CUSTOMREQUEST] = 'DELETE';
