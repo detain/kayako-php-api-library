@@ -403,6 +403,13 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 */
 	protected $contents = null;
 
+    /**
+     * Option to disable autoresponder e-mail.
+     * @apiField
+     * @var bool
+     */
+    protected $ignore_auto_responder = false;
+
 	/**
 	 * Ticket status.
 	 * @var kyTicketStatus
@@ -620,6 +627,7 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 
 			$data['contents'] = $this->contents;
 			$data['type'] = $this->creation_type;
+            $data['ignoreautoresponder'] = $this->ignore_auto_responder;
  		} else {
  			$data['userid'] = $this->user_id;
  		}
@@ -1608,6 +1616,17 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
         }
 		return $this;
 	}
+
+    /**
+     * Sets whether to ignore (disable) autoresponder e-mail.
+     *
+     * @param bool $ignore_auto_responder Whether to ignore (disable) autoresponder e-mail.
+     * @return kyTicket
+     */
+    public function setIgnoreAutoResponder($ignore_auto_responder) {
+        $this->ignore_auto_responder = ky_assure_bool($ignore_auto_responder);
+        return $this;
+    }
 
 	/**
 	 * Returns tickets watchers.
