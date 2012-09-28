@@ -60,17 +60,17 @@
 <li class="method public "><a href="#getBaseURL" title="getBaseURL :: Returns base URL of Kayako REST API."><span class="description">Returns base URL of Kayako REST API.</span><pre>getBaseURL()</pre></a></li>
 <li class="method public "><a href="#getDateFormat" title="getDateFormat :: Returns default format of date object properties used in getters and setters."><span class="description">Returns default format of date object properties used in getters and setters.</span><pre>getDateFormat()</pre></a></li>
 <li class="method public "><a href="#getDatetimeFormat" title="getDatetimeFormat :: Returns default format of datetime object properties used in getters and setters."><span class="description">Returns default format of datetime object properties used in getters and setters.</span><pre>getDatetimeFormat()</pre></a></li>
+<li class="method public "><a href="#getIsStandardURLType" title="getIsStandardURLType :: Returns request URL construction type."><span class="description">Returns request URL construction type.</span><pre>getIsStandardURLType()</pre></a></li>
 <li class="method public "><a href="#getRESTClient" title="getRESTClient :: Returns REST client instance."><span class="description">Returns REST client instance.</span><pre>getRESTClient()</pre></a></li>
 <li class="method public "><a href="#getSecretKey" title="getSecretKey :: Returns Kayako REST API secret key."><span class="description">Returns Kayako REST API secret key.</span><pre>getSecretKey()</pre></a></li>
-<li class="method public "><a href="#isControllerAsQuery" title='isControllerAsQuery :: Returns True if "e" parameter is used in URL query to identify Kayako controller (ex.'><span class="description">Returns True if "e" parameter is used in URL query to identify Kayako controller (ex.</span><pre>isControllerAsQuery()</pre></a></li>
 <li class="method public "><a href="#isDebugEnabled" title="isDebugEnabled :: Returns whether debug mode is enabled."><span class="description">Returns whether debug mode is enabled.</span><pre>isDebugEnabled()</pre></a></li>
 <li class="method public "><a href="#set" title="set :: Sets the current library configuration."><span class="description">Sets the current library configuration.</span><pre>set()</pre></a></li>
 <li class="method public "><a href="#setAPIKey" title="setAPIKey :: Sets Kayako REST API key."><span class="description">Sets Kayako REST API key.</span><pre>setAPIKey()</pre></a></li>
 <li class="method public "><a href="#setBaseURL" title="setBaseURL :: Sets the base URL of Kayako REST API."><span class="description">Sets the base URL of Kayako REST API.</span><pre>setBaseURL()</pre></a></li>
-<li class="method public "><a href="#setControllerAsQuery" title="setControllerAsQuery :: Sets the way a Kayako controller is provided in request URL."><span class="description">Sets the way a Kayako controller is provided in request URL.</span><pre>setControllerAsQuery()</pre></a></li>
 <li class="method public "><a href="#setDateFormat" title="setDateFormat :: Sets default format of date object properties used in getters and setters."><span class="description">Sets default format of date object properties used in getters and setters.</span><pre>setDateFormat()</pre></a></li>
 <li class="method public "><a href="#setDatetimeFormat" title="setDatetimeFormat :: Sets default format of datetime object properties used in getters and setters."><span class="description">Sets default format of datetime object properties used in getters and setters.</span><pre>setDatetimeFormat()</pre></a></li>
 <li class="method public "><a href="#setDebugEnabled" title="setDebugEnabled :: Enables or disables debug mode."><span class="description">Enables or disables debug mode.</span><pre>setDebugEnabled()</pre></a></li>
+<li class="method public "><a href="#setIsStandardURLType" title="setIsStandardURLType :: Sets request URL construction type."><span class="description">Sets request URL construction type.</span><pre>setIsStandardURLType()</pre></a></li>
 <li class="method public "><a href="#setRESTClient" title="setRESTClient :: Sets REST client."><span class="description">Sets REST client.</span><pre>setRESTClient()</pre></a></li>
 <li class="method public "><a href="#setSecretKey" title="setSecretKey :: Sets Kayako REST API secret key."><span class="description">Sets Kayako REST API secret key.</span><pre>setSecretKey()</pre></a></li>
 <li class="nav-header">
@@ -81,8 +81,8 @@
 <li class="property private "><a href="#%24current_config" title="$current_config :: Current configuration."><span class="description">Current configuration.</span><pre>$current_config</pre></a></li>
 <li class="property private "><a href="#%24date_format" title="$date_format :: Default format of date object properties used in getters and setters."><span class="description">Default format of date object properties used in getters and setters.</span><pre>$date_format</pre></a></li>
 <li class="property private "><a href="#%24datetime_format" title="$datetime_format :: Default format of datetime object properties used in getters and setters."><span class="description">Default format of datetime object properties used in getters and setters.</span><pre>$datetime_format</pre></a></li>
-<li class="property private "><a href="#%24is_controller_as_query" title='$is_controller_as_query :: True to use "e" parameter in URL query to identify Kayako controller (ex.'><span class="description">True to use "e" parameter in URL query to identify Kayako controller (ex.</span><pre>$is_controller_as_query</pre></a></li>
 <li class="property private "><a href="#%24is_debug_enabled" title="$is_debug_enabled :: True to enable outputing REST requests and responses to error log."><span class="description">True to enable outputing REST requests and responses to error log.</span><pre>$is_debug_enabled</pre></a></li>
+<li class="property private "><a href="#%24is_standard_url_type" title="$is_standard_url_type :: Request URL construction type."><span class="description">Request URL construction type.</span><pre>$is_standard_url_type</pre></a></li>
 <li class="property private "><a href="#%24rest_client" title="$rest_client :: REST client."><span class="description">REST client.</span><pre>$rest_client</pre></a></li>
 <li class="property private "><a href="#%24secret_key" title="$secret_key :: Kayako REST API secret key."><span class="description">Kayako REST API secret key.</span><pre>$secret_key</pre></a></li>
 </ul>
@@ -194,6 +194,20 @@
 <div class="subelement response"><code>string</code></div>
 </div></div>
 </div>
+<a name="getIsStandardURLType" id="getIsStandardURLType"></a><div class="element clickable method public getIsStandardURLType" data-toggle="collapse" data-target=".getIsStandardURLType .collapse">
+<h2>Returns request URL construction type.</h2>
+<pre>getIsStandardURLType() : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Returns True for standard URL and False to use "e" parameter in URL.</p></p>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td>\global\http://wiki.kayako.com/display/DEV/Kayako+REST+API#KayakoRESTAPI-RequestURLtype</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
 <a name="getRESTClient" id="getRESTClient"></a><div class="element clickable method public getRESTClient" data-toggle="collapse" data-target=".getRESTClient .collapse">
 <h2>Returns REST client instance.</h2>
 <pre>getRESTClient() : <a href="../classes/kyRESTClientInterface.html">\kyRESTClientInterface</a></pre>
@@ -212,17 +226,6 @@
 <p class="long_description"></p>
 <h3>Returns</h3>
 <div class="subelement response"><code>string</code></div>
-</div></div>
-</div>
-<a name="isControllerAsQuery" id="isControllerAsQuery"></a><div class="element clickable method public isControllerAsQuery" data-toggle="collapse" data-target=".isControllerAsQuery .collapse">
-<h2>Returns True if "e" parameter is used in URL query to identify Kayako controller (ex.</h2>
-<pre>isControllerAsQuery() : bool</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<p class="long_description"><p>http://example.kayako.com/api/?e=/Core/Test).
-Returns False if Kayako controller is used as part of URL path (ex. http://example.kayako.com/api/Core/Test).</p></p>
-<h3>Returns</h3>
-<div class="subelement response"><code>bool</code></div>
 </div></div>
 </div>
 <a name="isDebugEnabled" id="isDebugEnabled"></a><div class="element clickable method public isDebugEnabled" data-toggle="collapse" data-target=".isDebugEnabled .collapse">
@@ -277,22 +280,6 @@ Returns False if Kayako controller is used as part of URL path (ex. http://examp
 <div class="subelement response"><code><a href="../classes/kyConfig.html">\kyConfig</a></code></div>
 </div></div>
 </div>
-<a name="setControllerAsQuery" id="setControllerAsQuery"></a><div class="element clickable method public setControllerAsQuery" data-toggle="collapse" data-target=".setControllerAsQuery .collapse">
-<h2>Sets the way a Kayako controller is provided in request URL.</h2>
-<pre>setControllerAsQuery(bool $is_controller_as_query) : <a href="../classes/kyConfig.html">\kyConfig</a></pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<p class="long_description"><p>True to use "e" parameter in URL query to identify Kayako controller (ex. http://example.kayako.com/api/?e=/Core/Test).
-False to put Kayako controller as part of URL path (ex. http://example.kayako.com/api/Core/Test).</p></p>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$is_controller_as_query</h4>
-<code>bool</code><p>True to put controller into "e" parameter in URL query. False to put controller as part of URL path.</p>
-</div>
-<h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/kyConfig.html">\kyConfig</a></code></div>
-</div></div>
-</div>
 <a name="setDateFormat" id="setDateFormat"></a><div class="element clickable method public setDateFormat" data-toggle="collapse" data-target=".setDateFormat .collapse">
 <h2>Sets default format of date object properties used in getters and setters.</h2>
 <pre>setDateFormat(string $date_format) : <a href="../classes/kyConfig.html">\kyConfig</a></pre>
@@ -339,6 +326,26 @@ False to put Kayako controller as part of URL path (ex. http://example.kayako.co
 <div class="subelement argument">
 <h4>$is_debug_enabled</h4>
 <code>bool</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyConfig.html">\kyConfig</a></code></div>
+</div></div>
+</div>
+<a name="setIsStandardURLType" id="setIsStandardURLType"></a><div class="element clickable method public setIsStandardURLType" data-toggle="collapse" data-target=".setIsStandardURLType .collapse">
+<h2>Sets request URL construction type.</h2>
+<pre>setIsStandardURLType(bool $is_standard_url_type) : <a href="../classes/kyConfig.html">\kyConfig</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>True for standard URL (ex. http://example.domain.com/api/index.php?/Module/Controller/Action&amp;parameter=1&amp;).
+False to use "e" parameter in URL (ex. http://example.domain.com/api/index.php?e=/Module/Controller/Action&amp;parameter=1&amp;).</p></p>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td>\global\http://wiki.kayako.com/display/DEV/Kayako+REST+API#KayakoRESTAPI-RequestURLtype</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$is_standard_url_type</h4>
+<code>bool</code><p>True for standard URL. False to use "e" parameter in URL.</p>
 </div>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/kyConfig.html">\kyConfig</a></code></div>
@@ -404,18 +411,24 @@ False to put Kayako controller as part of URL path (ex. http://example.kayako.co
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
-<a name="%24is_controller_as_query" id="$is_controller_as_query"> </a><div class="element clickable property private $is_controller_as_query" data-toggle="collapse" data-target=".$is_controller_as_query .collapse">
-<h2>True to use "e" parameter in URL query to identify Kayako controller (ex.</h2>
-<pre>$is_controller_as_query : bool</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><p class="long_description"><p>http://example.kayako.com/api/?e=/Core/Test).
-False to put Kayako controller as part of URL path (ex. http://example.kayako.com/api/Core/Test).</p></p></div></div>
-</div>
 <a name="%24is_debug_enabled" id="$is_debug_enabled"> </a><div class="element clickable property private $is_debug_enabled" data-toggle="collapse" data-target=".$is_debug_enabled .collapse">
 <h2>True to enable outputing REST requests and responses to error log.</h2>
 <pre>$is_debug_enabled : bool</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24is_standard_url_type" id="$is_standard_url_type"> </a><div class="element clickable property private $is_standard_url_type" data-toggle="collapse" data-target=".$is_standard_url_type .collapse">
+<h2>Request URL construction type.</h2>
+<pre>$is_standard_url_type : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>True for standard URL (ex. http://example.domain.com/api/index.php?/Module/Controller/Action&amp;parameter=1&amp;).
+False to use "e" parameter in URL (ex. http://example.domain.com/api/index.php?e=/Module/Controller/Action&amp;parameter=1&amp;).</p></p>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td>\global\http://wiki.kayako.com/display/DEV/Kayako+REST+API#KayakoRESTAPI-RequestURLtype</td>
+</tr></table>
+</div></div>
 </div>
 <a name="%24rest_client" id="$rest_client"> </a><div class="element clickable property private $rest_client" data-toggle="collapse" data-target=".$rest_client .collapse">
 <h2>REST client.</h2>
@@ -435,8 +448,7 @@ False to put Kayako controller as part of URL path (ex. http://example.kayako.co
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a10</a> and<br>
-            generated on 2012-09-28T19:34:30+02:00.<br></footer></div>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a10</a> and<br></footer></div>
 </div>
 </body>
 </html>
