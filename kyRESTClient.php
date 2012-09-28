@@ -85,10 +85,10 @@ class kyRESTClient implements kyRESTClientInterface {
 			$parameters_str .= sprintf("/%s", $parameter);
 		}
 
-		if ($this->config->isControllerAsQuery()) {
-			$url = sprintf("%s?e=%s%s", $this->config->getBaseURL(), $controller, $parameters_str);
-		} else {
-			$url = sprintf("%s%s%s", $this->config->getBaseURL(), ltrim($controller, '/'), $parameters_str);
+		if ($this->config->getIsStandardURLType()) {
+            $url = sprintf("%sindex.php?%s%s", $this->config->getBaseURL(), $controller, $parameters_str);
+        } else {
+            $url = sprintf("%sindex.php?e=%s%s", $this->config->getBaseURL(), $controller, $parameters_str);
 		}
 
 		switch ($method) {

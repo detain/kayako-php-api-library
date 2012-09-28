@@ -8,7 +8,6 @@
  * API_KEY: Kayako API Key (Admin CP -> REST API -> API Information)
  * SECRET_KEY: Kayako Secret Key (Admin CP -> REST API -> API Information)
  * DEBUG: true to output HTTP requests and responses to PHP error log, false to disable debugging
- * CONTROLLER_AS_QUERY: true to send controller as URL query, false to send controller in URL path (required for Kayako OnDemand)
  * USER_GROUP_TITLE: Name of the user group that should be used to prepare the list of available ticket types and ticket priorities.
  *
  * Consult further comments for configuration and other explanations.
@@ -23,7 +22,6 @@ define('BASE_URL', '<API URL>');
 define('API_KEY', '<API key>');
 define('SECRET_KEY', '<Secret key>');
 define('DEBUG', true);
-define('CONTROLLER_AS_QUERY', true);
 define('USER_GROUP_TITLE', 'Registered');
 
 require_once("../kyIncludes.php");
@@ -34,7 +32,6 @@ require_once("../kyIncludes.php");
 function initKayako() {
 	$config = new kyConfig(BASE_URL, API_KEY, SECRET_KEY);
 	$config->setDebugEnabled(DEBUG);
-	$config->setControllerAsQuery(CONTROLLER_AS_QUERY);
 	kyConfig::set($config);
 }
 

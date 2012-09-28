@@ -43,11 +43,13 @@ class kyConfig {
 	private $date_format = 'Y-m-d';
 
 	/**
-	 * True to use "e" parameter in URL query to identify Kayako controller (ex. http://example.kayako.com/api/?e=/Core/Test).
-	 * False to put Kayako controller as part of URL path (ex. http://example.kayako.com/api/Core/Test).
+     * Request URL construction type.
+     * True for standard URL (ex. http://example.domain.com/api/index.php?/Module/Controller/Action&parameter=1&).
+     * False to use "e" parameter in URL (ex. http://example.domain.com/api/index.php?e=/Module/Controller/Action&parameter=1&).
+     * @see http://wiki.kayako.com/display/DEV/Kayako+REST+API#KayakoRESTAPI-RequestURLtype
 	 * @var bool
 	 */
-	private $is_controller_as_query = false;
+	private $is_standard_url_type = true;
 
 	/**
 	 * True to enable outputing REST requests and responses to error log.
@@ -247,25 +249,27 @@ class kyConfig {
 	}
 
 	/**
-	 * Returns True if "e" parameter is used in URL query to identify Kayako controller (ex. http://example.kayako.com/api/?e=/Core/Test).
-	 * Returns False if Kayako controller is used as part of URL path (ex. http://example.kayako.com/api/Core/Test).
+	 * Returns request URL construction type.
+     * Returns True for standard URL and False to use "e" parameter in URL.
+     * @see http://wiki.kayako.com/display/DEV/Kayako+REST+API#KayakoRESTAPI-RequestURLtype
 	 *
 	 * @return bool
 	 */
-	public function isControllerAsQuery() {
-		return $this->is_controller_as_query;
+	public function getIsStandardURLType() {
+		return $this->is_standard_url_type;
 	}
 
 	/**
-	 * Sets the way a Kayako controller is provided in request URL.
-	 * True to use "e" parameter in URL query to identify Kayako controller (ex. http://example.kayako.com/api/?e=/Core/Test).
-	 * False to put Kayako controller as part of URL path (ex. http://example.kayako.com/api/Core/Test).
-	 *
-	 * @param bool $is_controller_as_query True to put controller into "e" parameter in URL query. False to put controller as part of URL path.
+	 * Sets request URL construction type.
+	 * True for standard URL (ex. http://example.domain.com/api/index.php?/Module/Controller/Action&parameter=1&).
+     * False to use "e" parameter in URL (ex. http://example.domain.com/api/index.php?e=/Module/Controller/Action&parameter=1&).
+     * @see http://wiki.kayako.com/display/DEV/Kayako+REST+API#KayakoRESTAPI-RequestURLtype
+     *
+	 * @param bool $is_standard_url_type True for standard URL. False to use "e" parameter in URL.
 	 * @return kyConfig
 	 */
-	public function setControllerAsQuery($is_controller_as_query) {
-		$this->is_controller_as_query = $is_controller_as_query;
+	public function setIsStandardURLType($is_standard_url_type) {
+		$this->is_standard_url_type = $is_standard_url_type;
 		return $this;
 	}
 

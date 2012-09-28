@@ -6,8 +6,6 @@ print "<pre>";
  * Initialization.
  */
 kyConfig::set(new kyConfig("<API URL>", "<API key>", "<Secret key>"));
-//uncomment following line for testing on Kayako OnDemand installation
-//kyConfig::get()->setControllerAsQuery(false);
 kyConfig::get()->setDebugEnabled(true);
 
 /**
