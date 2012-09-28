@@ -47,7 +47,7 @@ class kyConfig {
 	 * False to put Kayako controller as part of URL path (ex. http://example.kayako.com/api/Core/Test).
 	 * @var bool
 	 */
-	private $is_controller_as_query = true;
+	private $is_controller_as_query = false;
 
 	/**
 	 * True to enable outputing REST requests and responses to error log.
