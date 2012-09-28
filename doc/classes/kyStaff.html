@@ -18,7 +18,7 @@
 <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">Kayako PHP API Library</a><div class="nav-collapse"><ul class="nav">
 <li class="dropdown">
 <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
-                                    Source Code Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a>Packages</a></li>
 <li><a href="../packages/Common.html"><i class="icon-folder-open"></i> Common</a></li>
 <li><a href="../packages/Object.html"><i class="icon-folder-open"></i> Object</a></li>
@@ -75,7 +75,7 @@
 <li class="method public "><a href="#getFirstName" title="getFirstName :: Returns first name of the staff user."><span class="description">Returns first name of the staff user.</span><pre>getFirstName()</pre></a></li>
 <li class="method public "><a href="#getFullName" title="getFullName :: Returns full name of the staff user."><span class="description">Returns full name of the staff user.</span><pre>getFullName()</pre></a></li>
 <li class="method public "><a href="#getGreeting" title="getGreeting :: Returns default greeting message when the staff user accepts a live chat request."><span class="description">Returns default greeting message when the staff user accepts a live chat request.</span><pre>getGreeting()</pre></a></li>
-<li class="method public "><a href="#getId" title="getId :: Should return object identifier or complete list of identifiers as needed by API to identify the object (ex. ticket identifier and ticket post identifier in case of TicketPost)."><span class="description">Should return object identifier or complete list of identifiers as needed by API to identify the object (ex. ticket identifier and ticket post identifier in case of TicketPost).</span><pre>getId()</pre></a></li>
+<li class="method public "><a href="#getId" title="getId :: Should return object identifier or complete list of identifiers as needed by API to identify the object (ex."><span class="description">Should return object identifier or complete list of identifiers as needed by API to identify the object (ex.</span><pre>getId()</pre></a></li>
 <li class="method public "><a href="#getIsEnabled" title="getIsEnabled :: Returns whether the staff user is enabled."><span class="description">Returns whether the staff user is enabled.</span><pre>getIsEnabled()</pre></a></li>
 <li class="method public "><a href="#getLastName" title="getLastName :: Returns last name of the staff user."><span class="description">Returns last name of the staff user.</span><pre>getLastName()</pre></a></li>
 <li class="method public "><a href="#getMobileNumber" title="getMobileNumber :: Returns mobile number of the staff user."><span class="description">Returns mobile number of the staff user.</span><pre>getMobileNumber()</pre></a></li>
@@ -117,7 +117,7 @@
 <li class="nav-header protected">» Protected</li>
 <li class="property protected inherited"><a href="#%24_filter_methods" title="$_filter_methods :: Cache for available filter methods."><span class="description">Cache for available filter methods.</span><pre>$_filter_methods</pre></a></li>
 <li class="property protected inherited"><a href="#%24_order_methods" title="$_order_methods :: Cache for available order methods."><span class="description">Cache for available order methods.</span><pre>$_order_methods</pre></a></li>
-<li class="property protected "><a href="#%24controller" title="$controller :: Default Kayako controller used to operate on this objects. Override in descending classes."><span class="description">Default Kayako controller used to operate on this objects. Override in descending classes.</span><pre>$controller</pre></a></li>
+<li class="property protected "><a href="#%24controller" title="$controller :: Default Kayako controller used to operate on this objects."><span class="description">Default Kayako controller used to operate on this objects.</span><pre>$controller</pre></a></li>
 <li class="property protected "><a href="#%24designation" title="$designation :: Staff designation."><span class="description">Staff designation.</span><pre>$designation</pre></a></li>
 <li class="property protected "><a href="#%24email" title="$email :: Staff e-mail."><span class="description">Staff e-mail.</span><pre>$email</pre></a></li>
 <li class="property protected "><a href="#%24enable_dst" title="$enable_dst :: Is Daylight Saving Time enabled."><span class="description">Is Daylight Saving Time enabled.</span><pre>$enable_dst</pre></a></li>
@@ -128,9 +128,9 @@
 <li class="property protected "><a href="#%24is_enabled" title="$is_enabled :: Is this staff enabled."><span class="description">Is this staff enabled.</span><pre>$is_enabled</pre></a></li>
 <li class="property protected "><a href="#%24last_name" title="$last_name :: Staff last name."><span class="description">Staff last name.</span><pre>$last_name</pre></a></li>
 <li class="property protected "><a href="#%24mobile_number" title="$mobile_number :: Staff mobile number."><span class="description">Staff mobile number.</span><pre>$mobile_number</pre></a></li>
-<li class="property protected "><a href="#%24object_xml_name" title="$object_xml_name :: Indicates the name of object element in XML response. Override in descending classes."><span class="description">Indicates the name of object element in XML response. Override in descending classes.</span><pre>$object_xml_name</pre></a></li>
+<li class="property protected "><a href="#%24object_xml_name" title="$object_xml_name :: Indicates the name of object element in XML response."><span class="description">Indicates the name of object element in XML response.</span><pre>$object_xml_name</pre></a></li>
 <li class="property protected "><a href="#%24password" title="$password :: Staff password."><span class="description">Staff password.</span><pre>$password</pre></a></li>
-<li class="property protected inherited"><a href="#%24read_only" title="$read_only :: Controls if the object can be created/updated/deleted. Override in descending classes."><span class="description">Controls if the object can be created/updated/deleted. Override in descending classes.</span><pre>$read_only</pre></a></li>
+<li class="property protected inherited"><a href="#%24read_only" title="$read_only :: Controls if the object can be created/updated/deleted."><span class="description">Controls if the object can be created/updated/deleted.</span><pre>$read_only</pre></a></li>
 <li class="property protected "><a href="#%24signature" title="$signature :: Staff signature appended to posts."><span class="description">Staff signature appended to posts.</span><pre>$signature</pre></a></li>
 <li class="property protected "><a href="#%24staff_group_id" title="$staff_group_id :: Staff group identifier."><span class="description">Staff group identifier.</span><pre>$staff_group_id</pre></a></li>
 <li class="property protected "><a href="#%24timezone" title="$timezone :: Staff timezone."><span class="description">Staff timezone.</span><pre>$timezone</pre></a></li>
@@ -144,7 +144,16 @@
 </ul>
 </div>
 <div class="span8">
-<a name="%5CkyStaff" id="\kyStaff"></a><div href="../classes/kyStaff.html" class="element class">
+<a name="%5CkyStaff" id="\kyStaff"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/kyStaff.html">kyStaff</a>
+</li>
+</ul>
+<div href="../classes/kyStaff.html" class="element class">
 <p class="short_description">Kayako Staff object.</p>
 <div class="details">
 <p class="long_description"><p>All objects interacting with Kayako REST API should extend this class and
@@ -166,7 +175,7 @@ define:
 </tr>
 <tr>
 <th>package</th>
-<td><a href="..//packages/Object.Staff.html">Object\Staff</a></td>
+<td><a href="../packages/Object.Staff.html">Object\Staff</a></td>
 </tr>
 </table>
 <h3>
@@ -175,7 +184,7 @@ define:
 <h2>Default constructor.</h2>
 <pre>__construct(array $data) </pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -191,7 +200,7 @@ define:
 <h2>Returns API field value.</h2>
 <pre>__get(string $api_field_name) : mixed</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Returns API field value based on API field name used by Kayako.</p></p>
 <table class="table table-bordered">
 <tr>
@@ -215,7 +224,7 @@ define:
 <h2>Sets API field value.</h2>
 <pre>__set(string $api_field_name, mixed $value) : mixed</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Sets API field value based on API field name used by Kayako.</p></p>
 <table class="table table-bordered">
 <tr>
@@ -242,7 +251,7 @@ define:
 <h2>Returns object description with it's type and identifier.</h2>
 <pre>__toString() : string</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Calls toString() method to get the object description.</p></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -256,7 +265,7 @@ define:
 <h2>Should build the array of object data for creating or updating the object.</h2>
 <pre>buildData(bool $create) : array</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Values must be set in format accepted by REST API.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -269,9 +278,9 @@ define:
 </div>
 <a name="checkRequiredAPIFields" id="checkRequiredAPIFields"></a><div class="element clickable method public checkRequiredAPIFields" data-toggle="collapse" data-target=".checkRequiredAPIFields .collapse">
 <h2>Checks wheter this object has all required fields set.</h2>
-<pre>checkRequiredAPIFields(bool $create, bool $throw_exception) : \string[] | bool</pre>
+<pre>checkRequiredAPIFields(bool $create, bool $throw_exception) : string[] | bool</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -291,28 +300,39 @@ define:
 </tr></table>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>\string[]</code><code>bool</code>List of missing API fields or true when there are none.</div>
+<code>string[]</code><code>bool</code>List of missing API fields or true when there are none.</div>
 </div></div>
 </div>
 <a name="create" id="create"></a><div class="element clickable method public create" data-toggle="collapse" data-target=".create .collapse">
 <h2>Creates an object on the server and refreshes its local data.</h2>
 <pre>create() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
 <td>\kyObjectBase::create()</td>
 </tr></table>
+<h3>Exceptions</h3>
+<table class="table table-bordered">
+<tr>
+<th><code><a href="http://php.net/manual/en/class.badmethodcallexception.php">\BadMethodCallException</a></code></th>
+<td></td>
+</tr>
+<tr>
+<th><code><a href="../classes/kyException.html">\kyException</a></code></th>
+<td></td>
+</tr>
+</table>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
 </div></div>
 </div>
 <a name="createNew" id="createNew"></a><div class="element clickable method public createNew" data-toggle="collapse" data-target=".createNew .collapse">
 <h2>Creates new staff user.</h2>
-<pre>createNew(string $first_name, string $last_name, string $user_name, string $email, kyStaffGroup $staff_group, string $password) : <a href="../classes/kyStaff.html">\kyStaff</a></pre>
+<pre>createNew(string $first_name, string $last_name, string $user_name, string $email, \kyStaffGroup $staff_group, string $password) : <a href="../classes/kyStaff.html">\kyStaff</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -342,7 +362,7 @@ define:
 <h2>Deletes the object on the server.</h2>
 <pre>delete() </pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -354,7 +374,7 @@ define:
 <h2>Fetches the object from server.</h2>
 <pre>get(int | array $id) : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -363,7 +383,7 @@ define:
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$id</h4>
-<code>intarray</code><p>Object identifier or list of identifiers (ex. ticket identifier and ticket post identifier when fetching TicketPost).</p>
+<code>int</code><code>array</code><p>Object identifier or list of identifiers (ex. ticket identifier and ticket post identifier when fetching TicketPost).</p>
 </div>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
@@ -371,9 +391,9 @@ define:
 </div>
 <a name="getAPIFields" id="getAPIFields"></a><div class="element clickable method public getAPIFields" data-toggle="collapse" data-target=".getAPIFields .collapse">
 <h2>Returns array of API fields.</h2>
-<pre>getAPIFields() : \string[]</pre>
+<pre>getAPIFields() : string[]</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Format of returned array:</p>
 
 <pre>
@@ -387,14 +407,14 @@ array(
 <td>\kyObjectBase::getAPIFields()</td>
 </tr></table>
 <h3>Returns</h3>
-<div class="subelement response"><code>\string[]</code></div>
+<div class="subelement response"><code>string[]</code></div>
 </div></div>
 </div>
 <a name="getAll" id="getAll"></a><div class="element clickable method public getAll" data-toggle="collapse" data-target=".getAll .collapse">
 <h2>Fetches objects from server.</h2>
 <pre>getAll(array $search_parameters) : <a href="../classes/kyResultSet.html">\kyResultSet</a></pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -412,7 +432,7 @@ array(
 <h2>Returns list of available filter methods for use in result sets with objects of this type.</h2>
 <pre>getAvailableFilterMethods(bool $filter_names_only) : array</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Optionaly you can return get method names used to filter objects.</p></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -431,7 +451,7 @@ array(
 <h2>Returns list of available order methods for use in result sets with objects of this type.</h2>
 <pre>getAvailableOrderMethods(bool $order_names_only) : array</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Optionaly you can return get method names used to order objects.</p></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -450,7 +470,7 @@ array(
 <h2>Returns object controller.</h2>
 <pre>getController() : string</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -464,7 +484,7 @@ array(
 <h2>Returns designation of the staff user.</h2>
 <pre>getDesignation() : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -484,7 +504,7 @@ array(
 <h2>Returns e-mail address of the staff user.</h2>
 <pre>getEmail() : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -504,7 +524,7 @@ array(
 <h2>Returns whether Daylight Saving Time is enabled for the staff user.</h2>
 <pre>getEnableDST() : bool</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>filterBy</th>
@@ -518,7 +538,7 @@ array(
 <h2>Returns first name of the staff user.</h2>
 <pre>getFirstName() : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -538,7 +558,7 @@ array(
 <h2>Returns full name of the staff user.</h2>
 <pre>getFullName() : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -558,7 +578,7 @@ array(
 <h2>Returns default greeting message when the staff user accepts a live chat request.</h2>
 <pre>getGreeting() : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>filterBy</th>
@@ -569,11 +589,11 @@ array(
 </div></div>
 </div>
 <a name="getId" id="getId"></a><div class="element clickable method public getId" data-toggle="collapse" data-target=".getId .collapse">
-<h2>Should return object identifier or complete list of identifiers as needed by API to identify the object (ex. ticket identifier and ticket post identifier in case of TicketPost).</h2>
+<h2>Should return object identifier or complete list of identifiers as needed by API to identify the object (ex.</h2>
 <pre>getId(bool $complete) : int | array</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
-<p class="long_description"></p>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>ticket identifier and ticket post identifier in case of TicketPost).</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$complete</h4>
@@ -588,7 +608,7 @@ array(
 <h2>Returns whether the staff user is enabled.</h2>
 <pre>getIsEnabled() : bool</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -608,7 +628,7 @@ array(
 <h2>Returns last name of the staff user.</h2>
 <pre>getLastName() : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -628,7 +648,7 @@ array(
 <h2>Returns mobile number of the staff user.</h2>
 <pre>getMobileNumber() : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>filterBy</th>
@@ -640,9 +660,9 @@ array(
 </div>
 <a name="getRequiredAPIFields" id="getRequiredAPIFields"></a><div class="element clickable method public getRequiredAPIFields" data-toggle="collapse" data-target=".getRequiredAPIFields .collapse">
 <h2>Returns list of required API fields for objects of this class.</h2>
-<pre>getRequiredAPIFields(bool $create) : \string[]</pre>
+<pre>getRequiredAPIFields(bool $create) : string[]</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -653,14 +673,14 @@ array(
 <h4>$create</h4>
 <code>bool</code><p>True when object will be created. False when object will be updated.</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code>\string[]</code></div>
+<div class="subelement response"><code>string[]</code></div>
 </div></div>
 </div>
 <a name="getSignature" id="getSignature"></a><div class="element clickable method public getSignature" data-toggle="collapse" data-target=".getSignature .collapse">
 <h2>Returns signature that will be appended to each reply made by the staff user.</h2>
 <pre>getSignature() : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>The value is not available when the object was fetched from the server.</p></p>
 <h3>Returns</h3>
 <div class="subelement response"><code>string</code></div>
@@ -670,7 +690,7 @@ array(
 <h2>Returns staff group of the staff user.</h2>
 <pre>getStaffGroup(bool $reload) : <a href="../classes/kyStaffGroup.html">\kyStaffGroup</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Result is cached until the end of script.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -685,7 +705,7 @@ array(
 <h2>Returns staff group identifier of the staff user.</h2>
 <pre>getStaffGroupId() : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -705,7 +725,7 @@ array(
 <h2>Returns timezone of the staff user.</h2>
 <pre>getTimezone() : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Returns</h3>
 <div class="subelement response"><code>string</code></div>
@@ -715,7 +735,7 @@ array(
 <h2>Returns login username of the staff user.</h2>
 <pre>getUserName() : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -735,7 +755,7 @@ array(
 <h2>Returns whether the object is new and not yet saved on the server.</h2>
 <pre>isNew() : bool</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -749,7 +769,7 @@ array(
 <h2>Returns whether this object is read only.</h2>
 <pre>isReadOnly() : bool</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -761,9 +781,9 @@ array(
 </div>
 <a name="newTicket" id="newTicket"></a><div class="element clickable method public newTicket" data-toggle="collapse" data-target=".newTicket .collapse">
 <h2>Creates new ticket with this staff user as the author.</h2>
-<pre>newTicket(kyDepartment $department, string $contents, string $subject) : <a href="../classes/kyTicket.html">\kyTicket</a></pre>
+<pre>newTicket(\kyDepartment $department, string $contents, string $subject) : <a href="../classes/kyTicket.html">\kyTicket</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -783,11 +803,16 @@ array(
 <h2>Refreshes the object data from server.</h2>
 <pre>refresh() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
 <td>\kyObjectBase::refresh()</td>
+</tr></table>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.badmethodcallexception.php">\BadMethodCallException</a></code></th>
+<td></td>
 </tr></table>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
@@ -797,7 +822,7 @@ array(
 <h2>Saves (creates or updates) the object to the server.</h2>
 <pre>save() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -811,7 +836,7 @@ array(
 <h2>Sets designation of the staff user.</h2>
 <pre>setDesignation(string $designation) : <a href="../classes/kyStaff.html">\kyStaff</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -825,7 +850,7 @@ array(
 <h2>Sets e-mail address of the staff user.</h2>
 <pre>setEmail(string $email) : <a href="../classes/kyStaff.html">\kyStaff</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -840,7 +865,7 @@ array(
 <h2>Sets whether Daylight Saving Time is enabled for the staff user.</h2>
 <pre>setEnableDST(bool $enable_dst) : <a href="../classes/kyStaff.html">\kyStaff</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>True is the default value when creating new staff user.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -854,7 +879,7 @@ array(
 <h2>Sets first name of the staff user.</h2>
 <pre>setFirstName(string $first_name) : <a href="../classes/kyStaff.html">\kyStaff</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -868,7 +893,7 @@ array(
 <h2>Sets default greeting message when the staff user accepts a live chat request.</h2>
 <pre>setGreeting(string $greeting) : <a href="../classes/kyStaff.html">\kyStaff</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -882,7 +907,7 @@ array(
 <h2>Sets whether the staff user is enabled.</h2>
 <pre>setIsEnabled(bool $is_enabled) : <a href="../classes/kyStaff.html">\kyStaff</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>True is the default value when creating new staff user.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -896,7 +921,7 @@ array(
 <h2>Sets last name of the staff user.</h2>
 <pre>setLastName(string $last_name) : <a href="../classes/kyStaff.html">\kyStaff</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -910,7 +935,7 @@ array(
 <h2>Sets mobile number of the staff user.</h2>
 <pre>setMobileNumber(string $mobile_number) : <a href="../classes/kyStaff.html">\kyStaff</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -924,7 +949,7 @@ array(
 <h2>Sets password for the staff user.</h2>
 <pre>setPassword(string $password) : <a href="../classes/kyStaff.html">\kyStaff</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -938,7 +963,7 @@ array(
 <h2>Sets whether this object is read only.</h2>
 <pre>setReadOnly(bool $read_only) : bool</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -956,7 +981,7 @@ array(
 <h2>Sets signature that wil be appended to each reply made by the staff user.</h2>
 <pre>setSignature(string $signature) : <a href="../classes/kyStaff.html">\kyStaff</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -970,7 +995,7 @@ array(
 <h2>Sets staff group for the staff user.</h2>
 <pre>setStaffGroup(<a href="../classes/kyStaffGroup.html">\kyStaffGroup</a> $staff_group) : <a href="../classes/kyStaff.html">\kyStaff</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -984,7 +1009,7 @@ array(
 <h2>Sets staff group identifier for the staff user.</h2>
 <pre>setStaffGroupId(int $staff_group_id) : <a href="../classes/kyStaff.html">\kyStaff</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -998,7 +1023,7 @@ array(
 <h2>Sets timezone of the staff user.</h2>
 <pre>setTimezone(string $timezone) : <a href="../classes/kyStaff.html">\kyStaff</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>filterBy</th>
@@ -1016,7 +1041,7 @@ array(
 <h2>Sets login username of the staff user.</h2>
 <pre>setUserName(string $user_name) : <a href="../classes/kyStaff.html">\kyStaff</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -1030,7 +1055,7 @@ array(
 <h2>Should return short (one line) description of the object (it's title, name, etc.).</h2>
 <pre>toString() : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Returns</h3>
 <div class="subelement response"><code>string</code></div>
@@ -1040,12 +1065,23 @@ array(
 <h2>Updates the object on the server and refreshes its local data.</h2>
 <pre>update() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
 <td>\kyObjectBase::update()</td>
 </tr></table>
+<h3>Exceptions</h3>
+<table class="table table-bordered">
+<tr>
+<th><code><a href="http://php.net/manual/en/class.badmethodcallexception.php">\BadMethodCallException</a></code></th>
+<td></td>
+</tr>
+<tr>
+<th><code><a href="../classes/kyException.html">\kyException</a></code></th>
+<td></td>
+</tr>
+</table>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
 </div></div>
@@ -1054,7 +1090,7 @@ array(
 <h2>Returns REST client.</h2>
 <pre>getRESTClient() : <a href="../classes/kyRESTClientInterface.html">\kyRESTClientInterface</a></pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -1068,7 +1104,7 @@ array(
 <h2>Should use passed data to fill object properties.</h2>
 <pre>parseData(array $data) </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -1080,7 +1116,7 @@ array(
 <h2>Builds API fields list.</h2>
 <pre>initAPIFieldsAccessors() </pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Scans protected and private properties of called class, searches for</p></p>
 <table class="table table-bordered">
 <tr>
@@ -1090,7 +1126,7 @@ and builds API field list with property name, description, setter and getter met
 </tr>
 <tr>
 <th>see</th>
-<td>\kyObjectBase::$_api_fields</td>
+<td>\global\kyObjectBase::$_api_fields</td>
 </tr>
 <tr>
 <th>inherited_from</th>
@@ -1103,9 +1139,9 @@ and builds API field list with property name, description, setter and getter met
 <i class="icon-custom icon-property"></i> Properties</h3>
 <a name="%24_filter_methods" id="$_filter_methods"> </a><div class="element clickable property protected $_filter_methods" data-toggle="collapse" data-target=".$_filter_methods .collapse">
 <h2>Cache for available filter methods.</h2>
-<pre>$_filter_methods : \string[]</pre>
+<pre>$_filter_methods : string[]</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Format:
 array(
  '<class name>' => array(
@@ -1122,9 +1158,9 @@ array(
 </div>
 <a name="%24_order_methods" id="$_order_methods"> </a><div class="element clickable property protected $_order_methods" data-toggle="collapse" data-target=".$_order_methods .collapse">
 <h2>Cache for available order methods.</h2>
-<pre>$_order_methods : \string[]</pre>
+<pre>$_order_methods : string[]</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Format:
 array(
  '<class name>' => array(
@@ -1140,16 +1176,16 @@ array(
 </div></div>
 </div>
 <a name="%24controller" id="$controller"> </a><div class="element clickable property protected $controller" data-toggle="collapse" data-target=".$controller .collapse">
-<h2>Default Kayako controller used to operate on this objects. Override in descending classes.</h2>
+<h2>Default Kayako controller used to operate on this objects.</h2>
 <pre>$controller : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"><p>Override in descending classes.</p></p></div></div>
 </div>
 <a name="%24designation" id="$designation"> </a><div class="element clickable property protected $designation" data-toggle="collapse" data-target=".$designation .collapse">
 <h2>Staff designation.</h2>
 <pre>$designation : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1161,7 +1197,7 @@ array(
 <h2>Staff e-mail.</h2>
 <pre>$email : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1173,7 +1209,7 @@ array(
 <h2>Is Daylight Saving Time enabled.</h2>
 <pre>$enable_dst : bool</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1185,7 +1221,7 @@ array(
 <h2>Staff first name.</h2>
 <pre>$first_name : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1197,7 +1233,7 @@ array(
 <h2>Staff full name.</h2>
 <pre>$full_name : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1209,7 +1245,7 @@ array(
 <h2>Staff livechat greeting message.</h2>
 <pre>$greeting : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1221,7 +1257,7 @@ array(
 <h2>Staff identifier.</h2>
 <pre>$id : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1233,7 +1269,7 @@ array(
 <h2>Is this staff enabled.</h2>
 <pre>$is_enabled : bool</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1245,7 +1281,7 @@ array(
 <h2>Staff last name.</h2>
 <pre>$last_name : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1257,7 +1293,7 @@ array(
 <h2>Staff mobile number.</h2>
 <pre>$mobile_number : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1266,16 +1302,16 @@ array(
 </div></div>
 </div>
 <a name="%24object_xml_name" id="$object_xml_name"> </a><div class="element clickable property protected $object_xml_name" data-toggle="collapse" data-target=".$object_xml_name .collapse">
-<h2>Indicates the name of object element in XML response. Override in descending classes.</h2>
+<h2>Indicates the name of object element in XML response.</h2>
 <pre>$object_xml_name : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"><p>Override in descending classes.</p></p></div></div>
 </div>
 <a name="%24password" id="$password"> </a><div class="element clickable property protected $password" data-toggle="collapse" data-target=".$password .collapse">
 <h2>Staff password.</h2>
 <pre>$password : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1284,11 +1320,11 @@ array(
 </div></div>
 </div>
 <a name="%24read_only" id="$read_only"> </a><div class="element clickable property protected $read_only" data-toggle="collapse" data-target=".$read_only .collapse">
-<h2>Controls if the object can be created/updated/deleted. Override in descending classes.</h2>
+<h2>Controls if the object can be created/updated/deleted.</h2>
 <pre>$read_only : bool</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
-<p class="long_description"></p>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Override in descending classes.</p></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
 <td>\kyObjectBase::$$read_only</td>
@@ -1299,7 +1335,7 @@ array(
 <h2>Staff signature appended to posts.</h2>
 <pre>$signature : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1311,7 +1347,7 @@ array(
 <h2>Staff group identifier.</h2>
 <pre>$staff_group_id : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1323,7 +1359,7 @@ array(
 <h2>Staff timezone.</h2>
 <pre>$timezone : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1335,7 +1371,7 @@ array(
 <h2>Staff username (login).</h2>
 <pre>$user_name : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1347,7 +1383,7 @@ array(
 <h2>Cache for API fields.</h2>
 <pre>$_api_fields : array</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Format:
 array(
     '<class name>' => array(
@@ -1373,7 +1409,7 @@ array(
 <h2>Staff group.</h2>
 <pre>$staff_group : <a href="../classes/kyStaffGroup.html">\kyStaffGroup</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <h3>
 <i class="icon-custom icon-constant"></i> Constants</h3>
@@ -1381,7 +1417,7 @@ array(
 <h2>Data key for storing files to send as multipart/form-data.</h2>
 <pre>FILES_DATA_NAME : string</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -1395,8 +1431,8 @@ array(
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a2</a> and<br>
-            generated on 2012-05-05T01:22:18+02:00.<br></footer></div>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a10</a> and<br>
+            generated on 2012-09-28T19:34:31+02:00.<br></footer></div>
 </div>
 </body>
 </html>

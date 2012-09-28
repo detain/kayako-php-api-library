@@ -18,7 +18,7 @@
 <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">Kayako PHP API Library</a><div class="nav-collapse"><ul class="nav">
 <li class="dropdown">
 <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
-                                    Source Code Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a>Packages</a></li>
 <li><a href="../packages/Common.html"><i class="icon-folder-open"></i> Common</a></li>
 <li><a href="../packages/Object.html"><i class="icon-folder-open"></i> Object</a></li>
@@ -62,7 +62,7 @@
 <li class="method public inherited"><a href="#checkRequiredAPIFields" title="checkRequiredAPIFields :: Checks wheter this object has all required fields set."><span class="description">Checks wheter this object has all required fields set.</span><pre>checkRequiredAPIFields()</pre></a></li>
 <li class="method public inherited"><a href="#create" title="create :: Creates an object on the server and refreshes its local data."><span class="description">Creates an object on the server and refreshes its local data.</span><pre>create()</pre></a></li>
 <li class="method public inherited"><a href="#createByType" title="createByType :: Creates proper class based on type of custom field."><span class="description">Creates proper class based on type of custom field.</span><pre>createByType()</pre></a></li>
-<li class="method public inherited"><a href="#createNew" title="createNew :: Creates new object. Compatible with method chaining."><span class="description">Creates new object. Compatible with method chaining.</span><pre>createNew()</pre></a></li>
+<li class="method public inherited"><a href="#createNew" title="createNew :: Creates new object."><span class="description">Creates new object.</span><pre>createNew()</pre></a></li>
 <li class="method public inherited"><a href="#delete" title="delete :: Deletes the object on the server."><span class="description">Deletes the object on the server.</span><pre>delete()</pre></a></li>
 <li class="method public inherited"><a href="#get" title="get :: Fetches the object from server."><span class="description">Fetches the object from server.</span><pre>get()</pre></a></li>
 <li class="method public inherited"><a href="#getAPIFields" title="getAPIFields :: Returns array of API fields."><span class="description">Returns array of API fields.</span><pre>getAPIFields()</pre></a></li>
@@ -71,7 +71,7 @@
 <li class="method public inherited"><a href="#getAvailableOrderMethods" title="getAvailableOrderMethods :: Returns list of available order methods for use in result sets with objects of this type."><span class="description">Returns list of available order methods for use in result sets with objects of this type.</span><pre>getAvailableOrderMethods()</pre></a></li>
 <li class="method public inherited"><a href="#getController" title="getController :: Returns object controller."><span class="description">Returns object controller.</span><pre>getController()</pre></a></li>
 <li class="method public inherited"><a href="#getDefinition" title="getDefinition :: Returns field definition."><span class="description">Returns field definition.</span><pre>getDefinition()</pre></a></li>
-<li class="method public inherited"><a href="#getId" title="getId :: Should return object identifier or complete list of identifiers as needed by API to identify the object (ex. ticket identifier and ticket post identifier in case of TicketPost)."><span class="description">Should return object identifier or complete list of identifiers as needed by API to identify the object (ex. ticket identifier and ticket post identifier in case of TicketPost).</span><pre>getId()</pre></a></li>
+<li class="method public inherited"><a href="#getId" title="getId :: Should return object identifier or complete list of identifiers as needed by API to identify the object (ex."><span class="description">Should return object identifier or complete list of identifiers as needed by API to identify the object (ex.</span><pre>getId()</pre></a></li>
 <li class="method public inherited"><a href="#getName" title="getName :: Returns name of this custom field."><span class="description">Returns name of this custom field.</span><pre>getName()</pre></a></li>
 <li class="method public inherited"><a href="#getOption" title="getOption :: Returns field option with provided identifier or value."><span class="description">Returns field option with provided identifier or value.</span><pre>getOption()</pre></a></li>
 <li class="method public inherited"><a href="#getRawValue" title="getRawValue :: Returns raw text value of this custom field."><span class="description">Returns raw text value of this custom field.</span><pre>getRawValue()</pre></a></li>
@@ -99,15 +99,15 @@
 <li class="nav-header protected">» Protected</li>
 <li class="property protected inherited"><a href="#%24_filter_methods" title="$_filter_methods :: Cache for available filter methods."><span class="description">Cache for available filter methods.</span><pre>$_filter_methods</pre></a></li>
 <li class="property protected inherited"><a href="#%24_order_methods" title="$_order_methods :: Cache for available order methods."><span class="description">Cache for available order methods.</span><pre>$_order_methods</pre></a></li>
-<li class="property protected inherited"><a href="#%24controller" title="$controller :: Default Kayako controller used to operate on this objects. Override in descending classes."><span class="description">Default Kayako controller used to operate on this objects. Override in descending classes.</span><pre>$controller</pre></a></li>
+<li class="property protected inherited"><a href="#%24controller" title="$controller :: Default Kayako controller used to operate on this objects."><span class="description">Default Kayako controller used to operate on this objects.</span><pre>$controller</pre></a></li>
 <li class="property protected inherited"><a href="#%24custom_field_group" title="$custom_field_group :: Custom field group this field belongs to."><span class="description">Custom field group this field belongs to.</span><pre>$custom_field_group</pre></a></li>
 <li class="property protected inherited"><a href="#%24definition" title="$definition :: Cache for field definition."><span class="description">Cache for field definition.</span><pre>$definition</pre></a></li>
 <li class="property protected inherited"><a href="#%24id" title="$id :: Field identifier."><span class="description">Field identifier.</span><pre>$id</pre></a></li>
 <li class="property protected inherited"><a href="#%24name" title="$name :: Field name."><span class="description">Field name.</span><pre>$name</pre></a></li>
-<li class="property protected inherited"><a href="#%24object_xml_name" title="$object_xml_name :: Indicates the name of object element in XML response. Override in descending classes."><span class="description">Indicates the name of object element in XML response. Override in descending classes.</span><pre>$object_xml_name</pre></a></li>
+<li class="property protected inherited"><a href="#%24object_xml_name" title="$object_xml_name :: Indicates the name of object element in XML response."><span class="description">Indicates the name of object element in XML response.</span><pre>$object_xml_name</pre></a></li>
 <li class="property protected "><a href="#%24option" title="$option :: Selected option."><span class="description">Selected option.</span><pre>$option</pre></a></li>
 <li class="property protected inherited"><a href="#%24raw_value" title="$raw_value :: Field value."><span class="description">Field value.</span><pre>$raw_value</pre></a></li>
-<li class="property protected inherited"><a href="#%24read_only" title="$read_only :: Controls if the object can be created/updated/deleted. Override in descending classes."><span class="description">Controls if the object can be created/updated/deleted. Override in descending classes.</span><pre>$read_only</pre></a></li>
+<li class="property protected inherited"><a href="#%24read_only" title="$read_only :: Controls if the object can be created/updated/deleted."><span class="description">Controls if the object can be created/updated/deleted.</span><pre>$read_only</pre></a></li>
 <li class="property protected inherited"><a href="#%24title" title="$title :: Field title."><span class="description">Field title.</span><pre>$title</pre></a></li>
 <li class="property protected inherited"><a href="#%24type" title="$type :: Field type."><span class="description">Field type.</span><pre>$type</pre></a></li>
 <li class="nav-header private">» Private</li>
@@ -118,7 +118,16 @@
 </ul>
 </div>
 <div class="span8">
-<a name="%5CkyCustomFieldSelect" id="\kyCustomFieldSelect"></a><div href="../classes/kyCustomFieldSelect.html" class="element class">
+<a name="%5CkyCustomFieldSelect" id="\kyCustomFieldSelect"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/kyCustomFieldSelect.html">kyCustomFieldSelect</a>
+</li>
+</ul>
+<div href="../classes/kyCustomFieldSelect.html" class="element class">
 <p class="short_description">Class for select custom field with single option.</p>
 <div class="details">
 <p class="long_description"><p>All objects interacting with Kayako REST API should extend this class and
@@ -136,7 +145,7 @@ define:
 </tr>
 <tr>
 <th>package</th>
-<td><a href="..//packages/Object.CustomField.html">Object\CustomField</a></td>
+<td><a href="../packages/Object.CustomField.html">Object\CustomField</a></td>
 </tr>
 </table>
 <h3>
@@ -145,7 +154,7 @@ define:
 <h2>Default constructor.</h2>
 <pre>__construct(<a href="../classes/kyCustomFieldGroupBase.html">\kyCustomFieldGroupBase</a> $custom_field_group, array $data) </pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -164,7 +173,7 @@ define:
 <h2>Returns API field value.</h2>
 <pre>__get(string $api_field_name) : mixed</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Returns API field value based on API field name used by Kayako.</p></p>
 <table class="table table-bordered">
 <tr>
@@ -192,7 +201,7 @@ define:
 <h2>Sets API field value.</h2>
 <pre>__set(string $api_field_name, mixed $value) : mixed</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Sets API field value based on API field name used by Kayako.</p></p>
 <table class="table table-bordered">
 <tr>
@@ -223,7 +232,7 @@ define:
 <h2>Returns object description with it's type and identifier.</h2>
 <pre>__toString() : string</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Calls toString() method to get the object description.</p></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -237,7 +246,7 @@ define:
 <h2>Should build the array of object data for creating or updating the object.</h2>
 <pre>buildData(bool $create) : array</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Values must be set in format accepted by REST API.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -250,9 +259,9 @@ define:
 </div>
 <a name="checkRequiredAPIFields" id="checkRequiredAPIFields"></a><div class="element clickable method public checkRequiredAPIFields" data-toggle="collapse" data-target=".checkRequiredAPIFields .collapse">
 <h2>Checks wheter this object has all required fields set.</h2>
-<pre>checkRequiredAPIFields(bool $create, bool $throw_exception) : \string[] | bool</pre>
+<pre>checkRequiredAPIFields(bool $create, bool $throw_exception) : string[] | bool</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -278,19 +287,30 @@ define:
 </tr></table>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>\string[]</code><code>bool</code>List of missing API fields or true when there are none.</div>
+<code>string[]</code><code>bool</code>List of missing API fields or true when there are none.</div>
 </div></div>
 </div>
 <a name="create" id="create"></a><div class="element clickable method public create" data-toggle="collapse" data-target=".create .collapse">
 <h2>Creates an object on the server and refreshes its local data.</h2>
 <pre>create() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
 <td>\kyCustomField::create()</td>
 </tr></table>
+<h3>Exceptions</h3>
+<table class="table table-bordered">
+<tr>
+<th><code><a href="http://php.net/manual/en/class.badmethodcallexception.php">\BadMethodCallException</a></code></th>
+<td></td>
+</tr>
+<tr>
+<th><code><a href="../classes/kyException.html">\kyException</a></code></th>
+<td></td>
+</tr>
+</table>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
 </div></div>
@@ -299,7 +319,7 @@ define:
 <h2>Creates proper class based on type of custom field.</h2>
 <pre>createByType(<a href="../classes/kyCustomFieldGroupBase.html">\kyCustomFieldGroupBase</a> $custom_field_group, array $data) : <a href="../classes/kyCustomField.html">\kyCustomField</a></pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -312,16 +332,21 @@ define:
 <div class="subelement argument">
 <h4>$data</h4>
 <code>array</code><p>Object data from XML response.</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.domainexception.php">\DomainException</a></code></th>
+<td></td>
+</tr></table>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/kyCustomField.html">\kyCustomField</a></code></div>
 </div></div>
 </div>
 <a name="createNew" id="createNew"></a><div class="element clickable method public createNew" data-toggle="collapse" data-target=".createNew .collapse">
-<h2>Creates new object. Compatible with method chaining.</h2>
+<h2>Creates new object.</h2>
 <pre>createNew() </pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
-<p class="long_description"></p>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Compatible with method chaining.</p></p>
 <table class="table table-bordered">
 <tr>
 <th>inherited_from</th>
@@ -338,7 +363,7 @@ define:
 <h2>Deletes the object on the server.</h2>
 <pre>delete() </pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -350,7 +375,7 @@ define:
 <h2>Fetches the object from server.</h2>
 <pre>get(int | array $id) : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -359,7 +384,7 @@ define:
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$id</h4>
-<code>intarray</code><p>Object identifier or list of identifiers (ex. ticket identifier and ticket post identifier when fetching TicketPost).</p>
+<code>int</code><code>array</code><p>Object identifier or list of identifiers (ex. ticket identifier and ticket post identifier when fetching TicketPost).</p>
 </div>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
@@ -367,9 +392,9 @@ define:
 </div>
 <a name="getAPIFields" id="getAPIFields"></a><div class="element clickable method public getAPIFields" data-toggle="collapse" data-target=".getAPIFields .collapse">
 <h2>Returns array of API fields.</h2>
-<pre>getAPIFields() : \string[]</pre>
+<pre>getAPIFields() : string[]</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Format of returned array:</p>
 
 <pre>
@@ -389,14 +414,14 @@ array(
 </tr>
 </table>
 <h3>Returns</h3>
-<div class="subelement response"><code>\string[]</code></div>
+<div class="subelement response"><code>string[]</code></div>
 </div></div>
 </div>
 <a name="getAll" id="getAll"></a><div class="element clickable method public getAll" data-toggle="collapse" data-target=".getAll .collapse">
 <h2>Fetches objects from server.</h2>
 <pre>getAll(array $search_parameters) : <a href="../classes/kyResultSet.html">\kyResultSet</a></pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -414,7 +439,7 @@ array(
 <h2>Returns list of available filter methods for use in result sets with objects of this type.</h2>
 <pre>getAvailableFilterMethods(bool $filter_names_only) : array</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Optionaly you can return get method names used to filter objects.</p></p>
 <table class="table table-bordered">
 <tr>
@@ -439,7 +464,7 @@ array(
 <h2>Returns list of available order methods for use in result sets with objects of this type.</h2>
 <pre>getAvailableOrderMethods(bool $order_names_only) : array</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Optionaly you can return get method names used to order objects.</p></p>
 <table class="table table-bordered">
 <tr>
@@ -464,7 +489,7 @@ array(
 <h2>Returns object controller.</h2>
 <pre>getController() : string</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -484,7 +509,7 @@ array(
 <h2>Returns field definition.</h2>
 <pre>getDefinition(bool $reload) : <a href="../classes/kyCustomFieldDefinition.html">\kyCustomFieldDefinition</a></pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -500,11 +525,11 @@ array(
 </div></div>
 </div>
 <a name="getId" id="getId"></a><div class="element clickable method public getId" data-toggle="collapse" data-target=".getId .collapse">
-<h2>Should return object identifier or complete list of identifiers as needed by API to identify the object (ex. ticket identifier and ticket post identifier in case of TicketPost).</h2>
+<h2>Should return object identifier or complete list of identifiers as needed by API to identify the object (ex.</h2>
 <pre>getId(bool $complete) : int | array</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
-<p class="long_description"></p>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>ticket identifier and ticket post identifier in case of TicketPost).</p></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
 <td>\kyCustomField::getId()</td>
@@ -523,7 +548,7 @@ array(
 <h2>Returns name of this custom field.</h2>
 <pre>getName() : string</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -547,7 +572,7 @@ array(
 <h2>Returns field option with provided identifier or value.</h2>
 <pre>getOption(mixed $value) : <a href="../classes/kyCustomFieldOption.html">\kyCustomFieldOption</a></pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Returns null if option was not found.</p></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -565,7 +590,7 @@ array(
 <h2>Returns raw text value of this custom field.</h2>
 <pre>getRawValue() : string</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -587,9 +612,9 @@ array(
 </div>
 <a name="getRequiredAPIFields" id="getRequiredAPIFields"></a><div class="element clickable method public getRequiredAPIFields" data-toggle="collapse" data-target=".getRequiredAPIFields .collapse">
 <h2>Returns list of required API fields for objects of this class.</h2>
-<pre>getRequiredAPIFields(bool $create) : \string[]</pre>
+<pre>getRequiredAPIFields(bool $create) : string[]</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -606,14 +631,14 @@ array(
 <h4>$create</h4>
 <code>bool</code><p>True when object will be created. False when object will be updated.</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code>\string[]</code></div>
+<div class="subelement response"><code>string[]</code></div>
 </div></div>
 </div>
 <a name="getSelectedOption" id="getSelectedOption"></a><div class="element clickable method public getSelectedOption" data-toggle="collapse" data-target=".getSelectedOption .collapse">
 <h2>Returns selected option for this field.</h2>
 <pre>getSelectedOption() : <a href="../classes/kyCustomFieldOption.html">\kyCustomFieldOption</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/kyCustomFieldOption.html">\kyCustomFieldOption</a></code></div>
@@ -623,7 +648,7 @@ array(
 <h2>Returns title of this custom field.</h2>
 <pre>getTitle() : string</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -647,7 +672,7 @@ array(
 <h2>Returns type of this custom field - one of kyCustomFieldBase::TYPE_ constants.</h2>
 <pre>getType() : int</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -671,16 +696,16 @@ array(
 <h2>Returns selected field option.</h2>
 <pre>getValue() : <a href="../classes/kyCustomFieldOption.html">\kyCustomFieldOption</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Method is overloaded in descendant classes and return value interpretation depends on field type.</p></p>
 <table class="table table-bordered">
 <tr>
 <th>see</th>
-<td>\kyCustomField::getValue()</td>
+<td>\global\kyCustomField::getValue()</td>
 </tr>
 <tr>
 <th>see</th>
-<td>\kyCustomFieldSelect::getSelectedOption()</td>
+<td>\global\kyCustomFieldSelect::getSelectedOption()</td>
 </tr>
 </table>
 <h3>Returns</h3>
@@ -691,7 +716,7 @@ array(
 <h2>Returns whether the object is new and not yet saved on the server.</h2>
 <pre>isNew() : bool</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -711,7 +736,7 @@ array(
 <h2>Returns whether this object is read only.</h2>
 <pre>isReadOnly() : bool</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -731,11 +756,16 @@ array(
 <h2>Refreshes the object data from server.</h2>
 <pre>refresh() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
 <td>\kyCustomField::refresh()</td>
+</tr></table>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.badmethodcallexception.php">\BadMethodCallException</a></code></th>
+<td></td>
 </tr></table>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
@@ -745,7 +775,7 @@ array(
 <h2>Saves (creates or updates) the object to the server.</h2>
 <pre>save() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -765,7 +795,7 @@ array(
 <h2>Sets whether this object is read only.</h2>
 <pre>setReadOnly(bool $read_only) : bool</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -787,32 +817,32 @@ array(
 </div>
 <a name="setSelectedOption" id="setSelectedOption"></a><div class="element clickable method public setSelectedOption" data-toggle="collapse" data-target=".setSelectedOption .collapse">
 <h2>Sets the field selected option.</h2>
-<pre>setSelectedOption(<a href="../classes/kyCustomFieldOption.html">\kyCustomFieldOption</a> $option) : \kyCustomFieldWithOptions</pre>
+<pre>setSelectedOption(<a href="../classes/kyCustomFieldOption.html">\kyCustomFieldOption</a> $option) : <a href="../classes/kyCustomFieldSelect.html">\kyCustomFieldSelect</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$option</h4>
 <code><a href="../classes/kyCustomFieldOption.html">\kyCustomFieldOption</a></code><p>Field option.</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code>\kyCustomFieldWithOptions</code></div>
+<div class="subelement response"><code><a href="../classes/kyCustomFieldSelect.html">\kyCustomFieldSelect</a></code></div>
 </div></div>
 </div>
 <a name="setValue" id="setValue"></a><div class="element clickable method public setValue" data-toggle="collapse" data-target=".setValue .collapse">
 <h2>Sets the option for this field.</h2>
-<pre>setValue(mixed $value) : \kyCustomFieldWithOptions</pre>
+<pre>setValue(mixed $value) : <a href="../classes/kyCustomFieldSelect.html">\kyCustomFieldSelect</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Method is overloaded in descendant classes and value interpretation depends on field type.</p></p>
 <table class="table table-bordered">
 <tr>
 <th>see</th>
-<td>\kyCustomField::setValue()</td>
+<td>\global\kyCustomField::setValue()</td>
 </tr>
 <tr>
 <th>see</th>
-<td>\kyCustomField::setSelectedOption()</td>
+<td>\global\kyCustomField::setSelectedOption()</td>
 </tr>
 </table>
 <h3>Parameters</h3>
@@ -820,14 +850,14 @@ array(
 <h4>$value</h4>
 <code>mixed</code><p>Identifier of field option OR value of field option OR an option.</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code>\kyCustomFieldWithOptions</code></div>
+<div class="subelement response"><code><a href="../classes/kyCustomFieldSelect.html">\kyCustomFieldSelect</a></code></div>
 </div></div>
 </div>
 <a name="toString" id="toString"></a><div class="element clickable method public toString" data-toggle="collapse" data-target=".toString .collapse">
 <h2>Should return short (one line) description of the object (it's title, name, etc.).</h2>
 <pre>toString() : string</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -841,12 +871,23 @@ array(
 <h2>Updates the object on the server and refreshes its local data.</h2>
 <pre>update() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
 <td>\kyCustomField::update()</td>
 </tr></table>
+<h3>Exceptions</h3>
+<table class="table table-bordered">
+<tr>
+<th><code><a href="http://php.net/manual/en/class.badmethodcallexception.php">\BadMethodCallException</a></code></th>
+<td></td>
+</tr>
+<tr>
+<th><code><a href="../classes/kyException.html">\kyException</a></code></th>
+<td></td>
+</tr>
+</table>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
 </div></div>
@@ -855,7 +896,7 @@ array(
 <h2>Returns REST client.</h2>
 <pre>getRESTClient() : <a href="../classes/kyRESTClientInterface.html">\kyRESTClientInterface</a></pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -875,7 +916,7 @@ array(
 <h2>Should use passed data to fill object properties.</h2>
 <pre>parseData(array $data) </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -887,7 +928,7 @@ array(
 <h2>Builds API fields list.</h2>
 <pre>initAPIFieldsAccessors() </pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Scans protected and private properties of called class, searches for</p></p>
 <table class="table table-bordered">
 <tr>
@@ -897,7 +938,7 @@ and builds API field list with property name, description, setter and getter met
 </tr>
 <tr>
 <th>see</th>
-<td>\kyObjectBase::$_api_fields</td>
+<td>\global\kyObjectBase::$_api_fields</td>
 </tr>
 <tr>
 <th>inherited_from</th>
@@ -914,9 +955,9 @@ and builds API field list with property name, description, setter and getter met
 <i class="icon-custom icon-property"></i> Properties</h3>
 <a name="%24_filter_methods" id="$_filter_methods"> </a><div class="element clickable property protected $_filter_methods" data-toggle="collapse" data-target=".$_filter_methods .collapse">
 <h2>Cache for available filter methods.</h2>
-<pre>$_filter_methods : \string[]</pre>
+<pre>$_filter_methods : string[]</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Format:
 array(
  '<class name>' => array(
@@ -939,9 +980,9 @@ array(
 </div>
 <a name="%24_order_methods" id="$_order_methods"> </a><div class="element clickable property protected $_order_methods" data-toggle="collapse" data-target=".$_order_methods .collapse">
 <h2>Cache for available order methods.</h2>
-<pre>$_order_methods : \string[]</pre>
+<pre>$_order_methods : string[]</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Format:
 array(
  '<class name>' => array(
@@ -963,11 +1004,11 @@ array(
 </div></div>
 </div>
 <a name="%24controller" id="$controller"> </a><div class="element clickable property protected $controller" data-toggle="collapse" data-target=".$controller .collapse">
-<h2>Default Kayako controller used to operate on this objects. Override in descending classes.</h2>
+<h2>Default Kayako controller used to operate on this objects.</h2>
 <pre>$controller : string</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
-<p class="long_description"></p>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Override in descending classes.</p></p>
 <table class="table table-bordered">
 <tr>
 <th>inherited_from</th>
@@ -984,7 +1025,7 @@ array(
 <h2>Custom field group this field belongs to.</h2>
 <pre>$custom_field_group : <a href="../classes/kyCustomFieldGroupBase.html">\kyCustomFieldGroupBase</a></pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -996,7 +1037,7 @@ array(
 <h2>Cache for field definition.</h2>
 <pre>$definition : <a href="../classes/kyCustomFieldDefinition.html">\kyCustomFieldDefinition</a></pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -1008,7 +1049,7 @@ array(
 <h2>Field identifier.</h2>
 <pre>$id : int</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -1026,7 +1067,7 @@ array(
 <h2>Field name.</h2>
 <pre>$name : string</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -1041,11 +1082,11 @@ array(
 </div></div>
 </div>
 <a name="%24object_xml_name" id="$object_xml_name"> </a><div class="element clickable property protected $object_xml_name" data-toggle="collapse" data-target=".$object_xml_name .collapse">
-<h2>Indicates the name of object element in XML response. Override in descending classes.</h2>
+<h2>Indicates the name of object element in XML response.</h2>
 <pre>$object_xml_name : string</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
-<p class="long_description"></p>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Override in descending classes.</p></p>
 <table class="table table-bordered">
 <tr>
 <th>inherited_from</th>
@@ -1062,13 +1103,13 @@ array(
 <h2>Selected option.</h2>
 <pre>$option : <a href="../classes/kyCustomFieldOption.html">\kyCustomFieldOption</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="%24raw_value" id="$raw_value"> </a><div class="element clickable property protected $raw_value" data-toggle="collapse" data-target=".$raw_value .collapse">
 <h2>Field value.</h2>
 <pre>$raw_value : string</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -1083,11 +1124,11 @@ array(
 </div></div>
 </div>
 <a name="%24read_only" id="$read_only"> </a><div class="element clickable property protected $read_only" data-toggle="collapse" data-target=".$read_only .collapse">
-<h2>Controls if the object can be created/updated/deleted. Override in descending classes.</h2>
+<h2>Controls if the object can be created/updated/deleted.</h2>
 <pre>$read_only : bool</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
-<p class="long_description"></p>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Override in descending classes.</p></p>
 <table class="table table-bordered">
 <tr>
 <th>inherited_from</th>
@@ -1104,7 +1145,7 @@ array(
 <h2>Field title.</h2>
 <pre>$title : string</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -1122,7 +1163,7 @@ array(
 <h2>Field type.</h2>
 <pre>$type : int</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -1140,7 +1181,7 @@ array(
 <h2>Cache for API fields.</h2>
 <pre>$_api_fields : array</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Format:
 array(
     '<class name>' => array(
@@ -1174,7 +1215,7 @@ array(
 <h2>Data key for storing files to send as multipart/form-data.</h2>
 <pre>FILES_DATA_NAME : string</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -1194,8 +1235,8 @@ array(
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a2</a> and<br>
-            generated on 2012-05-05T01:22:18+02:00.<br></footer></div>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a10</a> and<br>
+            generated on 2012-09-28T19:34:30+02:00.<br></footer></div>
 </div>
 </body>
 </html>

@@ -18,7 +18,7 @@
 <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">Kayako PHP API Library</a><div class="nav-collapse"><ul class="nav">
 <li class="dropdown">
 <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
-                                    Source Code Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a>Packages</a></li>
 <li><a href="../packages/Common.html"><i class="icon-folder-open"></i> Common</a></li>
 <li><a href="../packages/Object.html"><i class="icon-folder-open"></i> Object</a></li>
@@ -71,7 +71,7 @@
 <li class="method public inherited"><a href="#getAvailableOrderMethods" title="getAvailableOrderMethods :: Returns list of available order methods for use in result sets with objects of this type."><span class="description">Returns list of available order methods for use in result sets with objects of this type.</span><pre>getAvailableOrderMethods()</pre></a></li>
 <li class="method public inherited"><a href="#getController" title="getController :: Returns object controller."><span class="description">Returns object controller.</span><pre>getController()</pre></a></li>
 <li class="method public "><a href="#getDisplayOrder" title="getDisplayOrder :: Returns display order of the department."><span class="description">Returns display order of the department.</span><pre>getDisplayOrder()</pre></a></li>
-<li class="method public "><a href="#getId" title="getId :: Should return object identifier or complete list of identifiers as needed by API to identify the object (ex. ticket identifier and ticket post identifier in case of TicketPost)."><span class="description">Should return object identifier or complete list of identifiers as needed by API to identify the object (ex. ticket identifier and ticket post identifier in case of TicketPost).</span><pre>getId()</pre></a></li>
+<li class="method public "><a href="#getId" title="getId :: Should return object identifier or complete list of identifiers as needed by API to identify the object (ex."><span class="description">Should return object identifier or complete list of identifiers as needed by API to identify the object (ex.</span><pre>getId()</pre></a></li>
 <li class="method public "><a href="#getModule" title="getModule :: Returns module the department is associated with."><span class="description">Returns module the department is associated with.</span><pre>getModule()</pre></a></li>
 <li class="method public "><a href="#getParentDepartment" title="getParentDepartment :: Returns department object that is the parent for this department."><span class="description">Returns department object that is the parent for this department.</span><pre>getParentDepartment()</pre></a></li>
 <li class="method public "><a href="#getParentDepartmentId" title="getParentDepartmentId :: Returns identifier of parent department for this department."><span class="description">Returns identifier of parent department for this department.</span><pre>getParentDepartmentId()</pre></a></li>
@@ -84,7 +84,7 @@
 <li class="method public inherited"><a href="#isNew" title="isNew :: Returns whether the object is new and not yet saved on the server."><span class="description">Returns whether the object is new and not yet saved on the server.</span><pre>isNew()</pre></a></li>
 <li class="method public inherited"><a href="#isReadOnly" title="isReadOnly :: Returns whether this object is read only."><span class="description">Returns whether this object is read only.</span><pre>isReadOnly()</pre></a></li>
 <li class="method public "><a href="#isVisibleToUserGroup" title="isVisibleToUserGroup :: Returns whether this department is visible to specified user group."><span class="description">Returns whether this department is visible to specified user group.</span><pre>isVisibleToUserGroup()</pre></a></li>
-<li class="method public "><a href="#newSubdepartment" title="newSubdepartment :: Creates new subdepartment in this department. Module of new department will be the same as parent department's module."><span class="description">Creates new subdepartment in this department. Module of new department will be the same as parent department's module.</span><pre>newSubdepartment()</pre></a></li>
+<li class="method public "><a href="#newSubdepartment" title="newSubdepartment :: Creates new subdepartment in this department."><span class="description">Creates new subdepartment in this department.</span><pre>newSubdepartment()</pre></a></li>
 <li class="method public "><a href="#newTicketAuto" title="newTicketAuto :: Creates new ticket in this department with creator user automatically created by server using provided name and e-mail."><span class="description">Creates new ticket in this department with creator user automatically created by server using provided name and e-mail.</span><pre>newTicketAuto()</pre></a></li>
 <li class="method public inherited"><a href="#refresh" title="refresh :: Refreshes the object data from server."><span class="description">Refreshes the object data from server.</span><pre>refresh()</pre></a></li>
 <li class="method public inherited"><a href="#save" title="save :: Saves (creates or updates) the object to the server."><span class="description">Saves (creates or updates) the object to the server.</span><pre>save()</pre></a></li>
@@ -109,13 +109,13 @@
 <li class="nav-header protected">» Protected</li>
 <li class="property protected inherited"><a href="#%24_filter_methods" title="$_filter_methods :: Cache for available filter methods."><span class="description">Cache for available filter methods.</span><pre>$_filter_methods</pre></a></li>
 <li class="property protected inherited"><a href="#%24_order_methods" title="$_order_methods :: Cache for available order methods."><span class="description">Cache for available order methods.</span><pre>$_order_methods</pre></a></li>
-<li class="property protected "><a href="#%24controller" title="$controller :: Default Kayako controller used to operate on this objects. Override in descending classes."><span class="description">Default Kayako controller used to operate on this objects. Override in descending classes.</span><pre>$controller</pre></a></li>
+<li class="property protected "><a href="#%24controller" title="$controller :: Default Kayako controller used to operate on this objects."><span class="description">Default Kayako controller used to operate on this objects.</span><pre>$controller</pre></a></li>
 <li class="property protected "><a href="#%24display_order" title="$display_order :: Department display order."><span class="description">Department display order.</span><pre>$display_order</pre></a></li>
 <li class="property protected "><a href="#%24id" title="$id :: Department identifier."><span class="description">Department identifier.</span><pre>$id</pre></a></li>
 <li class="property protected "><a href="#%24module" title="$module :: Department module."><span class="description">Department module.</span><pre>$module</pre></a></li>
-<li class="property protected "><a href="#%24object_xml_name" title="$object_xml_name :: Indicates the name of object element in XML response. Override in descending classes."><span class="description">Indicates the name of object element in XML response. Override in descending classes.</span><pre>$object_xml_name</pre></a></li>
+<li class="property protected "><a href="#%24object_xml_name" title="$object_xml_name :: Indicates the name of object element in XML response."><span class="description">Indicates the name of object element in XML response.</span><pre>$object_xml_name</pre></a></li>
 <li class="property protected "><a href="#%24parent_department_id" title="$parent_department_id :: Parent department identifier."><span class="description">Parent department identifier.</span><pre>$parent_department_id</pre></a></li>
-<li class="property protected inherited"><a href="#%24read_only" title="$read_only :: Controls if the object can be created/updated/deleted. Override in descending classes."><span class="description">Controls if the object can be created/updated/deleted. Override in descending classes.</span><pre>$read_only</pre></a></li>
+<li class="property protected inherited"><a href="#%24read_only" title="$read_only :: Controls if the object can be created/updated/deleted."><span class="description">Controls if the object can be created/updated/deleted.</span><pre>$read_only</pre></a></li>
 <li class="property protected "><a href="#%24title" title="$title :: Department title."><span class="description">Department title.</span><pre>$title</pre></a></li>
 <li class="property protected "><a href="#%24type" title="$type :: Department type."><span class="description">Department type.</span><pre>$type</pre></a></li>
 <li class="property protected "><a href="#%24user_group_ids" title="$user_group_ids :: User group identifiers this department is visible to."><span class="description">User group identifiers this department is visible to.</span><pre>$user_group_ids</pre></a></li>
@@ -134,7 +134,16 @@
 </ul>
 </div>
 <div class="span8">
-<a name="%5CkyDepartment" id="\kyDepartment"></a><div href="../classes/kyDepartment.html" class="element class">
+<a name="%5CkyDepartment" id="\kyDepartment"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/kyDepartment.html">kyDepartment</a>
+</li>
+</ul>
+<div href="../classes/kyDepartment.html" class="element class">
 <p class="short_description">Kayako Department object.</p>
 <div class="details">
 <p class="long_description"><p>All objects interacting with Kayako REST API should extend this class and
@@ -156,7 +165,7 @@ define:
 </tr>
 <tr>
 <th>package</th>
-<td><a href="..//packages/Object.html">Object</a></td>
+<td><a href="../packages/Object.html">Object</a></td>
 </tr>
 </table>
 <h3>
@@ -165,7 +174,7 @@ define:
 <h2>Default constructor.</h2>
 <pre>__construct(array $data) </pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -181,7 +190,7 @@ define:
 <h2>Returns API field value.</h2>
 <pre>__get(string $api_field_name) : mixed</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Returns API field value based on API field name used by Kayako.</p></p>
 <table class="table table-bordered">
 <tr>
@@ -205,7 +214,7 @@ define:
 <h2>Sets API field value.</h2>
 <pre>__set(string $api_field_name, mixed $value) : mixed</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Sets API field value based on API field name used by Kayako.</p></p>
 <table class="table table-bordered">
 <tr>
@@ -232,7 +241,7 @@ define:
 <h2>Returns object description with it's type and identifier.</h2>
 <pre>__toString() : string</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Calls toString() method to get the object description.</p></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -244,9 +253,9 @@ define:
 </div>
 <a name="addUserGroup" id="addUserGroup"></a><div class="element clickable method public addUserGroup" data-toggle="collapse" data-target=".addUserGroup .collapse">
 <h2>Add user group to the list of groups that can be assigned to this department.</h2>
-<pre>addUserGroup(kyUserGroup $user_group, bool $clear) : <a href="../classes/kyDepartment.html">\kyDepartment</a></pre>
+<pre>addUserGroup(\kyUserGroup $user_group, bool $clear) : <a href="../classes/kyDepartment.html">\kyDepartment</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Automatically sets custom user visibility flag to True.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -263,7 +272,7 @@ define:
 <h2>Should build the array of object data for creating or updating the object.</h2>
 <pre>buildData(bool $create) : array</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Values must be set in format accepted by REST API.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -276,9 +285,9 @@ define:
 </div>
 <a name="checkRequiredAPIFields" id="checkRequiredAPIFields"></a><div class="element clickable method public checkRequiredAPIFields" data-toggle="collapse" data-target=".checkRequiredAPIFields .collapse">
 <h2>Checks wheter this object has all required fields set.</h2>
-<pre>checkRequiredAPIFields(bool $create, bool $throw_exception) : \string[] | bool</pre>
+<pre>checkRequiredAPIFields(bool $create, bool $throw_exception) : string[] | bool</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -298,19 +307,30 @@ define:
 </tr></table>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>\string[]</code><code>bool</code>List of missing API fields or true when there are none.</div>
+<code>string[]</code><code>bool</code>List of missing API fields or true when there are none.</div>
 </div></div>
 </div>
 <a name="create" id="create"></a><div class="element clickable method public create" data-toggle="collapse" data-target=".create .collapse">
 <h2>Creates an object on the server and refreshes its local data.</h2>
 <pre>create() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
 <td>\kyObjectBase::create()</td>
 </tr></table>
+<h3>Exceptions</h3>
+<table class="table table-bordered">
+<tr>
+<th><code><a href="http://php.net/manual/en/class.badmethodcallexception.php">\BadMethodCallException</a></code></th>
+<td></td>
+</tr>
+<tr>
+<th><code><a href="../classes/kyException.html">\kyException</a></code></th>
+<td></td>
+</tr>
+</table>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
 </div></div>
@@ -319,7 +339,7 @@ define:
 <h2>Creates new department.</h2>
 <pre>createNew(string $title, string $type, string $module) : <a href="../classes/kyDepartment.html">\kyDepartment</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -341,7 +361,7 @@ define:
 <h2>Deletes the object on the server.</h2>
 <pre>delete() </pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -353,7 +373,7 @@ define:
 <h2>Fetches the object from server.</h2>
 <pre>get(int | array $id) : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -362,7 +382,7 @@ define:
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$id</h4>
-<code>intarray</code><p>Object identifier or list of identifiers (ex. ticket identifier and ticket post identifier when fetching TicketPost).</p>
+<code>int</code><code>array</code><p>Object identifier or list of identifiers (ex. ticket identifier and ticket post identifier when fetching TicketPost).</p>
 </div>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
@@ -370,9 +390,9 @@ define:
 </div>
 <a name="getAPIFields" id="getAPIFields"></a><div class="element clickable method public getAPIFields" data-toggle="collapse" data-target=".getAPIFields .collapse">
 <h2>Returns array of API fields.</h2>
-<pre>getAPIFields() : \string[]</pre>
+<pre>getAPIFields() : string[]</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Format of returned array:</p>
 
 <pre>
@@ -386,14 +406,14 @@ array(
 <td>\kyObjectBase::getAPIFields()</td>
 </tr></table>
 <h3>Returns</h3>
-<div class="subelement response"><code>\string[]</code></div>
+<div class="subelement response"><code>string[]</code></div>
 </div></div>
 </div>
 <a name="getAll" id="getAll"></a><div class="element clickable method public getAll" data-toggle="collapse" data-target=".getAll .collapse">
 <h2>Fetches objects from server.</h2>
 <pre>getAll(array $search_parameters) : <a href="../classes/kyResultSet.html">\kyResultSet</a></pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -411,7 +431,7 @@ array(
 <h2>Returns list of available filter methods for use in result sets with objects of this type.</h2>
 <pre>getAvailableFilterMethods(bool $filter_names_only) : array</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Optionaly you can return get method names used to filter objects.</p></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -430,7 +450,7 @@ array(
 <h2>Returns list of available order methods for use in result sets with objects of this type.</h2>
 <pre>getAvailableOrderMethods(bool $order_names_only) : array</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Optionaly you can return get method names used to order objects.</p></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -449,7 +469,7 @@ array(
 <h2>Returns object controller.</h2>
 <pre>getController() : string</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -463,7 +483,7 @@ array(
 <h2>Returns display order of the department.</h2>
 <pre>getDisplayOrder() : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -480,11 +500,11 @@ array(
 </div></div>
 </div>
 <a name="getId" id="getId"></a><div class="element clickable method public getId" data-toggle="collapse" data-target=".getId .collapse">
-<h2>Should return object identifier or complete list of identifiers as needed by API to identify the object (ex. ticket identifier and ticket post identifier in case of TicketPost).</h2>
+<h2>Should return object identifier or complete list of identifiers as needed by API to identify the object (ex.</h2>
 <pre>getId(bool $complete) : int | array</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
-<p class="long_description"></p>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>ticket identifier and ticket post identifier in case of TicketPost).</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$complete</h4>
@@ -499,12 +519,12 @@ array(
 <h2>Returns module the department is associated with.</h2>
 <pre>getModule() : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
 <th>see</th>
-<td>\kyDepartment::MODULE</td>
+<td>\global\kyDepartment::MODULE</td>
 </tr>
 <tr>
 <th>filterBy</th>
@@ -523,7 +543,7 @@ array(
 <h2>Returns department object that is the parent for this department.</h2>
 <pre>getParentDepartment(bool $reload) : <a href="../classes/kyDepartment.html">\kyDepartment</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Result is cached until the end of script.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -538,7 +558,7 @@ array(
 <h2>Returns identifier of parent department for this department.</h2>
 <pre>getParentDepartmentId() : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -556,9 +576,9 @@ array(
 </div>
 <a name="getRequiredAPIFields" id="getRequiredAPIFields"></a><div class="element clickable method public getRequiredAPIFields" data-toggle="collapse" data-target=".getRequiredAPIFields .collapse">
 <h2>Returns list of required API fields for objects of this class.</h2>
-<pre>getRequiredAPIFields(bool $create) : \string[]</pre>
+<pre>getRequiredAPIFields(bool $create) : string[]</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -569,14 +589,14 @@ array(
 <h4>$create</h4>
 <code>bool</code><p>True when object will be created. False when object will be updated.</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code>\string[]</code></div>
+<div class="subelement response"><code>string[]</code></div>
 </div></div>
 </div>
 <a name="getTitle" id="getTitle"></a><div class="element clickable method public getTitle" data-toggle="collapse" data-target=".getTitle .collapse">
 <h2>Returns title of the department.</h2>
 <pre>getTitle() : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -596,12 +616,12 @@ array(
 <h2>Return type of the department.</h2>
 <pre>getType() : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
 <th>see</th>
-<td>\kyDepartment::TYPE</td>
+<td>\global\kyDepartment::TYPE</td>
 </tr>
 <tr>
 <th>filterBy</th>
@@ -620,7 +640,7 @@ array(
 <h2>Returns identifiers of user groups that can be assigned to this department.</h2>
 <pre>getUserGroupIds() : array</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>filterBy</th>
@@ -634,7 +654,7 @@ array(
 <h2>Returns user groups that can be assigned to this department.</h2>
 <pre>getUserGroups(bool $reload) : <a href="../classes/kyResultSet.html">\kyResultSet</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Result is cached until the end of script.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -649,7 +669,7 @@ array(
 <h2>Returns true to indicate that visibility of this department is restricted to particular user groups.</h2>
 <pre>getUserVisibilityCustom() : bool</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Use getUserGroupIds to get their identifiers or getUserGroups to get the objects.</p></p>
 <table class="table table-bordered"><tr>
 <th>filterBy</th>
@@ -663,7 +683,7 @@ array(
 <h2>Returns whether the object is new and not yet saved on the server.</h2>
 <pre>isNew() : bool</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -677,7 +697,7 @@ array(
 <h2>Returns whether this object is read only.</h2>
 <pre>isReadOnly() : bool</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -691,7 +711,7 @@ array(
 <h2>Returns whether this department is visible to specified user group.</h2>
 <pre>isVisibleToUserGroup(<a href="../classes/kyUserGroup.html">\kyUserGroup</a> | int $user_group) : bool</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>filterBy</th>
@@ -700,17 +720,18 @@ array(
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$user_group</h4>
-<code><a href="../classes/kyUserGroup.html">\kyUserGroup</a>int</code><p>User group or its identifier.</p></div>
+<code><a href="../classes/kyUserGroup.html">\kyUserGroup</a></code><code>int</code><p>User group or its identifier.</p></div>
 <h3>Returns</h3>
 <div class="subelement response"><code>bool</code></div>
 </div></div>
 </div>
 <a name="newSubdepartment" id="newSubdepartment"></a><div class="element clickable method public newSubdepartment" data-toggle="collapse" data-target=".newSubdepartment .collapse">
-<h2>Creates new subdepartment in this department. Module of new department will be the same as parent department's module.</h2>
+<h2>Creates new subdepartment in this department.</h2>
 <pre>newSubdepartment(string $title, string $type) : <a href="../classes/kyDepartment.html">\kyDepartment</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
-<p class="long_description"><p>WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.</p></p>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Module of new department will be the same as parent department's module.
+WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$title</h4>
@@ -727,7 +748,7 @@ array(
 <h2>Creates new ticket in this department with creator user automatically created by server using provided name and e-mail.</h2>
 <pre>newTicketAuto(string $creator_full_name, string $creator_email, string $contents, string $subject) : <a href="../classes/kyTicket.html">\kyTicket</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -751,11 +772,16 @@ array(
 <h2>Refreshes the object data from server.</h2>
 <pre>refresh() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
 <td>\kyObjectBase::refresh()</td>
+</tr></table>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.badmethodcallexception.php">\BadMethodCallException</a></code></th>
+<td></td>
 </tr></table>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
@@ -765,7 +791,7 @@ array(
 <h2>Saves (creates or updates) the object to the server.</h2>
 <pre>save() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -779,7 +805,7 @@ array(
 <h2>Sets display order of the department.</h2>
 <pre>setDisplayOrder(int $display_order) : <a href="../classes/kyDepartment.html">\kyDepartment</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -794,11 +820,11 @@ array(
 <h2>Sets module the department will be associated with.</h2>
 <pre>setModule(string $module) : <a href="../classes/kyDepartment.html">\kyDepartment</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>see</th>
-<td>\kyDepartment::MODULE</td>
+<td>\global\kyDepartment::MODULE</td>
 </tr></table>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -812,7 +838,7 @@ array(
 <h2>Sets parent department for this department.</h2>
 <pre>setParentDepartment(<a href="../classes/kyDepartment.html">\kyDepartment</a> $parent_department) : <a href="../classes/kyDepartment.html">\kyDepartment</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -826,7 +852,7 @@ array(
 <h2>Sets the identifier of parent department for this department.</h2>
 <pre>setParentDepartmentId(int $parent_department_id) : <a href="../classes/kyDepartment.html">\kyDepartment</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -840,7 +866,7 @@ array(
 <h2>Sets whether this object is read only.</h2>
 <pre>setReadOnly(bool $read_only) : bool</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -858,7 +884,7 @@ array(
 <h2>Sets title of the department.</h2>
 <pre>setTitle(string $title) : <a href="../classes/kyDepartment.html">\kyDepartment</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -872,11 +898,11 @@ array(
 <h2>Sets type of the department.</h2>
 <pre>setType(string $type) : <a href="../classes/kyDepartment.html">\kyDepartment</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>see</th>
-<td>\kyDepartment::TYPE</td>
+<td>\global\kyDepartment::TYPE</td>
 </tr></table>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -888,14 +914,14 @@ array(
 </div>
 <a name="setUserGroupIds" id="setUserGroupIds"></a><div class="element clickable method public setUserGroupIds" data-toggle="collapse" data-target=".setUserGroupIds .collapse">
 <h2>Sets user groups that can be assigned to this department using their identifiers.</h2>
-<pre>setUserGroupIds(\int[] $user_group_ids) : <a href="../classes/kyDepartment.html">\kyDepartment</a></pre>
+<pre>setUserGroupIds(int[] $user_group_ids) : <a href="../classes/kyDepartment.html">\kyDepartment</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$user_group_ids</h4>
-<code>\int[]</code><p>Identifiers of user groups that can be assigned to this department.</p></div>
+<code>int[]</code><p>Identifiers of user groups that can be assigned to this department.</p></div>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/kyDepartment.html">\kyDepartment</a></code></div>
 </div></div>
@@ -904,7 +930,7 @@ array(
 <h2>Sets wheter to restrict visibility of this department to particular user groups.</h2>
 <pre>setUserVisibilityCustom(bool $user_visibility_custom) : <a href="../classes/kyDepartment.html">\kyDepartment</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Use setUserGroupIds to set these groups using identifiers or addUserGroup to set them using objects.
 Automatically clears user groups when set to false.</p></p>
 <h3>Parameters</h3>
@@ -919,7 +945,7 @@ Automatically clears user groups when set to false.</p></p>
 <h2>Should return short (one line) description of the object (it's title, name, etc.).</h2>
 <pre>toString() : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Returns</h3>
 <div class="subelement response"><code>string</code></div>
@@ -929,12 +955,23 @@ Automatically clears user groups when set to false.</p></p>
 <h2>Updates the object on the server and refreshes its local data.</h2>
 <pre>update() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
 <td>\kyObjectBase::update()</td>
 </tr></table>
+<h3>Exceptions</h3>
+<table class="table table-bordered">
+<tr>
+<th><code><a href="http://php.net/manual/en/class.badmethodcallexception.php">\BadMethodCallException</a></code></th>
+<td></td>
+</tr>
+<tr>
+<th><code><a href="../classes/kyException.html">\kyException</a></code></th>
+<td></td>
+</tr>
+</table>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
 </div></div>
@@ -943,7 +980,7 @@ Automatically clears user groups when set to false.</p></p>
 <h2>Returns REST client.</h2>
 <pre>getRESTClient() : <a href="../classes/kyRESTClientInterface.html">\kyRESTClientInterface</a></pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -957,7 +994,7 @@ Automatically clears user groups when set to false.</p></p>
 <h2>Should use passed data to fill object properties.</h2>
 <pre>parseData(array $data) </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -969,7 +1006,7 @@ Automatically clears user groups when set to false.</p></p>
 <h2>Builds API fields list.</h2>
 <pre>initAPIFieldsAccessors() </pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Scans protected and private properties of called class, searches for</p></p>
 <table class="table table-bordered">
 <tr>
@@ -979,7 +1016,7 @@ and builds API field list with property name, description, setter and getter met
 </tr>
 <tr>
 <th>see</th>
-<td>\kyObjectBase::$_api_fields</td>
+<td>\global\kyObjectBase::$_api_fields</td>
 </tr>
 <tr>
 <th>inherited_from</th>
@@ -992,9 +1029,9 @@ and builds API field list with property name, description, setter and getter met
 <i class="icon-custom icon-property"></i> Properties</h3>
 <a name="%24_filter_methods" id="$_filter_methods"> </a><div class="element clickable property protected $_filter_methods" data-toggle="collapse" data-target=".$_filter_methods .collapse">
 <h2>Cache for available filter methods.</h2>
-<pre>$_filter_methods : \string[]</pre>
+<pre>$_filter_methods : string[]</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Format:
 array(
  '<class name>' => array(
@@ -1011,9 +1048,9 @@ array(
 </div>
 <a name="%24_order_methods" id="$_order_methods"> </a><div class="element clickable property protected $_order_methods" data-toggle="collapse" data-target=".$_order_methods .collapse">
 <h2>Cache for available order methods.</h2>
-<pre>$_order_methods : \string[]</pre>
+<pre>$_order_methods : string[]</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Format:
 array(
  '<class name>' => array(
@@ -1029,16 +1066,16 @@ array(
 </div></div>
 </div>
 <a name="%24controller" id="$controller"> </a><div class="element clickable property protected $controller" data-toggle="collapse" data-target=".$controller .collapse">
-<h2>Default Kayako controller used to operate on this objects. Override in descending classes.</h2>
+<h2>Default Kayako controller used to operate on this objects.</h2>
 <pre>$controller : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"><p>Override in descending classes.</p></p></div></div>
 </div>
 <a name="%24display_order" id="$display_order"> </a><div class="element clickable property protected $display_order" data-toggle="collapse" data-target=".$display_order .collapse">
 <h2>Department display order.</h2>
 <pre>$display_order : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1050,7 +1087,7 @@ array(
 <h2>Department identifier.</h2>
 <pre>$id : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1062,7 +1099,7 @@ array(
 <h2>Department module.</h2>
 <pre>$module : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1071,16 +1108,16 @@ array(
 </div></div>
 </div>
 <a name="%24object_xml_name" id="$object_xml_name"> </a><div class="element clickable property protected $object_xml_name" data-toggle="collapse" data-target=".$object_xml_name .collapse">
-<h2>Indicates the name of object element in XML response. Override in descending classes.</h2>
+<h2>Indicates the name of object element in XML response.</h2>
 <pre>$object_xml_name : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"><p>Override in descending classes.</p></p></div></div>
 </div>
 <a name="%24parent_department_id" id="$parent_department_id"> </a><div class="element clickable property protected $parent_department_id" data-toggle="collapse" data-target=".$parent_department_id .collapse">
 <h2>Parent department identifier.</h2>
 <pre>$parent_department_id : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1089,11 +1126,11 @@ array(
 </div></div>
 </div>
 <a name="%24read_only" id="$read_only"> </a><div class="element clickable property protected $read_only" data-toggle="collapse" data-target=".$read_only .collapse">
-<h2>Controls if the object can be created/updated/deleted. Override in descending classes.</h2>
+<h2>Controls if the object can be created/updated/deleted.</h2>
 <pre>$read_only : bool</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
-<p class="long_description"></p>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Override in descending classes.</p></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
 <td>\kyObjectBase::$$read_only</td>
@@ -1104,7 +1141,7 @@ array(
 <h2>Department title.</h2>
 <pre>$title : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1116,7 +1153,7 @@ array(
 <h2>Department type.</h2>
 <pre>$type : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1126,9 +1163,9 @@ array(
 </div>
 <a name="%24user_group_ids" id="$user_group_ids"> </a><div class="element clickable property protected $user_group_ids" data-toggle="collapse" data-target=".$user_group_ids .collapse">
 <h2>User group identifiers this department is visible to.</h2>
-<pre>$user_group_ids : \int[]</pre>
+<pre>$user_group_ids : int[]</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1140,12 +1177,12 @@ array(
 <h2>If this department is visible to specific user groups only.</h2>
 <pre>$user_visibility_custom : bool</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
 <th>see</th>
-<td>\kyDepartment::$user_group_ids</td>
+<td>\global\kyDepartment::$user_group_ids</td>
 </tr>
 <tr>
 <th>apiField</th>
@@ -1158,7 +1195,7 @@ array(
 <h2>Cache for API fields.</h2>
 <pre>$_api_fields : array</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Format:
 array(
     '<class name>' => array(
@@ -1184,13 +1221,13 @@ array(
 <h2>Parent department.</h2>
 <pre>$parent_department : <a href="../classes/kyDepartment.html">\kyDepartment</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="%24user_groups" id="$user_groups"> </a><div class="element clickable property private $user_groups" data-toggle="collapse" data-target=".$user_groups .collapse">
 <h2>User groups this department is visible to.</h2>
 <pre>$user_groups : <a href="kyUserGroup.html#%5CkyUserGroup">\kyUserGroup[]</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <h3>
 <i class="icon-custom icon-constant"></i> Constants</h3>
@@ -1198,7 +1235,7 @@ array(
 <h2>Data key for storing files to send as multipart/form-data.</h2>
 <pre>FILES_DATA_NAME : string</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -1210,25 +1247,25 @@ array(
 <h2>Module a department can be associated with - Livechat.</h2>
 <pre>MODULE_LIVECHAT : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="MODULE_TICKETS" id="MODULE_TICKETS"> </a><div class="element clickable constant  MODULE_TICKETS" data-toggle="collapse" data-target=".MODULE_TICKETS .collapse">
 <h2>Module a department can be associated with - Tickets.</h2>
 <pre>MODULE_TICKETS : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="TYPE_PRIVATE" id="TYPE_PRIVATE"> </a><div class="element clickable constant  TYPE_PRIVATE" data-toggle="collapse" data-target=".TYPE_PRIVATE .collapse">
 <h2>Type of department - private.</h2>
 <pre>TYPE_PRIVATE : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="TYPE_PUBLIC" id="TYPE_PUBLIC"> </a><div class="element clickable constant  TYPE_PUBLIC" data-toggle="collapse" data-target=".TYPE_PUBLIC .collapse">
 <h2>Type of department - public.</h2>
 <pre>TYPE_PUBLIC : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 </div>
 </div>
@@ -1236,8 +1273,8 @@ array(
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a2</a> and<br>
-            generated on 2012-05-05T01:22:18+02:00.<br></footer></div>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a10</a> and<br>
+            generated on 2012-09-28T19:34:30+02:00.<br></footer></div>
 </div>
 </body>
 </html>

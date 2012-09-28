@@ -18,7 +18,7 @@
 <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">Kayako PHP API Library</a><div class="nav-collapse"><ul class="nav">
 <li class="dropdown">
 <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
-                                    Source Code Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a>Packages</a></li>
 <li><a href="../packages/Common.html"><i class="icon-folder-open"></i> Common</a></li>
 <li><a href="../packages/Object.html"><i class="icon-folder-open"></i> Object</a></li>
@@ -76,7 +76,7 @@
 <li class="method public "><a href="#getCreatorStaffId" title="getCreatorStaffId :: Returns identifier of staff user who created this note."><span class="description">Returns identifier of staff user who created this note.</span><pre>getCreatorStaffId()</pre></a></li>
 <li class="method public "><a href="#getForStaff" title="getForStaff :: Returns the staff who this note is for."><span class="description">Returns the staff who this note is for.</span><pre>getForStaff()</pre></a></li>
 <li class="method public "><a href="#getForStaffId" title="getForStaffId :: Returns identifier of the staff who this note is for."><span class="description">Returns identifier of the staff who this note is for.</span><pre>getForStaffId()</pre></a></li>
-<li class="method public "><a href="#getId" title="getId :: Should return object identifier or complete list of identifiers as needed by API to identify the object (ex. ticket identifier and ticket post identifier in case of TicketPost)."><span class="description">Should return object identifier or complete list of identifiers as needed by API to identify the object (ex. ticket identifier and ticket post identifier in case of TicketPost).</span><pre>getId()</pre></a></li>
+<li class="method public "><a href="#getId" title="getId :: Should return object identifier or complete list of identifiers as needed by API to identify the object (ex."><span class="description">Should return object identifier or complete list of identifiers as needed by API to identify the object (ex.</span><pre>getId()</pre></a></li>
 <li class="method public "><a href="#getNoteColor" title="getNoteColor :: Returns this ticket note color."><span class="description">Returns this ticket note color.</span><pre>getNoteColor()</pre></a></li>
 <li class="method public inherited"><a href="#getRequiredAPIFields" title="getRequiredAPIFields :: Returns list of required API fields for objects of this class."><span class="description">Returns list of required API fields for objects of this class.</span><pre>getRequiredAPIFields()</pre></a></li>
 <li class="method public "><a href="#getTicket" title="getTicket :: Returns the ticket that this note is connected with."><span class="description">Returns the ticket that this note is connected with.</span><pre>getTicket()</pre></a></li>
@@ -111,15 +111,15 @@
 <li class="property protected inherited"><a href="#%24_filter_methods" title="$_filter_methods :: Cache for available filter methods."><span class="description">Cache for available filter methods.</span><pre>$_filter_methods</pre></a></li>
 <li class="property protected inherited"><a href="#%24_order_methods" title="$_order_methods :: Cache for available order methods."><span class="description">Cache for available order methods.</span><pre>$_order_methods</pre></a></li>
 <li class="property protected "><a href="#%24contents" title="$contents :: Ticket note contents."><span class="description">Ticket note contents.</span><pre>$contents</pre></a></li>
-<li class="property protected "><a href="#%24controller" title="$controller :: Default Kayako controller used to operate on this objects. Override in descending classes."><span class="description">Default Kayako controller used to operate on this objects. Override in descending classes.</span><pre>$controller</pre></a></li>
+<li class="property protected "><a href="#%24controller" title="$controller :: Default Kayako controller used to operate on this objects."><span class="description">Default Kayako controller used to operate on this objects.</span><pre>$controller</pre></a></li>
 <li class="property protected "><a href="#%24creation_date" title="$creation_date :: Timestamp of when this ticket note was created."><span class="description">Timestamp of when this ticket note was created.</span><pre>$creation_date</pre></a></li>
 <li class="property protected "><a href="#%24creator_staff_id" title="$creator_staff_id :: Identifier of staff user who created this note."><span class="description">Identifier of staff user who created this note.</span><pre>$creator_staff_id</pre></a></li>
 <li class="property protected "><a href="#%24creator_staff_name" title="$creator_staff_name :: Full name of staff user who created this note."><span class="description">Full name of staff user who created this note.</span><pre>$creator_staff_name</pre></a></li>
 <li class="property protected "><a href="#%24for_staff_id" title="$for_staff_id :: Identifier staff user that this note is intended for."><span class="description">Identifier staff user that this note is intended for.</span><pre>$for_staff_id</pre></a></li>
 <li class="property protected "><a href="#%24id" title="$id :: Ticket note identifier."><span class="description">Ticket note identifier.</span><pre>$id</pre></a></li>
 <li class="property protected "><a href="#%24note_color" title="$note_color :: Ticket note color."><span class="description">Ticket note color.</span><pre>$note_color</pre></a></li>
-<li class="property protected "><a href="#%24object_xml_name" title="$object_xml_name :: Indicates the name of object element in XML response. Override in descending classes."><span class="description">Indicates the name of object element in XML response. Override in descending classes.</span><pre>$object_xml_name</pre></a></li>
-<li class="property protected inherited"><a href="#%24read_only" title="$read_only :: Controls if the object can be created/updated/deleted. Override in descending classes."><span class="description">Controls if the object can be created/updated/deleted. Override in descending classes.</span><pre>$read_only</pre></a></li>
+<li class="property protected "><a href="#%24object_xml_name" title="$object_xml_name :: Indicates the name of object element in XML response."><span class="description">Indicates the name of object element in XML response.</span><pre>$object_xml_name</pre></a></li>
+<li class="property protected inherited"><a href="#%24read_only" title="$read_only :: Controls if the object can be created/updated/deleted."><span class="description">Controls if the object can be created/updated/deleted.</span><pre>$read_only</pre></a></li>
 <li class="property protected "><a href="#%24ticket_id" title="$ticket_id :: Ticket identifier - if this note is associated with ticket."><span class="description">Ticket identifier - if this note is associated with ticket.</span><pre>$ticket_id</pre></a></li>
 <li class="property protected "><a href="#%24type" title="$type :: Note type."><span class="description">Note type.</span><pre>$type</pre></a></li>
 <li class="property protected "><a href="#%24user_id" title="$user_id :: User identifier - if this note is associated with user who created the ticket."><span class="description">User identifier - if this note is associated with user who created the ticket.</span><pre>$user_id</pre></a></li>
@@ -145,7 +145,16 @@
 </ul>
 </div>
 <div class="span8">
-<a name="%5CkyTicketNote" id="\kyTicketNote"></a><div href="../classes/kyTicketNote.html" class="element class">
+<a name="%5CkyTicketNote" id="\kyTicketNote"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/kyTicketNote.html">kyTicketNote</a>
+</li>
+</ul>
+<div href="../classes/kyTicketNote.html" class="element class">
 <p class="short_description">Kayako TicketNote object.</p>
 <div class="details">
 <p class="long_description"><p>All objects interacting with Kayako REST API should extend this class and
@@ -167,7 +176,7 @@ define:
 </tr>
 <tr>
 <th>package</th>
-<td><a href="..//packages/Object.Ticket.html">Object\Ticket</a></td>
+<td><a href="../packages/Object.Ticket.html">Object\Ticket</a></td>
 </tr>
 </table>
 <h3>
@@ -176,7 +185,7 @@ define:
 <h2>Default constructor.</h2>
 <pre>__construct(array $data) </pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -192,7 +201,7 @@ define:
 <h2>Returns API field value.</h2>
 <pre>__get(string $api_field_name) : mixed</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Returns API field value based on API field name used by Kayako.</p></p>
 <table class="table table-bordered">
 <tr>
@@ -216,7 +225,7 @@ define:
 <h2>Sets API field value.</h2>
 <pre>__set(string $api_field_name, mixed $value) : mixed</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Sets API field value based on API field name used by Kayako.</p></p>
 <table class="table table-bordered">
 <tr>
@@ -243,7 +252,7 @@ define:
 <h2>Returns object description with it's type and identifier.</h2>
 <pre>__toString() : string</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Calls toString() method to get the object description.</p></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -257,7 +266,7 @@ define:
 <h2>Should build the array of object data for creating or updating the object.</h2>
 <pre>buildData(bool $create) : array</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Values must be set in format accepted by REST API.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -270,9 +279,9 @@ define:
 </div>
 <a name="checkRequiredAPIFields" id="checkRequiredAPIFields"></a><div class="element clickable method public checkRequiredAPIFields" data-toggle="collapse" data-target=".checkRequiredAPIFields .collapse">
 <h2>Checks wheter this object has all required fields set.</h2>
-<pre>checkRequiredAPIFields(bool $create, bool $throw_exception) : \string[] | bool</pre>
+<pre>checkRequiredAPIFields(bool $create, bool $throw_exception) : string[] | bool</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -292,24 +301,35 @@ define:
 </tr></table>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>\string[]</code><code>bool</code>List of missing API fields or true when there are none.</div>
+<code>string[]</code><code>bool</code>List of missing API fields or true when there are none.</div>
 </div></div>
 </div>
 <a name="create" id="create"></a><div class="element clickable method public create" data-toggle="collapse" data-target=".create .collapse">
 <h2>Creates an object on the server and refreshes its local data.</h2>
 <pre>create() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
+<h3>Exceptions</h3>
+<table class="table table-bordered">
+<tr>
+<th><code><a href="http://php.net/manual/en/class.badmethodcallexception.php">\BadMethodCallException</a></code></th>
+<td></td>
+</tr>
+<tr>
+<th><code><a href="../classes/kyException.html">\kyException</a></code></th>
+<td></td>
+</tr>
+</table>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
 </div></div>
 </div>
 <a name="createNew" id="createNew"></a><div class="element clickable method public createNew" data-toggle="collapse" data-target=".createNew .collapse">
 <h2>Creates new ticket note.</h2>
-<pre>createNew(kyTicket $ticket, kyStaff $creator, string $contents) : <a href="../classes/kyTicketNote.html">\kyTicketNote</a></pre>
+<pre>createNew(\kyTicket $ticket, \kyStaff $creator, string $contents) : <a href="../classes/kyTicketNote.html">\kyTicketNote</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -330,13 +350,13 @@ define:
 <h2>Deletes the object on the server.</h2>
 <pre>delete() </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="get" id="get"></a><div class="element clickable method public get" data-toggle="collapse" data-target=".get .collapse">
 <h2>Returns ticket note.</h2>
 <pre>get(int $ticket_id, int $id) : <a href="../classes/kyTicketNote.html">\kyTicketNote</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -351,9 +371,9 @@ define:
 </div>
 <a name="getAPIFields" id="getAPIFields"></a><div class="element clickable method public getAPIFields" data-toggle="collapse" data-target=".getAPIFields .collapse">
 <h2>Returns array of API fields.</h2>
-<pre>getAPIFields() : \string[]</pre>
+<pre>getAPIFields() : string[]</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Format of returned array:</p>
 
 <pre>
@@ -367,14 +387,14 @@ array(
 <td>\kyObjectBase::getAPIFields()</td>
 </tr></table>
 <h3>Returns</h3>
-<div class="subelement response"><code>\string[]</code></div>
+<div class="subelement response"><code>string[]</code></div>
 </div></div>
 </div>
 <a name="getAll" id="getAll"></a><div class="element clickable method public getAll" data-toggle="collapse" data-target=".getAll .collapse">
 <h2>Returns all notes of the ticket.</h2>
 <pre>getAll(int $ticket_id) : <a href="../classes/kyResultSet.html">\kyResultSet</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -388,7 +408,7 @@ array(
 <h2>Returns list of available filter methods for use in result sets with objects of this type.</h2>
 <pre>getAvailableFilterMethods(bool $filter_names_only) : array</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Optionaly you can return get method names used to filter objects.</p></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -407,7 +427,7 @@ array(
 <h2>Returns list of available order methods for use in result sets with objects of this type.</h2>
 <pre>getAvailableOrderMethods(bool $order_names_only) : array</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Optionaly you can return get method names used to order objects.</p></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -426,7 +446,7 @@ array(
 <h2>Returns ticket note contents.</h2>
 <pre>getContents() : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>filterBy</th>
@@ -440,7 +460,7 @@ array(
 <h2>Returns object controller.</h2>
 <pre>getController() : string</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -454,12 +474,12 @@ array(
 <h2>Returns date and time this note was created.</h2>
 <pre>getCreationDate(string $format) : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
 <th>see</th>
-<td>\http://www.php.net/manual/en/function.date.php</td>
+<td>\global\http://www.php.net/manual/en/function.date.php</td>
 </tr>
 <tr>
 <th>filterBy</th>
@@ -482,7 +502,7 @@ array(
 <h2>Returns name of the creator of this ticket note.</h2>
 <pre>getCreatorName() : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -502,7 +522,7 @@ array(
 <h2>Returns staff who created this note.</h2>
 <pre>getCreatorStaff(bool $reload) : <a href="../classes/kyStaff.html">\kyStaff</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Result is cached until the end of script.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -517,7 +537,7 @@ array(
 <h2>Returns identifier of staff user who created this note.</h2>
 <pre>getCreatorStaffId() : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -537,7 +557,7 @@ array(
 <h2>Returns the staff who this note is for.</h2>
 <pre>getForStaff(bool $reload) : <a href="../classes/kyStaff.html">\kyStaff</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Result is cached until the end of script.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -552,7 +572,7 @@ array(
 <h2>Returns identifier of the staff who this note is for.</h2>
 <pre>getForStaffId() : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -569,11 +589,11 @@ array(
 </div></div>
 </div>
 <a name="getId" id="getId"></a><div class="element clickable method public getId" data-toggle="collapse" data-target=".getId .collapse">
-<h2>Should return object identifier or complete list of identifiers as needed by API to identify the object (ex. ticket identifier and ticket post identifier in case of TicketPost).</h2>
+<h2>Should return object identifier or complete list of identifiers as needed by API to identify the object (ex.</h2>
 <pre>getId(bool $complete) : int | array</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
-<p class="long_description"></p>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>ticket identifier and ticket post identifier in case of TicketPost).</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$complete</h4>
@@ -588,12 +608,12 @@ array(
 <h2>Returns this ticket note color.</h2>
 <pre>getNoteColor() : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
 <th>see</th>
-<td>\kyTicketNote::COLOR</td>
+<td>\global\kyTicketNote::COLOR</td>
 </tr>
 <tr>
 <th>filterBy</th>
@@ -606,9 +626,9 @@ array(
 </div>
 <a name="getRequiredAPIFields" id="getRequiredAPIFields"></a><div class="element clickable method public getRequiredAPIFields" data-toggle="collapse" data-target=".getRequiredAPIFields .collapse">
 <h2>Returns list of required API fields for objects of this class.</h2>
-<pre>getRequiredAPIFields(bool $create) : \string[]</pre>
+<pre>getRequiredAPIFields(bool $create) : string[]</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -619,14 +639,14 @@ array(
 <h4>$create</h4>
 <code>bool</code><p>True when object will be created. False when object will be updated.</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code>\string[]</code></div>
+<div class="subelement response"><code>string[]</code></div>
 </div></div>
 </div>
 <a name="getTicket" id="getTicket"></a><div class="element clickable method public getTicket" data-toggle="collapse" data-target=".getTicket .collapse">
 <h2>Returns the ticket that this note is connected with.</h2>
 <pre>getTicket(bool $reload) : <a href="../classes/kyTicket.html">\kyTicket</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Applicable only for notes of type kyTicketNote::TYPE_TICKET.
 Result is cached until the end of script.</p></p>
 <h3>Parameters</h3>
@@ -642,7 +662,7 @@ Result is cached until the end of script.</p></p>
 <h2>Returns identifier of ticket that this note is connected with.</h2>
 <pre>getTicketId() : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Applicable only for notes of type kyTicketNote::TYPE_TICKET.</p></p>
 <h3>Returns</h3>
 <div class="subelement response"><code>int</code></div>
@@ -652,12 +672,12 @@ Result is cached until the end of script.</p></p>
 <h2>Returns type of this ticket.</h2>
 <pre>getType() : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
 <th>see</th>
-<td>\kyTicketNote::TYPE</td>
+<td>\global\kyTicketNote::TYPE</td>
 </tr>
 <tr>
 <th>filterBy</th>
@@ -676,7 +696,7 @@ Result is cached until the end of script.</p></p>
 <h2>Return the user that this note is connected to.</h2>
 <pre>getUser(bool $reload) : <a href="../classes/kyUser.html">\kyUser</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Applicable only for notes of type kyTicketNote::TYPE_USER.
 Result is cached until the end of script.</p></p>
 <h3>Parameters</h3>
@@ -692,7 +712,7 @@ Result is cached until the end of script.</p></p>
 <h2>Returns identifier of the user that this note is connected to.</h2>
 <pre>getUserId() : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Applicable only for notes of type kyTicketNote::TYPE_USER.</p></p>
 <table class="table table-bordered">
 <tr>
@@ -712,7 +732,7 @@ Result is cached until the end of script.</p></p>
 <h2>Returns the user organization that this note is connecte with.</h2>
 <pre>getUserOrganization(bool $reload) : <a href="../classes/kyUserOrganization.html">\kyUserOrganization</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Applicable only for notes of type kyTicketNote::TYPE_USER_ORGANIZATION.
 Result is cached until the end of script.</p></p>
 <h3>Parameters</h3>
@@ -728,7 +748,7 @@ Result is cached until the end of script.</p></p>
 <h2>Returns identifier of the user organization that this note is connecte with.</h2>
 <pre>getUserOrganizationId() : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Applicable only for notes of type kyTicketNote::TYPE_USER_ORGANIZATION.</p></p>
 <table class="table table-bordered">
 <tr>
@@ -748,7 +768,7 @@ Result is cached until the end of script.</p></p>
 <h2>Returns whether the object is new and not yet saved on the server.</h2>
 <pre>isNew() : bool</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -762,7 +782,7 @@ Result is cached until the end of script.</p></p>
 <h2>Returns whether this object is read only.</h2>
 <pre>isReadOnly() : bool</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -776,11 +796,16 @@ Result is cached until the end of script.</p></p>
 <h2>Refreshes the object data from server.</h2>
 <pre>refresh() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
 <td>\kyObjectBase::refresh()</td>
+</tr></table>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.badmethodcallexception.php">\BadMethodCallException</a></code></th>
+<td></td>
 </tr></table>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
@@ -790,7 +815,7 @@ Result is cached until the end of script.</p></p>
 <h2>Saves (creates or updates) the object to the server.</h2>
 <pre>save() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -804,7 +829,7 @@ Result is cached until the end of script.</p></p>
 <h2>Sets the ticket note contents.</h2>
 <pre>setContents(string $contents) : <a href="../classes/kyTicketNote.html">\kyTicketNote</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -819,12 +844,12 @@ Result is cached until the end of script.</p></p>
 <h2>Sets creator of this note.</h2>
 <pre>setCreator(<a href="../classes/kyStaff.html">\kyStaff</a> | int | string $creator) : <a href="../classes/kyTicketNote.html">\kyTicketNote</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$creator</h4>
-<code><a href="../classes/kyStaff.html">\kyStaff</a>intstring</code><p>Staff OR Staff identifier OR creator name (if the ticket is to be created without providing a staff user, ex: System messages, Alerts etc.).</p>
+<code><a href="../classes/kyStaff.html">\kyStaff</a></code><code>int</code><code>string</code><p>Staff OR Staff identifier OR creator name (if the ticket is to be created without providing a staff user, ex: System messages, Alerts etc.).</p>
 </div>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/kyTicketNote.html">\kyTicketNote</a></code></div>
@@ -834,7 +859,7 @@ Result is cached until the end of script.</p></p>
 <h2>Sets the staff who this note is for.</h2>
 <pre>setForStaff(<a href="../classes/kyStaff.html">\kyStaff</a> $for_staff) : <a href="../classes/kyTicketNote.html">\kyTicketNote</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -849,7 +874,7 @@ Result is cached until the end of script.</p></p>
 <h2>Sets identifier of the staff who this note is for.</h2>
 <pre>setForStaffId(int $for_staff_id) : <a href="../classes/kyTicketNote.html">\kyTicketNote</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -864,11 +889,11 @@ Result is cached until the end of script.</p></p>
 <h2>Sets the color of this ticket note.</h2>
 <pre>setNoteColor(int $note_color) : <a href="../classes/kyTicketNote.html">\kyTicketNote</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>see</th>
-<td>\kyTicketNote::COLOR</td>
+<td>\global\kyTicketNote::COLOR</td>
 </tr></table>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -882,7 +907,7 @@ Result is cached until the end of script.</p></p>
 <h2>Sets whether this object is read only.</h2>
 <pre>setReadOnly(bool $read_only) : bool</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -898,9 +923,9 @@ Result is cached until the end of script.</p></p>
 </div>
 <a name="setTicket" id="setTicket"></a><div class="element clickable method public setTicket" data-toggle="collapse" data-target=".setTicket .collapse">
 <h2>Sets the ticket that the note will be connected with.</h2>
-<pre>setTicket(kyTicket $ticket) : <a href="../classes/kyTicketNote.html">\kyTicketNote</a></pre>
+<pre>setTicket(\kyTicket $ticket) : <a href="../classes/kyTicketNote.html">\kyTicketNote</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -915,7 +940,7 @@ Result is cached until the end of script.</p></p>
 <h2>Sets identifier of the ticket that this note will be connected with.</h2>
 <pre>setTicketId(int $ticket_id) : <a href="../classes/kyTicketNote.html">\kyTicketNote</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -929,7 +954,7 @@ Result is cached until the end of script.</p></p>
 <h2>Should return short (one line) description of the object (it's title, name, etc.).</h2>
 <pre>toString() : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Returns</h3>
 <div class="subelement response"><code>string</code></div>
@@ -939,8 +964,19 @@ Result is cached until the end of script.</p></p>
 <h2>Updates the object on the server and refreshes its local data.</h2>
 <pre>update() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
+<h3>Exceptions</h3>
+<table class="table table-bordered">
+<tr>
+<th><code><a href="http://php.net/manual/en/class.badmethodcallexception.php">\BadMethodCallException</a></code></th>
+<td></td>
+</tr>
+<tr>
+<th><code><a href="../classes/kyException.html">\kyException</a></code></th>
+<td></td>
+</tr>
+</table>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
 </div></div>
@@ -949,7 +985,7 @@ Result is cached until the end of script.</p></p>
 <h2>Returns REST client.</h2>
 <pre>getRESTClient() : <a href="../classes/kyRESTClientInterface.html">\kyRESTClientInterface</a></pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -963,7 +999,7 @@ Result is cached until the end of script.</p></p>
 <h2>Should use passed data to fill object properties.</h2>
 <pre>parseData(array $data) </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -975,7 +1011,7 @@ Result is cached until the end of script.</p></p>
 <h2>Builds API fields list.</h2>
 <pre>initAPIFieldsAccessors() </pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Scans protected and private properties of called class, searches for</p></p>
 <table class="table table-bordered">
 <tr>
@@ -985,7 +1021,7 @@ and builds API field list with property name, description, setter and getter met
 </tr>
 <tr>
 <th>see</th>
-<td>\kyObjectBase::$_api_fields</td>
+<td>\global\kyObjectBase::$_api_fields</td>
 </tr>
 <tr>
 <th>inherited_from</th>
@@ -998,9 +1034,9 @@ and builds API field list with property name, description, setter and getter met
 <i class="icon-custom icon-property"></i> Properties</h3>
 <a name="%24_filter_methods" id="$_filter_methods"> </a><div class="element clickable property protected $_filter_methods" data-toggle="collapse" data-target=".$_filter_methods .collapse">
 <h2>Cache for available filter methods.</h2>
-<pre>$_filter_methods : \string[]</pre>
+<pre>$_filter_methods : string[]</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Format:
 array(
  '<class name>' => array(
@@ -1017,9 +1053,9 @@ array(
 </div>
 <a name="%24_order_methods" id="$_order_methods"> </a><div class="element clickable property protected $_order_methods" data-toggle="collapse" data-target=".$_order_methods .collapse">
 <h2>Cache for available order methods.</h2>
-<pre>$_order_methods : \string[]</pre>
+<pre>$_order_methods : string[]</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Format:
 array(
  '<class name>' => array(
@@ -1038,7 +1074,7 @@ array(
 <h2>Ticket note contents.</h2>
 <pre>$contents : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1047,16 +1083,16 @@ array(
 </div></div>
 </div>
 <a name="%24controller" id="$controller"> </a><div class="element clickable property protected $controller" data-toggle="collapse" data-target=".$controller .collapse">
-<h2>Default Kayako controller used to operate on this objects. Override in descending classes.</h2>
+<h2>Default Kayako controller used to operate on this objects.</h2>
 <pre>$controller : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"><p>Override in descending classes.</p></p></div></div>
 </div>
 <a name="%24creation_date" id="$creation_date"> </a><div class="element clickable property protected $creation_date" data-toggle="collapse" data-target=".$creation_date .collapse">
 <h2>Timestamp of when this ticket note was created.</h2>
 <pre>$creation_date : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1068,7 +1104,7 @@ array(
 <h2>Identifier of staff user who created this note.</h2>
 <pre>$creator_staff_id : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1080,7 +1116,7 @@ array(
 <h2>Full name of staff user who created this note.</h2>
 <pre>$creator_staff_name : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1092,7 +1128,7 @@ array(
 <h2>Identifier staff user that this note is intended for.</h2>
 <pre>$for_staff_id : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1104,7 +1140,7 @@ array(
 <h2>Ticket note identifier.</h2>
 <pre>$id : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1116,12 +1152,12 @@ array(
 <h2>Ticket note color.</h2>
 <pre>$note_color : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
 <th>see</th>
-<td>\kyTicketNote::COLOR</td>
+<td>\global\kyTicketNote::COLOR</td>
 </tr>
 <tr>
 <th>apiField</th>
@@ -1131,17 +1167,17 @@ array(
 </div></div>
 </div>
 <a name="%24object_xml_name" id="$object_xml_name"> </a><div class="element clickable property protected $object_xml_name" data-toggle="collapse" data-target=".$object_xml_name .collapse">
-<h2>Indicates the name of object element in XML response. Override in descending classes.</h2>
+<h2>Indicates the name of object element in XML response.</h2>
 <pre>$object_xml_name : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"><p>Override in descending classes.</p></p></div></div>
 </div>
 <a name="%24read_only" id="$read_only"> </a><div class="element clickable property protected $read_only" data-toggle="collapse" data-target=".$read_only .collapse">
-<h2>Controls if the object can be created/updated/deleted. Override in descending classes.</h2>
+<h2>Controls if the object can be created/updated/deleted.</h2>
 <pre>$read_only : bool</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
-<p class="long_description"></p>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Override in descending classes.</p></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
 <td>\kyObjectBase::$$read_only</td>
@@ -1152,7 +1188,7 @@ array(
 <h2>Ticket identifier - if this note is associated with ticket.</h2>
 <pre>$ticket_id : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1164,12 +1200,12 @@ array(
 <h2>Note type.</h2>
 <pre>$type : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
 <th>see</th>
-<td>\kyTicketNote::TYPE</td>
+<td>\global\kyTicketNote::TYPE</td>
 </tr>
 <tr>
 <th>apiField</th>
@@ -1182,7 +1218,7 @@ array(
 <h2>User identifier - if this note is associated with user who created the ticket.</h2>
 <pre>$user_id : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1194,7 +1230,7 @@ array(
 <h2>User organization identifier - if this note is associated with user organization of user who created the ticket.</h2>
 <pre>$user_organization_id : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1206,7 +1242,7 @@ array(
 <h2>Cache for API fields.</h2>
 <pre>$_api_fields : array</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Format:
 array(
     '<class name>' => array(
@@ -1232,31 +1268,31 @@ array(
 <h2>Staff user who created this note.</h2>
 <pre>$creator_staff : <a href="../classes/kyStaff.html">\kyStaff</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="%24for_staff" id="$for_staff"> </a><div class="element clickable property private $for_staff" data-toggle="collapse" data-target=".$for_staff .collapse">
 <h2>Staff user that this note is intended for.</h2>
 <pre>$for_staff : <a href="../classes/kyStaff.html">\kyStaff</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="%24ticket" id="$ticket"> </a><div class="element clickable property private $ticket" data-toggle="collapse" data-target=".$ticket .collapse">
 <h2>Ticket - if this note is associated with ticket.</h2>
 <pre>$ticket : <a href="../classes/kyTicket.html">\kyTicket</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="%24user" id="$user"> </a><div class="element clickable property private $user" data-toggle="collapse" data-target=".$user .collapse">
 <h2>User - if this note is associated with user who created the ticket.</h2>
 <pre>$user : <a href="../classes/kyUser.html">\kyUser</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="%24user_organization" id="$user_organization"> </a><div class="element clickable property private $user_organization" data-toggle="collapse" data-target=".$user_organization .collapse">
 <h2>User organization - if this note is associated with user organization of user who created the ticket.</h2>
 <pre>$user_organization : <a href="../classes/kyUserOrganization.html">\kyUserOrganization</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <h3>
 <i class="icon-custom icon-constant"></i> Constants</h3>
@@ -1264,37 +1300,37 @@ array(
 <h2>Color of note - blue.</h2>
 <pre>COLOR_BLUE : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="COLOR_GREEN" id="COLOR_GREEN"> </a><div class="element clickable constant  COLOR_GREEN" data-toggle="collapse" data-target=".COLOR_GREEN .collapse">
 <h2>Color of note - green.</h2>
 <pre>COLOR_GREEN : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="COLOR_PURPLE" id="COLOR_PURPLE"> </a><div class="element clickable constant  COLOR_PURPLE" data-toggle="collapse" data-target=".COLOR_PURPLE .collapse">
 <h2>Color of note - purple.</h2>
 <pre>COLOR_PURPLE : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="COLOR_RED" id="COLOR_RED"> </a><div class="element clickable constant  COLOR_RED" data-toggle="collapse" data-target=".COLOR_RED .collapse">
 <h2>Color of note - red.</h2>
 <pre>COLOR_RED : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="COLOR_YELLOW" id="COLOR_YELLOW"> </a><div class="element clickable constant  COLOR_YELLOW" data-toggle="collapse" data-target=".COLOR_YELLOW .collapse">
 <h2>Color of note - yellow.</h2>
 <pre>COLOR_YELLOW : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="FILES_DATA_NAME" id="FILES_DATA_NAME"> </a><div class="element clickable constant  FILES_DATA_NAME" data-toggle="collapse" data-target=".FILES_DATA_NAME .collapse">
 <h2>Data key for storing files to send as multipart/form-data.</h2>
 <pre>FILES_DATA_NAME : string</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -1306,19 +1342,19 @@ array(
 <h2>Note type - connected to ticket.</h2>
 <pre>TYPE_TICKET : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="TYPE_USER" id="TYPE_USER"> </a><div class="element clickable constant  TYPE_USER" data-toggle="collapse" data-target=".TYPE_USER .collapse">
 <h2>Note type - connected to user.</h2>
 <pre>TYPE_USER : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="TYPE_USER_ORGANIZATION" id="TYPE_USER_ORGANIZATION"> </a><div class="element clickable constant  TYPE_USER_ORGANIZATION" data-toggle="collapse" data-target=".TYPE_USER_ORGANIZATION .collapse">
 <h2>Note type - connected to user organization.</h2>
 <pre>TYPE_USER_ORGANIZATION : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 </div>
 </div>
@@ -1326,8 +1362,8 @@ array(
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a2</a> and<br>
-            generated on 2012-05-05T01:22:19+02:00.<br></footer></div>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a10</a> and<br>
+            generated on 2012-09-28T19:34:31+02:00.<br></footer></div>
 </div>
 </body>
 </html>

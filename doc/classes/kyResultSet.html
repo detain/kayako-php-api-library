@@ -18,7 +18,7 @@
 <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">Kayako PHP API Library</a><div class="nav-collapse"><ul class="nav">
 <li class="dropdown">
 <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
-                                    Source Code Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a>Packages</a></li>
 <li><a href="../packages/Common.html"><i class="icon-folder-open"></i> Common</a></li>
 <li><a href="../packages/Object.html"><i class="icon-folder-open"></i> Object</a></li>
@@ -97,7 +97,16 @@
 </ul>
 </div>
 <div class="span8">
-<a name="%5CkyResultSet" id="\kyResultSet"></a><div href="../classes/kyResultSet.html" class="element class">
+<a name="%5CkyResultSet" id="\kyResultSet"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/kyResultSet.html">kyResultSet</a>
+</li>
+</ul>
+<div href="../classes/kyResultSet.html" class="element class">
 <p class="short_description">List of objects on steroids.</p>
 <div class="details">
 <p class="long_description"><p>Class used for wrapping list of objects into result set with filtering,
@@ -109,7 +118,7 @@ ordering and paging capabilities.</p></p>
 </tr>
 <tr>
 <th>package</th>
-<td><a href="..//packages/Common.html">Common</a></td>
+<td><a href="../packages/Common.html">Common</a></td>
 </tr>
 </table>
 <h3>
@@ -118,7 +127,7 @@ ordering and paging capabilities.</p></p>
 <h2>Intercepts filtering and ordering method calls, prepares data and runs filtering or ordering.</h2>
 <pre>__call(string $name, array $arguments) : <a href="../classes/kyResultSet.html">\kyResultSet</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>To get available filter methods, call kyObjectType::getAvailableFilterMethods().
 To get available order methods, call kyObjectType::getAvailableOrderMethods().</p></p>
 <h3>Parameters</h3>
@@ -134,14 +143,14 @@ To get available order methods, call kyObjectType::getAvailableOrderMethods().</
 </div>
 <a name="__construct" id="__construct"></a><div class="element clickable method public __construct" data-toggle="collapse" data-target=".__construct .collapse">
 <h2>Constructs a result set.</h2>
-<pre>__construct(<a href="kyObjectBase.html#%5CkyObjectBase">\kyObjectBase[]</a> $objects, string $class_name, <a href="../classes/kyResultSet.html">\kyResultSet</a> $previous_result_set) </pre>
+<pre>__construct(<a href="kyObjectBase.html#%5CkyObjectBase">\kyObjectBase[]</a> | <a href="../classes/kyResultSet.html">\kyResultSet</a> $objects, string $class_name, <a href="../classes/kyResultSet.html">\kyResultSet</a> $previous_result_set) </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$objects</h4>
-<code><a href="kyObjectBase.html#%5CkyObjectBase">\kyObjectBase[]</a></code><p>List of objects in this result set.</p></div>
+<code><a href="kyObjectBase.html#%5CkyObjectBase">\kyObjectBase[]</a></code><code><a href="../classes/kyResultSet.html">\kyResultSet</a></code><p>List of objects in this result set.</p></div>
 <div class="subelement argument">
 <h4>$class_name</h4>
 <code>string</code><p>Optional. Class name of objects in this result set.</p></div>
@@ -154,13 +163,13 @@ To get available order methods, call kyObjectType::getAvailableOrderMethods().</
 <h2>Returns formatted list of objects in this result set.</h2>
 <pre>__toString() </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"><p>Calls __toString method of every object.</p></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"><p>Calls __toString method of every object.</p></p></div></div>
 </div>
 <a name="collect" id="collect"></a><div class="element clickable method public collect" data-toggle="collapse" data-target=".collect .collapse">
 <h2>Collects results of method call on all objects in result set into an array.</h2>
 <pre>collect(string $get_method_name) : array</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>NOTICE: This method shouldn't be used directly in most cases. Use kyResultSet->collectXXX() instead.</p>
 
 <p>Additional method arguments will be passed as arguments to the get method.</p></p>
@@ -176,7 +185,7 @@ To get available order methods, call kyObjectType::getAvailableOrderMethods().</
 <h2>Compare two objects using values returned by calling indicated get method.</h2>
 <pre>compareObjects(<a href="../classes/kyObjectBase.html">\kyObjectBase</a> $object1, <a href="../classes/kyObjectBase.html">\kyObjectBase</a> $object2, string $get_method_name, bool $asc) : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>NOTICE: Internal helper method for sorting.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -200,25 +209,25 @@ To get available order methods, call kyObjectType::getAvailableOrderMethods().</
 <h2>Countable implementation.</h2>
 <pre>count() </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="current" id="current"></a><div class="element clickable method public current" data-toggle="collapse" data-target=".current .collapse">
 <h2>Iterator implementation.</h2>
 <pre>current() </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="deleteAll" id="deleteAll"></a><div class="element clickable method public deleteAll" data-toggle="collapse" data-target=".deleteAll .collapse">
 <h2>Deletes from server all objects in this result sets.</h2>
 <pre>deleteAll() </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"><p>WARNING: Use carefully!</p></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"><p>WARNING: Use carefully!</p></p></div></div>
 </div>
 <a name="filterBy" id="filterBy"></a><div class="element clickable method public filterBy" data-toggle="collapse" data-target=".filterBy .collapse">
 <h2>Filters objects in this result set and returns new result set.</h2>
 <pre>filterBy(string $get_method_name, array $filter_values) : <a href="../classes/kyResultSet.html">\kyResultSet</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Filtering is done by calling defined get method on all objects and comparing its result with provided filter values.
 Filter value can be any scalar value (integer, float, string or boolean) or array for special cases.
 Special cases for filter value:
@@ -247,7 +256,7 @@ Special cases for filter value:
 <h2>Returns first object in this result set.</h2>
 <pre>first() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
@@ -257,7 +266,7 @@ Special cases for filter value:
 <h2>Returns class name of objects in result set.</h2>
 <pre>getObjectsClassName() : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Returns</h3>
 <div class="subelement response"><code>string</code></div>
@@ -267,7 +276,7 @@ Special cases for filter value:
 <h2>Helper for paging results.</h2>
 <pre>getPage(int $page_number, int $items_per_page) : <a href="../classes/kyResultSet.html">\kyResultSet</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Pass page number and maximum items count per page and it will return
 new result with items on specified page.</p>
 
@@ -288,7 +297,7 @@ new result with items on specified page.</p>
 <h2>Returns number of pages to display all objects within this result set.</h2>
 <pre>getPageCount(int $items_per_page) : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -303,7 +312,7 @@ new result with items on specified page.</p>
 <h2>Returns PHP array of objects from this result set.</h2>
 <pre>getRawArray() : <a href="kyObjectBase.html#%5CkyObjectBase">\kyObjectBase[]</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="kyObjectBase.html#%5CkyObjectBase">\kyObjectBase[]</a></code></div>
@@ -313,75 +322,60 @@ new result with items on specified page.</p>
 <h2>Iterator implementation.</h2>
 <pre>key() </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="next" id="next"></a><div class="element clickable method public next" data-toggle="collapse" data-target=".next .collapse">
 <h2>Iterator implementation.</h2>
 <pre>next() </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="offsetExists" id="offsetExists"></a><div class="element clickable method public offsetExists" data-toggle="collapse" data-target=".offsetExists .collapse">
 <h2>ArrayAccess implementation.</h2>
 <pre>offsetExists($offset) </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$offset</h4>
-<code></code>
-</div>
+<div class="subelement argument"><h4>$offset</h4></div>
 </div></div>
 </div>
 <a name="offsetGet" id="offsetGet"></a><div class="element clickable method public offsetGet" data-toggle="collapse" data-target=".offsetGet .collapse">
 <h2>ArrayAccess implementation.</h2>
 <pre>offsetGet($offset) </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$offset</h4>
-<code></code>
-</div>
+<div class="subelement argument"><h4>$offset</h4></div>
 </div></div>
 </div>
 <a name="offsetSet" id="offsetSet"></a><div class="element clickable method public offsetSet" data-toggle="collapse" data-target=".offsetSet .collapse">
 <h2>ArrayAccess implementation.</h2>
 <pre>offsetSet($offset, $value) </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$offset</h4>
-<code></code>
-</div>
-<div class="subelement argument">
-<h4>$value</h4>
-<code></code>
-</div>
+<div class="subelement argument"><h4>$offset</h4></div>
+<div class="subelement argument"><h4>$value</h4></div>
 </div></div>
 </div>
 <a name="offsetUnset" id="offsetUnset"></a><div class="element clickable method public offsetUnset" data-toggle="collapse" data-target=".offsetUnset .collapse">
 <h2>ArrayAccess implementation.</h2>
 <pre>offsetUnset($offset) </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$offset</h4>
-<code></code>
-</div>
+<div class="subelement argument"><h4>$offset</h4></div>
 </div></div>
 </div>
 <a name="orderBy" id="orderBy"></a><div class="element clickable method public orderBy" data-toggle="collapse" data-target=".orderBy .collapse">
 <h2>Sorts objects in this result set.</h2>
 <pre>orderBy(string $get_method_name, bool $asc) : <a href="../classes/kyResultSet.html">\kyResultSet</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Sorting is done by calling defined get method on all objects and using its result to sort objects.
 NOTICE: This method shouldn't be used directly in most cases. Use kyResultSet->orderByXXX() instead. Call kyObjectType::getAvailableOrderMethods() for possible order methods.
 WARNING: Calling this method resets internal pointer of objects array.</p></p>
@@ -401,7 +395,7 @@ WARNING: Calling this method resets internal pointer of objects array.</p></p>
 <h2>Removes last (or more) filters in order they were applied.</h2>
 <pre>removeFilter(int $depth) : <a href="../classes/kyResultSet.html">\kyResultSet</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -415,7 +409,7 @@ WARNING: Calling this method resets internal pointer of objects array.</p></p>
 <h2>Removes all filters and returns the original result set.</h2>
 <pre>removeFilters() : <a href="../classes/kyResultSet.html">\kyResultSet</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/kyResultSet.html">\kyResultSet</a></code></div>
@@ -425,19 +419,19 @@ WARNING: Calling this method resets internal pointer of objects array.</p></p>
 <h2>Iterator implementation.</h2>
 <pre>rewind() </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="valid" id="valid"></a><div class="element clickable method public valid" data-toggle="collapse" data-target=".valid .collapse">
 <h2>Iterator implementation.</h2>
 <pre>valid() </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="filterObject" id="filterObject"></a><div class="element clickable method private filterObject" data-toggle="collapse" data-target=".filterObject .collapse">
 <h2>Checks if object values match filter values.</h2>
 <pre>filterObject(array $filter_values, array $object_values) : bool</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -456,31 +450,31 @@ WARNING: Calling this method resets internal pointer of objects array.</p></p>
 <h2>Class name of objects in this result set.</h2>
 <pre>$class_name : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="%24object_keys" id="$object_keys"> </a><div class="element clickable property private $object_keys" data-toggle="collapse" data-target=".$object_keys .collapse">
 <h2>Cached list of $objects array keys to avoid resetting internal pointer of $objects.</h2>
-<pre>$object_keys : \mixed[]</pre>
+<pre>$object_keys : mixed[]</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="%24objects" id="$objects"> </a><div class="element clickable property private $objects" data-toggle="collapse" data-target=".$objects .collapse">
 <h2>List of objects in this result set.</h2>
 <pre>$objects : <a href="kyObjectBase.html#%5CkyObjectBase">\kyObjectBase[]</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="%24operators" id="$operators"> </a><div class="element clickable property private $operators" data-toggle="collapse" data-target=".$operators .collapse">
 <h2>List of valid filter operators.</h2>
-<pre>$operators : \string[]</pre>
+<pre>$operators : string[]</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="%24previous_result_set" id="$previous_result_set"> </a><div class="element clickable property private $previous_result_set" data-toggle="collapse" data-target=".$previous_result_set .collapse">
 <h2>Optional result set which was the base of filtering operation producing this result set.</h2>
 <pre>$previous_result_set : <a href="../classes/kyResultSet.html">\kyResultSet</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <h3>
 <i class="icon-custom icon-constant"></i> Constants</h3>
@@ -488,19 +482,19 @@ WARNING: Calling this method resets internal pointer of objects array.</p></p>
 <h2>Prefix for collect methods.</h2>
 <pre>COLLECT_PREFIX : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="FILTER_PREFIX" id="FILTER_PREFIX"> </a><div class="element clickable constant  FILTER_PREFIX" data-toggle="collapse" data-target=".FILTER_PREFIX .collapse">
 <h2>Prefix for filter methods.</h2>
 <pre>FILTER_PREFIX : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="ORDER_PREFIX" id="ORDER_PREFIX"> </a><div class="element clickable constant  ORDER_PREFIX" data-toggle="collapse" data-target=".ORDER_PREFIX .collapse">
 <h2>Prefix for order methods.</h2>
 <pre>ORDER_PREFIX : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 </div>
 </div>
@@ -508,8 +502,8 @@ WARNING: Calling this method resets internal pointer of objects array.</p></p>
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a2</a> and<br>
-            generated on 2012-05-05T01:22:18+02:00.<br></footer></div>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a10</a> and<br>
+            generated on 2012-09-28T19:34:31+02:00.<br></footer></div>
 </div>
 </body>
 </html>

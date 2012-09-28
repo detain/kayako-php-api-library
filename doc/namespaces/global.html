@@ -3,7 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 <meta charset="utf-8">
-<title>Kayako PHP API Library » default</title>
+<title>Kayako PHP API Library » global</title>
 <meta name="author" content="Mike van Riel">
 <meta name="description" content="">
 <link href="../css/template.css" rel="stylesheet" media="all">
@@ -18,7 +18,7 @@
 <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">Kayako PHP API Library</a><div class="nav-collapse"><ul class="nav">
 <li class="dropdown">
 <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
-                                    Source Code Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a>Packages</a></li>
 <li><a href="../packages/Common.html"><i class="icon-folder-open"></i> Common</a></li>
 <li><a href="../packages/Object.html"><i class="icon-folder-open"></i> Object</a></li>
@@ -55,7 +55,7 @@
 <li class="nav-header">
 <i class="icon-map-marker"></i> Namespaces</li>
 <li>
-<a href="../namespaces/default.html" title="default"><i class="icon-th"></i>default</a><ul class="nav nav-list nav-namespaces"></ul>
+<a href="../namespaces/global.html" title="global"><i class="icon-th"></i>global</a><ul class="nav nav-list nav-namespaces"></ul>
 </li>
 </ul>
 </div>
@@ -64,7 +64,7 @@
 <li>
 <a href="../index.html"><i class="icon-th"></i></a><span class="divider">\</span>
 </li>
-<li class="active"><a href="../namespaces/default.html">default</a></li>
+<li class="active"><a href="../namespaces/global.html">global</a></li>
 </ul>
 <div class="namespace-indent">
 <h3>
@@ -73,7 +73,7 @@
 <h2>Returns specified value as array.</h2>
 <pre>ky_assure_array(mixed $value, mixed $value_on_null) : mixed</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -90,7 +90,7 @@
 <h2>Returns specified value as bool.</h2>
 <pre>ky_assure_bool(mixed $value) : bool</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -104,7 +104,7 @@
 <h2>Assures that specified value is proper constant value.</h2>
 <pre>ky_assure_constant(mixed $value, string | object $object_or_class_name, string $constant_prefix, mixed $value_on_invalid_constant) : mixed</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -112,7 +112,7 @@
 <code>mixed</code><p>Value.</p></div>
 <div class="subelement argument">
 <h4>$object_or_class_name</h4>
-<code>stringobject</code><p>Object or class name with constants.</p></div>
+<code>string</code><code>object</code><p>Object or class name with constants.</p></div>
 <div class="subelement argument">
 <h4>$constant_prefix</h4>
 <code>string</code><p>Constants prefix (without last '_').</p>
@@ -128,7 +128,7 @@
 <h2>Returns specified value as int.</h2>
 <pre>ky_assure_int(mixed $value, int | null $value_on_null) : int | null</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -136,7 +136,7 @@
 <code>mixed</code><p>Value.</p></div>
 <div class="subelement argument">
 <h4>$value_on_null</h4>
-<code>intnull</code><p>What to return if value is null.</p></div>
+<code>int</code><code>null</code><p>What to return if value is null.</p></div>
 <h3>Returns</h3>
 <div class="subelement response">
 <code>int</code><code>null</code>
@@ -147,7 +147,7 @@
 <h2>Returns specified object only if it is an instance of specified class.</h2>
 <pre>ky_assure_object(object $object, string $class_name, mixed $value_on_invalid_object) : mixed</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -167,7 +167,7 @@
 <h2>Returns specified value as positive int.</h2>
 <pre>ky_assure_positive_int(mixed $value, int | null $value_on_non_positive) : int | null</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -175,7 +175,7 @@
 <code>mixed</code><p>Value.</p></div>
 <div class="subelement argument">
 <h4>$value_on_non_positive</h4>
-<code>intnull</code><p>What to return if value non-positive (including null).</p>
+<code>int</code><code>null</code><p>What to return if value non-positive (including null).</p>
 </div>
 <h3>Returns</h3>
 <div class="subelement response">
@@ -187,7 +187,7 @@
 <h2>Returns specified value as string.</h2>
 <pre>ky_assure_string(mixed $value, string | null $value_on_null) : string | null</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -195,7 +195,7 @@
 <code>mixed</code><p>Value.</p></div>
 <div class="subelement argument">
 <h4>$value_on_null</h4>
-<code>stringnull</code><p>What to return if value is null.</p></div>
+<code>string</code><code>null</code><p>What to return if value is null.</p></div>
 <h3>Returns</h3>
 <div class="subelement response">
 <code>string</code><code>null</code>
@@ -206,7 +206,7 @@
 <h2>Outputs formatted bytes.</h2>
 <pre>ky_bytes_format(int $bytes) : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -220,12 +220,17 @@
 <h2>Returns field value from POST data.</h2>
 <pre>ky_get_post_value(<a href="../classes/kyCustomFieldDefinition.html">\kyCustomFieldDefinition</a> $custom_field_definition) : mixed</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$custom_field_definition</h4>
 <code><a href="../classes/kyCustomFieldDefinition.html">\kyCustomFieldDefinition</a></code><p>Custom field definition.</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/kyException.html">\kyException</a></code></th>
+<td></td>
+</tr></table>
 <h3>Returns</h3>
 <div class="subelement response">
 <code>mixed</code>Field value.</div>
@@ -235,7 +240,7 @@
 <h2>Returns custom PHPDoc tag parameter list.</h2>
 <pre>ky_get_tag_parameters(string $comment, string $tag_name) : bool | array</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Custom PHPDoc used by this library tags have following format:</p></p>
 <table class="table table-bordered"><tr>
 <th>tagName</th>
@@ -257,7 +262,7 @@
 <h2>Outputs seconds in hh:mm:ss format.</h2>
 <pre>ky_seconds_format(int $seconds) : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -269,9 +274,9 @@
 </div>
 <a name="ky_usort_comparison" id="ky_usort_comparison"></a><div class="element clickable function  ky_usort_comparison" data-toggle="collapse" data-target=".ky_usort_comparison .collapse">
 <h2>Helper function for sorting array with parametrized callback.</h2>
-<pre>ky_usort_comparison(callback $callback, array $arguments) : int</pre>
+<pre>ky_usort_comparison(callback $callback, array $arguments) : callback</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -281,14 +286,14 @@
 <h4>$arguments</h4>
 <code>array</code><p>List of arguments to sorting callback.</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code>int</code></div>
+<div class="subelement response"><code>callback</code></div>
 </div></div>
 </div>
 <a name="ky_xml_to_array" id="ky_xml_to_array"></a><div class="element clickable function  ky_xml_to_array" data-toggle="collapse" data-target=".ky_xml_to_array .collapse">
 <h2>Transforms XML data to array.</h2>
-<pre>ky_xml_to_array(string $xml, \string[] $namespaces) : array</pre>
+<pre>ky_xml_to_array(string $xml, string[] $namespaces) : array</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -296,7 +301,7 @@
 <code>string</code><p>XML data.</p></div>
 <div class="subelement argument">
 <h4>$namespaces</h4>
-<code>\string[]</code><p>List of namespaces to include in parsing or empty to include all namespaces.</p></div>
+<code>string[]</code><p>List of namespaces to include in parsing or empty to include all namespaces.</p></div>
 <h3>Returns</h3>
 <div class="subelement response"><code>array</code></div>
 </div></div>
@@ -532,8 +537,8 @@
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a2</a> and<br>
-            generated on 2012-05-05T01:22:18+02:00.<br></footer></div>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a10</a> and<br>
+            generated on 2012-09-28T19:34:30+02:00.<br></footer></div>
 </div>
 </body>
 </html>

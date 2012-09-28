@@ -18,7 +18,7 @@
 <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">Kayako PHP API Library</a><div class="nav-collapse"><ul class="nav">
 <li class="dropdown">
 <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
-                                    Source Code Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a>Packages</a></li>
 <li><a href="../packages/Common.html"><i class="icon-folder-open"></i> Common</a></li>
 <li><a href="../packages/Object.html"><i class="icon-folder-open"></i> Object</a></li>
@@ -61,14 +61,23 @@
 <li class="method public "><a href="#setConfig" title="setConfig :: Configuration injector."><span class="description">Configuration injector.</span><pre>setConfig()</pre></a></li>
 <li class="nav-header">
 <i class="icon-custom icon-constant"></i> Constants</li>
-<li class="constant  "><a href="#METHOD_DELETE" title="METHOD_DELETE :: HTTP verb - DELETE. For deleting objects."><span class="description">HTTP verb - DELETE. For deleting objects.</span><pre>METHOD_DELETE</pre></a></li>
-<li class="constant  "><a href="#METHOD_GET" title="METHOD_GET :: HTTP verb - GET. For getting objects."><span class="description">HTTP verb - GET. For getting objects.</span><pre>METHOD_GET</pre></a></li>
-<li class="constant  "><a href="#METHOD_POST" title="METHOD_POST :: HTTP verb - POST. For creating object."><span class="description">HTTP verb - POST. For creating object.</span><pre>METHOD_POST</pre></a></li>
-<li class="constant  "><a href="#METHOD_PUT" title="METHOD_PUT :: HTTP verb - PUT. For updating objects."><span class="description">HTTP verb - PUT. For updating objects.</span><pre>METHOD_PUT</pre></a></li>
+<li class="constant  "><a href="#METHOD_DELETE" title="METHOD_DELETE :: HTTP verb - DELETE."><span class="description">HTTP verb - DELETE.</span><pre>METHOD_DELETE</pre></a></li>
+<li class="constant  "><a href="#METHOD_GET" title="METHOD_GET :: HTTP verb - GET."><span class="description">HTTP verb - GET.</span><pre>METHOD_GET</pre></a></li>
+<li class="constant  "><a href="#METHOD_POST" title="METHOD_POST :: HTTP verb - POST."><span class="description">HTTP verb - POST.</span><pre>METHOD_POST</pre></a></li>
+<li class="constant  "><a href="#METHOD_PUT" title="METHOD_PUT :: HTTP verb - PUT."><span class="description">HTTP verb - PUT.</span><pre>METHOD_PUT</pre></a></li>
 </ul>
 </div>
 <div class="span8">
-<a name="%5CkyRESTClientInterface" id="\kyRESTClientInterface"></a><div href="../classes/kyRESTClientInterface.html" class="element interface">
+<a name="%5CkyRESTClientInterface" id="\kyRESTClientInterface"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/kyRESTClientInterface.html">kyRESTClientInterface</a>
+</li>
+</ul>
+<div href="../classes/kyRESTClientInterface.html" class="element interface">
 <p class="short_description">Interface of REST client.</p>
 <div class="details">
 <p class="long_description"><p>If you want to use another REST client than the default, make a class
@@ -76,7 +85,7 @@ implementing this interface and pass its instance to</p></p>
 <table class="table table-bordered">
 <tr>
 <th>see</th>
-<td>\kyConfig::setRESTClient()</td>
+<td>\global\kyConfig::setRESTClient()</td>
 </tr>
 <tr>
 <th>author</th>
@@ -84,7 +93,7 @@ implementing this interface and pass its instance to</p></p>
 </tr>
 <tr>
 <th>package</th>
-<td><a href="..//packages/Common.REST.html">Common\REST</a></td>
+<td><a href="../packages/Common.REST.html">Common\REST</a></td>
 </tr>
 </table>
 <h3>
@@ -93,7 +102,7 @@ implementing this interface and pass its instance to</p></p>
 <h2>Should delete object from server by sending DELETE request.</h2>
 <pre>delete(string $controller, array $parameters) </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -109,7 +118,7 @@ implementing this interface and pass its instance to</p></p>
 <h2>Should send GET request to the server and return parsed data.</h2>
 <pre>get(string $controller, array $parameters) : array</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -128,7 +137,7 @@ implementing this interface and pass its instance to</p></p>
 <h2>Should create object on the server by sending POST request and return its data.</h2>
 <pre>post(string $controller, array $parameters, array $data, array $files) : array</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Format of $files parameter:</p>
 
 <pre>
@@ -161,7 +170,7 @@ array(
 <h2>Should update object on the server by sending PUT request and return its new data.</h2>
 <pre>put(string $controller, array $parameters, array $data, array $files) : array</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Format of $files parameter:</p>
 
 <pre>
@@ -193,9 +202,9 @@ array(
 </div>
 <a name="setConfig" id="setConfig"></a><div class="element clickable method public setConfig" data-toggle="collapse" data-target=".setConfig .collapse">
 <h2>Configuration injector.</h2>
-<pre>setConfig(kyConfig $config) </pre>
+<pre>setConfig(\kyConfig $config) </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -206,28 +215,28 @@ array(
 <h3>
 <i class="icon-custom icon-constant"></i> Constants</h3>
 <a name="METHOD_DELETE" id="METHOD_DELETE"> </a><div class="element clickable constant  METHOD_DELETE" data-toggle="collapse" data-target=".METHOD_DELETE .collapse">
-<h2>HTTP verb - DELETE. For deleting objects.</h2>
+<h2>HTTP verb - DELETE.</h2>
 <pre>METHOD_DELETE : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"><p>For deleting objects.</p></p></div></div>
 </div>
 <a name="METHOD_GET" id="METHOD_GET"> </a><div class="element clickable constant  METHOD_GET" data-toggle="collapse" data-target=".METHOD_GET .collapse">
-<h2>HTTP verb - GET. For getting objects.</h2>
+<h2>HTTP verb - GET.</h2>
 <pre>METHOD_GET : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"><p>For getting objects.</p></p></div></div>
 </div>
 <a name="METHOD_POST" id="METHOD_POST"> </a><div class="element clickable constant  METHOD_POST" data-toggle="collapse" data-target=".METHOD_POST .collapse">
-<h2>HTTP verb - POST. For creating object.</h2>
+<h2>HTTP verb - POST.</h2>
 <pre>METHOD_POST : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"><p>For creating object.</p></p></div></div>
 </div>
 <a name="METHOD_PUT" id="METHOD_PUT"> </a><div class="element clickable constant  METHOD_PUT" data-toggle="collapse" data-target=".METHOD_PUT .collapse">
-<h2>HTTP verb - PUT. For updating objects.</h2>
+<h2>HTTP verb - PUT.</h2>
 <pre>METHOD_PUT : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"><p>For updating objects.</p></p></div></div>
 </div>
 </div>
 </div>
@@ -235,8 +244,8 @@ array(
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a2</a> and<br>
-            generated on 2012-05-05T01:22:18+02:00.<br></footer></div>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a10</a> and<br>
+            generated on 2012-09-28T19:34:31+02:00.<br></footer></div>
 </div>
 </body>
 </html>

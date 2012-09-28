@@ -18,7 +18,7 @@
 <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">Kayako PHP API Library</a><div class="nav-collapse"><ul class="nav">
 <li class="dropdown">
 <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
-                                    Source Code Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a>Packages</a></li>
 <li><a href="../packages/Common.html"><i class="icon-folder-open"></i> Common</a></li>
 <li><a href="../packages/Object.html"><i class="icon-folder-open"></i> Object</a></li>
@@ -66,7 +66,7 @@
 <li class="method public "><a href="#get" title="get :: Returns ticket post."><span class="description">Returns ticket post.</span><pre>get()</pre></a></li>
 <li class="method public inherited"><a href="#getAPIFields" title="getAPIFields :: Returns array of API fields."><span class="description">Returns array of API fields.</span><pre>getAPIFields()</pre></a></li>
 <li class="method public "><a href="#getAll" title="getAll :: Returns all posts of the ticket."><span class="description">Returns all posts of the ticket.</span><pre>getAll()</pre></a></li>
-<li class="method public "><a href="#getAttachments" title="getAttachments :: Returns list of attachments in this post. Result is cached."><span class="description">Returns list of attachments in this post. Result is cached.</span><pre>getAttachments()</pre></a></li>
+<li class="method public "><a href="#getAttachments" title="getAttachments :: Returns list of attachments in this post."><span class="description">Returns list of attachments in this post.</span><pre>getAttachments()</pre></a></li>
 <li class="method public inherited"><a href="#getAvailableFilterMethods" title="getAvailableFilterMethods :: Returns list of available filter methods for use in result sets with objects of this type."><span class="description">Returns list of available filter methods for use in result sets with objects of this type.</span><pre>getAvailableFilterMethods()</pre></a></li>
 <li class="method public inherited"><a href="#getAvailableOrderMethods" title="getAvailableOrderMethods :: Returns list of available order methods for use in result sets with objects of this type."><span class="description">Returns list of available order methods for use in result sets with objects of this type.</span><pre>getAvailableOrderMethods()</pre></a></li>
 <li class="method public "><a href="#getContents" title="getContents :: Returns contents of this post."><span class="description">Returns contents of this post.</span><pre>getContents()</pre></a></li>
@@ -79,9 +79,10 @@
 <li class="method public "><a href="#getFullName" title="getFullName :: Returns the full name of the person who created the ticket post."><span class="description">Returns the full name of the person who created the ticket post.</span><pre>getFullName()</pre></a></li>
 <li class="method public "><a href="#getHasAttachments" title="getHasAttachments :: Returns whether this ticket post has attachments."><span class="description">Returns whether this ticket post has attachments.</span><pre>getHasAttachments()</pre></a></li>
 <li class="method public "><a href="#getIPAddress" title="getIPAddress :: Returns IP address from which this post was created."><span class="description">Returns IP address from which this post was created.</span><pre>getIPAddress()</pre></a></li>
-<li class="method public "><a href="#getId" title="getId :: Should return object identifier or complete list of identifiers as needed by API to identify the object (ex. ticket identifier and ticket post identifier in case of TicketPost)."><span class="description">Should return object identifier or complete list of identifiers as needed by API to identify the object (ex. ticket identifier and ticket post identifier in case of TicketPost).</span><pre>getId()</pre></a></li>
+<li class="method public "><a href="#getId" title="getId :: Should return object identifier or complete list of identifiers as needed by API to identify the object (ex."><span class="description">Should return object identifier or complete list of identifiers as needed by API to identify the object (ex.</span><pre>getId()</pre></a></li>
 <li class="method public "><a href="#getIsEmailed" title="getIsEmailed :: Returns whether this post was created through an email queue."><span class="description">Returns whether this post was created through an email queue.</span><pre>getIsEmailed()</pre></a></li>
 <li class="method public "><a href="#getIsHTML" title="getIsHTML :: Returns whether this ticket post contains HTML data."><span class="description">Returns whether this ticket post contains HTML data.</span><pre>getIsHTML()</pre></a></li>
+<li class="method public "><a href="#getIsPrivate" title="getIsPrivate :: Returns whether the ticket post was created as private (hidden from the customer) or not."><span class="description">Returns whether the ticket post was created as private (hidden from the customer) or not.</span><pre>getIsPrivate()</pre></a></li>
 <li class="method public "><a href="#getIsSurveyComment" title="getIsSurveyComment :: Returns whether this post is a survey comment."><span class="description">Returns whether this post is a survey comment.</span><pre>getIsSurveyComment()</pre></a></li>
 <li class="method public "><a href="#getIsThirdParty" title="getIsThirdParty :: Returns whether this post was created by owner of e-mail marked as Third Party in ticket properties."><span class="description">Returns whether this post was created by owner of e-mail marked as Third Party in ticket properties.</span><pre>getIsThirdParty()</pre></a></li>
 <li class="method public inherited"><a href="#getRequiredAPIFields" title="getRequiredAPIFields :: Returns list of required API fields for objects of this class."><span class="description">Returns list of required API fields for objects of this class.</span><pre>getRequiredAPIFields()</pre></a></li>
@@ -100,6 +101,7 @@
 <li class="method public inherited"><a href="#save" title="save :: Saves (creates or updates) the object to the server."><span class="description">Saves (creates or updates) the object to the server.</span><pre>save()</pre></a></li>
 <li class="method public "><a href="#setContents" title="setContents :: Sets contents of this post."><span class="description">Sets contents of this post.</span><pre>setContents()</pre></a></li>
 <li class="method public "><a href="#setCreator" title="setCreator :: Sets the creator (User or Staff) of this post."><span class="description">Sets the creator (User or Staff) of this post.</span><pre>setCreator()</pre></a></li>
+<li class="method public "><a href="#setIsPrivate" title="setIsPrivate :: Sets whether the ticket post should be created as private (hidden from the customer) or not."><span class="description">Sets whether the ticket post should be created as private (hidden from the customer) or not.</span><pre>setIsPrivate()</pre></a></li>
 <li class="method public inherited"><a href="#setReadOnly" title="setReadOnly :: Sets whether this object is read only."><span class="description">Sets whether this object is read only.</span><pre>setReadOnly()</pre></a></li>
 <li class="method public "><a href="#setStaff" title="setStaff :: Sets staff user, the creator of this post."><span class="description">Sets staff user, the creator of this post.</span><pre>setStaff()</pre></a></li>
 <li class="method public "><a href="#setStaffId" title="setStaffId :: Sets identifier of staff user, the creator of this post."><span class="description">Sets identifier of staff user, the creator of this post.</span><pre>setStaffId()</pre></a></li>
@@ -121,7 +123,7 @@
 <li class="property protected inherited"><a href="#%24_filter_methods" title="$_filter_methods :: Cache for available filter methods."><span class="description">Cache for available filter methods.</span><pre>$_filter_methods</pre></a></li>
 <li class="property protected inherited"><a href="#%24_order_methods" title="$_order_methods :: Cache for available order methods."><span class="description">Cache for available order methods.</span><pre>$_order_methods</pre></a></li>
 <li class="property protected "><a href="#%24contents" title="$contents :: Ticket post contents."><span class="description">Ticket post contents.</span><pre>$contents</pre></a></li>
-<li class="property protected "><a href="#%24controller" title="$controller :: Default Kayako controller used to operate on this objects. Override in descending classes."><span class="description">Default Kayako controller used to operate on this objects. Override in descending classes.</span><pre>$controller</pre></a></li>
+<li class="property protected "><a href="#%24controller" title="$controller :: Default Kayako controller used to operate on this objects."><span class="description">Default Kayako controller used to operate on this objects.</span><pre>$controller</pre></a></li>
 <li class="property protected "><a href="#%24creator" title="$creator :: Type of this ticket post creator."><span class="description">Type of this ticket post creator.</span><pre>$creator</pre></a></li>
 <li class="property protected "><a href="#%24dateline" title="$dateline :: Timestamp of creation date and time."><span class="description">Timestamp of creation date and time.</span><pre>$dateline</pre></a></li>
 <li class="property protected "><a href="#%24email" title="$email :: The email address of the person who created the ticket post."><span class="description">The email address of the person who created the ticket post.</span><pre>$email</pre></a></li>
@@ -132,10 +134,11 @@
 <li class="property protected "><a href="#%24ip_address" title="$ip_address :: IP address from which this post was created."><span class="description">IP address from which this post was created.</span><pre>$ip_address</pre></a></li>
 <li class="property protected "><a href="#%24is_emailed" title="$is_emailed :: Whether this post was created through an email queue."><span class="description">Whether this post was created through an email queue.</span><pre>$is_emailed</pre></a></li>
 <li class="property protected "><a href="#%24is_html" title="$is_html :: Whether this ticket post contains HTML data."><span class="description">Whether this ticket post contains HTML data.</span><pre>$is_html</pre></a></li>
+<li class="property protected "><a href="#%24is_private" title="$is_private :: Whether the ticket post should be created as private (hidden from the customer) or not."><span class="description">Whether the ticket post should be created as private (hidden from the customer) or not.</span><pre>$is_private</pre></a></li>
 <li class="property protected "><a href="#%24is_survey_comment" title="$is_survey_comment :: Whether this post is a survey comment."><span class="description">Whether this post is a survey comment.</span><pre>$is_survey_comment</pre></a></li>
 <li class="property protected "><a href="#%24is_third_party" title="$is_third_party :: Whether this post was created by owner of e-mail marked as Third Party in ticket properties."><span class="description">Whether this post was created by owner of e-mail marked as Third Party in ticket properties.</span><pre>$is_third_party</pre></a></li>
-<li class="property protected "><a href="#%24object_xml_name" title="$object_xml_name :: Indicates the name of object element in XML response. Override in descending classes."><span class="description">Indicates the name of object element in XML response. Override in descending classes.</span><pre>$object_xml_name</pre></a></li>
-<li class="property protected inherited"><a href="#%24read_only" title="$read_only :: Controls if the object can be created/updated/deleted. Override in descending classes."><span class="description">Controls if the object can be created/updated/deleted. Override in descending classes.</span><pre>$read_only</pre></a></li>
+<li class="property protected "><a href="#%24object_xml_name" title="$object_xml_name :: Indicates the name of object element in XML response."><span class="description">Indicates the name of object element in XML response.</span><pre>$object_xml_name</pre></a></li>
+<li class="property protected inherited"><a href="#%24read_only" title="$read_only :: Controls if the object can be created/updated/deleted."><span class="description">Controls if the object can be created/updated/deleted.</span><pre>$read_only</pre></a></li>
 <li class="property protected "><a href="#%24staff_id" title="$staff_id :: Staff user identifier."><span class="description">Staff user identifier.</span><pre>$staff_id</pre></a></li>
 <li class="property protected "><a href="#%24subject" title="$subject :: The subject this ticket post."><span class="description">The subject this ticket post.</span><pre>$subject</pre></a></li>
 <li class="property protected "><a href="#%24ticket_id" title="$ticket_id :: Ticket identifier."><span class="description">Ticket identifier.</span><pre>$ticket_id</pre></a></li>
@@ -158,7 +161,16 @@
 </ul>
 </div>
 <div class="span8">
-<a name="%5CkyTicketPost" id="\kyTicketPost"></a><div href="../classes/kyTicketPost.html" class="element class">
+<a name="%5CkyTicketPost" id="\kyTicketPost"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/kyTicketPost.html">kyTicketPost</a>
+</li>
+</ul>
+<div href="../classes/kyTicketPost.html" class="element class">
 <p class="short_description">Kayako TicketPost object.</p>
 <div class="details">
 <p class="long_description"><p>All objects interacting with Kayako REST API should extend this class and
@@ -176,11 +188,11 @@ define:
 </tr>
 <tr>
 <th>since</th>
-<td>Kayako version 4.01.240</td>
+<td>Kayako version 4.50.1636</td>
 </tr>
 <tr>
 <th>package</th>
-<td><a href="..//packages/Object.Ticket.html">Object\Ticket</a></td>
+<td><a href="../packages/Object.Ticket.html">Object\Ticket</a></td>
 </tr>
 </table>
 <h3>
@@ -189,7 +201,7 @@ define:
 <h2>Default constructor.</h2>
 <pre>__construct(array $data) </pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -205,7 +217,7 @@ define:
 <h2>Returns API field value.</h2>
 <pre>__get(string $api_field_name) : mixed</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Returns API field value based on API field name used by Kayako.</p></p>
 <table class="table table-bordered">
 <tr>
@@ -229,7 +241,7 @@ define:
 <h2>Sets API field value.</h2>
 <pre>__set(string $api_field_name, mixed $value) : mixed</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Sets API field value based on API field name used by Kayako.</p></p>
 <table class="table table-bordered">
 <tr>
@@ -256,7 +268,7 @@ define:
 <h2>Returns object description with it's type and identifier.</h2>
 <pre>__toString() : string</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Calls toString() method to get the object description.</p></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -270,7 +282,7 @@ define:
 <h2>Should build the array of object data for creating or updating the object.</h2>
 <pre>buildData(bool $create) : array</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Values must be set in format accepted by REST API.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -283,9 +295,9 @@ define:
 </div>
 <a name="checkRequiredAPIFields" id="checkRequiredAPIFields"></a><div class="element clickable method public checkRequiredAPIFields" data-toggle="collapse" data-target=".checkRequiredAPIFields .collapse">
 <h2>Checks wheter this object has all required fields set.</h2>
-<pre>checkRequiredAPIFields(bool $create, bool $throw_exception) : \string[] | bool</pre>
+<pre>checkRequiredAPIFields(bool $create, bool $throw_exception) : string[] | bool</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -305,19 +317,30 @@ define:
 </tr></table>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>\string[]</code><code>bool</code>List of missing API fields or true when there are none.</div>
+<code>string[]</code><code>bool</code>List of missing API fields or true when there are none.</div>
 </div></div>
 </div>
 <a name="create" id="create"></a><div class="element clickable method public create" data-toggle="collapse" data-target=".create .collapse">
 <h2>Creates an object on the server and refreshes its local data.</h2>
 <pre>create() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
 <td>\kyObjectBase::create()</td>
 </tr></table>
+<h3>Exceptions</h3>
+<table class="table table-bordered">
+<tr>
+<th><code><a href="http://php.net/manual/en/class.badmethodcallexception.php">\BadMethodCallException</a></code></th>
+<td></td>
+</tr>
+<tr>
+<th><code><a href="../classes/kyException.html">\kyException</a></code></th>
+<td></td>
+</tr>
+</table>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
 </div></div>
@@ -326,7 +349,7 @@ define:
 <h2>Creates new ticket post.</h2>
 <pre>createNew(<a href="../classes/kyTicket.html">\kyTicket</a> $ticket, <a href="../classes/kyUser.html">\kyUser</a> | <a href="../classes/kyStaff.html">\kyStaff</a> $creator, string $contents) : <a href="../classes/kyTicketPost.html">\kyTicketPost</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -334,7 +357,7 @@ define:
 <code><a href="../classes/kyTicket.html">\kyTicket</a></code><p>Ticket in which to create the post.</p></div>
 <div class="subelement argument">
 <h4>$creator</h4>
-<code><a href="../classes/kyUser.html">\kyUser</a><a href="../classes/kyStaff.html">\kyStaff</a></code><p>Creator (User or Staff) of new post.</p>
+<code><a href="../classes/kyUser.html">\kyUser</a></code><code><a href="../classes/kyStaff.html">\kyStaff</a></code><p>Creator (User or Staff) of new post.</p>
 </div>
 <div class="subelement argument">
 <h4>$contents</h4>
@@ -347,13 +370,13 @@ define:
 <h2>Deletes the object on the server.</h2>
 <pre>delete() </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="get" id="get"></a><div class="element clickable method public get" data-toggle="collapse" data-target=".get .collapse">
 <h2>Returns ticket post.</h2>
 <pre>get(int $ticket_id, int $id) : <a href="../classes/kyTicketPost.html">\kyTicketPost</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -368,9 +391,9 @@ define:
 </div>
 <a name="getAPIFields" id="getAPIFields"></a><div class="element clickable method public getAPIFields" data-toggle="collapse" data-target=".getAPIFields .collapse">
 <h2>Returns array of API fields.</h2>
-<pre>getAPIFields() : \string[]</pre>
+<pre>getAPIFields() : string[]</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Format of returned array:</p>
 
 <pre>
@@ -384,14 +407,14 @@ array(
 <td>\kyObjectBase::getAPIFields()</td>
 </tr></table>
 <h3>Returns</h3>
-<div class="subelement response"><code>\string[]</code></div>
+<div class="subelement response"><code>string[]</code></div>
 </div></div>
 </div>
 <a name="getAll" id="getAll"></a><div class="element clickable method public getAll" data-toggle="collapse" data-target=".getAll .collapse">
 <h2>Returns all posts of the ticket.</h2>
 <pre>getAll(int $ticket_id) : <a href="../classes/kyResultSet.html">\kyResultSet</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -402,11 +425,11 @@ array(
 </div></div>
 </div>
 <a name="getAttachments" id="getAttachments"></a><div class="element clickable method public getAttachments" data-toggle="collapse" data-target=".getAttachments .collapse">
-<h2>Returns list of attachments in this post. Result is cached.</h2>
+<h2>Returns list of attachments in this post.</h2>
 <pre>getAttachments(bool $reload) : <a href="../classes/kyResultSet.html">\kyResultSet</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
-<p class="long_description"></p>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Result is cached.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$reload</h4>
@@ -419,7 +442,7 @@ array(
 <h2>Returns list of available filter methods for use in result sets with objects of this type.</h2>
 <pre>getAvailableFilterMethods(bool $filter_names_only) : array</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Optionaly you can return get method names used to filter objects.</p></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -438,7 +461,7 @@ array(
 <h2>Returns list of available order methods for use in result sets with objects of this type.</h2>
 <pre>getAvailableOrderMethods(bool $order_names_only) : array</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Optionaly you can return get method names used to order objects.</p></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -457,7 +480,7 @@ array(
 <h2>Returns contents of this post.</h2>
 <pre>getContents() : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -477,7 +500,7 @@ array(
 <h2>Returns object controller.</h2>
 <pre>getController() : string</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -491,7 +514,7 @@ array(
 <h2>Returns creator of this post (User or Staff).</h2>
 <pre>getCreator() : <a href="../classes/kyUser.html">\kyUser</a> | <a href="../classes/kyStaff.html">\kyStaff</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Returns</h3>
 <div class="subelement response">
@@ -503,12 +526,12 @@ array(
 <h2>Returns type of this ticket post creator.</h2>
 <pre>getCreatorType() : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
 <th>see</th>
-<td>\kyTicketPost::CREATOR</td>
+<td>\global\kyTicketPost::CREATOR</td>
 </tr>
 <tr>
 <th>filterBy</th>
@@ -527,12 +550,12 @@ array(
 <h2>Returns date and time this post was created.</h2>
 <pre>getDateline(string $format) : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
 <th>see</th>
-<td>\http://www.php.net/manual/en/function.date.php</td>
+<td>\global\http://www.php.net/manual/en/function.date.php</td>
 </tr>
 <tr>
 <th>filterBy</th>
@@ -555,7 +578,7 @@ array(
 <h2>Returns the email address of the person who created the ticket post.</h2>
 <pre>getEmail() : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -575,7 +598,7 @@ array(
 <h2>Returns the email address of the user associated with the ticket.</h2>
 <pre>getEmailTo() : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Applicable when the 'send email' option is used by the a staff user when creating the ticket post.</p></p>
 <table class="table table-bordered">
 <tr>
@@ -595,7 +618,7 @@ array(
 <h2>Returns the full name of the person who created the ticket post.</h2>
 <pre>getFullName() : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -615,7 +638,7 @@ array(
 <h2>Returns whether this ticket post has attachments.</h2>
 <pre>getHasAttachments() : bool</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -635,7 +658,7 @@ array(
 <h2>Returns IP address from which this post was created.</h2>
 <pre>getIPAddress() : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -652,11 +675,11 @@ array(
 </div></div>
 </div>
 <a name="getId" id="getId"></a><div class="element clickable method public getId" data-toggle="collapse" data-target=".getId .collapse">
-<h2>Should return object identifier or complete list of identifiers as needed by API to identify the object (ex. ticket identifier and ticket post identifier in case of TicketPost).</h2>
+<h2>Should return object identifier or complete list of identifiers as needed by API to identify the object (ex.</h2>
 <pre>getId(bool $complete) : int | array</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
-<p class="long_description"></p>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>ticket identifier and ticket post identifier in case of TicketPost).</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$complete</h4>
@@ -671,7 +694,7 @@ array(
 <h2>Returns whether this post was created through an email queue.</h2>
 <pre>getIsEmailed() : bool</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>filterBy</th>
@@ -685,7 +708,7 @@ array(
 <h2>Returns whether this ticket post contains HTML data.</h2>
 <pre>getIsHTML() : bool</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>filterBy</th>
@@ -695,11 +718,31 @@ array(
 <div class="subelement response"><code>bool</code></div>
 </div></div>
 </div>
+<a name="getIsPrivate" id="getIsPrivate"></a><div class="element clickable method public getIsPrivate" data-toggle="collapse" data-target=".getIsPrivate .collapse">
+<h2>Returns whether the ticket post was created as private (hidden from the customer) or not.</h2>
+<pre>getIsPrivate() : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>filterBy</th>
+<td></td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
 <a name="getIsSurveyComment" id="getIsSurveyComment"></a><div class="element clickable method public getIsSurveyComment" data-toggle="collapse" data-target=".getIsSurveyComment .collapse">
 <h2>Returns whether this post is a survey comment.</h2>
 <pre>getIsSurveyComment() : bool</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>filterBy</th>
@@ -713,7 +756,7 @@ array(
 <h2>Returns whether this post was created by owner of e-mail marked as Third Party in ticket properties.</h2>
 <pre>getIsThirdParty() : bool</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>filterBy</th>
@@ -725,9 +768,9 @@ array(
 </div>
 <a name="getRequiredAPIFields" id="getRequiredAPIFields"></a><div class="element clickable method public getRequiredAPIFields" data-toggle="collapse" data-target=".getRequiredAPIFields .collapse">
 <h2>Returns list of required API fields for objects of this class.</h2>
-<pre>getRequiredAPIFields(bool $create) : \string[]</pre>
+<pre>getRequiredAPIFields(bool $create) : string[]</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -738,14 +781,14 @@ array(
 <h4>$create</h4>
 <code>bool</code><p>True when object will be created. False when object will be updated.</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code>\string[]</code></div>
+<div class="subelement response"><code>string[]</code></div>
 </div></div>
 </div>
 <a name="getStaff" id="getStaff"></a><div class="element clickable method public getStaff" data-toggle="collapse" data-target=".getStaff .collapse">
 <h2>Gets the staff user, the creator of this ticket post.</h2>
 <pre>getStaff(bool $reload) : <a href="../classes/kyStaff.html">\kyStaff</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -760,7 +803,7 @@ array(
 <h2>Returns identifier of staff user, the creator of this post.</h2>
 <pre>getStaffId() : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -780,7 +823,7 @@ array(
 <h2>Returns subject of this post.</h2>
 <pre>getSubject() : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>filterBy</th>
@@ -794,7 +837,7 @@ array(
 <h2>Returns the ticket that this post is connected with.</h2>
 <pre>getTicket(bool $reload) : <a href="../classes/kyTicket.html">\kyTicket</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Result is cached until the end of script.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -809,7 +852,7 @@ array(
 <h2>Returns the ticket identifier.</h2>
 <pre>getTicketId() : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Returns</h3>
 <div class="subelement response"><code>int</code></div>
@@ -819,7 +862,7 @@ array(
 <h2>Gets the user, the creator of this ticket post.</h2>
 <pre>getUser(bool $reload) : <a href="../classes/kyUser.html">\kyUser</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -834,7 +877,7 @@ array(
 <h2>Returns identifier of the user, the creator of this post.</h2>
 <pre>getUserId() : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
@@ -854,7 +897,7 @@ array(
 <h2>Returns whether the object is new and not yet saved on the server.</h2>
 <pre>isNew() : bool</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -868,7 +911,7 @@ array(
 <h2>Returns whether this object is read only.</h2>
 <pre>isReadOnly() : bool</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -880,9 +923,9 @@ array(
 </div>
 <a name="newAttachment" id="newAttachment"></a><div class="element clickable method public newAttachment" data-toggle="collapse" data-target=".newAttachment .collapse">
 <h2>Creates new attachment in this post with contents provided as parameter.</h2>
-<pre>newAttachment(string $contents, string $file_name) </pre>
+<pre>newAttachment(string $contents, string $file_name) : <a href="../classes/kyTicketAttachment.html">\kyTicketAttachment</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -891,13 +934,15 @@ array(
 <div class="subelement argument">
 <h4>$file_name</h4>
 <code>string</code><p>Filename.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyTicketAttachment.html">\kyTicketAttachment</a></code></div>
 </div></div>
 </div>
 <a name="newAttachmentFromFile" id="newAttachmentFromFile"></a><div class="element clickable method public newAttachmentFromFile" data-toggle="collapse" data-target=".newAttachmentFromFile .collapse">
 <h2>Creates new attachment in this post with contents read from physical file.</h2>
-<pre>newAttachmentFromFile(string $file_path, string $file_name) </pre>
+<pre>newAttachmentFromFile(string $file_path, string $file_name) : <a href="../classes/kyTicketAttachment.html">\kyTicketAttachment</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -906,17 +951,24 @@ array(
 <div class="subelement argument">
 <h4>$file_name</h4>
 <code>string</code><p>Optional. Use to set filename other than physical file.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyTicketAttachment.html">\kyTicketAttachment</a></code></div>
 </div></div>
 </div>
 <a name="refresh" id="refresh"></a><div class="element clickable method public refresh" data-toggle="collapse" data-target=".refresh .collapse">
 <h2>Refreshes the object data from server.</h2>
 <pre>refresh() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
 <td>\kyObjectBase::refresh()</td>
+</tr></table>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.badmethodcallexception.php">\BadMethodCallException</a></code></th>
+<td></td>
 </tr></table>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
@@ -926,7 +978,7 @@ array(
 <h2>Saves (creates or updates) the object to the server.</h2>
 <pre>save() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -940,7 +992,7 @@ array(
 <h2>Sets contents of this post.</h2>
 <pre>setContents(string $contents) : <a href="../classes/kyTicketPost.html">\kyTicketPost</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -954,19 +1006,34 @@ array(
 <h2>Sets the creator (User or Staff) of this post.</h2>
 <pre>setCreator(int | <a href="../classes/kyUser.html">\kyUser</a> | <a href="../classes/kyStaff.html">\kyStaff</a> $creator, int $type) : <a href="../classes/kyTicketPost.html">\kyTicketPost</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>see</th>
-<td>\kyTicketPost::CREATOR</td>
+<td>\global\kyTicketPost::CREATOR</td>
 </tr></table>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$creator</h4>
-<code>int<a href="../classes/kyUser.html">\kyUser</a><a href="../classes/kyStaff.html">\kyStaff</a></code><p>User identifier OR staff identifier OR user OR staff user.</p></div>
+<code>int</code><code><a href="../classes/kyUser.html">\kyUser</a></code><code><a href="../classes/kyStaff.html">\kyStaff</a></code><p>User identifier OR staff identifier OR user OR staff user.</p></div>
 <div class="subelement argument">
 <h4>$type</h4>
 <code>int</code><p>Creator type. Required only when $creator is an identifier.</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyTicketPost.html">\kyTicketPost</a></code></div>
+</div></div>
+</div>
+<a name="setIsPrivate" id="setIsPrivate"></a><div class="element clickable method public setIsPrivate" data-toggle="collapse" data-target=".setIsPrivate .collapse">
+<h2>Sets whether the ticket post should be created as private (hidden from the customer) or not.</h2>
+<pre>setIsPrivate(bool $is_private) : <a href="../classes/kyTicketPost.html">\kyTicketPost</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$is_private</h4>
+<code>bool</code><p>Whether the ticket post should be created as private (hidden from the customer) or not.</p>
 </div>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/kyTicketPost.html">\kyTicketPost</a></code></div>
@@ -976,7 +1043,7 @@ array(
 <h2>Sets whether this object is read only.</h2>
 <pre>setReadOnly(bool $read_only) : bool</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -994,7 +1061,7 @@ array(
 <h2>Sets staff user, the creator of this post.</h2>
 <pre>setStaff(<a href="../classes/kyStaff.html">\kyStaff</a> $staff) : <a href="../classes/kyTicketPost.html">\kyTicketPost</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -1008,7 +1075,7 @@ array(
 <h2>Sets identifier of staff user, the creator of this post.</h2>
 <pre>setStaffId(int $staff_id) : <a href="../classes/kyTicketPost.html">\kyTicketPost</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -1022,7 +1089,7 @@ array(
 <h2>Sets subject of this post.</h2>
 <pre>setSubject(string $subject) : <a href="../classes/kyTicketPost.html">\kyTicketPost</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -1036,7 +1103,7 @@ array(
 <h2>Sets the ticket that the post will be connected with.</h2>
 <pre>setTicket(<a href="../classes/kyTicket.html">\kyTicket</a> $ticket) : <a href="../classes/kyTicketPost.html">\kyTicketPost</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -1050,7 +1117,7 @@ array(
 <h2>Sets the ticket identifier.</h2>
 <pre>setTicketId(int $ticket_id) : <a href="../classes/kyTicketPost.html">\kyTicketPost</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -1064,7 +1131,7 @@ array(
 <h2>Sets the user, the creator of this post.</h2>
 <pre>setUser(<a href="../classes/kyUser.html">\kyUser</a> $user) : <a href="../classes/kyTicketPost.html">\kyTicketPost</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -1078,7 +1145,7 @@ array(
 <h2>Sets identifier of the user, the creator of this post.</h2>
 <pre>setUserId(int $user_id) : <a href="../classes/kyTicketPost.html">\kyTicketPost</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -1092,7 +1159,7 @@ array(
 <h2>Should return short (one line) description of the object (it's title, name, etc.).</h2>
 <pre>toString() : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Returns</h3>
 <div class="subelement response"><code>string</code></div>
@@ -1102,8 +1169,19 @@ array(
 <h2>Updates the object on the server and refreshes its local data.</h2>
 <pre>update() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
+<h3>Exceptions</h3>
+<table class="table table-bordered">
+<tr>
+<th><code><a href="http://php.net/manual/en/class.badmethodcallexception.php">\BadMethodCallException</a></code></th>
+<td></td>
+</tr>
+<tr>
+<th><code><a href="../classes/kyException.html">\kyException</a></code></th>
+<td></td>
+</tr>
+</table>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
 </div></div>
@@ -1112,7 +1190,7 @@ array(
 <h2>Returns REST client.</h2>
 <pre>getRESTClient() : <a href="../classes/kyRESTClientInterface.html">\kyRESTClientInterface</a></pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -1126,7 +1204,7 @@ array(
 <h2>Should use passed data to fill object properties.</h2>
 <pre>parseData(array $data) </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -1138,7 +1216,7 @@ array(
 <h2>Builds API fields list.</h2>
 <pre>initAPIFieldsAccessors() </pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Scans protected and private properties of called class, searches for</p></p>
 <table class="table table-bordered">
 <tr>
@@ -1148,7 +1226,7 @@ and builds API field list with property name, description, setter and getter met
 </tr>
 <tr>
 <th>see</th>
-<td>\kyObjectBase::$_api_fields</td>
+<td>\global\kyObjectBase::$_api_fields</td>
 </tr>
 <tr>
 <th>inherited_from</th>
@@ -1161,9 +1239,9 @@ and builds API field list with property name, description, setter and getter met
 <i class="icon-custom icon-property"></i> Properties</h3>
 <a name="%24_filter_methods" id="$_filter_methods"> </a><div class="element clickable property protected $_filter_methods" data-toggle="collapse" data-target=".$_filter_methods .collapse">
 <h2>Cache for available filter methods.</h2>
-<pre>$_filter_methods : \string[]</pre>
+<pre>$_filter_methods : string[]</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Format:
 array(
  '<class name>' => array(
@@ -1180,9 +1258,9 @@ array(
 </div>
 <a name="%24_order_methods" id="$_order_methods"> </a><div class="element clickable property protected $_order_methods" data-toggle="collapse" data-target=".$_order_methods .collapse">
 <h2>Cache for available order methods.</h2>
-<pre>$_order_methods : \string[]</pre>
+<pre>$_order_methods : string[]</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Format:
 array(
  '<class name>' => array(
@@ -1201,7 +1279,7 @@ array(
 <h2>Ticket post contents.</h2>
 <pre>$contents : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1210,21 +1288,21 @@ array(
 </div></div>
 </div>
 <a name="%24controller" id="$controller"> </a><div class="element clickable property protected $controller" data-toggle="collapse" data-target=".$controller .collapse">
-<h2>Default Kayako controller used to operate on this objects. Override in descending classes.</h2>
+<h2>Default Kayako controller used to operate on this objects.</h2>
 <pre>$controller : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"><p>Override in descending classes.</p></p></div></div>
 </div>
 <a name="%24creator" id="$creator"> </a><div class="element clickable property protected $creator" data-toggle="collapse" data-target=".$creator .collapse">
 <h2>Type of this ticket post creator.</h2>
 <pre>$creator : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
 <th>see</th>
-<td>\kyTicketPost::CREATOR</td>
+<td>\global\kyTicketPost::CREATOR</td>
 </tr>
 <tr>
 <th>apiField</th>
@@ -1237,7 +1315,7 @@ array(
 <h2>Timestamp of creation date and time.</h2>
 <pre>$dateline : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1249,7 +1327,7 @@ array(
 <h2>The email address of the person who created the ticket post.</h2>
 <pre>$email : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1261,7 +1339,7 @@ array(
 <h2>The email address of the user associated with the ticket.</h2>
 <pre>$email_to : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Applicable when the 'send email' option is used by the a staff user when creating the ticket post.</p></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1273,7 +1351,7 @@ array(
 <h2>The full name of the person who created the ticket post.</h2>
 <pre>$full_name : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1285,7 +1363,7 @@ array(
 <h2>Whether this ticket post has attachments.</h2>
 <pre>$has_attachments : bool</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1297,7 +1375,7 @@ array(
 <h2>Ticket post identifier.</h2>
 <pre>$id : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1309,7 +1387,7 @@ array(
 <h2>IP address from which this post was created.</h2>
 <pre>$ip_address : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1321,7 +1399,7 @@ array(
 <h2>Whether this post was created through an email queue.</h2>
 <pre>$is_emailed : bool</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1333,7 +1411,19 @@ array(
 <h2>Whether this ticket post contains HTML data.</h2>
 <pre>$is_html : bool</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24is_private" id="$is_private"> </a><div class="element clickable property protected $is_private" data-toggle="collapse" data-target=".$is_private .collapse">
+<h2>Whether the ticket post should be created as private (hidden from the customer) or not.</h2>
+<pre>$is_private : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1345,7 +1435,7 @@ array(
 <h2>Whether this post is a survey comment.</h2>
 <pre>$is_survey_comment : bool</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1357,7 +1447,7 @@ array(
 <h2>Whether this post was created by owner of e-mail marked as Third Party in ticket properties.</h2>
 <pre>$is_third_party : bool</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1366,17 +1456,17 @@ array(
 </div></div>
 </div>
 <a name="%24object_xml_name" id="$object_xml_name"> </a><div class="element clickable property protected $object_xml_name" data-toggle="collapse" data-target=".$object_xml_name .collapse">
-<h2>Indicates the name of object element in XML response. Override in descending classes.</h2>
+<h2>Indicates the name of object element in XML response.</h2>
 <pre>$object_xml_name : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"><p>Override in descending classes.</p></p></div></div>
 </div>
 <a name="%24read_only" id="$read_only"> </a><div class="element clickable property protected $read_only" data-toggle="collapse" data-target=".$read_only .collapse">
-<h2>Controls if the object can be created/updated/deleted. Override in descending classes.</h2>
+<h2>Controls if the object can be created/updated/deleted.</h2>
 <pre>$read_only : bool</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
-<p class="long_description"></p>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Override in descending classes.</p></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
 <td>\kyObjectBase::$$read_only</td>
@@ -1387,7 +1477,7 @@ array(
 <h2>Staff user identifier.</h2>
 <pre>$staff_id : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Applicable if the post was created by staff user.</p></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1399,7 +1489,7 @@ array(
 <h2>The subject this ticket post.</h2>
 <pre>$subject : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>If the ticket post was created through an e-mail queue this is subject of the email message that resulted in the creation of the post.</p></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1411,7 +1501,7 @@ array(
 <h2>Ticket identifier.</h2>
 <pre>$ticket_id : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1423,7 +1513,7 @@ array(
 <h2>Identifier of the user who created this post.</h2>
 <pre>$user_id : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Applicable if the post was created by a known user through an email queue or through the web interface.</p></p>
 <table class="table table-bordered"><tr>
 <th>apiField</th>
@@ -1435,7 +1525,7 @@ array(
 <h2>Cache for API fields.</h2>
 <pre>$_api_fields : array</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Format:
 array(
     '<class name>' => array(
@@ -1461,25 +1551,25 @@ array(
 <h2>Ticket post attachments.</h2>
 <pre>$attachments : <a href="kyTicketAttachment.html#%5CkyTicketAttachment">\kyTicketAttachment[]</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="%24staff" id="$staff"> </a><div class="element clickable property private $staff" data-toggle="collapse" data-target=".$staff .collapse">
 <h2>Staff user, the creator of this post.</h2>
 <pre>$staff : <a href="../classes/kyStaff.html">\kyStaff</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"><p>Applicable if the post was created by staff user.</p></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"><p>Applicable if the post was created by staff user.</p></p></div></div>
 </div>
 <a name="%24ticket" id="$ticket"> </a><div class="element clickable property private $ticket" data-toggle="collapse" data-target=".$ticket .collapse">
 <h2>Ticket that this post is connected to.</h2>
 <pre>$ticket : <a href="../classes/kyTicket.html">\kyTicket</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="%24user" id="$user"> </a><div class="element clickable property private $user" data-toggle="collapse" data-target=".$user .collapse">
 <h2>User, the creator of this post.</h2>
 <pre>$user : <a href="../classes/kyUser.html">\kyUser</a></pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <h3>
 <i class="icon-custom icon-constant"></i> Constants</h3>
@@ -1487,43 +1577,43 @@ array(
 <h2>Post creator type - owner of e-mail marked as BCC in ticket properties.</h2>
 <pre>CREATOR_BCC : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="CREATOR_CC" id="CREATOR_CC"> </a><div class="element clickable constant  CREATOR_CC" data-toggle="collapse" data-target=".CREATOR_CC .collapse">
 <h2>Post creator type - owner of e-mail marked as CC in ticket properties.</h2>
 <pre>CREATOR_CC : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="CREATOR_CLIENT" id="CREATOR_CLIENT"> </a><div class="element clickable constant  CREATOR_CLIENT" data-toggle="collapse" data-target=".CREATOR_CLIENT .collapse">
 <h2>Post creator type - user.</h2>
 <pre>CREATOR_CLIENT : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="CREATOR_STAFF" id="CREATOR_STAFF"> </a><div class="element clickable constant  CREATOR_STAFF" data-toggle="collapse" data-target=".CREATOR_STAFF .collapse">
 <h2>Post creator type - staff user.</h2>
 <pre>CREATOR_STAFF : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="CREATOR_THIRDPARTY" id="CREATOR_THIRDPARTY"> </a><div class="element clickable constant  CREATOR_THIRDPARTY" data-toggle="collapse" data-target=".CREATOR_THIRDPARTY .collapse">
 <h2>Post creator type - owner of e-mail marked as Third Party in ticket properties.</h2>
 <pre>CREATOR_THIRDPARTY : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="CREATOR_USER" id="CREATOR_USER"> </a><div class="element clickable constant  CREATOR_USER" data-toggle="collapse" data-target=".CREATOR_USER .collapse">
 <h2>Post creator type - user.</h2>
 <pre>CREATOR_USER : int</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 <a name="FILES_DATA_NAME" id="FILES_DATA_NAME"> </a><div class="element clickable constant  FILES_DATA_NAME" data-toggle="collapse" data-target=".FILES_DATA_NAME .collapse">
 <h2>Data key for storing files to send as multipart/form-data.</h2>
 <pre>FILES_DATA_NAME : string</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="span8">
+<div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
@@ -1537,8 +1627,8 @@ array(
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a2</a> and<br>
-            generated on 2012-05-05T01:22:19+02:00.<br></footer></div>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a10</a> and<br>
+            generated on 2012-09-28T19:34:31+02:00.<br></footer></div>
 </div>
 </body>
 </html>
