@@ -311,7 +311,7 @@ abstract class kyObjectBase {
 	 * Builds API fields list.
 	 *
 	 * Scans protected and private properties of called class, searches for
-	 * @apiField [name=field name] [accessor=setter/getter name] [getter=getter name] [setter=setter name] [required_create=true if field if required when creating object] [required_update=true if field if required when udpating object] [required=true if field if required when creating or updating object]
+	 * @apiField [name=field name]{0,1} [alias=field name alias]* [accessor=setter/getter name]{0,1} [getter=getter name]{0,1} [setter=setter name]{0,1} [required_create=true if field if required when creating object]{0,1} [required_update=true if field if required when udpating object]{0,1} [required=true if field if required when creating or updating object]{0,1}
 	 * and builds API field list with property name, description, setter and getter method names, and required flags.
 	 * @see kyObjectBase::$_api_fields
 	 */
@@ -324,7 +324,8 @@ abstract class kyObjectBase {
 			foreach ($class->getProperties(ReflectionProperty::IS_PROTECTED|ReflectionProperty::IS_PUBLIC) as $property) {
 				/* @var $property ReflectionProperty */
 				$comment = $property->getDocComment();
-				$short_description = trim(next(explode("\n", $comment)), " *\t\n\r");
+                $comment_lines = explode("\n", $comment);
+				$short_description = trim(next($comment_lines), " *\t\n\r");
 
 				$parameters = ky_get_tag_parameters($comment, 'apiField');
 				if ($parameters === false)
