@@ -403,12 +403,12 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 */
 	protected $contents = null;
 
-    /**
-     * Option to disable autoresponder e-mail.
-     * @apiField
-     * @var bool
-     */
-    protected $ignore_auto_responder = false;
+	/**
+	 * Option to disable autoresponder e-mail.
+	 * @apiField
+	 * @var bool
+	 */
+	protected $ignore_auto_responder = false;
 
 	/**
 	 * Ticket status.
@@ -627,7 +627,7 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 
 			$data['contents'] = $this->contents;
 			$data['type'] = $this->creation_type;
-            $data['ignoreautoresponder'] = $this->ignore_auto_responder;
+			$data['ignoreautoresponder'] = $this->ignore_auto_responder;
  		} else {
  			$data['userid'] = $this->user_id;
  		}
@@ -1567,14 +1567,14 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 
 	/**
 	 * Sets the template group identifier.
-     * Resets template group name.
+	 * Resets template group name.
 	 *
 	 * @param int $template_group_id Template group identifier.
 	 * @return kyTicket
 	 */
 	public function setTemplateGroupId($template_group_id) {
 		$this->template_group_id = ky_assure_positive_int($template_group_id);
-        $this->template_group_name = null;
+		$this->template_group_name = null;
 		return $this;
 	}
 
@@ -1591,14 +1591,14 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 
 	/**
 	 * Sets the template group name.
-     * Resets template group identifier.
+	 * Resets template group identifier.
 	 *
 	 * @param string $template_group_name Template group name.
 	 * @return kyTicket
 	 */
 	public function setTemplateGroupName($template_group_name) {
 		$this->template_group_name = ky_assure_string($template_group_name);
-        $this->template_group_id = null;
+		$this->template_group_id = null;
 		return $this;
 	}
 
@@ -1609,24 +1609,24 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @return kyTicket
 	 */
 	public function setTemplateGroup($template_group_id_or_name) {
-        if (is_numeric($template_group_id_or_name)) {
-            $this->setTemplateGroupId($template_group_id_or_name);
-        } else {
-            $this->setTemplateGroupName($template_group_id_or_name);
-        }
+		if (is_numeric($template_group_id_or_name)) {
+			$this->setTemplateGroupId($template_group_id_or_name);
+		} else {
+			$this->setTemplateGroupName($template_group_id_or_name);
+		}
 		return $this;
 	}
 
-    /**
-     * Sets whether to ignore (disable) autoresponder e-mail.
-     *
-     * @param bool $ignore_auto_responder Whether to ignore (disable) autoresponder e-mail.
-     * @return kyTicket
-     */
-    public function setIgnoreAutoResponder($ignore_auto_responder) {
-        $this->ignore_auto_responder = ky_assure_bool($ignore_auto_responder);
-        return $this;
-    }
+	/**
+	 * Sets whether to ignore (disable) autoresponder e-mail.
+	 *
+	 * @param bool $ignore_auto_responder Whether to ignore (disable) autoresponder e-mail.
+	 * @return kyTicket
+	 */
+	public function setIgnoreAutoResponder($ignore_auto_responder) {
+		$this->ignore_auto_responder = ky_assure_bool($ignore_auto_responder);
+		return $this;
+	}
 
 	/**
 	 * Returns tickets watchers.
@@ -1634,8 +1634,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * <pre>
 	 * array(
 	 *   array(
-	 *     'staff_id' => <staff identifier>,
-	 *     'name' => '<staff full name>'
+	 *	 'staff_id' => <staff identifier>,
+	 *	 'name' => '<staff full name>'
 	 *   ),
 	 *   ...
 	 * )
@@ -1653,8 +1653,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * <pre>
 	 * array(
 	 *   array(
-	 *     'id' => <workflow identifier>,
-	 *     'title' => '<workflow title>'
+	 *	 'id' => <workflow identifier>,
+	 *	 'title' => '<workflow title>'
 	 *   ),
 	 *   ...
 	 * )

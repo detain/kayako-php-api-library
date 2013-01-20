@@ -86,9 +86,9 @@ class kyRESTClient implements kyRESTClientInterface {
 		}
 
 		if ($this->config->getIsStandardURLType()) {
-            $url = sprintf("%sindex.php?%s%s", $this->config->getBaseURL(), $controller, $parameters_str);
-        } else {
-            $url = sprintf("%sindex.php?e=%s%s", $this->config->getBaseURL(), $controller, $parameters_str);
+			$url = sprintf("%sindex.php?%s%s", $this->config->getBaseURL(), $controller, $parameters_str);
+		} else {
+			$url = sprintf("%sindex.php?e=%s%s", $this->config->getBaseURL(), $controller, $parameters_str);
 		}
 
 		switch ($method) {
@@ -143,8 +143,8 @@ class kyRESTClient implements kyRESTClientInterface {
 				$curl_options[CURLOPT_POST] = true;
 				break;
 			case self::METHOD_PUT:
-                $curl_options[CURLOPT_CUSTOMREQUEST] = 'PUT';
-                $curl_options[CURLOPT_POSTFIELDS] = $request_body;
+				$curl_options[CURLOPT_CUSTOMREQUEST] = 'PUT';
+				$curl_options[CURLOPT_POSTFIELDS] = $request_body;
 				break;
 			case self::METHOD_DELETE:
 				$curl_options[CURLOPT_CUSTOMREQUEST] = 'DELETE';

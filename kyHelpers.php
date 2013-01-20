@@ -114,13 +114,13 @@ if (!function_exists('ky_bytes_format')) {
 	 * @return string
 	 */
 	function ky_bytes_format($bytes) {
-	    $unim = array("B","KB","MB","GB","TB","PB");
-	    $c = 0;
-	    while ($bytes>=1024) {
-	        $c++;
-	        $bytes = $bytes/1024;
-	    }
-	    return number_format($bytes,($c ? 2 : 0),",",".")." ".$unim[$c];
+		$unim = array("B","KB","MB","GB","TB","PB");
+		$c = 0;
+		while ($bytes>=1024) {
+			$c++;
+			$bytes = $bytes/1024;
+		}
+		return number_format($bytes,($c ? 2 : 0),",",".")." ".$unim[$c];
 	}
 }
 
@@ -150,23 +150,23 @@ if (!function_exists('ky_usort_comparison')) {
 		 * @param callback $callback Sorting callback.
 		 * @param array $arguments List of arguments to sorting callback.
 		 */
-	    function __construct($callback, $arguments) {
-	        $this->callback = $callback;
-	        $this->arguments = $arguments;
-	    }
+		function __construct($callback, $arguments) {
+			$this->callback = $callback;
+			$this->arguments = $arguments;
+		}
 
-	    /**
-	     * Proxy to the sorter callback responsible for passing additional parameters.
-	     *
-	     * @param mixed $a First value to compare.
-	     * @param mixed $b Second value to compare.
-	     * @return int
-	     */
-	    public function sort($a, $b) {
-	    	$arguments = $this->arguments;
-	    	array_unshift($arguments, $a, $b);
-	        return call_user_func_array($this->callback, $arguments);
-	    }
+		/**
+		 * Proxy to the sorter callback responsible for passing additional parameters.
+		 *
+		 * @param mixed $a First value to compare.
+		 * @param mixed $b Second value to compare.
+		 * @return int
+		 */
+		public function sort($a, $b) {
+			$arguments = $this->arguments;
+			array_unshift($arguments, $a, $b);
+			return call_user_func_array($this->callback, $arguments);
+		}
 	}
 
 	/**
@@ -177,8 +177,8 @@ if (!function_exists('ky_usort_comparison')) {
 	 * @return callback
 	 */
 	function ky_usort_comparison($callback, $arguments) {
-	    $usorter = new kyUsort($callback, $arguments);
-	    return array($usorter, "sort");
+		$usorter = new kyUsort($callback, $arguments);
+		return array($usorter, "sort");
 	}
 }
 

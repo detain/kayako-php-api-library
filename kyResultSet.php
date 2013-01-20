@@ -140,41 +140,41 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	/**
 	 * ArrayAccess implementation.
 	 */
-    public function offsetExists($offset) {
-    	return in_array($offset, $this->object_keys);
-    }
+	public function offsetExists($offset) {
+		return in_array($offset, $this->object_keys);
+	}
 
 	/**
 	 * ArrayAccess implementation.
 	 */
-    public function offsetGet($offset) {
-    	if (!in_array($offset, $this->object_keys))
-    		return null;
+	public function offsetGet($offset) {
+		if (!in_array($offset, $this->object_keys))
+			return null;
 
-    	return $this->objects[$offset];
-    }
-
-	/**
-	 * ArrayAccess implementation.
-	 */
-    public function offsetSet($offset, $value) {
-    	if (!is_object($value) || (strlen($this->class_name) > 0 && get_class($value) !== $this->class_name))
-    		throw new DomainException(sprintf('The result set can only hold objects of type "%s"', $this->class_name));
-
-    	$this->objects[$offset] = $value;
-    	$this->object_keys = array_keys($this->objects);
-    }
+		return $this->objects[$offset];
+	}
 
 	/**
 	 * ArrayAccess implementation.
 	 */
-    public function offsetUnset($offset) {
-    	if (!in_array($offset, $this->object_keys))
-    		return;
+	public function offsetSet($offset, $value) {
+		if (!is_object($value) || (strlen($this->class_name) > 0 && get_class($value) !== $this->class_name))
+			throw new DomainException(sprintf('The result set can only hold objects of type "%s"', $this->class_name));
 
-    	unset($this->objects[$offset]);
-    	$this->object_keys = array_keys($this->objects);
-    }
+		$this->objects[$offset] = $value;
+		$this->object_keys = array_keys($this->objects);
+	}
+
+	/**
+	 * ArrayAccess implementation.
+	 */
+	public function offsetUnset($offset) {
+		if (!in_array($offset, $this->object_keys))
+			return;
+
+		unset($this->objects[$offset]);
+		$this->object_keys = array_keys($this->objects);
+	}
 
 	/**
 	 * Returns PHP array of objects from this result set.

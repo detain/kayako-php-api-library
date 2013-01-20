@@ -43,10 +43,10 @@ class kyConfig {
 	private $date_format = 'Y-m-d';
 
 	/**
-     * Request URL construction type.
-     * True for standard URL (ex. http://example.domain.com/api/index.php?/Module/Controller/Action&parameter=1&).
-     * False to use "e" parameter in URL (ex. http://example.domain.com/api/index.php?e=/Module/Controller/Action&parameter=1&).
-     * @see http://wiki.kayako.com/display/DEV/Kayako+REST+API#KayakoRESTAPI-RequestURLtype
+	 * Request URL construction type.
+	 * True for standard URL (ex. http://example.domain.com/api/index.php?/Module/Controller/Action&parameter=1&).
+	 * False to use "e" parameter in URL (ex. http://example.domain.com/api/index.php?e=/Module/Controller/Action&parameter=1&).
+	 * @see http://wiki.kayako.com/display/DEV/Kayako+REST+API#KayakoRESTAPI-RequestURLtype
 	 * @var bool
 	 */
 	private $is_standard_url_type = true;
@@ -250,8 +250,8 @@ class kyConfig {
 
 	/**
 	 * Returns request URL construction type.
-     * Returns True for standard URL and False to use "e" parameter in URL.
-     * @see http://wiki.kayako.com/display/DEV/Kayako+REST+API#KayakoRESTAPI-RequestURLtype
+	 * Returns True for standard URL and False to use "e" parameter in URL.
+	 * @see http://wiki.kayako.com/display/DEV/Kayako+REST+API#KayakoRESTAPI-RequestURLtype
 	 *
 	 * @return bool
 	 */
@@ -262,9 +262,9 @@ class kyConfig {
 	/**
 	 * Sets request URL construction type.
 	 * True for standard URL (ex. http://example.domain.com/api/index.php?/Module/Controller/Action&parameter=1&).
-     * False to use "e" parameter in URL (ex. http://example.domain.com/api/index.php?e=/Module/Controller/Action&parameter=1&).
-     * @see http://wiki.kayako.com/display/DEV/Kayako+REST+API#KayakoRESTAPI-RequestURLtype
-     *
+	 * False to use "e" parameter in URL (ex. http://example.domain.com/api/index.php?e=/Module/Controller/Action&parameter=1&).
+	 * @see http://wiki.kayako.com/display/DEV/Kayako+REST+API#KayakoRESTAPI-RequestURLtype
+	 *
 	 * @param bool $is_standard_url_type True for standard URL. False to use "e" parameter in URL.
 	 * @return kyConfig
 	 */
