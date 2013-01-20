@@ -133,6 +133,53 @@ abstract class kyObjectBase {
 		return array();
 	}
 
+    /**
+     * Adds numeric field to object data array only if its value is proper number.
+     *
+     * @param array $data Data used to create or update the object.
+     * @param string $field_name Field name.
+     * @param mixed $field_value Field value.
+     */
+    protected function buildDataNumeric(&$data, $field_name, $field_value) {
+        if (is_numeric($field_value))
+            $data[$field_name] = $field_value;
+    }
+
+    /**
+     * Adds string field to object data array only if its value is non-empty.
+     *
+     * @param array $data Data used to create or update the object.
+     * @param string $field_name Field name.
+     * @param mixed $field_value Field value.
+     */
+    protected function buildDataString(&$data, $field_name, $field_value) {
+        if (strlen($field_value) > 0)
+            $data[$field_name] = $field_value;
+    }
+
+    /**
+     * Adds boolean field to object data array only if its value is non-empty.
+     *
+     * @param array $data Data used to create or update the object.
+     * @param string $field_name Field name.
+     * @param mixed $field_value Field value.
+     */
+    protected function buildDataBool(&$data, $field_name, $field_value) {
+        if ($field_value !== null)
+            $data[$field_name] = $field_value ? 1 : 0;
+    }
+
+    /**
+     * Adds array field to object data array only if its value is proper array and is non-empty.
+     *
+     * @param array $data Data used to create or update the object.
+     * @param string $field_name Field name.
+     * @param mixed $field_value Field value.
+     */
+    protected function buildDataList(&$data, $field_name, $field_value) {
+        if (is_array($field_value) && count($field_value) > 0)
+            $data[$field_name] = implode(',', $field_value);
+    }
 
 	/**
 	 * Returns whether the object is new and not yet saved on the server.
