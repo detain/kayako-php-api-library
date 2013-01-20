@@ -1863,7 +1863,7 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * 						'total_unresolved_items' => <total amount of unresolved tickets of this type in this department>,
 	 * 					),
 	 * 					...,
-	 * 					'unknown' => array(  //in Kayako 4.01.204 all ticket types will be unknown beacuse of a bug (http://dev.kayako.com/browse/SWIFT-1465)
+	 * 					'unknown' => array(  //in Kayako 4.01.204 all ticket types will be unknown because of a bug (http://dev.kayako.com/browse/SWIFT-1465)
 	 * 						...
 	 * 					)
 	 * 				)
