@@ -630,8 +630,7 @@ if ($render === 'custom_fields') {
 					break;
 
 					case kyCustomFieldDefinition::TYPE_RADIO:
-						//this won't save properly (see http://dev.kayako.com/browse/SWIFT-2390)
-?>
+
 						<div class="field"><span class="name"><?=$field_title?></span>
 						<span class="description<?=$field_required ? ' required' : ''?><?=!$form_valid && $field_valid !== true ? ' error' : ''?>"><?=!$form_valid && is_string($field_valid) ? $field_valid : $field_description?></span>
 <?php
@@ -656,7 +655,6 @@ if ($render === 'custom_fields') {
 					break;
 
 					case kyCustomFieldDefinition::TYPE_SELECT:
-						//this won't save properly (see http://dev.kayako.com/browse/SWIFT-2390)
 ?>
 						<label><span class="name"><?=$field_title?></span>
 						<select id="<?=$field_name?>" name="<?=$field_name?>">
@@ -681,7 +679,6 @@ if ($render === 'custom_fields') {
 					break;
 
 					case kyCustomFieldDefinition::TYPE_LINKED_SELECT:
-						//this won't save properly (see http://dev.kayako.com/browse/SWIFT-2390)
 ?>
 						<label><span class="name"><?=$field_title?></span>
 						<select id="<?=$field_name?>" name="<?=$field_name?>">
@@ -716,7 +713,6 @@ if ($render === 'custom_fields') {
 					break;
 
 					case kyCustomFieldDefinition::TYPE_CHECKBOX:
-						//this won't save properly (see http://dev.kayako.com/browse/SWIFT-2390)
 ?>
 						<div class="field"><span class="name"><?=$field_title?></span>
 						<span class="description<?=$field_required ? ' required' : ''?><?=!$form_valid && $field_valid !== true ? ' error' : ''?>"><?=!$form_valid && is_string($field_valid) ? $field_valid : $field_description?></span>
@@ -741,7 +737,6 @@ if ($render === 'custom_fields') {
 					break;
 
 					case kyCustomFieldDefinition::TYPE_MULTI_SELECT:
-						//this won't save properly (see http://dev.kayako.com/browse/SWIFT-2390)
 ?>
 						<label><span class="name"><?=$field_title?></span>
 						<select id="<?=$field_name?>" name="<?=$field_name?>[]" multiple>
@@ -776,7 +771,6 @@ if ($render === 'custom_fields') {
 					break;
 
 					case kyCustomFieldDefinition::TYPE_FILE:
-						//this won't save properly (see http://dev.kayako.com/browse/SWIFT-2390)
 ?>
 						<label><span class="name"><?=$field_title?></span>
 							<input type="file" id="<?=$field_name?>" name="<?=$field_name?>">
