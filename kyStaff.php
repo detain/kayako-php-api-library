@@ -522,4 +522,16 @@ class kyStaff extends kyObjectBase {
 	public function newTicket(kyDepartment $department, $contents, $subject) {
 		return kyTicket::createNew($department, $this, $contents, $subject);
 	}
+
+	/**
+	 * Creates a news item with this staff user as the author.
+	 * WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.
+	 *
+	 * @param string $subject Subject of news item.
+	 * @param string $contents Contents of news item.
+	 * @return kyNewsItem
+	 */
+	public function newNewsItem($subject, $contents) {
+		return kyNewsItem::createNew($subject, $contents, $this);
+	}
 }

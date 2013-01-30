@@ -118,6 +118,10 @@
 <li class="method public "><a href="#toString" title="toString :: Should return short (one line) description of the object (it's title, name, etc.)."><span class="description">Should return short (one line) description of the object (it's title, name, etc.).</span><pre>toString()</pre></a></li>
 <li class="method public inherited"><a href="#update" title="update :: Updates the object on the server and refreshes its local data."><span class="description">Updates the object on the server and refreshes its local data.</span><pre>update()</pre></a></li>
 <li class="nav-header protected">» Protected</li>
+<li class="method protected inherited"><a href="#buildDataBool" title="buildDataBool :: Adds boolean field to object data array only if its value is non-empty."><span class="description">Adds boolean field to object data array only if its value is non-empty.</span><pre>buildDataBool()</pre></a></li>
+<li class="method protected inherited"><a href="#buildDataList" title="buildDataList :: Adds array field to object data array only if its value is proper array and is non-empty."><span class="description">Adds array field to object data array only if its value is proper array and is non-empty.</span><pre>buildDataList()</pre></a></li>
+<li class="method protected inherited"><a href="#buildDataNumeric" title="buildDataNumeric :: Adds numeric field to object data array only if its value is proper number."><span class="description">Adds numeric field to object data array only if its value is proper number.</span><pre>buildDataNumeric()</pre></a></li>
+<li class="method protected inherited"><a href="#buildDataString" title="buildDataString :: Adds string field to object data array only if its value is non-empty."><span class="description">Adds string field to object data array only if its value is non-empty.</span><pre>buildDataString()</pre></a></li>
 <li class="method protected inherited"><a href="#getRESTClient" title="getRESTClient :: Returns REST client."><span class="description">Returns REST client.</span><pre>getRESTClient()</pre></a></li>
 <li class="method protected "><a href="#parseData" title="parseData :: Should use passed data to fill object properties."><span class="description">Should use passed data to fill object properties.</span><pre>parseData()</pre></a></li>
 <li class="nav-header private">» Private</li>
@@ -1323,6 +1327,94 @@ email, full name, phone, organization name and user group.</p></p>
 <div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
 </div></div>
 </div>
+<a name="buildDataBool" id="buildDataBool"></a><div class="element clickable method protected buildDataBool" data-toggle="collapse" data-target=".buildDataBool .collapse">
+<h2>Adds boolean field to object data array only if its value is non-empty.</h2>
+<pre>buildDataBool(array $data, string $field_name, mixed $field_value) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::buildDataBool()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>Data used to create or update the object.</p></div>
+<div class="subelement argument">
+<h4>$field_name</h4>
+<code>string</code><p>Field name.</p></div>
+<div class="subelement argument">
+<h4>$field_value</h4>
+<code>mixed</code><p>Field value.</p></div>
+</div></div>
+</div>
+<a name="buildDataList" id="buildDataList"></a><div class="element clickable method protected buildDataList" data-toggle="collapse" data-target=".buildDataList .collapse">
+<h2>Adds array field to object data array only if its value is proper array and is non-empty.</h2>
+<pre>buildDataList(array $data, string $field_name, mixed $field_value) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::buildDataList()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>Data used to create or update the object.</p></div>
+<div class="subelement argument">
+<h4>$field_name</h4>
+<code>string</code><p>Field name.</p></div>
+<div class="subelement argument">
+<h4>$field_value</h4>
+<code>mixed</code><p>Field value.</p></div>
+</div></div>
+</div>
+<a name="buildDataNumeric" id="buildDataNumeric"></a><div class="element clickable method protected buildDataNumeric" data-toggle="collapse" data-target=".buildDataNumeric .collapse">
+<h2>Adds numeric field to object data array only if its value is proper number.</h2>
+<pre>buildDataNumeric(array $data, string $field_name, mixed $field_value) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::buildDataNumeric()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>Data used to create or update the object.</p></div>
+<div class="subelement argument">
+<h4>$field_name</h4>
+<code>string</code><p>Field name.</p></div>
+<div class="subelement argument">
+<h4>$field_value</h4>
+<code>mixed</code><p>Field value.</p></div>
+</div></div>
+</div>
+<a name="buildDataString" id="buildDataString"></a><div class="element clickable method protected buildDataString" data-toggle="collapse" data-target=".buildDataString .collapse">
+<h2>Adds string field to object data array only if its value is non-empty.</h2>
+<pre>buildDataString(array $data, string $field_name, mixed $field_value) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::buildDataString()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>Data used to create or update the object.</p></div>
+<div class="subelement argument">
+<h4>$field_name</h4>
+<code>string</code><p>Field name.</p></div>
+<div class="subelement argument">
+<h4>$field_value</h4>
+<code>mixed</code><p>Field value.</p></div>
+</div></div>
+</div>
 <a name="getRESTClient" id="getRESTClient"></a><div class="element clickable method protected getRESTClient" data-toggle="collapse" data-target=".getRESTClient .collapse">
 <h2>Returns REST client.</h2>
 <pre>getRESTClient() : <a href="../classes/kyRESTClientInterface.html">\kyRESTClientInterface</a></pre>
@@ -1358,7 +1450,7 @@ email, full name, phone, organization name and user group.</p></p>
 <table class="table table-bordered">
 <tr>
 <th>apiField</th>
-<td>[name=field name] [accessor=setter/getter name] [getter=getter name] [setter=setter name] [required_create=true if field if required when creating object] [required_update=true if field if required when udpating object] [required=true if field if required when creating or updating object]
+<td>[name=field name]{0,1} [alias=field name alias]* [accessor=setter/getter name]{0,1} [getter=getter name]{0,1} [setter=setter name]{0,1} [required_create=true if field if required when creating object]{0,1} [required_update=true if field if required when udpating object]{0,1} [required=true if field if required when creating or updating object]{0,1}
 and builds API field list with property name, description, setter and getter method names, and required flags.</td>
 </tr>
 <tr>

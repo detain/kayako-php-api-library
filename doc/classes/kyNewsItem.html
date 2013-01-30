@@ -1,0 +1,2076 @@
+<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>Kayako PHP API Library » \kyNewsItem</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">Kayako PHP API Library</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Common.html"><i class="icon-folder-open"></i> Common</a></li>
+<li><a href="../packages/Object.html"><i class="icon-folder-open"></i> Object</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods</li>
+<li class="method public "><a href="#IsExpired" title="IsExpired :: Returns whether this news item is expired."><span class="description">Returns whether this news item is expired.</span><pre>IsExpired()</pre></a></li>
+<li class="method public inherited"><a href="#__construct" title="__construct :: Default constructor."><span class="description">Default constructor.</span><pre>__construct()</pre></a></li>
+<li class="method public inherited"><a href="#__get" title="__get :: Returns API field value."><span class="description">Returns API field value.</span><pre>__get()</pre></a></li>
+<li class="method public inherited"><a href="#__set" title="__set :: Sets API field value."><span class="description">Sets API field value.</span><pre>__set()</pre></a></li>
+<li class="method public inherited"><a href="#__toString" title="__toString :: Returns object description with it's type and identifier."><span class="description">Returns object description with it's type and identifier.</span><pre>__toString()</pre></a></li>
+<li class="method public "><a href="#addCategory" title="addCategory :: Adds category to the list of this news item categories."><span class="description">Adds category to the list of this news item categories.</span><pre>addCategory()</pre></a></li>
+<li class="method public "><a href="#addStaffGroup" title="addStaffGroup :: Add staff group to the list of groups that this news item will be visible to."><span class="description">Add staff group to the list of groups that this news item will be visible to.</span><pre>addStaffGroup()</pre></a></li>
+<li class="method public "><a href="#addUserGroup" title="addUserGroup :: Add user group to the list of groups that this news item will be visible to."><span class="description">Add user group to the list of groups that this news item will be visible to.</span><pre>addUserGroup()</pre></a></li>
+<li class="method public "><a href="#buildData" title="buildData :: Should build the array of object data for creating or updating the object."><span class="description">Should build the array of object data for creating or updating the object.</span><pre>buildData()</pre></a></li>
+<li class="method public inherited"><a href="#checkRequiredAPIFields" title="checkRequiredAPIFields :: Checks wheter this object has all required fields set."><span class="description">Checks wheter this object has all required fields set.</span><pre>checkRequiredAPIFields()</pre></a></li>
+<li class="method public inherited"><a href="#create" title="create :: Creates an object on the server and refreshes its local data."><span class="description">Creates an object on the server and refreshes its local data.</span><pre>create()</pre></a></li>
+<li class="method public "><a href="#createNew" title="createNew :: Creates a news item."><span class="description">Creates a news item.</span><pre>createNew()</pre></a></li>
+<li class="method public inherited"><a href="#delete" title="delete :: Deletes the object on the server."><span class="description">Deletes the object on the server.</span><pre>delete()</pre></a></li>
+<li class="method public inherited"><a href="#get" title="get :: Fetches the object from server."><span class="description">Fetches the object from server.</span><pre>get()</pre></a></li>
+<li class="method public inherited"><a href="#getAPIFields" title="getAPIFields :: Returns array of API fields."><span class="description">Returns array of API fields.</span><pre>getAPIFields()</pre></a></li>
+<li class="method public "><a href="#getAll" title="getAll :: Fetches objects from server."><span class="description">Fetches objects from server.</span><pre>getAll()</pre></a></li>
+<li class="method public "><a href="#getAllowComments" title="getAllowComments :: Returns whether clients are permitted to comment on this news item."><span class="description">Returns whether clients are permitted to comment on this news item.</span><pre>getAllowComments()</pre></a></li>
+<li class="method public "><a href="#getAuthor" title="getAuthor :: Returns full name of author."><span class="description">Returns full name of author.</span><pre>getAuthor()</pre></a></li>
+<li class="method public "><a href="#getAuthorEmail" title="getAuthorEmail :: Returns email of author."><span class="description">Returns email of author.</span><pre>getAuthorEmail()</pre></a></li>
+<li class="method public inherited"><a href="#getAvailableFilterMethods" title="getAvailableFilterMethods :: Returns list of available filter methods for use in result sets with objects of this type."><span class="description">Returns list of available filter methods for use in result sets with objects of this type.</span><pre>getAvailableFilterMethods()</pre></a></li>
+<li class="method public inherited"><a href="#getAvailableOrderMethods" title="getAvailableOrderMethods :: Returns list of available order methods for use in result sets with objects of this type."><span class="description">Returns list of available order methods for use in result sets with objects of this type.</span><pre>getAvailableOrderMethods()</pre></a></li>
+<li class="method public "><a href="#getCategories" title="getCategories :: Returns categories of this news item."><span class="description">Returns categories of this news item.</span><pre>getCategories()</pre></a></li>
+<li class="method public "><a href="#getCategoryIds" title="getCategoryIds :: Returns identifiers of categories of this news item."><span class="description">Returns identifiers of categories of this news item.</span><pre>getCategoryIds()</pre></a></li>
+<li class="method public "><a href="#getContents" title="getContents :: Returns contents of the news item."><span class="description">Returns contents of the news item.</span><pre>getContents()</pre></a></li>
+<li class="method public inherited"><a href="#getController" title="getController :: Returns object controller."><span class="description">Returns object controller.</span><pre>getController()</pre></a></li>
+<li class="method public "><a href="#getDateline" title="getDateline :: Returns date and time when the news item was created."><span class="description">Returns date and time when the news item was created.</span><pre>getDateline()</pre></a></li>
+<li class="method public "><a href="#getEmailSubject" title="getEmailSubject :: Returns subject of notification email."><span class="description">Returns subject of notification email.</span><pre>getEmailSubject()</pre></a></li>
+<li class="method public "><a href="#getExpiry" title="getExpiry :: Returns expiration date of the user or null when expiration is disabled."><span class="description">Returns expiration date of the user or null when expiration is disabled.</span><pre>getExpiry()</pre></a></li>
+<li class="method public "><a href="#getId" title="getId :: Should return object identifier or complete list of identifiers as needed by API to identify the object (ex."><span class="description">Should return object identifier or complete list of identifiers as needed by API to identify the object (ex.</span><pre>getId()</pre></a></li>
+<li class="method public "><a href="#getIsSynced" title="getIsSynced :: Returns whether this news item was downloaded (synchronised) from external RSS feed."><span class="description">Returns whether this news item was downloaded (synchronised) from external RSS feed.</span><pre>getIsSynced()</pre></a></li>
+<li class="method public inherited"><a href="#getRequiredAPIFields" title="getRequiredAPIFields :: Returns list of required API fields for objects of this class."><span class="description">Returns list of required API fields for objects of this class.</span><pre>getRequiredAPIFields()</pre></a></li>
+<li class="method public "><a href="#getStaff" title="getStaff :: Gets the staff user, the creator of this news item."><span class="description">Gets the staff user, the creator of this news item.</span><pre>getStaff()</pre></a></li>
+<li class="method public "><a href="#getStaffGroupIds" title="getStaffGroupIds :: Returns identifiers of staff groups that this news item will be visible to."><span class="description">Returns identifiers of staff groups that this news item will be visible to.</span><pre>getStaffGroupIds()</pre></a></li>
+<li class="method public "><a href="#getStaffGroups" title="getStaffGroups :: Returns staff groups that this news item will be visible to."><span class="description">Returns staff groups that this news item will be visible to.</span><pre>getStaffGroups()</pre></a></li>
+<li class="method public "><a href="#getStaffId" title="getStaffId :: Returns identifier of staff user, the creator of this news item."><span class="description">Returns identifier of staff user, the creator of this news item.</span><pre>getStaffId()</pre></a></li>
+<li class="method public "><a href="#getStaffVisibilityCustom" title="getStaffVisibilityCustom :: Returns true to indicate that visibility of this news item is restricted to particular staff groups."><span class="description">Returns true to indicate that visibility of this news item is restricted to particular staff groups.</span><pre>getStaffVisibilityCustom()</pre></a></li>
+<li class="method public "><a href="#getStatus" title="getStatus :: Returns status of the news item."><span class="description">Returns status of the news item.</span><pre>getStatus()</pre></a></li>
+<li class="method public "><a href="#getSubject" title="getSubject :: Returns subject of the news item."><span class="description">Returns subject of the news item.</span><pre>getSubject()</pre></a></li>
+<li class="method public "><a href="#getTotalComments" title="getTotalComments :: Returns total count of comments on this news item."><span class="description">Returns total count of comments on this news item.</span><pre>getTotalComments()</pre></a></li>
+<li class="method public "><a href="#getType" title="getType :: Return type of the news item."><span class="description">Return type of the news item.</span><pre>getType()</pre></a></li>
+<li class="method public "><a href="#getUserGroupIds" title="getUserGroupIds :: Returns identifiers of user groups that this news item will be visible to."><span class="description">Returns identifiers of user groups that this news item will be visible to.</span><pre>getUserGroupIds()</pre></a></li>
+<li class="method public "><a href="#getUserGroups" title="getUserGroups :: Returns user groups that this news item will be visible to."><span class="description">Returns user groups that this news item will be visible to.</span><pre>getUserGroups()</pre></a></li>
+<li class="method public "><a href="#getUserVisibilityCustom" title="getUserVisibilityCustom :: Returns true to indicate that visibility of this news item is restricted to particular user groups."><span class="description">Returns true to indicate that visibility of this news item is restricted to particular user groups.</span><pre>getUserVisibilityCustom()</pre></a></li>
+<li class="method public "><a href="#isInCategory" title="isInCategory :: Returns whether this news is in specified category."><span class="description">Returns whether this news is in specified category.</span><pre>isInCategory()</pre></a></li>
+<li class="method public inherited"><a href="#isNew" title="isNew :: Returns whether the object is new and not yet saved on the server."><span class="description">Returns whether the object is new and not yet saved on the server.</span><pre>isNew()</pre></a></li>
+<li class="method public inherited"><a href="#isReadOnly" title="isReadOnly :: Returns whether this object is read only."><span class="description">Returns whether this object is read only.</span><pre>isReadOnly()</pre></a></li>
+<li class="method public "><a href="#isVisibleToStaffGroup" title="isVisibleToStaffGroup :: Returns whether this news item is visible to specified staff group."><span class="description">Returns whether this news item is visible to specified staff group.</span><pre>isVisibleToStaffGroup()</pre></a></li>
+<li class="method public "><a href="#isVisibleToUserGroup" title="isVisibleToUserGroup :: Returns whether this news item is visible to specified user group."><span class="description">Returns whether this news item is visible to specified user group.</span><pre>isVisibleToUserGroup()</pre></a></li>
+<li class="method public inherited"><a href="#refresh" title="refresh :: Refreshes the object data from server."><span class="description">Refreshes the object data from server.</span><pre>refresh()</pre></a></li>
+<li class="method public inherited"><a href="#save" title="save :: Saves (creates or updates) the object to the server."><span class="description">Saves (creates or updates) the object to the server.</span><pre>save()</pre></a></li>
+<li class="method public "><a href="#setAllowComments" title="setAllowComments :: Sets whether clients are permitted to comment on this news item."><span class="description">Sets whether clients are permitted to comment on this news item.</span><pre>setAllowComments()</pre></a></li>
+<li class="method public "><a href="#setCategoryIds" title="setCategoryIds :: Sets categories (using their identifiers) for this news item."><span class="description">Sets categories (using their identifiers) for this news item.</span><pre>setCategoryIds()</pre></a></li>
+<li class="method public "><a href="#setContents" title="setContents :: Sets contents of the news item."><span class="description">Sets contents of the news item.</span><pre>setContents()</pre></a></li>
+<li class="method public "><a href="#setEditedStaff" title="setEditedStaff :: Sets staff user, the editor of this news item update."><span class="description">Sets staff user, the editor of this news item update.</span><pre>setEditedStaff()</pre></a></li>
+<li class="method public "><a href="#setEditedStaffId" title="setEditedStaffId :: Sets identifier of staff user, the editor of this news item update."><span class="description">Sets identifier of staff user, the editor of this news item update.</span><pre>setEditedStaffId()</pre></a></li>
+<li class="method public "><a href="#setEmail" title="setEmail :: Sets address of notification email sender."><span class="description">Sets address of notification email sender.</span><pre>setEmail()</pre></a></li>
+<li class="method public "><a href="#setEmailSubject" title="setEmailSubject :: Sets subject of notification email."><span class="description">Sets subject of notification email.</span><pre>setEmailSubject()</pre></a></li>
+<li class="method public "><a href="#setExpiry" title="setExpiry :: Sets expiration date of the news item."><span class="description">Sets expiration date of the news item.</span><pre>setExpiry()</pre></a></li>
+<li class="method public "><a href="#setFromName" title="setFromName :: Sets name of notification email sender."><span class="description">Sets name of notification email sender.</span><pre>setFromName()</pre></a></li>
+<li class="method public inherited"><a href="#setReadOnly" title="setReadOnly :: Sets whether this object is read only."><span class="description">Sets whether this object is read only.</span><pre>setReadOnly()</pre></a></li>
+<li class="method public "><a href="#setSendEmail" title="setSendEmail :: Sets whether to send notification email to subscribers when creating or updating this news item."><span class="description">Sets whether to send notification email to subscribers when creating or updating this news item.</span><pre>setSendEmail()</pre></a></li>
+<li class="method public "><a href="#setStaff" title="setStaff :: Sets staff user, the creator of this news item."><span class="description">Sets staff user, the creator of this news item.</span><pre>setStaff()</pre></a></li>
+<li class="method public "><a href="#setStaffGroupIds" title="setStaffGroupIds :: Sets staff groups (using their identifiers) that this news item will be visible to."><span class="description">Sets staff groups (using their identifiers) that this news item will be visible to.</span><pre>setStaffGroupIds()</pre></a></li>
+<li class="method public "><a href="#setStaffId" title="setStaffId :: Sets identifier of staff user, the creator of this news item."><span class="description">Sets identifier of staff user, the creator of this news item.</span><pre>setStaffId()</pre></a></li>
+<li class="method public "><a href="#setStaffVisibilityCustom" title="setStaffVisibilityCustom :: Sets wheter to restrict visibility of this news item to particular staff groups."><span class="description">Sets wheter to restrict visibility of this news item to particular staff groups.</span><pre>setStaffVisibilityCustom()</pre></a></li>
+<li class="method public "><a href="#setStatus" title="setStatus :: Sets status of the news item."><span class="description">Sets status of the news item.</span><pre>setStatus()</pre></a></li>
+<li class="method public "><a href="#setSubject" title="setSubject :: Sets subject of the news item."><span class="description">Sets subject of the news item.</span><pre>setSubject()</pre></a></li>
+<li class="method public "><a href="#setType" title="setType :: Sets type of the news item."><span class="description">Sets type of the news item.</span><pre>setType()</pre></a></li>
+<li class="method public "><a href="#setUserGroupIds" title="setUserGroupIds :: Sets user groups (using their identifiers) that this news item will be visible to."><span class="description">Sets user groups (using their identifiers) that this news item will be visible to.</span><pre>setUserGroupIds()</pre></a></li>
+<li class="method public "><a href="#setUserVisibilityCustom" title="setUserVisibilityCustom :: Sets wheter to restrict visibility of this news item to particular user groups."><span class="description">Sets wheter to restrict visibility of this news item to particular user groups.</span><pre>setUserVisibilityCustom()</pre></a></li>
+<li class="method public "><a href="#toString" title="toString :: Should return short (one line) description of the object (it's title, name, etc.)."><span class="description">Should return short (one line) description of the object (it's title, name, etc.).</span><pre>toString()</pre></a></li>
+<li class="method public inherited"><a href="#update" title="update :: Updates the object on the server and refreshes its local data."><span class="description">Updates the object on the server and refreshes its local data.</span><pre>update()</pre></a></li>
+<li class="nav-header protected">» Protected</li>
+<li class="method protected inherited"><a href="#buildDataBool" title="buildDataBool :: Adds boolean field to object data array only if its value is non-empty."><span class="description">Adds boolean field to object data array only if its value is non-empty.</span><pre>buildDataBool()</pre></a></li>
+<li class="method protected inherited"><a href="#buildDataList" title="buildDataList :: Adds array field to object data array only if its value is proper array and is non-empty."><span class="description">Adds array field to object data array only if its value is proper array and is non-empty.</span><pre>buildDataList()</pre></a></li>
+<li class="method protected inherited"><a href="#buildDataNumeric" title="buildDataNumeric :: Adds numeric field to object data array only if its value is proper number."><span class="description">Adds numeric field to object data array only if its value is proper number.</span><pre>buildDataNumeric()</pre></a></li>
+<li class="method protected inherited"><a href="#buildDataString" title="buildDataString :: Adds string field to object data array only if its value is non-empty."><span class="description">Adds string field to object data array only if its value is non-empty.</span><pre>buildDataString()</pre></a></li>
+<li class="method protected inherited"><a href="#getRESTClient" title="getRESTClient :: Returns REST client."><span class="description">Returns REST client.</span><pre>getRESTClient()</pre></a></li>
+<li class="method protected "><a href="#parseData" title="parseData :: Should use passed data to fill object properties."><span class="description">Should use passed data to fill object properties.</span><pre>parseData()</pre></a></li>
+<li class="nav-header private">» Private</li>
+<li class="method private inherited"><a href="#initAPIFieldsAccessors" title="initAPIFieldsAccessors :: Builds API fields list."><span class="description">Builds API fields list.</span><pre>initAPIFieldsAccessors()</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties</li>
+<li class="nav-header protected">» Protected</li>
+<li class="property protected inherited"><a href="#%24_filter_methods" title="$_filter_methods :: Cache for available filter methods."><span class="description">Cache for available filter methods.</span><pre>$_filter_methods</pre></a></li>
+<li class="property protected inherited"><a href="#%24_order_methods" title="$_order_methods :: Cache for available order methods."><span class="description">Cache for available order methods.</span><pre>$_order_methods</pre></a></li>
+<li class="property protected "><a href="#%24allow_comments" title="$allow_comments :: Whether to allow comments."><span class="description">Whether to allow comments.</span><pre>$allow_comments</pre></a></li>
+<li class="property protected "><a href="#%24author" title="$author :: Author's fullname."><span class="description">Author's fullname.</span><pre>$author</pre></a></li>
+<li class="property protected "><a href="#%24author_email" title="$author_email :: Author's email."><span class="description">Author's email.</span><pre>$author_email</pre></a></li>
+<li class="property protected "><a href="#%24category_ids" title="$category_ids :: Identifiers of news categories this news item belongs to."><span class="description">Identifiers of news categories this news item belongs to.</span><pre>$category_ids</pre></a></li>
+<li class="property protected "><a href="#%24contents" title="$contents :: News item contents."><span class="description">News item contents.</span><pre>$contents</pre></a></li>
+<li class="property protected "><a href="#%24controller" title="$controller :: Default Kayako controller used to operate on this objects."><span class="description">Default Kayako controller used to operate on this objects.</span><pre>$controller</pre></a></li>
+<li class="property protected "><a href="#%24dateline" title="$dateline :: Timestamp of when the news item was created."><span class="description">Timestamp of when the news item was created.</span><pre>$dateline</pre></a></li>
+<li class="property protected "><a href="#%24edited_staff_id" title="$edited_staff_id :: Editor (staff) identifier."><span class="description">Editor (staff) identifier.</span><pre>$edited_staff_id</pre></a></li>
+<li class="property protected "><a href="#%24email" title="$email :: Address of email notification sender."><span class="description">Address of email notification sender.</span><pre>$email</pre></a></li>
+<li class="property protected "><a href="#%24email_subject" title="$email_subject :: Email subject."><span class="description">Email subject.</span><pre>$email_subject</pre></a></li>
+<li class="property protected "><a href="#%24expiry" title="$expiry :: Timestamp of when this news item will expire."><span class="description">Timestamp of when this news item will expire.</span><pre>$expiry</pre></a></li>
+<li class="property protected "><a href="#%24from_name" title="$from_name :: Name of email notification sender."><span class="description">Name of email notification sender.</span><pre>$from_name</pre></a></li>
+<li class="property protected "><a href="#%24id" title="$id :: News item identifier."><span class="description">News item identifier.</span><pre>$id</pre></a></li>
+<li class="property protected "><a href="#%24is_synced" title="$is_synced :: Whether this news item was downloaded (synchronised) from external RSS feed."><span class="description">Whether this news item was downloaded (synchronised) from external RSS feed.</span><pre>$is_synced</pre></a></li>
+<li class="property protected "><a href="#%24object_xml_name" title="$object_xml_name :: Indicates the name of object element in XML response."><span class="description">Indicates the name of object element in XML response.</span><pre>$object_xml_name</pre></a></li>
+<li class="property protected inherited"><a href="#%24read_only" title="$read_only :: Controls if the object can be created/updated/deleted."><span class="description">Controls if the object can be created/updated/deleted.</span><pre>$read_only</pre></a></li>
+<li class="property protected "><a href="#%24send_email" title="$send_email :: Whether to send email."><span class="description">Whether to send email.</span><pre>$send_email</pre></a></li>
+<li class="property protected "><a href="#%24staff_group_ids" title="$staff_group_ids :: User group identifiers this news item is visible to."><span class="description">User group identifiers this news item is visible to.</span><pre>$staff_group_ids</pre></a></li>
+<li class="property protected "><a href="#%24staff_id" title="$staff_id :: Creator (staff) identifier."><span class="description">Creator (staff) identifier.</span><pre>$staff_id</pre></a></li>
+<li class="property protected "><a href="#%24staff_visibility_custom" title="$staff_visibility_custom :: If this news item is visible to specific staff groups only."><span class="description">If this news item is visible to specific staff groups only.</span><pre>$staff_visibility_custom</pre></a></li>
+<li class="property protected "><a href="#%24status" title="$status :: News item status."><span class="description">News item status.</span><pre>$status</pre></a></li>
+<li class="property protected "><a href="#%24subject" title="$subject :: News item subject."><span class="description">News item subject.</span><pre>$subject</pre></a></li>
+<li class="property protected "><a href="#%24total_comments" title="$total_comments :: Total count of news item comments."><span class="description">Total count of news item comments.</span><pre>$total_comments</pre></a></li>
+<li class="property protected "><a href="#%24type" title="$type :: News item type."><span class="description">News item type.</span><pre>$type</pre></a></li>
+<li class="property protected "><a href="#%24user_group_ids" title="$user_group_ids :: User group identifiers this news item is visible to."><span class="description">User group identifiers this news item is visible to.</span><pre>$user_group_ids</pre></a></li>
+<li class="property protected "><a href="#%24user_visibility_custom" title="$user_visibility_custom :: If this news item is visible to specific user groups only."><span class="description">If this news item is visible to specific user groups only.</span><pre>$user_visibility_custom</pre></a></li>
+<li class="nav-header private">» Private</li>
+<li class="property private inherited"><a href="#%24_api_fields" title="$_api_fields :: Cache for API fields."><span class="description">Cache for API fields.</span><pre>$_api_fields</pre></a></li>
+<li class="property private "><a href="#%24categories" title="$categories :: News categories this news item belongs to."><span class="description">News categories this news item belongs to.</span><pre>$categories</pre></a></li>
+<li class="property private "><a href="#%24edited_staff" title="$edited_staff :: Editor (staff)."><span class="description">Editor (staff).</span><pre>$edited_staff</pre></a></li>
+<li class="property private "><a href="#%24staff" title="$staff :: Creator (staff)."><span class="description">Creator (staff).</span><pre>$staff</pre></a></li>
+<li class="property private "><a href="#%24staff_groups" title="$staff_groups :: User groups this news item is visible to."><span class="description">User groups this news item is visible to.</span><pre>$staff_groups</pre></a></li>
+<li class="property private "><a href="#%24user_groups" title="$user_groups :: User groups this news item is visible to."><span class="description">User groups this news item is visible to.</span><pre>$user_groups</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-constant"></i> Constants</li>
+<li class="constant  inherited"><a href="#FILES_DATA_NAME" title="FILES_DATA_NAME :: Data key for storing files to send as multipart/form-data."><span class="description">Data key for storing files to send as multipart/form-data.</span><pre>FILES_DATA_NAME</pre></a></li>
+<li class="constant  "><a href="#STATUS_DRAFT" title="STATUS_DRAFT :: News status - Draft."><span class="description">News status - Draft.</span><pre>STATUS_DRAFT</pre></a></li>
+<li class="constant  "><a href="#STATUS_PUBLISHED" title="STATUS_PUBLISHED :: News status - Published."><span class="description">News status - Published.</span><pre>STATUS_PUBLISHED</pre></a></li>
+<li class="constant  "><a href="#TYPE_GLOBAL" title="TYPE_GLOBAL :: News type - Global."><span class="description">News type - Global.</span><pre>TYPE_GLOBAL</pre></a></li>
+<li class="constant  "><a href="#TYPE_PRIVATE" title="TYPE_PRIVATE :: News type - Private."><span class="description">News type - Private.</span><pre>TYPE_PRIVATE</pre></a></li>
+<li class="constant  "><a href="#TYPE_PUBLIC" title="TYPE_PUBLIC :: News type - Public."><span class="description">News type - Public.</span><pre>TYPE_PUBLIC</pre></a></li>
+</ul>
+</div>
+<div class="span8">
+<a name="%5CkyNewsItem" id="\kyNewsItem"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/kyNewsItem.html">kyNewsItem</a>
+</li>
+</ul>
+<div href="../classes/kyNewsItem.html" class="element class">
+<p class="short_description">Kayako NewsItem object.</p>
+<div class="details">
+<p class="long_description"><p>Known issues:
+- could not create NewsItem with PUBLIC and PRIVATE type (http://dev.kayako.com/browse/SWIFT-3108)
+- fields customemailsubject and fromname are ignored (http://dev.kayako.com/browse/SWIFT-3111)</p></p>
+<table class="table table-bordered">
+<tr>
+<th>author</th>
+<td><a href="">Tomasz Sawicki (https://github.com/Furgas)</a></td>
+</tr>
+<tr>
+<th>link</th>
+<td><a href="http://wiki.kayako.com/display/DEV/REST+-+NewsItem">http://wiki.kayako.com/display/DEV/REST+-+NewsItem</a></td>
+</tr>
+<tr>
+<th>since</th>
+<td>Kayako version 4.51.1891</td>
+</tr>
+<tr>
+<th>package</th>
+<td><a href="../packages/Object.News.html">Object\News</a></td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a name="IsExpired" id="IsExpired"></a><div class="element clickable method public IsExpired" data-toggle="collapse" data-target=".IsExpired .collapse">
+<h2>Returns whether this news item is expired.</h2>
+<pre>IsExpired() : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>filterBy</th>
+<td>name=IsExpired</td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td>name=IsExpired</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="__construct" id="__construct"></a><div class="element clickable method public __construct" data-toggle="collapse" data-target=".__construct .collapse">
+<h2>Default constructor.</h2>
+<pre>__construct(array $data) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::__construct()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>Object data from XML response converted into array.</p></div>
+</div></div>
+</div>
+<a name="__get" id="__get"></a><div class="element clickable method public __get" data-toggle="collapse" data-target=".__get .collapse">
+<h2>Returns API field value.</h2>
+<pre>__get(string $api_field_name) : mixed</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Returns API field value based on API field name used by Kayako.</p></p>
+<table class="table table-bordered">
+<tr>
+<th>link</th>
+<td><a href="http://wiki.kayako.com/display/DEV/REST+API+Reference">http://wiki.kayako.com/display/DEV/REST+API+Reference</a></td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::__get()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$api_field_name</h4>
+<code>string</code><p>API field name.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="__set" id="__set"></a><div class="element clickable method public __set" data-toggle="collapse" data-target=".__set .collapse">
+<h2>Sets API field value.</h2>
+<pre>__set(string $api_field_name, mixed $value) : mixed</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Sets API field value based on API field name used by Kayako.</p></p>
+<table class="table table-bordered">
+<tr>
+<th>link</th>
+<td><a href="http://wiki.kayako.com/display/DEV/REST+API+Reference">http://wiki.kayako.com/display/DEV/REST+API+Reference</a></td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::__set()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$api_field_name</h4>
+<code>string</code><p>API field name.</p></div>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>mixed</code><p>API field value.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="__toString" id="__toString"></a><div class="element clickable method public __toString" data-toggle="collapse" data-target=".__toString .collapse">
+<h2>Returns object description with it's type and identifier.</h2>
+<pre>__toString() : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Calls toString() method to get the object description.</p></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::__toString()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="addCategory" id="addCategory"></a><div class="element clickable method public addCategory" data-toggle="collapse" data-target=".addCategory .collapse">
+<h2>Adds category to the list of this news item categories.</h2>
+<pre>addCategory(\kyNewsCategory $category, bool $clear) : <a href="../classes/kyNewsItem.html">\kyNewsItem</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$category</h4>
+<code><a href="../classes/kyNewsCategory.html">\kyNewsCategory</a></code><p>News category.</p></div>
+<div class="subelement argument">
+<h4>$clear</h4>
+<code>bool</code><p>Clear the list before adding.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyNewsItem.html">\kyNewsItem</a></code></div>
+</div></div>
+</div>
+<a name="addStaffGroup" id="addStaffGroup"></a><div class="element clickable method public addStaffGroup" data-toggle="collapse" data-target=".addStaffGroup .collapse">
+<h2>Add staff group to the list of groups that this news item will be visible to.</h2>
+<pre>addStaffGroup(\kyStaffGroup $staff_group, bool $clear) : <a href="../classes/kyNewsItem.html">\kyNewsItem</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Automatically sets custom staff visibility flag to True.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$staff_group</h4>
+<code><a href="../classes/kyStaffGroup.html">\kyStaffGroup</a></code><p>Staff group that this news item will be visible to.</p></div>
+<div class="subelement argument">
+<h4>$clear</h4>
+<code>bool</code><p>Clear the list before adding.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyNewsItem.html">\kyNewsItem</a></code></div>
+</div></div>
+</div>
+<a name="addUserGroup" id="addUserGroup"></a><div class="element clickable method public addUserGroup" data-toggle="collapse" data-target=".addUserGroup .collapse">
+<h2>Add user group to the list of groups that this news item will be visible to.</h2>
+<pre>addUserGroup(\kyUserGroup $user_group, bool $clear) : <a href="../classes/kyNewsItem.html">\kyNewsItem</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Automatically sets custom user visibility flag to True.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$user_group</h4>
+<code><a href="../classes/kyUserGroup.html">\kyUserGroup</a></code><p>User group that this news item will be visible to.</p></div>
+<div class="subelement argument">
+<h4>$clear</h4>
+<code>bool</code><p>Clear the list before adding.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyNewsItem.html">\kyNewsItem</a></code></div>
+</div></div>
+</div>
+<a name="buildData" id="buildData"></a><div class="element clickable method public buildData" data-toggle="collapse" data-target=".buildData .collapse">
+<h2>Should build the array of object data for creating or updating the object.</h2>
+<pre>buildData(bool $create) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Values must be set in format accepted by REST API.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$create</h4>
+<code>bool</code><p>Indicates if the result will be used to create (true) or update (false) an object.</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a name="checkRequiredAPIFields" id="checkRequiredAPIFields"></a><div class="element clickable method public checkRequiredAPIFields" data-toggle="collapse" data-target=".checkRequiredAPIFields .collapse">
+<h2>Checks wheter this object has all required fields set.</h2>
+<pre>checkRequiredAPIFields(bool $create, bool $throw_exception) : string[] | bool</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::checkRequiredAPIFields()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$create</h4>
+<code>bool</code><p>True when object will be created. False when object will be updated.</p></div>
+<div class="subelement argument">
+<h4>$throw_exception</h4>
+<code>bool</code><p>True to throw an exception on missing fields. False to return list of missing fields or true when there are none.</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/kyException.html">\kyException</a></code></th>
+<td>When there are missing field values and $throw_exception is true.</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string[]</code><code>bool</code>List of missing API fields or true when there are none.</div>
+</div></div>
+</div>
+<a name="create" id="create"></a><div class="element clickable method public create" data-toggle="collapse" data-target=".create .collapse">
+<h2>Creates an object on the server and refreshes its local data.</h2>
+<pre>create() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::create()</td>
+</tr></table>
+<h3>Exceptions</h3>
+<table class="table table-bordered">
+<tr>
+<th><code><a href="http://php.net/manual/en/class.badmethodcallexception.php">\BadMethodCallException</a></code></th>
+<td></td>
+</tr>
+<tr>
+<th><code><a href="../classes/kyException.html">\kyException</a></code></th>
+<td></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
+</div></div>
+</div>
+<a name="createNew" id="createNew"></a><div class="element clickable method public createNew" data-toggle="collapse" data-target=".createNew .collapse">
+<h2>Creates a news item.</h2>
+<pre>createNew(string $subject, string $contents, \kyStaff $staff) : <a href="../classes/kyNewsItem.html">\kyNewsItem</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$subject</h4>
+<code>string</code><p>Subject of news item.</p></div>
+<div class="subelement argument">
+<h4>$contents</h4>
+<code>string</code><p>Contents of news item.</p></div>
+<div class="subelement argument">
+<h4>$staff</h4>
+<code><a href="../classes/kyStaff.html">\kyStaff</a></code><p>Author (staff) of news item.</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyNewsItem.html">\kyNewsItem</a></code></div>
+</div></div>
+</div>
+<a name="delete" id="delete"></a><div class="element clickable method public delete" data-toggle="collapse" data-target=".delete .collapse">
+<h2>Deletes the object on the server.</h2>
+<pre>delete() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::delete()</td>
+</tr></table>
+</div></div>
+</div>
+<a name="get" id="get"></a><div class="element clickable method public get" data-toggle="collapse" data-target=".get .collapse">
+<h2>Fetches the object from server.</h2>
+<pre>get(int | array $id) : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::get()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$id</h4>
+<code>int</code><code>array</code><p>Object identifier or list of identifiers (ex. ticket identifier and ticket post identifier when fetching TicketPost).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
+</div></div>
+</div>
+<a name="getAPIFields" id="getAPIFields"></a><div class="element clickable method public getAPIFields" data-toggle="collapse" data-target=".getAPIFields .collapse">
+<h2>Returns array of API fields.</h2>
+<pre>getAPIFields() : string[]</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Format of returned array:</p>
+
+<pre>
+array(
+    '<api field name>' => Field description. (getter: <getter name>, setter: <setter name>),
+    ...repeat...
+)
+</pre></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::getAPIFields()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string[]</code></div>
+</div></div>
+</div>
+<a name="getAll" id="getAll"></a><div class="element clickable method public getAll" data-toggle="collapse" data-target=".getAll .collapse">
+<h2>Fetches objects from server.</h2>
+<pre>getAll($category) : <a href="../classes/kyResultSet.html">\kyResultSet</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$category</h4></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyResultSet.html">\kyResultSet</a></code></div>
+</div></div>
+</div>
+<a name="getAllowComments" id="getAllowComments"></a><div class="element clickable method public getAllowComments" data-toggle="collapse" data-target=".getAllowComments .collapse">
+<h2>Returns whether clients are permitted to comment on this news item.</h2>
+<pre>getAllowComments() : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>filterBy</th>
+<td></td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="getAuthor" id="getAuthor"></a><div class="element clickable method public getAuthor" data-toggle="collapse" data-target=".getAuthor .collapse">
+<h2>Returns full name of author.</h2>
+<pre>getAuthor() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>filterBy</th>
+<td></td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getAuthorEmail" id="getAuthorEmail"></a><div class="element clickable method public getAuthorEmail" data-toggle="collapse" data-target=".getAuthorEmail .collapse">
+<h2>Returns email of author.</h2>
+<pre>getAuthorEmail() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>filterBy</th>
+<td></td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getAvailableFilterMethods" id="getAvailableFilterMethods"></a><div class="element clickable method public getAvailableFilterMethods" data-toggle="collapse" data-target=".getAvailableFilterMethods .collapse">
+<h2>Returns list of available filter methods for use in result sets with objects of this type.</h2>
+<pre>getAvailableFilterMethods(bool $filter_names_only) : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Optionaly you can return get method names used to filter objects.</p></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::getAvailableFilterMethods()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$filter_names_only</h4>
+<code>bool</code><p>True (default) to return array('filterByXXX', 'filterByYYY', ...). False to return array('filterByXXX' => 'getXXX', 'filterByYYY' => 'YYY', ...).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a name="getAvailableOrderMethods" id="getAvailableOrderMethods"></a><div class="element clickable method public getAvailableOrderMethods" data-toggle="collapse" data-target=".getAvailableOrderMethods .collapse">
+<h2>Returns list of available order methods for use in result sets with objects of this type.</h2>
+<pre>getAvailableOrderMethods(bool $order_names_only) : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Optionaly you can return get method names used to order objects.</p></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::getAvailableOrderMethods()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$order_names_only</h4>
+<code>bool</code><p>True (default) to return array('orderByXXX', 'orderByYYY', ...). False to return array('orderByXXX' => 'getXXX', 'orderByYYY' => 'YYY', ...).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a name="getCategories" id="getCategories"></a><div class="element clickable method public getCategories" data-toggle="collapse" data-target=".getCategories .collapse">
+<h2>Returns categories of this news item.</h2>
+<pre>getCategories(bool $reload) : <a href="../classes/kyResultSet.html">\kyResultSet</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Result is cached until the end of script.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$reload</h4>
+<code>bool</code><p>True to reload data from server. False to use the cached value (if present).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyResultSet.html">\kyResultSet</a></code></div>
+</div></div>
+</div>
+<a name="getCategoryIds" id="getCategoryIds"></a><div class="element clickable method public getCategoryIds" data-toggle="collapse" data-target=".getCategoryIds .collapse">
+<h2>Returns identifiers of categories of this news item.</h2>
+<pre>getCategoryIds() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>filterBy</th>
+<td>name=CategoryId</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a name="getContents" id="getContents"></a><div class="element clickable method public getContents" data-toggle="collapse" data-target=".getContents .collapse">
+<h2>Returns contents of the news item.</h2>
+<pre>getContents() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>filterBy</th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getController" id="getController"></a><div class="element clickable method public getController" data-toggle="collapse" data-target=".getController .collapse">
+<h2>Returns object controller.</h2>
+<pre>getController() : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::getController()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getDateline" id="getDateline"></a><div class="element clickable method public getDateline" data-toggle="collapse" data-target=".getDateline .collapse">
+<h2>Returns date and time when the news item was created.</h2>
+<pre>getDateline(string $format) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>see</th>
+<td>\global\http://www.php.net/manual/en/function.date.php</td>
+</tr>
+<tr>
+<th>filterBy</th>
+<td></td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$format</h4>
+<code>string</code><p>Output format of the date. If null the format set in client configuration is used.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getEmailSubject" id="getEmailSubject"></a><div class="element clickable method public getEmailSubject" data-toggle="collapse" data-target=".getEmailSubject .collapse">
+<h2>Returns subject of notification email.</h2>
+<pre>getEmailSubject() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>filterBy</th>
+<td></td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getExpiry" id="getExpiry"></a><div class="element clickable method public getExpiry" data-toggle="collapse" data-target=".getExpiry .collapse">
+<h2>Returns expiration date of the user or null when expiration is disabled.</h2>
+<pre>getExpiry(string $format) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>see</th>
+<td>\global\http://www.php.net/manual/en/function.date.php</td>
+</tr>
+<tr>
+<th>filterBy</th>
+<td></td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$format</h4>
+<code>string</code><p>Output format of the date. If null the format set in client configuration is used.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getId" id="getId"></a><div class="element clickable method public getId" data-toggle="collapse" data-target=".getId .collapse">
+<h2>Should return object identifier or complete list of identifiers as needed by API to identify the object (ex.</h2>
+<pre>getId(bool $complete) : int | array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>ticket identifier and ticket post identifier in case of TicketPost).</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$complete</h4>
+<code>bool</code><p>True to return complete list of identifiers as needed by API to identify the object.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>int</code><code>array</code>
+</div>
+</div></div>
+</div>
+<a name="getIsSynced" id="getIsSynced"></a><div class="element clickable method public getIsSynced" data-toggle="collapse" data-target=".getIsSynced .collapse">
+<h2>Returns whether this news item was downloaded (synchronised) from external RSS feed.</h2>
+<pre>getIsSynced() : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>filterBy</th>
+<td></td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="getRequiredAPIFields" id="getRequiredAPIFields"></a><div class="element clickable method public getRequiredAPIFields" data-toggle="collapse" data-target=".getRequiredAPIFields .collapse">
+<h2>Returns list of required API fields for objects of this class.</h2>
+<pre>getRequiredAPIFields(bool $create) : string[]</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::getRequiredAPIFields()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$create</h4>
+<code>bool</code><p>True when object will be created. False when object will be updated.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string[]</code></div>
+</div></div>
+</div>
+<a name="getStaff" id="getStaff"></a><div class="element clickable method public getStaff" data-toggle="collapse" data-target=".getStaff .collapse">
+<h2>Gets the staff user, the creator of this news item.</h2>
+<pre>getStaff(bool $reload) : <a href="../classes/kyStaff.html">\kyStaff</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$reload</h4>
+<code>bool</code><p>True to reload data from server. False to use the cached value (if present).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyStaff.html">\kyStaff</a></code></div>
+</div></div>
+</div>
+<a name="getStaffGroupIds" id="getStaffGroupIds"></a><div class="element clickable method public getStaffGroupIds" data-toggle="collapse" data-target=".getStaffGroupIds .collapse">
+<h2>Returns identifiers of staff groups that this news item will be visible to.</h2>
+<pre>getStaffGroupIds() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>filterBy</th>
+<td>name=StaffGroupId</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a name="getStaffGroups" id="getStaffGroups"></a><div class="element clickable method public getStaffGroups" data-toggle="collapse" data-target=".getStaffGroups .collapse">
+<h2>Returns staff groups that this news item will be visible to.</h2>
+<pre>getStaffGroups(bool $reload) : <a href="../classes/kyResultSet.html">\kyResultSet</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Result is cached until the end of script.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$reload</h4>
+<code>bool</code><p>True to reload data from server. False to use the cached value (if present).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyResultSet.html">\kyResultSet</a></code></div>
+</div></div>
+</div>
+<a name="getStaffId" id="getStaffId"></a><div class="element clickable method public getStaffId" data-toggle="collapse" data-target=".getStaffId .collapse">
+<h2>Returns identifier of staff user, the creator of this news item.</h2>
+<pre>getStaffId() : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>filterBy</th>
+<td></td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>int</code></div>
+</div></div>
+</div>
+<a name="getStaffVisibilityCustom" id="getStaffVisibilityCustom"></a><div class="element clickable method public getStaffVisibilityCustom" data-toggle="collapse" data-target=".getStaffVisibilityCustom .collapse">
+<h2>Returns true to indicate that visibility of this news item is restricted to particular staff groups.</h2>
+<pre>getStaffVisibilityCustom() : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Use getStaffGroupIds to get their identifiers or getStaffGroups to get the objects.</p></p>
+<table class="table table-bordered"><tr>
+<th>filterBy</th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="getStatus" id="getStatus"></a><div class="element clickable method public getStatus" data-toggle="collapse" data-target=".getStatus .collapse">
+<h2>Returns status of the news item.</h2>
+<pre>getStatus() : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>see</th>
+<td>\global\kyNewsItem::STATUS</td>
+</tr>
+<tr>
+<th>filterBy</th>
+<td></td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>int</code></div>
+</div></div>
+</div>
+<a name="getSubject" id="getSubject"></a><div class="element clickable method public getSubject" data-toggle="collapse" data-target=".getSubject .collapse">
+<h2>Returns subject of the news item.</h2>
+<pre>getSubject() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>filterBy</th>
+<td></td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getTotalComments" id="getTotalComments"></a><div class="element clickable method public getTotalComments" data-toggle="collapse" data-target=".getTotalComments .collapse">
+<h2>Returns total count of comments on this news item.</h2>
+<pre>getTotalComments() : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>filterBy</th>
+<td></td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>int</code></div>
+</div></div>
+</div>
+<a name="getType" id="getType"></a><div class="element clickable method public getType" data-toggle="collapse" data-target=".getType .collapse">
+<h2>Return type of the news item.</h2>
+<pre>getType() : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>see</th>
+<td>\global\kyNewsItem::TYPE</td>
+</tr>
+<tr>
+<th>filterBy</th>
+<td></td>
+</tr>
+<tr>
+<th>orderBy</th>
+<td></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>int</code></div>
+</div></div>
+</div>
+<a name="getUserGroupIds" id="getUserGroupIds"></a><div class="element clickable method public getUserGroupIds" data-toggle="collapse" data-target=".getUserGroupIds .collapse">
+<h2>Returns identifiers of user groups that this news item will be visible to.</h2>
+<pre>getUserGroupIds() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>filterBy</th>
+<td>name=UserGroupId</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a name="getUserGroups" id="getUserGroups"></a><div class="element clickable method public getUserGroups" data-toggle="collapse" data-target=".getUserGroups .collapse">
+<h2>Returns user groups that this news item will be visible to.</h2>
+<pre>getUserGroups(bool $reload) : <a href="../classes/kyResultSet.html">\kyResultSet</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Result is cached until the end of script.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$reload</h4>
+<code>bool</code><p>True to reload data from server. False to use the cached value (if present).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyResultSet.html">\kyResultSet</a></code></div>
+</div></div>
+</div>
+<a name="getUserVisibilityCustom" id="getUserVisibilityCustom"></a><div class="element clickable method public getUserVisibilityCustom" data-toggle="collapse" data-target=".getUserVisibilityCustom .collapse">
+<h2>Returns true to indicate that visibility of this news item is restricted to particular user groups.</h2>
+<pre>getUserVisibilityCustom() : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Use getUserGroupIds to get their identifiers or getUserGroups to get the objects.</p></p>
+<table class="table table-bordered"><tr>
+<th>filterBy</th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="isInCategory" id="isInCategory"></a><div class="element clickable method public isInCategory" data-toggle="collapse" data-target=".isInCategory .collapse">
+<h2>Returns whether this news is in specified category.</h2>
+<pre>isInCategory(<a href="../classes/kyNewsCategory.html">\kyNewsCategory</a> | int $category) : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>filterBy</th>
+<td></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$category</h4>
+<code><a href="../classes/kyNewsCategory.html">\kyNewsCategory</a></code><code>int</code><p>News category or its identifier.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="isNew" id="isNew"></a><div class="element clickable method public isNew" data-toggle="collapse" data-target=".isNew .collapse">
+<h2>Returns whether the object is new and not yet saved on the server.</h2>
+<pre>isNew() : bool</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::isNew()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="isReadOnly" id="isReadOnly"></a><div class="element clickable method public isReadOnly" data-toggle="collapse" data-target=".isReadOnly .collapse">
+<h2>Returns whether this object is read only.</h2>
+<pre>isReadOnly() : bool</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::isReadOnly()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="isVisibleToStaffGroup" id="isVisibleToStaffGroup"></a><div class="element clickable method public isVisibleToStaffGroup" data-toggle="collapse" data-target=".isVisibleToStaffGroup .collapse">
+<h2>Returns whether this news item is visible to specified staff group.</h2>
+<pre>isVisibleToStaffGroup(<a href="../classes/kyStaffGroup.html">\kyStaffGroup</a> | int $staff_group, bool $check_expiration) : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>filterBy</th>
+<td></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$staff_group</h4>
+<code><a href="../classes/kyStaffGroup.html">\kyStaffGroup</a></code><code>int</code><p>Staff group or its identifier.</p></div>
+<div class="subelement argument">
+<h4>$check_expiration</h4>
+<code>bool</code><p>Whether to also check if news item is expired.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="isVisibleToUserGroup" id="isVisibleToUserGroup"></a><div class="element clickable method public isVisibleToUserGroup" data-toggle="collapse" data-target=".isVisibleToUserGroup .collapse">
+<h2>Returns whether this news item is visible to specified user group.</h2>
+<pre>isVisibleToUserGroup(<a href="../classes/kyUserGroup.html">\kyUserGroup</a> | int $user_group, bool $check_expiration) : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>filterBy</th>
+<td></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$user_group</h4>
+<code><a href="../classes/kyUserGroup.html">\kyUserGroup</a></code><code>int</code><p>User group or its identifier.</p></div>
+<div class="subelement argument">
+<h4>$check_expiration</h4>
+<code>bool</code><p>Whether to also check if news item is expired.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="refresh" id="refresh"></a><div class="element clickable method public refresh" data-toggle="collapse" data-target=".refresh .collapse">
+<h2>Refreshes the object data from server.</h2>
+<pre>refresh() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::refresh()</td>
+</tr></table>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.badmethodcallexception.php">\BadMethodCallException</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
+</div></div>
+</div>
+<a name="save" id="save"></a><div class="element clickable method public save" data-toggle="collapse" data-target=".save .collapse">
+<h2>Saves (creates or updates) the object to the server.</h2>
+<pre>save() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::save()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
+</div></div>
+</div>
+<a name="setAllowComments" id="setAllowComments"></a><div class="element clickable method public setAllowComments" data-toggle="collapse" data-target=".setAllowComments .collapse">
+<h2>Sets whether clients are permitted to comment on this news item.</h2>
+<pre>setAllowComments(bool $allow_comments) : <a href="../classes/kyNewsItem.html">\kyNewsItem</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$allow_comments</h4>
+<code>bool</code><p>True to allow clients to comment on this news item.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyNewsItem.html">\kyNewsItem</a></code></div>
+</div></div>
+</div>
+<a name="setCategoryIds" id="setCategoryIds"></a><div class="element clickable method public setCategoryIds" data-toggle="collapse" data-target=".setCategoryIds .collapse">
+<h2>Sets categories (using their identifiers) for this news item.</h2>
+<pre>setCategoryIds(int[] $category_ids) : <a href="../classes/kyNewsItem.html">\kyNewsItem</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$category_ids</h4>
+<code>int[]</code><p>Identifiers of categories for this news item.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyNewsItem.html">\kyNewsItem</a></code></div>
+</div></div>
+</div>
+<a name="setContents" id="setContents"></a><div class="element clickable method public setContents" data-toggle="collapse" data-target=".setContents .collapse">
+<h2>Sets contents of the news item.</h2>
+<pre>setContents(string $contents) : <a href="../classes/kyNewsItem.html">\kyNewsItem</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$contents</h4>
+<code>string</code><p>Contents of the news item.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyNewsItem.html">\kyNewsItem</a></code></div>
+</div></div>
+</div>
+<a name="setEditedStaff" id="setEditedStaff"></a><div class="element clickable method public setEditedStaff" data-toggle="collapse" data-target=".setEditedStaff .collapse">
+<h2>Sets staff user, the editor of this news item update.</h2>
+<pre>setEditedStaff(<a href="../classes/kyStaff.html">\kyStaff</a> $staff) : <a href="../classes/kyNewsItem.html">\kyNewsItem</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$staff</h4>
+<code><a href="../classes/kyStaff.html">\kyStaff</a></code><p>Staff user.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyNewsItem.html">\kyNewsItem</a></code></div>
+</div></div>
+</div>
+<a name="setEditedStaffId" id="setEditedStaffId"></a><div class="element clickable method public setEditedStaffId" data-toggle="collapse" data-target=".setEditedStaffId .collapse">
+<h2>Sets identifier of staff user, the editor of this news item update.</h2>
+<pre>setEditedStaffId(int $staff_id) : <a href="../classes/kyNewsItem.html">\kyNewsItem</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$staff_id</h4>
+<code>int</code><p>Staff user identifier.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyNewsItem.html">\kyNewsItem</a></code></div>
+</div></div>
+</div>
+<a name="setEmail" id="setEmail"></a><div class="element clickable method public setEmail" data-toggle="collapse" data-target=".setEmail .collapse">
+<h2>Sets address of notification email sender.</h2>
+<pre>setEmail(string $email) : <a href="../classes/kyNewsItem.html">\kyNewsItem</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$email</h4>
+<code>string</code><p>The From Email address that will be used for the emails sent out to subscribers. Please note that this may be the address users reply back to (if they reply to the news article email).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyNewsItem.html">\kyNewsItem</a></code></div>
+</div></div>
+</div>
+<a name="setEmailSubject" id="setEmailSubject"></a><div class="element clickable method public setEmailSubject" data-toggle="collapse" data-target=".setEmailSubject .collapse">
+<h2>Sets subject of notification email.</h2>
+<pre>setEmailSubject(string $email_subject) : <a href="../classes/kyNewsItem.html">\kyNewsItem</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td>\global\http://dev.kayako.com/browse/SWIFT-3111</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$email_subject</h4>
+<code>string</code><p>Subject for the mass email that will be send out to the subscribers for this news article. If no subject is specified, the subject of the news article will be used instead.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyNewsItem.html">\kyNewsItem</a></code></div>
+</div></div>
+</div>
+<a name="setExpiry" id="setExpiry"></a><div class="element clickable method public setExpiry" data-toggle="collapse" data-target=".setExpiry .collapse">
+<h2>Sets expiration date of the news item.</h2>
+<pre>setExpiry(string | int | null $expiry) : <a href="../classes/kyNewsItem.html">\kyNewsItem</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td>\global\http://www.php.net/manual/en/function.strtotime.php</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$expiry</h4>
+<code>string</code><code>int</code><code>null</code><p>Date and time when the news item will expire (timestamp or string format understood by PHP strtotime). Null to disable expiration.</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyNewsItem.html">\kyNewsItem</a></code></div>
+</div></div>
+</div>
+<a name="setFromName" id="setFromName"></a><div class="element clickable method public setFromName" data-toggle="collapse" data-target=".setFromName .collapse">
+<h2>Sets name of notification email sender.</h2>
+<pre>setFromName(string $from_name) : <a href="../classes/kyNewsItem.html">\kyNewsItem</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td>\global\http://dev.kayako.com/browse/SWIFT-3111</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$from_name</h4>
+<code>string</code><p>The From Name email header that will be used for the emails sent out to subscribers.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyNewsItem.html">\kyNewsItem</a></code></div>
+</div></div>
+</div>
+<a name="setReadOnly" id="setReadOnly"></a><div class="element clickable method public setReadOnly" data-toggle="collapse" data-target=".setReadOnly .collapse">
+<h2>Sets whether this object is read only.</h2>
+<pre>setReadOnly(bool $read_only) : bool</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::setReadOnly()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$read_only</h4>
+<code>bool</code><p>Read only flag.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="setSendEmail" id="setSendEmail"></a><div class="element clickable method public setSendEmail" data-toggle="collapse" data-target=".setSendEmail .collapse">
+<h2>Sets whether to send notification email to subscribers when creating or updating this news item.</h2>
+<pre>setSendEmail(bool $send_email) : <a href="../classes/kyNewsItem.html">\kyNewsItem</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$send_email</h4>
+<code>bool</code><p>True to send notification email to subscribers when creating or updating this news item. False otherwise.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyNewsItem.html">\kyNewsItem</a></code></div>
+</div></div>
+</div>
+<a name="setStaff" id="setStaff"></a><div class="element clickable method public setStaff" data-toggle="collapse" data-target=".setStaff .collapse">
+<h2>Sets staff user, the creator of this news item.</h2>
+<pre>setStaff(<a href="../classes/kyStaff.html">\kyStaff</a> $staff) : <a href="../classes/kyNewsItem.html">\kyNewsItem</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$staff</h4>
+<code><a href="../classes/kyStaff.html">\kyStaff</a></code><p>Staff user.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyNewsItem.html">\kyNewsItem</a></code></div>
+</div></div>
+</div>
+<a name="setStaffGroupIds" id="setStaffGroupIds"></a><div class="element clickable method public setStaffGroupIds" data-toggle="collapse" data-target=".setStaffGroupIds .collapse">
+<h2>Sets staff groups (using their identifiers) that this news item will be visible to.</h2>
+<pre>setStaffGroupIds(int[] $staff_group_ids) : <a href="../classes/kyNewsItem.html">\kyNewsItem</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$staff_group_ids</h4>
+<code>int[]</code><p>Identifiers of staff groups that this news item will be visible to.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyNewsItem.html">\kyNewsItem</a></code></div>
+</div></div>
+</div>
+<a name="setStaffId" id="setStaffId"></a><div class="element clickable method public setStaffId" data-toggle="collapse" data-target=".setStaffId .collapse">
+<h2>Sets identifier of staff user, the creator of this news item.</h2>
+<pre>setStaffId(int $staff_id) : <a href="../classes/kyNewsItem.html">\kyNewsItem</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$staff_id</h4>
+<code>int</code><p>Staff user identifier.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyNewsItem.html">\kyNewsItem</a></code></div>
+</div></div>
+</div>
+<a name="setStaffVisibilityCustom" id="setStaffVisibilityCustom"></a><div class="element clickable method public setStaffVisibilityCustom" data-toggle="collapse" data-target=".setStaffVisibilityCustom .collapse">
+<h2>Sets wheter to restrict visibility of this news item to particular staff groups.</h2>
+<pre>setStaffVisibilityCustom(bool $staff_visibility_custom) : <a href="../classes/kyNewsItem.html">\kyNewsItem</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Use setStaffGroupIds to set these groups using identifiers or addStaffGroup to set them using objects.
+Automatically clears staff groups when set to false.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$staff_visibility_custom</h4>
+<code>bool</code><p>True to restrict visibility of this news item to particular staff groups. False otherwise.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyNewsItem.html">\kyNewsItem</a></code></div>
+</div></div>
+</div>
+<a name="setStatus" id="setStatus"></a><div class="element clickable method public setStatus" data-toggle="collapse" data-target=".setStatus .collapse">
+<h2>Sets status of the news item.</h2>
+<pre>setStatus(int $status) : <a href="../classes/kyNewsItem.html">\kyNewsItem</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td>\global\kyNewsItem::STATUS</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$status</h4>
+<code>int</code><p>Status of the news item.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyNewsItem.html">\kyNewsItem</a></code></div>
+</div></div>
+</div>
+<a name="setSubject" id="setSubject"></a><div class="element clickable method public setSubject" data-toggle="collapse" data-target=".setSubject .collapse">
+<h2>Sets subject of the news item.</h2>
+<pre>setSubject(string $subject) : <a href="../classes/kyNewsItem.html">\kyNewsItem</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$subject</h4>
+<code>string</code><p>Subject of the news item.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyNewsItem.html">\kyNewsItem</a></code></div>
+</div></div>
+</div>
+<a name="setType" id="setType"></a><div class="element clickable method public setType" data-toggle="collapse" data-target=".setType .collapse">
+<h2>Sets type of the news item.</h2>
+<pre>setType(int $type) : <a href="../classes/kyNewsItem.html">\kyNewsItem</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>see</th>
+<td>\global\kyNewsItem::TYPE</td>
+</tr>
+<tr>
+<th>see</th>
+<td>\global\http://dev.kayako.com/browse/SWIFT-3108</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$type</h4>
+<code>int</code><p>Type of the news item.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyNewsItem.html">\kyNewsItem</a></code></div>
+</div></div>
+</div>
+<a name="setUserGroupIds" id="setUserGroupIds"></a><div class="element clickable method public setUserGroupIds" data-toggle="collapse" data-target=".setUserGroupIds .collapse">
+<h2>Sets user groups (using their identifiers) that this news item will be visible to.</h2>
+<pre>setUserGroupIds(int[] $user_group_ids) : <a href="../classes/kyNewsItem.html">\kyNewsItem</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$user_group_ids</h4>
+<code>int[]</code><p>Identifiers of user groups that this news item will be visible to.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyNewsItem.html">\kyNewsItem</a></code></div>
+</div></div>
+</div>
+<a name="setUserVisibilityCustom" id="setUserVisibilityCustom"></a><div class="element clickable method public setUserVisibilityCustom" data-toggle="collapse" data-target=".setUserVisibilityCustom .collapse">
+<h2>Sets wheter to restrict visibility of this news item to particular user groups.</h2>
+<pre>setUserVisibilityCustom(bool $user_visibility_custom) : <a href="../classes/kyNewsItem.html">\kyNewsItem</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Use setUserGroupIds to set these groups using identifiers or addUserGroup to set them using objects.
+Automatically clears user groups when set to false.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$user_visibility_custom</h4>
+<code>bool</code><p>True to restrict visibility of this news item to particular user groups. False otherwise.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyNewsItem.html">\kyNewsItem</a></code></div>
+</div></div>
+</div>
+<a name="toString" id="toString"></a><div class="element clickable method public toString" data-toggle="collapse" data-target=".toString .collapse">
+<h2>Should return short (one line) description of the object (it's title, name, etc.).</h2>
+<pre>toString() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="update" id="update"></a><div class="element clickable method public update" data-toggle="collapse" data-target=".update .collapse">
+<h2>Updates the object on the server and refreshes its local data.</h2>
+<pre>update() : <a href="../classes/kyObjectBase.html">\kyObjectBase</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::update()</td>
+</tr></table>
+<h3>Exceptions</h3>
+<table class="table table-bordered">
+<tr>
+<th><code><a href="http://php.net/manual/en/class.badmethodcallexception.php">\BadMethodCallException</a></code></th>
+<td></td>
+</tr>
+<tr>
+<th><code><a href="../classes/kyException.html">\kyException</a></code></th>
+<td></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
+</div></div>
+</div>
+<a name="buildDataBool" id="buildDataBool"></a><div class="element clickable method protected buildDataBool" data-toggle="collapse" data-target=".buildDataBool .collapse">
+<h2>Adds boolean field to object data array only if its value is non-empty.</h2>
+<pre>buildDataBool(array $data, string $field_name, mixed $field_value) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::buildDataBool()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>Data used to create or update the object.</p></div>
+<div class="subelement argument">
+<h4>$field_name</h4>
+<code>string</code><p>Field name.</p></div>
+<div class="subelement argument">
+<h4>$field_value</h4>
+<code>mixed</code><p>Field value.</p></div>
+</div></div>
+</div>
+<a name="buildDataList" id="buildDataList"></a><div class="element clickable method protected buildDataList" data-toggle="collapse" data-target=".buildDataList .collapse">
+<h2>Adds array field to object data array only if its value is proper array and is non-empty.</h2>
+<pre>buildDataList(array $data, string $field_name, mixed $field_value) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::buildDataList()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>Data used to create or update the object.</p></div>
+<div class="subelement argument">
+<h4>$field_name</h4>
+<code>string</code><p>Field name.</p></div>
+<div class="subelement argument">
+<h4>$field_value</h4>
+<code>mixed</code><p>Field value.</p></div>
+</div></div>
+</div>
+<a name="buildDataNumeric" id="buildDataNumeric"></a><div class="element clickable method protected buildDataNumeric" data-toggle="collapse" data-target=".buildDataNumeric .collapse">
+<h2>Adds numeric field to object data array only if its value is proper number.</h2>
+<pre>buildDataNumeric(array $data, string $field_name, mixed $field_value) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::buildDataNumeric()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>Data used to create or update the object.</p></div>
+<div class="subelement argument">
+<h4>$field_name</h4>
+<code>string</code><p>Field name.</p></div>
+<div class="subelement argument">
+<h4>$field_value</h4>
+<code>mixed</code><p>Field value.</p></div>
+</div></div>
+</div>
+<a name="buildDataString" id="buildDataString"></a><div class="element clickable method protected buildDataString" data-toggle="collapse" data-target=".buildDataString .collapse">
+<h2>Adds string field to object data array only if its value is non-empty.</h2>
+<pre>buildDataString(array $data, string $field_name, mixed $field_value) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::buildDataString()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>Data used to create or update the object.</p></div>
+<div class="subelement argument">
+<h4>$field_name</h4>
+<code>string</code><p>Field name.</p></div>
+<div class="subelement argument">
+<h4>$field_value</h4>
+<code>mixed</code><p>Field value.</p></div>
+</div></div>
+</div>
+<a name="getRESTClient" id="getRESTClient"></a><div class="element clickable method protected getRESTClient" data-toggle="collapse" data-target=".getRESTClient .collapse">
+<h2>Returns REST client.</h2>
+<pre>getRESTClient() : <a href="../classes/kyRESTClientInterface.html">\kyRESTClientInterface</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::getRESTClient()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyRESTClientInterface.html">\kyRESTClientInterface</a></code></div>
+</div></div>
+</div>
+<a name="parseData" id="parseData"></a><div class="element clickable method protected parseData" data-toggle="collapse" data-target=".parseData .collapse">
+<h2>Should use passed data to fill object properties.</h2>
+<pre>parseData(array $data) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>Object data from XML response.</p></div>
+</div></div>
+</div>
+<a name="initAPIFieldsAccessors" id="initAPIFieldsAccessors"></a><div class="element clickable method private initAPIFieldsAccessors" data-toggle="collapse" data-target=".initAPIFieldsAccessors .collapse">
+<h2>Builds API fields list.</h2>
+<pre>initAPIFieldsAccessors() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Scans protected and private properties of called class, searches for</p></p>
+<table class="table table-bordered">
+<tr>
+<th>apiField</th>
+<td>[name=field name]{0,1} [alias=field name alias]* [accessor=setter/getter name]{0,1} [getter=getter name]{0,1} [setter=setter name]{0,1} [required_create=true if field if required when creating object]{0,1} [required_update=true if field if required when udpating object]{0,1} [required=true if field if required when creating or updating object]{0,1}
+and builds API field list with property name, description, setter and getter method names, and required flags.</td>
+</tr>
+<tr>
+<th>see</th>
+<td>\global\kyObjectBase::$_api_fields</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::initAPIFieldsAccessors()</td>
+</tr>
+</table>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a name="%24_filter_methods" id="$_filter_methods"> </a><div class="element clickable property protected $_filter_methods" data-toggle="collapse" data-target=".$_filter_methods .collapse">
+<h2>Cache for available filter methods.</h2>
+<pre>$_filter_methods : string[]</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Format:
+array(
+ '<class name>' => array(
+        '<filter method name>' => '<get method name>',
+        ...repeat for every filtering enabled method...
+    ),
+    ...repeat for every object class...
+)</p></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::$$_filter_methods</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24_order_methods" id="$_order_methods"> </a><div class="element clickable property protected $_order_methods" data-toggle="collapse" data-target=".$_order_methods .collapse">
+<h2>Cache for available order methods.</h2>
+<pre>$_order_methods : string[]</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Format:
+array(
+ '<class name>' => array(
+        '<order method name>' => '<get method name>',
+        ...repeat for every ordering enabled method...
+    ),
+    ...repeat for every object class...
+)</p></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::$$_order_methods</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24allow_comments" id="$allow_comments"> </a><div class="element clickable property protected $allow_comments" data-toggle="collapse" data-target=".$allow_comments .collapse">
+<h2>Whether to allow comments.</h2>
+<pre>$allow_comments : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24author" id="$author"> </a><div class="element clickable property protected $author" data-toggle="collapse" data-target=".$author .collapse">
+<h2>Author's fullname.</h2>
+<pre>$author : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24author_email" id="$author_email"> </a><div class="element clickable property protected $author_email" data-toggle="collapse" data-target=".$author_email .collapse">
+<h2>Author's email.</h2>
+<pre>$author_email : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24category_ids" id="$category_ids"> </a><div class="element clickable property protected $category_ids" data-toggle="collapse" data-target=".$category_ids .collapse">
+<h2>Identifiers of news categories this news item belongs to.</h2>
+<pre>$category_ids : int[]</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td>name=categories</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24contents" id="$contents"> </a><div class="element clickable property protected $contents" data-toggle="collapse" data-target=".$contents .collapse">
+<h2>News item contents.</h2>
+<pre>$contents : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td>required=true</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24controller" id="$controller"> </a><div class="element clickable property protected $controller" data-toggle="collapse" data-target=".$controller .collapse">
+<h2>Default Kayako controller used to operate on this objects.</h2>
+<pre>$controller : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"><p>Override in descending classes.</p></p></div></div>
+</div>
+<a name="%24dateline" id="$dateline"> </a><div class="element clickable property protected $dateline" data-toggle="collapse" data-target=".$dateline .collapse">
+<h2>Timestamp of when the news item was created.</h2>
+<pre>$dateline : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24edited_staff_id" id="$edited_staff_id"> </a><div class="element clickable property protected $edited_staff_id" data-toggle="collapse" data-target=".$edited_staff_id .collapse">
+<h2>Editor (staff) identifier.</h2>
+<pre>$edited_staff_id : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td>required_update=true</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24email" id="$email"> </a><div class="element clickable property protected $email" data-toggle="collapse" data-target=".$email .collapse">
+<h2>Address of email notification sender.</h2>
+<pre>$email : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24email_subject" id="$email_subject"> </a><div class="element clickable property protected $email_subject" data-toggle="collapse" data-target=".$email_subject .collapse">
+<h2>Email subject.</h2>
+<pre>$email_subject : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td>alias=customemailsubject</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24expiry" id="$expiry"> </a><div class="element clickable property protected $expiry" data-toggle="collapse" data-target=".$expiry .collapse">
+<h2>Timestamp of when this news item will expire.</h2>
+<pre>$expiry : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24from_name" id="$from_name"> </a><div class="element clickable property protected $from_name" data-toggle="collapse" data-target=".$from_name .collapse">
+<h2>Name of email notification sender.</h2>
+<pre>$from_name : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24id" id="$id"> </a><div class="element clickable property protected $id" data-toggle="collapse" data-target=".$id .collapse">
+<h2>News item identifier.</h2>
+<pre>$id : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24is_synced" id="$is_synced"> </a><div class="element clickable property protected $is_synced" data-toggle="collapse" data-target=".$is_synced .collapse">
+<h2>Whether this news item was downloaded (synchronised) from external RSS feed.</h2>
+<pre>$is_synced : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24object_xml_name" id="$object_xml_name"> </a><div class="element clickable property protected $object_xml_name" data-toggle="collapse" data-target=".$object_xml_name .collapse">
+<h2>Indicates the name of object element in XML response.</h2>
+<pre>$object_xml_name : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"><p>Override in descending classes.</p></p></div></div>
+</div>
+<a name="%24read_only" id="$read_only"> </a><div class="element clickable property protected $read_only" data-toggle="collapse" data-target=".$read_only .collapse">
+<h2>Controls if the object can be created/updated/deleted.</h2>
+<pre>$read_only : bool</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Override in descending classes.</p></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::$$read_only</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24send_email" id="$send_email"> </a><div class="element clickable property protected $send_email" data-toggle="collapse" data-target=".$send_email .collapse">
+<h2>Whether to send email.</h2>
+<pre>$send_email : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24staff_group_ids" id="$staff_group_ids"> </a><div class="element clickable property protected $staff_group_ids" data-toggle="collapse" data-target=".$staff_group_ids .collapse">
+<h2>User group identifiers this news item is visible to.</h2>
+<pre>$staff_group_ids : int[]</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td>name=staffgroupidlist</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24staff_id" id="$staff_id"> </a><div class="element clickable property protected $staff_id" data-toggle="collapse" data-target=".$staff_id .collapse">
+<h2>Creator (staff) identifier.</h2>
+<pre>$staff_id : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td>required_create=true</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24staff_visibility_custom" id="$staff_visibility_custom"> </a><div class="element clickable property protected $staff_visibility_custom" data-toggle="collapse" data-target=".$staff_visibility_custom .collapse">
+<h2>If this news item is visible to specific staff groups only.</h2>
+<pre>$staff_visibility_custom : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>see</th>
+<td>\global\kyNewsItem::$staff_group_ids</td>
+</tr>
+<tr>
+<th>apiField</th>
+<td></td>
+</tr>
+</table>
+</div></div>
+</div>
+<a name="%24status" id="$status"> </a><div class="element clickable property protected $status" data-toggle="collapse" data-target=".$status .collapse">
+<h2>News item status.</h2>
+<pre>$status : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td>name=newsstatus</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24subject" id="$subject"> </a><div class="element clickable property protected $subject" data-toggle="collapse" data-target=".$subject .collapse">
+<h2>News item subject.</h2>
+<pre>$subject : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24total_comments" id="$total_comments"> </a><div class="element clickable property protected $total_comments" data-toggle="collapse" data-target=".$total_comments .collapse">
+<h2>Total count of news item comments.</h2>
+<pre>$total_comments : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24type" id="$type"> </a><div class="element clickable property protected $type" data-toggle="collapse" data-target=".$type .collapse">
+<h2>News item type.</h2>
+<pre>$type : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td>name=newstype</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24user_group_ids" id="$user_group_ids"> </a><div class="element clickable property protected $user_group_ids" data-toggle="collapse" data-target=".$user_group_ids .collapse">
+<h2>User group identifiers this news item is visible to.</h2>
+<pre>$user_group_ids : int[]</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>apiField</th>
+<td>name=usergroupidlist</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24user_visibility_custom" id="$user_visibility_custom"> </a><div class="element clickable property protected $user_visibility_custom" data-toggle="collapse" data-target=".$user_visibility_custom .collapse">
+<h2>If this news item is visible to specific user groups only.</h2>
+<pre>$user_visibility_custom : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>see</th>
+<td>\global\kyNewsItem::$user_group_ids</td>
+</tr>
+<tr>
+<th>apiField</th>
+<td></td>
+</tr>
+</table>
+</div></div>
+</div>
+<a name="%24_api_fields" id="$_api_fields"> </a><div class="element clickable property private $_api_fields" data-toggle="collapse" data-target=".$_api_fields .collapse">
+<h2>Cache for API fields.</h2>
+<pre>$_api_fields : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Format:
+array(
+    '<class name>' => array(
+        '<api field name>' => array(
+            'property' => '<class property holding field value>',
+            'description' => '<description of the field>',
+            'getter' => '<value getter method or null if write-only>',
+            'setter' => '<value setter method or null if read-only>',
+            'required_create' => <present and true if this field is required for creating the object>,
+            'required_update' => <present and true if this field is required for updating the object>
+        ),
+        ...repeat for every class api field...
+    ),
+    ...repeat for every object class...
+)</p></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::$$_api_fields</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24categories" id="$categories"> </a><div class="element clickable property private $categories" data-toggle="collapse" data-target=".$categories .collapse">
+<h2>News categories this news item belongs to.</h2>
+<pre>$categories : <a href="kyNewsCategory.html#%5CkyNewsCategory">\kyNewsCategory[]</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24edited_staff" id="$edited_staff"> </a><div class="element clickable property private $edited_staff" data-toggle="collapse" data-target=".$edited_staff .collapse">
+<h2>Editor (staff).</h2>
+<pre>$edited_staff : <a href="../classes/kyStaff.html">\kyStaff</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24staff" id="$staff"> </a><div class="element clickable property private $staff" data-toggle="collapse" data-target=".$staff .collapse">
+<h2>Creator (staff).</h2>
+<pre>$staff : <a href="../classes/kyStaff.html">\kyStaff</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24staff_groups" id="$staff_groups"> </a><div class="element clickable property private $staff_groups" data-toggle="collapse" data-target=".$staff_groups .collapse">
+<h2>User groups this news item is visible to.</h2>
+<pre>$staff_groups : <a href="kyStaffGroup.html#%5CkyStaffGroup">\kyStaffGroup[]</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24user_groups" id="$user_groups"> </a><div class="element clickable property private $user_groups" data-toggle="collapse" data-target=".$user_groups .collapse">
+<h2>User groups this news item is visible to.</h2>
+<pre>$user_groups : <a href="kyUserGroup.html#%5CkyUserGroup">\kyUserGroup[]</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<h3>
+<i class="icon-custom icon-constant"></i> Constants</h3>
+<a name="FILES_DATA_NAME" id="FILES_DATA_NAME"> </a><div class="element clickable constant  FILES_DATA_NAME" data-toggle="collapse" data-target=".FILES_DATA_NAME .collapse">
+<h2>Data key for storing files to send as multipart/form-data.</h2>
+<pre>FILES_DATA_NAME : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::FILES_DATA_NAME</td>
+</tr></table>
+</div></div>
+</div>
+<a name="STATUS_DRAFT" id="STATUS_DRAFT"> </a><div class="element clickable constant  STATUS_DRAFT" data-toggle="collapse" data-target=".STATUS_DRAFT .collapse">
+<h2>News status - Draft.</h2>
+<pre>STATUS_DRAFT : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="STATUS_PUBLISHED" id="STATUS_PUBLISHED"> </a><div class="element clickable constant  STATUS_PUBLISHED" data-toggle="collapse" data-target=".STATUS_PUBLISHED .collapse">
+<h2>News status - Published.</h2>
+<pre>STATUS_PUBLISHED : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="TYPE_GLOBAL" id="TYPE_GLOBAL"> </a><div class="element clickable constant  TYPE_GLOBAL" data-toggle="collapse" data-target=".TYPE_GLOBAL .collapse">
+<h2>News type - Global.</h2>
+<pre>TYPE_GLOBAL : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"><p>The news articles classified as Global are visible in both the client support center and the staff control panel.</p></p></div></div>
+</div>
+<a name="TYPE_PRIVATE" id="TYPE_PRIVATE"> </a><div class="element clickable constant  TYPE_PRIVATE" data-toggle="collapse" data-target=".TYPE_PRIVATE .collapse">
+<h2>News type - Private.</h2>
+<pre>TYPE_PRIVATE : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"><p>The news article classified as Private are only visible in the staff control panel.</p></p></div></div>
+</div>
+<a name="TYPE_PUBLIC" id="TYPE_PUBLIC"> </a><div class="element clickable constant  TYPE_PUBLIC" data-toggle="collapse" data-target=".TYPE_PUBLIC .collapse">
+<h2>News type - Public.</h2>
+<pre>TYPE_PUBLIC : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"><p>The news articles classified as Public are visible only in the client support center.</p></p></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a10</a> and<br></footer></div>
+</div>
+</body>
+</html>

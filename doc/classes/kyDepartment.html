@@ -58,7 +58,7 @@
 <li class="method public inherited"><a href="#__get" title="__get :: Returns API field value."><span class="description">Returns API field value.</span><pre>__get()</pre></a></li>
 <li class="method public inherited"><a href="#__set" title="__set :: Sets API field value."><span class="description">Sets API field value.</span><pre>__set()</pre></a></li>
 <li class="method public inherited"><a href="#__toString" title="__toString :: Returns object description with it's type and identifier."><span class="description">Returns object description with it's type and identifier.</span><pre>__toString()</pre></a></li>
-<li class="method public "><a href="#addUserGroup" title="addUserGroup :: Add user group to the list of groups that can be assigned to this department."><span class="description">Add user group to the list of groups that can be assigned to this department.</span><pre>addUserGroup()</pre></a></li>
+<li class="method public "><a href="#addUserGroup" title="addUserGroup :: Add user group to the list of groups that this department will be visible to."><span class="description">Add user group to the list of groups that this department will be visible to.</span><pre>addUserGroup()</pre></a></li>
 <li class="method public "><a href="#buildData" title="buildData :: Should build the array of object data for creating or updating the object."><span class="description">Should build the array of object data for creating or updating the object.</span><pre>buildData()</pre></a></li>
 <li class="method public inherited"><a href="#checkRequiredAPIFields" title="checkRequiredAPIFields :: Checks wheter this object has all required fields set."><span class="description">Checks wheter this object has all required fields set.</span><pre>checkRequiredAPIFields()</pre></a></li>
 <li class="method public inherited"><a href="#create" title="create :: Creates an object on the server and refreshes its local data."><span class="description">Creates an object on the server and refreshes its local data.</span><pre>create()</pre></a></li>
@@ -78,8 +78,8 @@
 <li class="method public inherited"><a href="#getRequiredAPIFields" title="getRequiredAPIFields :: Returns list of required API fields for objects of this class."><span class="description">Returns list of required API fields for objects of this class.</span><pre>getRequiredAPIFields()</pre></a></li>
 <li class="method public "><a href="#getTitle" title="getTitle :: Returns title of the department."><span class="description">Returns title of the department.</span><pre>getTitle()</pre></a></li>
 <li class="method public "><a href="#getType" title="getType :: Return type of the department."><span class="description">Return type of the department.</span><pre>getType()</pre></a></li>
-<li class="method public "><a href="#getUserGroupIds" title="getUserGroupIds :: Returns identifiers of user groups that can be assigned to this department."><span class="description">Returns identifiers of user groups that can be assigned to this department.</span><pre>getUserGroupIds()</pre></a></li>
-<li class="method public "><a href="#getUserGroups" title="getUserGroups :: Returns user groups that can be assigned to this department."><span class="description">Returns user groups that can be assigned to this department.</span><pre>getUserGroups()</pre></a></li>
+<li class="method public "><a href="#getUserGroupIds" title="getUserGroupIds :: Returns identifiers of user groups that this department will be visible to."><span class="description">Returns identifiers of user groups that this department will be visible to.</span><pre>getUserGroupIds()</pre></a></li>
+<li class="method public "><a href="#getUserGroups" title="getUserGroups :: Returns user groups that this department will be visible to."><span class="description">Returns user groups that this department will be visible to.</span><pre>getUserGroups()</pre></a></li>
 <li class="method public "><a href="#getUserVisibilityCustom" title="getUserVisibilityCustom :: Returns true to indicate that visibility of this department is restricted to particular user groups."><span class="description">Returns true to indicate that visibility of this department is restricted to particular user groups.</span><pre>getUserVisibilityCustom()</pre></a></li>
 <li class="method public inherited"><a href="#isNew" title="isNew :: Returns whether the object is new and not yet saved on the server."><span class="description">Returns whether the object is new and not yet saved on the server.</span><pre>isNew()</pre></a></li>
 <li class="method public inherited"><a href="#isReadOnly" title="isReadOnly :: Returns whether this object is read only."><span class="description">Returns whether this object is read only.</span><pre>isReadOnly()</pre></a></li>
@@ -95,11 +95,15 @@
 <li class="method public inherited"><a href="#setReadOnly" title="setReadOnly :: Sets whether this object is read only."><span class="description">Sets whether this object is read only.</span><pre>setReadOnly()</pre></a></li>
 <li class="method public "><a href="#setTitle" title="setTitle :: Sets title of the department."><span class="description">Sets title of the department.</span><pre>setTitle()</pre></a></li>
 <li class="method public "><a href="#setType" title="setType :: Sets type of the department."><span class="description">Sets type of the department.</span><pre>setType()</pre></a></li>
-<li class="method public "><a href="#setUserGroupIds" title="setUserGroupIds :: Sets user groups that can be assigned to this department using their identifiers."><span class="description">Sets user groups that can be assigned to this department using their identifiers.</span><pre>setUserGroupIds()</pre></a></li>
+<li class="method public "><a href="#setUserGroupIds" title="setUserGroupIds :: Sets user groups (using their identifiers) that this department will be visible to."><span class="description">Sets user groups (using their identifiers) that this department will be visible to.</span><pre>setUserGroupIds()</pre></a></li>
 <li class="method public "><a href="#setUserVisibilityCustom" title="setUserVisibilityCustom :: Sets wheter to restrict visibility of this department to particular user groups."><span class="description">Sets wheter to restrict visibility of this department to particular user groups.</span><pre>setUserVisibilityCustom()</pre></a></li>
 <li class="method public "><a href="#toString" title="toString :: Should return short (one line) description of the object (it's title, name, etc.)."><span class="description">Should return short (one line) description of the object (it's title, name, etc.).</span><pre>toString()</pre></a></li>
 <li class="method public inherited"><a href="#update" title="update :: Updates the object on the server and refreshes its local data."><span class="description">Updates the object on the server and refreshes its local data.</span><pre>update()</pre></a></li>
 <li class="nav-header protected">» Protected</li>
+<li class="method protected inherited"><a href="#buildDataBool" title="buildDataBool :: Adds boolean field to object data array only if its value is non-empty."><span class="description">Adds boolean field to object data array only if its value is non-empty.</span><pre>buildDataBool()</pre></a></li>
+<li class="method protected inherited"><a href="#buildDataList" title="buildDataList :: Adds array field to object data array only if its value is proper array and is non-empty."><span class="description">Adds array field to object data array only if its value is proper array and is non-empty.</span><pre>buildDataList()</pre></a></li>
+<li class="method protected inherited"><a href="#buildDataNumeric" title="buildDataNumeric :: Adds numeric field to object data array only if its value is proper number."><span class="description">Adds numeric field to object data array only if its value is proper number.</span><pre>buildDataNumeric()</pre></a></li>
+<li class="method protected inherited"><a href="#buildDataString" title="buildDataString :: Adds string field to object data array only if its value is non-empty."><span class="description">Adds string field to object data array only if its value is non-empty.</span><pre>buildDataString()</pre></a></li>
 <li class="method protected inherited"><a href="#getRESTClient" title="getRESTClient :: Returns REST client."><span class="description">Returns REST client.</span><pre>getRESTClient()</pre></a></li>
 <li class="method protected "><a href="#parseData" title="parseData :: Should use passed data to fill object properties."><span class="description">Should use passed data to fill object properties.</span><pre>parseData()</pre></a></li>
 <li class="nav-header private">» Private</li>
@@ -252,7 +256,7 @@ define:
 </div></div>
 </div>
 <a name="addUserGroup" id="addUserGroup"></a><div class="element clickable method public addUserGroup" data-toggle="collapse" data-target=".addUserGroup .collapse">
-<h2>Add user group to the list of groups that can be assigned to this department.</h2>
+<h2>Add user group to the list of groups that this department will be visible to.</h2>
 <pre>addUserGroup(\kyUserGroup $user_group, bool $clear) : <a href="../classes/kyDepartment.html">\kyDepartment</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
@@ -260,7 +264,7 @@ define:
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$user_group</h4>
-<code><a href="../classes/kyUserGroup.html">\kyUserGroup</a></code><p>User group that can be assigned to this department.</p></div>
+<code><a href="../classes/kyUserGroup.html">\kyUserGroup</a></code><p>User group that this department will be visible to.</p></div>
 <div class="subelement argument">
 <h4>$clear</h4>
 <code>bool</code><p>Clear the list before adding.</p></div>
@@ -637,7 +641,7 @@ array(
 </div></div>
 </div>
 <a name="getUserGroupIds" id="getUserGroupIds"></a><div class="element clickable method public getUserGroupIds" data-toggle="collapse" data-target=".getUserGroupIds .collapse">
-<h2>Returns identifiers of user groups that can be assigned to this department.</h2>
+<h2>Returns identifiers of user groups that this department will be visible to.</h2>
 <pre>getUserGroupIds() : array</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
@@ -651,7 +655,7 @@ array(
 </div></div>
 </div>
 <a name="getUserGroups" id="getUserGroups"></a><div class="element clickable method public getUserGroups" data-toggle="collapse" data-target=".getUserGroups .collapse">
-<h2>Returns user groups that can be assigned to this department.</h2>
+<h2>Returns user groups that this department will be visible to.</h2>
 <pre>getUserGroups(bool $reload) : <a href="../classes/kyResultSet.html">\kyResultSet</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
@@ -913,7 +917,7 @@ WARNING: Data is not sent to Kayako unless you explicitly call create() on this 
 </div></div>
 </div>
 <a name="setUserGroupIds" id="setUserGroupIds"></a><div class="element clickable method public setUserGroupIds" data-toggle="collapse" data-target=".setUserGroupIds .collapse">
-<h2>Sets user groups that can be assigned to this department using their identifiers.</h2>
+<h2>Sets user groups (using their identifiers) that this department will be visible to.</h2>
 <pre>setUserGroupIds(int[] $user_group_ids) : <a href="../classes/kyDepartment.html">\kyDepartment</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
@@ -921,7 +925,7 @@ WARNING: Data is not sent to Kayako unless you explicitly call create() on this 
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$user_group_ids</h4>
-<code>int[]</code><p>Identifiers of user groups that can be assigned to this department.</p></div>
+<code>int[]</code><p>Identifiers of user groups that this department will be visible to.</p></div>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/kyDepartment.html">\kyDepartment</a></code></div>
 </div></div>
@@ -976,6 +980,94 @@ Automatically clears user groups when set to false.</p></p>
 <div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
 </div></div>
 </div>
+<a name="buildDataBool" id="buildDataBool"></a><div class="element clickable method protected buildDataBool" data-toggle="collapse" data-target=".buildDataBool .collapse">
+<h2>Adds boolean field to object data array only if its value is non-empty.</h2>
+<pre>buildDataBool(array $data, string $field_name, mixed $field_value) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::buildDataBool()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>Data used to create or update the object.</p></div>
+<div class="subelement argument">
+<h4>$field_name</h4>
+<code>string</code><p>Field name.</p></div>
+<div class="subelement argument">
+<h4>$field_value</h4>
+<code>mixed</code><p>Field value.</p></div>
+</div></div>
+</div>
+<a name="buildDataList" id="buildDataList"></a><div class="element clickable method protected buildDataList" data-toggle="collapse" data-target=".buildDataList .collapse">
+<h2>Adds array field to object data array only if its value is proper array and is non-empty.</h2>
+<pre>buildDataList(array $data, string $field_name, mixed $field_value) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::buildDataList()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>Data used to create or update the object.</p></div>
+<div class="subelement argument">
+<h4>$field_name</h4>
+<code>string</code><p>Field name.</p></div>
+<div class="subelement argument">
+<h4>$field_value</h4>
+<code>mixed</code><p>Field value.</p></div>
+</div></div>
+</div>
+<a name="buildDataNumeric" id="buildDataNumeric"></a><div class="element clickable method protected buildDataNumeric" data-toggle="collapse" data-target=".buildDataNumeric .collapse">
+<h2>Adds numeric field to object data array only if its value is proper number.</h2>
+<pre>buildDataNumeric(array $data, string $field_name, mixed $field_value) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::buildDataNumeric()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>Data used to create or update the object.</p></div>
+<div class="subelement argument">
+<h4>$field_name</h4>
+<code>string</code><p>Field name.</p></div>
+<div class="subelement argument">
+<h4>$field_value</h4>
+<code>mixed</code><p>Field value.</p></div>
+</div></div>
+</div>
+<a name="buildDataString" id="buildDataString"></a><div class="element clickable method protected buildDataString" data-toggle="collapse" data-target=".buildDataString .collapse">
+<h2>Adds string field to object data array only if its value is non-empty.</h2>
+<pre>buildDataString(array $data, string $field_name, mixed $field_value) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::buildDataString()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>Data used to create or update the object.</p></div>
+<div class="subelement argument">
+<h4>$field_name</h4>
+<code>string</code><p>Field name.</p></div>
+<div class="subelement argument">
+<h4>$field_value</h4>
+<code>mixed</code><p>Field value.</p></div>
+</div></div>
+</div>
 <a name="getRESTClient" id="getRESTClient"></a><div class="element clickable method protected getRESTClient" data-toggle="collapse" data-target=".getRESTClient .collapse">
 <h2>Returns REST client.</h2>
 <pre>getRESTClient() : <a href="../classes/kyRESTClientInterface.html">\kyRESTClientInterface</a></pre>
@@ -1011,7 +1103,7 @@ Automatically clears user groups when set to false.</p></p>
 <table class="table table-bordered">
 <tr>
 <th>apiField</th>
-<td>[name=field name] [accessor=setter/getter name] [getter=getter name] [setter=setter name] [required_create=true if field if required when creating object] [required_update=true if field if required when udpating object] [required=true if field if required when creating or updating object]
+<td>[name=field name]{0,1} [alias=field name alias]* [accessor=setter/getter name]{0,1} [getter=getter name]{0,1} [setter=setter name]{0,1} [required_create=true if field if required when creating object]{0,1} [required_update=true if field if required when udpating object]{0,1} [required=true if field if required when creating or updating object]{0,1}
 and builds API field list with property name, description, setter and getter method names, and required flags.</td>
 </tr>
 <tr>

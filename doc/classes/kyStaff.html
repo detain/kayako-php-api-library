@@ -87,6 +87,7 @@
 <li class="method public "><a href="#getUserName" title="getUserName :: Returns login username of the staff user."><span class="description">Returns login username of the staff user.</span><pre>getUserName()</pre></a></li>
 <li class="method public inherited"><a href="#isNew" title="isNew :: Returns whether the object is new and not yet saved on the server."><span class="description">Returns whether the object is new and not yet saved on the server.</span><pre>isNew()</pre></a></li>
 <li class="method public inherited"><a href="#isReadOnly" title="isReadOnly :: Returns whether this object is read only."><span class="description">Returns whether this object is read only.</span><pre>isReadOnly()</pre></a></li>
+<li class="method public "><a href="#newNewsItem" title="newNewsItem :: Creates a news item with this staff user as the author."><span class="description">Creates a news item with this staff user as the author.</span><pre>newNewsItem()</pre></a></li>
 <li class="method public "><a href="#newTicket" title="newTicket :: Creates new ticket with this staff user as the author."><span class="description">Creates new ticket with this staff user as the author.</span><pre>newTicket()</pre></a></li>
 <li class="method public inherited"><a href="#refresh" title="refresh :: Refreshes the object data from server."><span class="description">Refreshes the object data from server.</span><pre>refresh()</pre></a></li>
 <li class="method public inherited"><a href="#save" title="save :: Saves (creates or updates) the object to the server."><span class="description">Saves (creates or updates) the object to the server.</span><pre>save()</pre></a></li>
@@ -108,6 +109,10 @@
 <li class="method public "><a href="#toString" title="toString :: Should return short (one line) description of the object (it's title, name, etc.)."><span class="description">Should return short (one line) description of the object (it's title, name, etc.).</span><pre>toString()</pre></a></li>
 <li class="method public inherited"><a href="#update" title="update :: Updates the object on the server and refreshes its local data."><span class="description">Updates the object on the server and refreshes its local data.</span><pre>update()</pre></a></li>
 <li class="nav-header protected">» Protected</li>
+<li class="method protected inherited"><a href="#buildDataBool" title="buildDataBool :: Adds boolean field to object data array only if its value is non-empty."><span class="description">Adds boolean field to object data array only if its value is non-empty.</span><pre>buildDataBool()</pre></a></li>
+<li class="method protected inherited"><a href="#buildDataList" title="buildDataList :: Adds array field to object data array only if its value is proper array and is non-empty."><span class="description">Adds array field to object data array only if its value is proper array and is non-empty.</span><pre>buildDataList()</pre></a></li>
+<li class="method protected inherited"><a href="#buildDataNumeric" title="buildDataNumeric :: Adds numeric field to object data array only if its value is proper number."><span class="description">Adds numeric field to object data array only if its value is proper number.</span><pre>buildDataNumeric()</pre></a></li>
+<li class="method protected inherited"><a href="#buildDataString" title="buildDataString :: Adds string field to object data array only if its value is non-empty."><span class="description">Adds string field to object data array only if its value is non-empty.</span><pre>buildDataString()</pre></a></li>
 <li class="method protected inherited"><a href="#getRESTClient" title="getRESTClient :: Returns REST client."><span class="description">Returns REST client.</span><pre>getRESTClient()</pre></a></li>
 <li class="method protected "><a href="#parseData" title="parseData :: Should use passed data to fill object properties."><span class="description">Should use passed data to fill object properties.</span><pre>parseData()</pre></a></li>
 <li class="nav-header private">» Private</li>
@@ -779,6 +784,23 @@ array(
 <div class="subelement response"><code>bool</code></div>
 </div></div>
 </div>
+<a name="newNewsItem" id="newNewsItem"></a><div class="element clickable method public newNewsItem" data-toggle="collapse" data-target=".newNewsItem .collapse">
+<h2>Creates a news item with this staff user as the author.</h2>
+<pre>newNewsItem(string $subject, string $contents) : <a href="../classes/kyNewsItem.html">\kyNewsItem</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>WARNING: Data is not sent to Kayako unless you explicitly call create() on this method's result.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$subject</h4>
+<code>string</code><p>Subject of news item.</p></div>
+<div class="subelement argument">
+<h4>$contents</h4>
+<code>string</code><p>Contents of news item.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/kyNewsItem.html">\kyNewsItem</a></code></div>
+</div></div>
+</div>
 <a name="newTicket" id="newTicket"></a><div class="element clickable method public newTicket" data-toggle="collapse" data-target=".newTicket .collapse">
 <h2>Creates new ticket with this staff user as the author.</h2>
 <pre>newTicket(\kyDepartment $department, string $contents, string $subject) : <a href="../classes/kyTicket.html">\kyTicket</a></pre>
@@ -1086,6 +1108,94 @@ array(
 <div class="subelement response"><code><a href="../classes/kyObjectBase.html">\kyObjectBase</a></code></div>
 </div></div>
 </div>
+<a name="buildDataBool" id="buildDataBool"></a><div class="element clickable method protected buildDataBool" data-toggle="collapse" data-target=".buildDataBool .collapse">
+<h2>Adds boolean field to object data array only if its value is non-empty.</h2>
+<pre>buildDataBool(array $data, string $field_name, mixed $field_value) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::buildDataBool()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>Data used to create or update the object.</p></div>
+<div class="subelement argument">
+<h4>$field_name</h4>
+<code>string</code><p>Field name.</p></div>
+<div class="subelement argument">
+<h4>$field_value</h4>
+<code>mixed</code><p>Field value.</p></div>
+</div></div>
+</div>
+<a name="buildDataList" id="buildDataList"></a><div class="element clickable method protected buildDataList" data-toggle="collapse" data-target=".buildDataList .collapse">
+<h2>Adds array field to object data array only if its value is proper array and is non-empty.</h2>
+<pre>buildDataList(array $data, string $field_name, mixed $field_value) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::buildDataList()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>Data used to create or update the object.</p></div>
+<div class="subelement argument">
+<h4>$field_name</h4>
+<code>string</code><p>Field name.</p></div>
+<div class="subelement argument">
+<h4>$field_value</h4>
+<code>mixed</code><p>Field value.</p></div>
+</div></div>
+</div>
+<a name="buildDataNumeric" id="buildDataNumeric"></a><div class="element clickable method protected buildDataNumeric" data-toggle="collapse" data-target=".buildDataNumeric .collapse">
+<h2>Adds numeric field to object data array only if its value is proper number.</h2>
+<pre>buildDataNumeric(array $data, string $field_name, mixed $field_value) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::buildDataNumeric()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>Data used to create or update the object.</p></div>
+<div class="subelement argument">
+<h4>$field_name</h4>
+<code>string</code><p>Field name.</p></div>
+<div class="subelement argument">
+<h4>$field_value</h4>
+<code>mixed</code><p>Field value.</p></div>
+</div></div>
+</div>
+<a name="buildDataString" id="buildDataString"></a><div class="element clickable method protected buildDataString" data-toggle="collapse" data-target=".buildDataString .collapse">
+<h2>Adds string field to object data array only if its value is non-empty.</h2>
+<pre>buildDataString(array $data, string $field_name, mixed $field_value) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\kyObjectBase::buildDataString()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>Data used to create or update the object.</p></div>
+<div class="subelement argument">
+<h4>$field_name</h4>
+<code>string</code><p>Field name.</p></div>
+<div class="subelement argument">
+<h4>$field_value</h4>
+<code>mixed</code><p>Field value.</p></div>
+</div></div>
+</div>
 <a name="getRESTClient" id="getRESTClient"></a><div class="element clickable method protected getRESTClient" data-toggle="collapse" data-target=".getRESTClient .collapse">
 <h2>Returns REST client.</h2>
 <pre>getRESTClient() : <a href="../classes/kyRESTClientInterface.html">\kyRESTClientInterface</a></pre>
@@ -1121,7 +1231,7 @@ array(
 <table class="table table-bordered">
 <tr>
 <th>apiField</th>
-<td>[name=field name] [accessor=setter/getter name] [getter=getter name] [setter=setter name] [required_create=true if field if required when creating object] [required_update=true if field if required when udpating object] [required=true if field if required when creating or updating object]
+<td>[name=field name]{0,1} [alias=field name alias]* [accessor=setter/getter name]{0,1} [getter=getter name]{0,1} [setter=setter name]{0,1} [required_create=true if field if required when creating object]{0,1} [required_update=true if field if required when udpating object]{0,1} [required=true if field if required when creating or updating object]{0,1}
 and builds API field list with property name, description, setter and getter method names, and required flags.</td>
 </tr>
 <tr>
