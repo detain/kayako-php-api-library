@@ -1330,6 +1330,9 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @orderBy
 	 */
 	public function getCreationTime($format = null) {
+		if ($this->creation_time == null)
+			return null;
+
 		if ($format === null) {
 			$format = kyConfig::get()->getDatetimeFormat();
 		}
@@ -1348,6 +1351,9 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @orderBy
 	 */
 	public function getLastActivity($format = null) {
+		if ($this->last_activity == null)
+			return null;
+
 		if ($format === null) {
 			$format = kyConfig::get()->getDatetimeFormat();
 		}
@@ -1366,7 +1372,7 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @orderBy
 	 */
 	public function getLastStaffReply($format = null) {
-		if ($this->last_staff_reply == 0)
+		if ($this->last_staff_reply == null)
 			return null;
 
 		if ($format === null) {
@@ -1387,7 +1393,7 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @orderBy
 	 */
 	public function getLastUserReply($format = null) {
-		if ($this->last_user_reply == 0)
+		if ($this->last_user_reply == null)
 			return null;
 
 		if ($format === null) {
@@ -1418,7 +1424,7 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @orderBy
 	 */
 	public function getNextReplyDue($format = null) {
-		if ($this->next_reply_due == 0)
+		if ($this->next_reply_due == null)
 			return null;
 
 		if ($format === null) {
@@ -1439,7 +1445,7 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @orderBy
 	 */
 	public function getResolutionDue($format = null) {
-		if ($this->resolution_due == 0)
+		if ($this->resolution_due == null)
 			return null;
 
 		if ($format === null) {

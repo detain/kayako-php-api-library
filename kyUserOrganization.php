@@ -402,6 +402,9 @@ class kyUserOrganization extends kyObjectBase {
 	 * @orderBy
 	 */
 	public function getDateline($format = null) {
+		if ($this->dateline == null)
+			return null;
+
 		if ($format === null) {
 			$format = kyConfig::get()->getDatetimeFormat();
 		}
@@ -420,6 +423,9 @@ class kyUserOrganization extends kyObjectBase {
 	 * @orderBy
 	 */
 	public function getLastUpdate($format = null) {
+		if ($this->last_update == null)
+			return null;
+
 		if ($format === null) {
 			$format = kyConfig::get()->getDatetimeFormat();
 		}
@@ -459,6 +465,9 @@ class kyUserOrganization extends kyObjectBase {
 	 * @orderBy
 	 */
 	public function getSLAPlanExpiry($format = null) {
+		if ($this->sla_plan_expiry == null)
+			return null;
+
 		if ($format === null) {
 			$format = kyConfig::get()->getDatetimeFormat();
 		}

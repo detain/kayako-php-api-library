@@ -451,6 +451,9 @@ class kyUser extends kyObjectBase {
 	 * @orderBy
 	 */
 	public function getUserExpiry($format = null) {
+		if ($this->user_expiry == null)
+			return null;
+
 		if ($format === null) {
 			$format = kyConfig::get()->getDatetimeFormat();
 		}
@@ -582,6 +585,9 @@ class kyUser extends kyObjectBase {
 	 * @orderBy
 	 */
 	public function getDateline($format = null) {
+		if ($this->dateline == null)
+			return null;
+
 		if ($format === null) {
 			$format = kyConfig::get()->getDatetimeFormat();
 		}
@@ -600,6 +606,9 @@ class kyUser extends kyObjectBase {
 	 * @orderBy
 	 */
 	public function getLastVisit($format = null) {
+		if ($this->last_visit == null)
+			return null;
+
 		if ($format === null) {
 			$format = kyConfig::get()->getDatetimeFormat();
 		}
@@ -703,6 +712,9 @@ class kyUser extends kyObjectBase {
 	 * @orderBy
 	 */
 	public function getSLAPlanExpiry($format = null) {
+		if ($this->sla_plan_expiry == null)
+			return null;
+
 		if ($format === null) {
 			$format = kyConfig::get()->getDatetimeFormat();
 		}

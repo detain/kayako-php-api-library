@@ -299,6 +299,9 @@ class kyTicketAttachment extends kyObjectBase {
 	 * @orderBy
 	 */
 	public function getDateline($format = null) {
+		if ($this->dateline == null)
+			return null;
+
 		if ($format === null) {
 			$format = kyConfig::get()->getDatetimeFormat();
 		}

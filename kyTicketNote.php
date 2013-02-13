@@ -588,6 +588,9 @@ class kyTicketNote extends kyObjectBase {
 	 * @orderBy
 	 */
 	public function getCreationDate($format = null) {
+		if ($this->creation_date == null)
+			return null;
+
 		if ($format === null) {
 			$format = kyConfig::get()->getDatetimeFormat();
 		}

@@ -626,6 +626,9 @@ class kyNewsItem extends kyObjectBase {
 	 * @orderBy
 	 */
 	public function getDateline($format = null) {
+		if ($this->dateline == null)
+			return null;
+
 		if ($format === null) {
 			$format = kyConfig::get()->getDatetimeFormat();
 		}
@@ -644,6 +647,9 @@ class kyNewsItem extends kyObjectBase {
 	 * @orderBy
 	 */
 	public function getExpiry($format = null) {
+		if ($this->expiry == null)
+			return null;
+
 		if ($format === null) {
 			$format = kyConfig::get()->getDatetimeFormat();
 		}

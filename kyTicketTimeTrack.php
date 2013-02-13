@@ -350,6 +350,9 @@ class kyTicketTimeTrack extends kyObjectBase {
 	 * @orderBy
 	 */
 	public function getWorkDate($format = null) {
+		if ($this->work_date == null)
+			return null;
+
 		if ($format === null) {
 			$format = kyConfig::get()->getDatetimeFormat();
 		}
@@ -381,6 +384,9 @@ class kyTicketTimeTrack extends kyObjectBase {
 	 * @orderBy
 	 */
 	public function getBillDate($format = null) {
+		if ($this->bill_date == null)
+			return null;
+
 		if ($format === null) {
 			$format = kyConfig::get()->getDatetimeFormat();
 		}
