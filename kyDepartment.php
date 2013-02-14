@@ -392,6 +392,13 @@ class kyDepartment extends kyObjectBase {
 				$this->user_groups[$user_group_id] = kyUserGroup::get($user_group_id);
 			}
 		}
+
+		foreach ($this->user_groups as $user_group_id => $user_group) {
+			if (!in_array($user_group_id, $this->user_group_ids)) {
+				unset($this->user_groups[$user_group_id]);
+			}
+		}
+
 		return new kyResultSet(array_values($this->user_groups));
 	}
 
@@ -432,12 +439,11 @@ class kyDepartment extends kyObjectBase {
 			$this->user_group_ids = array();
 		}
 
-		//do nothing if it's already present
-		if (in_array($user_group->getId(), $this->user_group_ids))
-			return $this;
-
-		$this->user_group_ids[] = $user_group->getId();
-		$this->user_visibility_custom = true;
+		if (!in_array($user_group->getId(), $this->user_group_ids)) {
+			$this->user_group_ids[] = $user_group->getId();
+			$this->user_groups[$user_group->getId()] = $user_group;
+			$this->user_visibility_custom = true;
+		}
 
 		return $this;
 	}
