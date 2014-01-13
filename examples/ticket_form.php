@@ -630,7 +630,7 @@ if ($render === 'custom_fields') {
 					break;
 
 					case kyCustomFieldDefinition::TYPE_RADIO:
-
+?>
 						<div class="field"><span class="name"><?=$field_title?></span>
 						<span class="description<?=$field_required ? ' required' : ''?><?=!$form_valid && $field_valid !== true ? ' error' : ''?>"><?=!$form_valid && is_string($field_valid) ? $field_valid : $field_description?></span>
 <?php
