@@ -32,6 +32,13 @@ abstract class kyCustomFieldGroupBase extends kyObjectBase {
 	protected $title;
 
 	/**
+	 * Custom field group displayorder.
+	 * @apiField
+	 * @var int
+	 */
+	protected $displayorder;
+
+	/**
 	 * List of custom fields in this group.
 	 * @var kyCustomField[]
 	 */
@@ -47,6 +54,7 @@ abstract class kyCustomFieldGroupBase extends kyObjectBase {
 	protected function parseData($data) {
 		$this->id = intval($data['_attributes']['id']);
 		$this->title = $data['_attributes']['title'];
+		$this->displayorder = intval($data['_attributes']['displayorder']);
 
 		$this->fields = array();
 		if (array_key_exists('field', $data)) {
@@ -105,6 +113,17 @@ abstract class kyCustomFieldGroupBase extends kyObjectBase {
 	 */
 	public function getTitle() {
 		return $this->title;
+	}
+
+	/**
+	 * Returns displayorder of this custom fields group.
+	 *
+	 * @return int
+	 * @filterBy
+	 * @orderBy
+	 */
+	public function getDisplayOrder() {
+		return $this->displayorder;
 	}
 
 	/**
