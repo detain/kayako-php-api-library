@@ -708,7 +708,7 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 		else
 			$search_parameters[] = $rowsPerPage;
 
-		//$rowOffset
+		//rowOffset
 		$search_parameters[] = $rowOffset;
 
 		return parent::getAll($search_parameters);
