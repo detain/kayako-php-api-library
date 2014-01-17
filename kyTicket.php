@@ -642,10 +642,12 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param array|kyResultSet|kyTicketStatus $ticket_statuses List of ticket status identifiers.
 	 * @param array|kyResultSet|kyStaff $owner_staffs List of staff (ticket owners) identifiers.
 	 * @param array|kyResultSet|kyUser $users List of user (ticket creators) identifiers.
+	 * @param $rowsPerPage (OPTIONAL)
+	 * @param $rowOffset (OPTIONAL)
 	 * @throws InvalidArgumentException
 	 * @return kyResultSet
 	 */
-	static public function getAll($departments, $ticket_statuses = array(), $owner_staffs = array(), $users = array()) {
+	static public function getAll($departments, $ticket_statuses = array(), $owner_staffs = array(), $users = array(), $rowsPerPage = -1, $rowOffset = 0) {
 		$search_parameters = array('ListAll');
 
 		$department_ids = array();
@@ -699,6 +701,15 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 			$search_parameters[] = implode(',', $user_ids);
 		else
 			$search_parameters[] = '-1';
+
+		//rowsperpage
+		if ($rowsPerPage < 0)
+			$search_parameters[] = '-1';
+		else
+			$search_parameters[] = $rowsPerPage;
+
+		//$rowOffset
+		$search_parameters[] = $rowOffset;
 
 		return parent::getAll($search_parameters);
 	}
