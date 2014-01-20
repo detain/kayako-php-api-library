@@ -647,7 +647,7 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @throws InvalidArgumentException
 	 * @return kyResultSet
 	 */
-	static public function getAll($departments, $ticket_statuses = array(), $owner_staffs = array(), $users = array(), $rowsPerPage = -1, $rowOffset = 0) {
+	static public function getAll($departments, $ticket_statuses = array(), $owner_staffs = array(), $users = array(), $max_items = null, $starting_ticket_id = null) {
 		$search_parameters = array('ListAll');
 
 		$department_ids = array();
@@ -702,14 +702,13 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 		else
 			$search_parameters[] = '-1';
 
-		//rowsperpage
-		if ($rowsPerPage < 0)
-			$search_parameters[] = '-1';
-		else
-			$search_parameters[] = $rowsPerPage;
-
-		//rowOffset
-		$search_parameters[] = $rowOffset;
+		if (is_numeric($starting_ticket_id) && $starting_ticket_id > 0) {
+			if (!is_numeric($max_items) || $max_items <= 0) {
+				$max_items = 1000;
+			}
+			$search_parameters[] = $max_items;
+			$search_parameters[] = $starting_ticket_id;
+		}
 
 		return parent::getAll($search_parameters);
 	}
