@@ -4,6 +4,7 @@
  * Known issues:
  * - could not create NewsItem with PUBLIC and PRIVATE type (http://dev.kayako.com/browse/SWIFT-3108)
  * - fields customemailsubject and fromname are ignored (http://dev.kayako.com/browse/SWIFT-3111)
+ * - field totalcomments is not updated by Kayako
  *
  * @author Tomasz Sawicki (https://github.com/Furgas)
  * @link http://wiki.kayako.com/display/DEV/REST+-+NewsItem
@@ -12,7 +13,7 @@
  *
  * @noinspection PhpDocSignatureInspection
  */
-class kyNewsItem extends kyObjectBase {
+class kyNewsItem extends kyCommentableBase {
 
 	/**
 	 * News type - Global.
@@ -54,6 +55,7 @@ class kyNewsItem extends kyObjectBase {
 
 	static protected $controller = '/News/NewsItem';
 	static protected $object_xml_name = 'newsitem';
+	static protected $comment_class = 'kyNewsComment';
 
 	/**
 	 * News item identifier.
@@ -385,7 +387,7 @@ class kyNewsItem extends kyObjectBase {
 	}
 
 	/**
-	 * Gets the staff user, the creator of this news item.
+	 * Returns the staff user, the creator of this news item.
 	 *
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyStaff
@@ -438,7 +440,7 @@ class kyNewsItem extends kyObjectBase {
 	}
 
 	/**
-	 * Return type of the news item.
+	 * Returns type of the news item.
 	 *
 	 * @see kyNewsItem::TYPE constants.
 	 *
@@ -978,7 +980,7 @@ class kyNewsItem extends kyObjectBase {
 	}
 
 	/**
-	 * Sets contents of the news item.
+	 * Sets contents of the news item. Can containt HTML tags.
 	 *
 	 * @param string $contents Contents of the news item.
 	 * @return kyNewsItem
@@ -1040,6 +1042,13 @@ class kyNewsItem extends kyObjectBase {
 				$this->categories[$category_id] = kyNewsCategory::get($category_id);
 			}
 		}
+
+		foreach ($this->categories as $category_id => $category) {
+			if (!in_array($category_id, $this->category_ids)) {
+				unset($this->categories[$category_id]);
+			}
+		}
+
 		return new kyResultSet(array_values($this->categories));
 	}
 
@@ -1075,6 +1084,7 @@ class kyNewsItem extends kyObjectBase {
 
 		if (!in_array($category->getId(), $this->category_ids)) {
 			$this->category_ids[] = $category->getId();
+			$this->categories[$category->getId()] = $category;
 		}
 
 		return $this;

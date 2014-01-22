@@ -16,6 +16,8 @@ require_once("kyRESTClient.php");
 require_once("kyObjectBase.php");
 require_once("kyObjectWithCustomFieldsBase.php");
 require_once("kyCustomFieldGroupBase.php");
+require_once("kyCommentBase.php");
+require_once("kyCommentableBase.php");
 
 //config
 require_once("kyConfig.php");
@@ -29,6 +31,7 @@ require_once("kyCustomFieldDefinition.php");
 require_once("kyCustomFieldOption.php");
 require_once("kyDepartment.php");
 require_once("kyNewsCategory.php");
+require_once("kyNewsComment.php");
 require_once("kyNewsItem.php");
 require_once("kyNewsSubscriber.php");
 require_once("kyStaff.php");
