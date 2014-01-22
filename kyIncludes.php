@@ -47,6 +47,7 @@ require_once("kyUserGroup.php");
 require_once("kyUserOrganization.php");
 require_once("kyKnowledgebaseCategory.php");
 require_once("kyKnowledgebaseArticle.php");
+require_once("kyKnowledgebaseAttachment.php");
 
 //client-side implementations
 require_once("kyCustomFieldDate.php");
