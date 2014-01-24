@@ -194,7 +194,7 @@ class kyKnowledgebaseArticle extends kyObjectBase {
 	}
 
 	public function toString() {
-		return sprintf("(title: %s, contents: %s)", $this->getSubject(), $this->getContents());
+		return sprintf("(title: %s, contents: %s)", $this->getSubject(), substr($this->getContents(), 0, 50) . (strlen($this->getContents()) > 50 ? '...' : ''));
 	}
 
 	public function getId($complete = false) {
