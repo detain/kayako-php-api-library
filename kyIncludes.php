@@ -48,6 +48,7 @@ require_once("kyTicketType.php");
 require_once("kyUser.php");
 require_once("kyUserGroup.php");
 require_once("kyUserOrganization.php");
+require_once("kyTroubleshooterCategory.php");
 
 //client-side implementations
 require_once("kyCustomFieldDate.php");
