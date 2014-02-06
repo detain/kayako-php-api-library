@@ -50,6 +50,7 @@ require_once("kyUserGroup.php");
 require_once("kyUserOrganization.php");
 require_once("kyTroubleshooterCategory.php");
 require_once("kyTroubleshooterStep.php");
+require_once("kyTroubleshooterComment.php");
 
 //client-side implementations
 require_once("kyCustomFieldDate.php");
