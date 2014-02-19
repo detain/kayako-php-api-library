@@ -52,6 +52,10 @@ require_once("kyKnowledgebaseCategory.php");
 require_once("kyKnowledgebaseArticle.php");
 require_once("kyKnowledgebaseAttachment.php");
 require_once("kyKnowledgebaseComment.php");
+require_once("kyTroubleshooterCategory.php");
+require_once("kyTroubleshooterStep.php");
+require_once("kyTroubleshooterComment.php");
+require_once("kyTroubleshooterAttachment.php");
 
 //client-side implementations
 require_once("kyCustomFieldDate.php");
