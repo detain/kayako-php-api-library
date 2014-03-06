@@ -150,6 +150,9 @@ abstract class kyObjectWithCustomFieldsBase extends kyObjectBase {
 		if (!$custom_field_definition->getIsUserEditable())
 			throw new kyException(sprintf("usereditable flag is disabled for custom field %s.", $custom_field->getTitle()));
 
+		if ($custom_field_definition->getIsRequired() && empty($value)) {
+			throw new kyException(sprintf("Field '%s' is required, cannot be empty", $custom_field->getTitle()));
+		}
 
 		$this->getCustomField($name)->setValue($value);
 		return $this;
@@ -169,7 +172,6 @@ abstract class kyObjectWithCustomFieldsBase extends kyObjectBase {
 
 			if (!$custom_field_definition->getIsUserEditable())
 				throw new kyException(sprintf("usereditable flag is disabled for custom field %s.", $custom_field->getTitle()));
-
 
 			if ($custom_field_definition->getType() === kyCustomFieldDefinition::TYPE_FILE) {
 				/** @var $custom_field kyCustomFieldFile */
