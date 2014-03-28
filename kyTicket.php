@@ -30,8 +30,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	const CREATION_MODE_API = 4;
 	const CREATION_MODE_SITEBADGE = 5;
 
-	const CREATION_TYPE_DEFAULT = 1;
-	const CREATION_TYPE_PHONE = 2;
+	const CREATION_TYPE_DEFAULT = 'default';
+	const CREATION_TYPE_PHONE = 'phone';
 
 	/**
 	 * Flag for searching using query - search the Ticket ID & Mask ID.
