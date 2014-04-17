@@ -1,0 +1,12 @@
+{
+    "name": "kayako/php-api-library",
+    "description": "PHP API for Kayako customer service software",
+    "require": {
+        "php": ">=5.3.0",
+        "ext-curl": "*"
+    },
+    "autoload": {
+        "classmap": [""],
+        "files": ["kyHelpers.php"]
+    }
+}
