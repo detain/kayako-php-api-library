@@ -535,7 +535,9 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 		$this->is_escalated = ky_assure_bool($data['isescalated']);
 		$this->escalation_rule_id = ky_assure_positive_int($data['escalationruleid']);
 		$this->template_group_id = ky_assure_positive_int($data['templategroupid']);
-		$this->template_group_name = $data['templategroupname'];
+		if (is_numeric($data['templategroupid']) && !empty($data['templategroupid']) && isset($data['templategroupname'])) {
+			$this->template_group_name = $data['templategroupname'];
+		}
 		$this->tags = $data['tags'];
 
 		$this->watchers = array();
