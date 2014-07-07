@@ -62,8 +62,6 @@ class kyCustomFieldOption extends kyObjectBase {
 		$this->display_order = $data['_attributes']['displayorder'];
 		$this->is_selected = intval($data['_attributes']['isselected']) === 0 ? false : true;
 		$this->parent_option_id = intval($data['_attributes']['parentcustomfieldoptionid']);
-		if ($this->parent_option_id === 0)
-			$this->parent_option_id = null;
 	}
 
 	static public function get($id) {
