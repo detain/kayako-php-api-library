@@ -581,8 +581,14 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 		 */
 		if (array_key_exists('posts', $data)) {
 			$this->posts = array();
-			foreach ($data['posts'][0]['post'] as $post_data) {
-				$this->posts[] = new kyTicketPost($post_data);
+			// This is a change from the Kayako PHP library on GitHub.  We
+			// may have tickets with no posts due to migration from NetSuite
+			// which violates the data model for Kayako.  Added an if statement
+			// here to handle this situation.
+			if (is_array($data['posts']) && count($data['posts']) > 0) {
+				foreach ($data['posts'][0]['post'] as $post_data) {
+					$this->posts[] = new kyTicketPost($post_data);
+				}
 			}
 		}
 	}
@@ -668,6 +674,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 			$ticket_status_ids = array($ticket_statuses->getId());
 		} elseif ($ticket_statuses instanceof kyResultSet) {
 			$ticket_status_ids = $ticket_statuses->collectId();
+		} elseif (is_array($ticket_statuses)) {
+			$ticket_status_ids = $ticket_statuses;
 		}
 
 		$owner_staff_ids = array();
