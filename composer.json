@@ -1,5 +1,5 @@
 {
-    "name": "kayako/php-api-library",
+    "name": "curvedental/php-api-library",
     "description": "PHP API library for Kayako",
     "require": {
         "php": ">=5.3.0",
