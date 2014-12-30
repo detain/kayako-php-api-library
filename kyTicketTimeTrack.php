@@ -192,9 +192,13 @@ class kyTicketTimeTrack extends kyObjectBase {
 	 * Returns all time tracks of the ticket.
 	 *
 	 * @param int $ticket_id Ticket identifier.
+	 * @throws kyException
 	 * @return kyResultSet
 	 */
-	static public function getAll($ticket_id) {
+	static public function getAll($ticket_id = null) {
+		if (is_null($ticket_id)) {
+			throw new kyException("Ticket ID required field is missing.");
+		}
 		$search_parameters = array('ListAll');
 
 		$search_parameters[] = $ticket_id;
@@ -207,9 +211,13 @@ class kyTicketTimeTrack extends kyObjectBase {
 	 *
 	 * @param int $ticket_id Ticket identifier.
 	 * @param int $id Ticket time track identifier.
+	 * @throws kyException
 	 * @return kyTicketTimeTrack
 	 */
-	static public function get($ticket_id, $id) {
+	static public function get($ticket_id, $id = null) {
+		if (is_null($id) || is_null($ticket_id)) {
+			throw new kyException("Value for API field which is required for this operation to complete is missing (Ticket ID or Time Track ID)");
+		}
 		return parent::get(array($ticket_id, $id));
 	}
 
@@ -626,7 +634,7 @@ class kyTicketTimeTrack extends kyObjectBase {
 	 * @param string $time_billable Billable time formatted as hh:mm. Bill date will be set to current datetime.
 	 * @return kyTicketTimeTrack
 	 */
-	static public function createNew(kyTicket $ticket, $contents, kyStaff $staff, $time_worked, $time_billable) {
+	static public function createNew(kyTicket $ticket = null, $contents = null, kyStaff $staff = null, $time_worked = null, $time_billable = null) {
 		$ticket_time_track = new self();
 		$ticket_time_track->setTicketId($ticket->getId());
 		$ticket_time_track->setContents($contents);

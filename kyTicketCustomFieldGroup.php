@@ -33,9 +33,13 @@ class kyTicketCustomFieldGroup extends kyCustomFieldGroupBase {
 	 * Fetches ticket custom fields groups from server.
 	 *
 	 * @param int $ticket_id Ticket identifier.
+	 * @throws KyException
 	 * @return kyResultSet
 	 */
-	static public function getAll($ticket_id) {
+	static public function getAll($ticket_id = null) {
+		if (is_null($ticket_id)) {
+			throw new kyException("Ticket ID required field is missing.");
+		}
 		$result = self::getRESTClient()->get(static::$controller, array($ticket_id));
 		$objects = array();
 		if (array_key_exists(static::$object_xml_name, $result)) {

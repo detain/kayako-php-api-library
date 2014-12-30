@@ -271,9 +271,13 @@ class kyTicketPost extends kyObjectBase {
 	 * Returns all posts of the ticket.
 	 *
 	 * @param int $ticket_id Ticket identifier.
+	 * @throws kyException
 	 * @return kyResultSet
 	 */
-	static public function getAll($ticket_id) {
+	static public function getAll($ticket_id = null) {
+		if (is_null($ticket_id)) {
+			throw new kyException("Ticket ID required field is missing.");
+		}
 		$search_parameters = array('ListAll');
 
 		$search_parameters[] = $ticket_id;
@@ -286,9 +290,13 @@ class kyTicketPost extends kyObjectBase {
 	 *
 	 * @param int $ticket_id Ticket identifier.
 	 * @param int $id Ticket post identifier.
+	 * @throws kyException
 	 * @return kyTicketPost
 	 */
-	static public function get($ticket_id, $id) {
+	static public function get($ticket_id, $id = null) {
+		if (is_null($id) || is_null($ticket_id)) {
+			throw new kyException("Value for API field which is required for this operation to complete is missing (Ticket ID or Ticket Post ID)");
+		}
 		return parent::get(array($ticket_id, $id));
 	}
 
@@ -752,7 +760,7 @@ class kyTicketPost extends kyObjectBase {
 	 * @param string $contents Contents of new post.
 	 * @return kyTicketPost
 	 */
-	static public function createNew($ticket, $creator, $contents) {
+	static public function createNew($ticket = null, $creator = null, $contents = null) {
 		$new_ticket_post = new kyTicketPost();
 		$new_ticket_post->setTicket($ticket);
 		$new_ticket_post->setCreator($creator);

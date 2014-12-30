@@ -226,9 +226,13 @@ class kyTicketNote extends kyObjectBase {
 	 * Returns all notes of the ticket.
 	 *
 	 * @param int $ticket_id Ticket identifier.
+	 * @throws KyException
 	 * @return kyResultSet
 	 */
-	static public function getAll($ticket_id) {
+	static public function getAll($ticket_id = null) {
+		if (is_null($ticket_id)) {
+			throw new kyException("Ticket ID required field is missing.");
+		}
 		$search_parameters = array('ListAll');
 
 		$search_parameters[] = $ticket_id;
@@ -241,9 +245,13 @@ class kyTicketNote extends kyObjectBase {
 	 *
 	 * @param int $ticket_id Ticket identifier.
 	 * @param int $id Ticket note identifier.
+	 * @throws KyException
 	 * @return kyTicketNote
 	 */
-	static public function get($ticket_id, $id) {
+	static public function get($ticket_id, $id = null) {
+		if (is_null($ticket_id) || is_null($id)) {
+			throw new kyException("Value for API field which is required for this operation to complete is missing (Ticket ID or Ticket Note ID)");
+		}
 		return parent::get(array($ticket_id, $id));
 	}
 
@@ -628,7 +636,10 @@ class kyTicketNote extends kyObjectBase {
 	 * @param string $contents Contents of new note.
 	 * @return kyTicketNote
 	 */
-	static public function createNew(kyTicket $ticket, kyStaff $creator, $contents) {
+	static public function createNew(kyTicket $ticket = null, kyStaff $creator = null, $contents = null) {
+		if (is_null($ticket) || is_null($creator) || is_null($contents)) {
+			throw new kyException("Value for API field which is required for this operation to complete is missing.");
+		}
 		$new_ticket_note = new kyTicketNote();
 
 		$new_ticket_note->setTicketId($ticket->getId());

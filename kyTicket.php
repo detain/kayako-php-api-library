@@ -644,15 +644,18 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param array|kyResultSet|kyTicketStatus $ticket_statuses List of ticket status identifiers.
 	 * @param array|kyResultSet|kyStaff $owner_staffs List of staff (ticket owners) identifiers.
 	 * @param array|kyResultSet|kyUser $users List of user (ticket creators) identifiers.
-	 * @param $rowsPerPage (OPTIONAL)
-	 * @param $rowOffset (OPTIONAL)
+	 * @param $max_items (OPTIONAL)
+	 * @param $starting_ticket_id (OPTIONAL)
 	 * @throws InvalidArgumentException
 	 * @return kyResultSet
 	 */
-	static public function getAll($departments, $ticket_statuses = array(), $owner_staffs = array(), $users = array(), $max_items = null, $starting_ticket_id = null) {
+	static public function getAll($departments = null, $ticket_statuses = array(), $owner_staffs = array(), $users = array(), $max_items = null, $starting_ticket_id = null) {
 		$search_parameters = array('ListAll');
 
 		$department_ids = array();
+		if (is_null($departments) && empty($departments)) {
+			throw new InvalidArgumentException("Department required for this operation to complete is missing");
+		}
 		if ($departments instanceof kyDepartment) {
 			$department_ids = array($departments->getId());
 		} elseif ($departments instanceof kyResultSet) {
@@ -1794,9 +1797,13 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param kyUser|kyStaff $creator Creator (User or Staff) of new ticket.
 	 * @param string $contents Contents of the first post.
 	 * @param string $subject Subject of new ticket.
+	 * @throws kyException
 	 * @return kyTicket
 	 */
-	static public function createNew(kyDepartment $department, $creator, $contents, $subject) {
+	static public function createNew(kyDepartment $department = null, $creator = null, $contents = null, $subject = null) {
+		if (is_null($department) || is_null($creator) || is_null($contents) || is_null($subject)) {
+			throw new kyException("Value for API field which is required for this operation to complete is missing.");
+		}
 		$new_ticket = self::createNewGeneric($department, $contents, $subject);
 		$new_ticket->setCreator($creator);
 		return $new_ticket;

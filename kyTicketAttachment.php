@@ -110,9 +110,13 @@ class kyTicketAttachment extends kyObjectBase {
 	 * Returns all attachments in posts of the ticket.
 	 *
 	 * @param int $ticket_id Ticket identifier.
+	 * @throws KyException
 	 * @return kyResultSet
 	 */
-	static public function getAll($ticket_id) {
+	static public function getAll($ticket_id = null) {
+		if (is_null($ticket_id)) {
+			throw new kyException("Ticket ID required field is missing.");
+		}
 		$search_parameters = array('ListAll');
 
 		$search_parameters[] = $ticket_id;
@@ -125,9 +129,13 @@ class kyTicketAttachment extends kyObjectBase {
 	 *
 	 * @param int $ticket_id Ticket identifier.
 	 * @param int $id Ticket attachment identifier.
+	 * @throws KyException
 	 * @return kyTicketAttachment
 	 */
-	static public function get($ticket_id, $id) {
+	static public function get($ticket_id, $id = null) {
+		if (is_null($id) || is_null($ticket_id)) {
+			throw new kyException("Value for API field which is required for this operation to complete is missing (Ticket ID or Attachment ID)");
+		}
 		return parent::get(array($ticket_id, $id));
 	}
 
@@ -361,9 +369,14 @@ class kyTicketAttachment extends kyObjectBase {
 	 * @param kyTicketPost $ticket_post Ticket post.
 	 * @param string $contents Raw contents of the file.
 	 * @param string $file_name Filename.
+	 * @throws KyException
 	 * @return kyTicketAttachment
 	 */
-	static public function createNew($ticket_post, $contents, $file_name) {
+	static public function createNew($ticket_post = null, $contents = null, $file_name = null) {
+		if (is_null($ticket_post) || is_null($contents) || is_null($file_name)) {
+			throw new kyException("Value for API field which is required for this operation to complete is missing.");
+		}
+
 		$new_ticket_attachment = new kyTicketAttachment();
 
 		$new_ticket_attachment->setTicketId($ticket_post->getTicketId());

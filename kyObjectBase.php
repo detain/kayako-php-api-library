@@ -1,6 +1,4 @@
 <?php
-//Disabling E_STRICT mode through php file.
-error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT);
 /**
  * Base class for getting, creating, updating and deleting Kayako objects.
  *
