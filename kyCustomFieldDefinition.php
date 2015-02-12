@@ -401,7 +401,7 @@ class kyCustomFieldDefinition extends kyObjectBase {
 	public function getOptionById($id) {
 		foreach ($this->getOptions() as $field_option) {
 			/* @var $field_option kyCustomFieldOption */
-			if ($field_option->getId() == $id)
+			if ($field_option->getId() == $id || $id == '0')
 				return $field_option;
 		}
 
