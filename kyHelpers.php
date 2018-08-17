@@ -26,12 +26,32 @@ if (!function_exists('ky_xml_to_array')) {
 	function ky_xml_to_array($xml, $namespaces = null) {
 		$iter = 0;
 		$arr = array();
-
-		if (is_string($xml))
-			$xml = new SimpleXMLElement($xml);
-
+		if (is_string($xml)) {
+			try {
+				$xml = new SimpleXMLElement($xml, LIBXML_NOERROR);
+			} catch(Exception $e) {
+				$error = 'Internal error occurred. Please try again.';
+				myadmin_log('helpdesk', 'info', $e->getMessage(), __LINE__, __FILE__);
+			}
+			if (!($xml instanceof SimpleXMLElement))
+				try {
+					$xml = new SimpleXMLElement($xml, LIBXML_NOERROR | LIBXML_NOCDATA);
+				} catch(Exception $e) {
+					$error = 'Internal error occurred. Please try again.';
+					myadmin_log('helpdesk', 'info', $e->getMessage(), __LINE__, __FILE__);
+				}
 		if (!($xml instanceof SimpleXMLElement))
+				try {
+					$xml = new SimpleXMLElement($xml, LIBXML_NOERROR | LIBXML_NOCDATA | LIBXML_NOENT);
+				} catch(Exception $e) {
+					$error = 'Internal error occurred. Please try again.';
+					myadmin_log('helpdesk', 'info', $e->getMessage(), __LINE__, __FILE__);
+				}
+		}
+		if (!($xml instanceof SimpleXMLElement)) {
+			myadmin_log('kayako', 'warning', 'Cannot parse xml', __LINE__, __FILE__);
 			return $arr;
+		}
 
 		if ($namespaces === null)
 			$namespaces = $xml->getDocNamespaces(true);

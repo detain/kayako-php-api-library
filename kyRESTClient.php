@@ -126,10 +126,11 @@ class kyRESTClient implements kyRESTClientInterface {
 
 		$curl_options = array(
 			CURLOPT_HEADER => false,
+			CURLOPT_ENCODING => 'gzip',
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_SSL_VERIFYPEER => false,
 			CURLOPT_SSL_VERIFYHOST => false,
-			CURLOPT_CONNECTTIMEOUT => 2,
+			CURLOPT_CONNECTTIMEOUT => $this->config->getTimeout(),
 			CURLOPT_FORBID_REUSE => true,
 			CURLOPT_FRESH_CONNECT => true,
 			CURLOPT_URL => $url

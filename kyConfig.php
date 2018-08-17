@@ -37,6 +37,12 @@ class kyConfig {
 	private $datetime_format = 'Y-m-d H:i:s';
 
 	/**
+	 * Default curl request timeout value.
+	 * @var int
+	 */
+	private $timeout = 2;
+
+	/**
 	 * Default format of date object properties used in getters and setters.
 	 * @var string
 	 */
@@ -173,6 +179,26 @@ class kyConfig {
 	public function setSecretKey($secret_key) {
 		$this->secret_key = $secret_key;
 		return $this;
+	}
+
+	/**
+	 * Sets Curl Timeout Value
+	 *
+	 * @param int $timeout Timeout Value in Seconds
+	 * @return kyConfig
+	 */
+	public function setTimeout($timeout) {
+		$this->timeout = (int)$timeout;
+		return $this;
+	}
+
+	/**
+	 * Gets Curl Timeout Value
+	 *
+	 * @return int
+	 */
+	public function getTimeout() {
+		return $this->timeout;
 	}
 
 	/**
