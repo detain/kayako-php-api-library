@@ -273,23 +273,12 @@ class kyTicketPost extends kyObjectBase {
 	 * @param int $ticket_id Ticket identifier.
 	 * @return kyResultSet
 	 */
-	static public function getAll($ticket_id) {
-		$search_parameters = array('ListAll');
+	static public function getAll($search_parameters = array()) {
+		if(is_array($search_parameters )) {
+			$search_parameters[] = array('ListAll');
 
-		$search_parameters[] = $ticket_id;
-
-		return parent::getAll($search_parameters);
-	}
-
-	/**
-	 * Returns ticket post.
-	 *
-	 * @param int $ticket_id Ticket identifier.
-	 * @param int $id Ticket post identifier.
-	 * @return kyTicketPost
-	 */
-	static public function get($ticket_id, $id) {
-		return parent::get(array($ticket_id, $id));
+			return parent::getAll($search_parameters);
+		}
 	}
 
 	public function update() {

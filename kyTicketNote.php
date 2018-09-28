@@ -228,23 +228,11 @@ class kyTicketNote extends kyObjectBase {
 	 * @param int $ticket_id Ticket identifier.
 	 * @return kyResultSet
 	 */
-	static public function getAll($ticket_id) {
-		$search_parameters = array('ListAll');
-
-		$search_parameters[] = $ticket_id;
+	static public function getAll($search_parameters = array()) {
+                                                      
+		$search_parameters[] = 'ListAll'; 
 
 		return parent::getAll($search_parameters);
-	}
-
-	/**
-	 * Returns ticket note.
-	 *
-	 * @param int $ticket_id Ticket identifier.
-	 * @param int $id Ticket note identifier.
-	 * @return kyTicketNote
-	 */
-	static public function get($ticket_id, $id) {
-		return parent::get(array($ticket_id, $id));
 	}
 
 	public function create() {

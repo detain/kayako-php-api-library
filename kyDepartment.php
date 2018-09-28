@@ -393,6 +393,10 @@ class kyDepartment extends kyObjectBase {
 			}
 		}
 
+		if (!$this->user_groups) {
+			$this->user_groups = array();
+		}
+
 		foreach ($this->user_groups as $user_group_id => $user_group) {
 			if (!in_array($user_group_id, $this->user_group_ids)) {
 				unset($this->user_groups[$user_group_id]);

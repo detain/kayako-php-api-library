@@ -496,45 +496,47 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param int $type_id Default ticket type identifier.
 	 * @param bool $auto_create_user True to automatically create user if none is provided as creator. False otherwise.
 	 */
-	static public function setDefaults($status_id, $priority_id, $type_id, $auto_create_user = true) {
+    static public function setDefaults($status_id, $priority_id, $type_id, $auto_create_user = true)
+    {
 		self::$default_status_id = $status_id;
 		self::$default_priority_id = $priority_id;
 		self::$default_type_id = $type_id;
 		self::$auto_create_user = $auto_create_user;
 	}
 
-	protected function parseData($data) {
+    protected function parseData($data)
+    {
 		$this->id = intval($data['_attributes']['id']);
 		$this->flag_type = intval($data['_attributes']['flagtype']);
 		$this->display_id = $data['displayid'];
-		$this->department_id = ky_assure_positive_int($data['departmentid']);
-		$this->status_id = ky_assure_positive_int($data['statusid']);
-		$this->priority_id = ky_assure_positive_int($data['priorityid']);
-		$this->type_id = ky_assure_positive_int($data['typeid']);
-		$this->user_id = ky_assure_positive_int($data['userid']);
+        $this->department_id = ky_assure_positive_int((int)$data['departmentid']);
+        $this->status_id = ky_assure_positive_int((int)$data['statusid']);
+        $this->priority_id = ky_assure_positive_int((int)$data['priorityid']);
+        $this->type_id = ky_assure_positive_int((int)$data['typeid']);
+        $this->user_id = ky_assure_positive_int((int)$data['userid']);
 		$this->user_organization_name = $data['userorganization'];
-		$this->user_organization_id = ky_assure_positive_int($data['userorganizationid']);
-		$this->owner_staff_id = ky_assure_positive_int($data['ownerstaffid']);
+        $this->user_organization_id = ky_assure_positive_int((int)$data['userorganizationid']);
+        $this->owner_staff_id = ky_assure_positive_int((int)$data['ownerstaffid']);
 		$this->owner_staff_name = $data['ownerstaffname'];
 		$this->full_name = $data['fullname'];
 		$this->email = $data['email'];
 		$this->last_replier = $data['lastreplier'];
 		$this->subject = $data['subject'];
-		$this->creation_time = ky_assure_positive_int($data['creationtime']);
-		$this->last_activity = ky_assure_positive_int($data['lastactivity']);
-		$this->last_staff_reply = ky_assure_positive_int($data['laststaffreply']);
-		$this->last_user_reply = ky_assure_positive_int($data['lastuserreply']);
-		$this->sla_plan_id = ky_assure_positive_int($data['slaplanid']);
-		$this->next_reply_due = ky_assure_positive_int($data['nextreplydue']);
-		$this->resolution_due = ky_assure_positive_int($data['resolutiondue']);
+        $this->creation_time = ky_assure_positive_int((int)$data['creationtime']);
+        $this->last_activity = ky_assure_positive_int((int)$data['lastactivity']);
+        $this->last_staff_reply = ky_assure_positive_int((int)$data['laststaffreply']);
+        $this->last_user_reply = ky_assure_positive_int((int)$data['lastuserreply']);
+        $this->sla_plan_id = ky_assure_positive_int((int)$data['slaplanid']);
+        $this->next_reply_due = ky_assure_positive_int((int)$data['nextreplydue']);
+        $this->resolution_due = ky_assure_positive_int((int)$data['resolutiondue']);
 		$this->replies = intval($data['replies']);
 		$this->ip_address = $data['ipaddress'];
 		$this->creator = intval($data['creator']);
 		$this->creation_mode = intval($data['creationmode']);
 		$this->creation_type = intval($data['creationtype']);
-		$this->is_escalated = ky_assure_bool($data['isescalated']);
-		$this->escalation_rule_id = ky_assure_positive_int($data['escalationruleid']);
-		$this->template_group_id = ky_assure_positive_int($data['templategroupid']);
+        $this->is_escalated = ky_assure_bool((bool)$data['isescalated']);
+        $this->escalation_rule_id = ky_assure_positive_int((int)$data['escalationruleid']);
+        $this->template_group_id = ky_assure_positive_int((int)$data['templategroupid']);
 		if (is_numeric($data['templategroupid']) && !empty($data['templategroupid']) && isset($data['templategroupname'])) {
 			$this->template_group_name = $data['templategroupname'];
 		}
@@ -543,14 +545,14 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 		$this->watchers = array();
 		if (array_key_exists('watcher', $data)) {
 			foreach ($data['watcher'] as $watcher) {
-				$this->watchers[] = array('staff_id' => intval($watcher['_attributes']['staffid']), 'name' => $watcher['_attributes']['name']);
+                $this->watchers[] = array('staff_id' => intval((int)$watcher['_attributes']['staffid']), 'name' => $watcher['_attributes']['name']);
 			}
 		}
 
 		$this->workflows = array();
 		if (array_key_exists('workflow', $data)) {
 			foreach ($data['workflow'] as $workflow) {
-				$this->workflows[] = array('id' => intval($workflow['_attributes']['id']), 'title' => $workflow['_attributes']['title']);
+                $this->workflows[] = array('id' => intval((int)$workflow['_attributes']['id']), 'title' => $workflow['_attributes']['title']);
 			}
 		}
 
@@ -655,7 +657,22 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @throws InvalidArgumentException
 	 * @return kyResultSet
 	 */
-	static public function getAll($departments, $ticket_statuses = array(), $owner_staffs = array(), $users = array(), $max_items = null, $starting_ticket_id = null) {
+    static public function getAll($search_parameters = array())
+    {
+
+        list($departments, $ticket_statuses, $owner_staffs, $users, $max_items, $starting_ticket_id) = $search_parameters;
+
+        if (!is_array($ticket_statuses)) {
+            $ticket_statuses = array();
+        }
+        if (!is_array($owner_staffs)) {
+            $owner_staffs = array();
+        }
+        if (!is_array($users)) {
+            $users = array();
+        }
+
+        unset($search_parameters);
 		$search_parameters = array('ListAll');
 
 		$department_ids = array();
@@ -684,6 +701,10 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 		} elseif ($owner_staffs instanceof kyResultSet) {
 			$owner_staff_ids = $owner_staffs->collectId();
 		}
+        else if (is_array($owner_staffs))
+        {
+            $owner_staff_ids = $owner_staffs;
+        }
 
 		$user_ids = array();
 		if ($users instanceof kyUser) {
@@ -691,6 +712,10 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 		} elseif ($users instanceof kyResultSet) {
 			$user_ids = $users->collectId();
 		}
+        else if (is_array($users))
+        {
+            $user_ids = $users;
+        }
 
 		$search_parameters[] = implode(',', $department_ids);
 
@@ -1731,9 +1756,11 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param bool $reload True to reload posts from server.
 	 * @return kyResultSet
 	 */
-	public function getPosts($reload = false) {
+    public function getPosts($reload = false)
+    {
 		if ($this->posts === null || $reload) {
-			$this->posts = kyTicketPost::getAll($this->getId())->getRawArray();
+            $kyResultSet = kyTicketPost::getAll($this->getId());
+            $this->posts = (method_exists($kyResultSet, 'getRawArray')) ? kyTicketPost::getAll($this->getId())->getRawArray() : null;
 		}
 		/** @noinspection PhpParamsInspection */
 		return new kyResultSet($this->posts);
