@@ -221,7 +221,7 @@ class kyTicketAttachment extends kyObjectBase {
 		if ($this->ticket_id === null || $this->ticket_post_id === null)
 			return null;
 
-		$this->ticket_post = kyTicketPost::get(array($this->ticket_id, $this->ticket_post_id));
+		$this->ticket_post = kyTicketPost::get($this->ticket_id, $this->ticket_post_id);
 		return $this->ticket_post;
 	}
 

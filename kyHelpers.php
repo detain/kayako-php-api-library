@@ -322,9 +322,6 @@ if (!function_exists('ky_assure_int')) {
 	 * @return int|null
 	 */
 	function ky_assure_int($value, $value_on_null = null) {
-		if (!is_int($value)) {
-			return $value_on_null;
-		}
 		return $value !== null ? intval($value) : $value_on_null;
 	}
 }
@@ -338,9 +335,6 @@ if (!function_exists('ky_assure_positive_int')) {
 	 * @return int|null
 	 */
 	function ky_assure_positive_int($value, $value_on_non_positive = null) {
-		if (!is_int($value)) {
-			return $value_on_non_positive;
-		}
 		return intval($value) > 0 ? intval($value) : $value_on_non_positive;
 	}
 }
