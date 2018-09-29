@@ -280,9 +280,9 @@ abstract class kyObjectBase {
 		/**
 		 * Clear all object properties.
 		 */
-   		foreach ($this as $key => $value) {
-		   	$this->$key = null;
-	   	}
+		foreach ($this as $key => $value) {
+			$this->$key = null;
+		}
 
 		$this->parseData($result[static::$object_xml_name][0]);
 		return $this;
