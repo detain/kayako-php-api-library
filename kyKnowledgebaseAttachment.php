@@ -98,7 +98,8 @@ class kyKnowledgebaseAttachment extends kyObjectBase {
 	 * @param int $kbarticle_id kbarticle identifier.
 	 * @return kyResultSet
 	 */
-	static public function getAll($kbarticle_id) {
+	static public function getAll() {
+        list($kbarticle_id) = func_get_args();
 		$search_parameters = array('ListAll');
 
 		$search_parameters[] = $kbarticle_id;

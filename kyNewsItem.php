@@ -341,7 +341,13 @@ class kyNewsItem extends kyCommentableBase {
 		return $data;
 	}
 
-	static public function getAll($category = null) {
+	static public function getAll() {
+        if (func_num_args() == 0) {
+            $category = null;
+        } else {
+            list($category) = func_get_args();
+        }
+        
 		if ($category instanceof kyNewsCategory) {
 			$category_id = $category->getId();
 		} else {

@@ -655,7 +655,37 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @throws InvalidArgumentException
 	 * @return kyResultSet
 	 */
-	static public function getAll($departments, $ticket_statuses = array(), $owner_staffs = array(), $users = array(), $max_items = null, $starting_ticket_id = null) {
+	static public function getAll() {
+        if (func_num_args() == 1) {
+            $max_items = null;
+            $starting_ticket_id = null;
+            $users = array();
+            $owner_staffs = array();
+            $ticket_statuses = array();
+            list($departments) = func_get_args();
+        } elseif (func_num_args() == 2) {
+            $max_items = null;
+            $starting_ticket_id = null;
+            $users = array();
+            $owner_staffs = array();
+            list($departments, $ticket_statuses) = func_get_args();
+        } elseif (func_num_args() == 3) {
+            $max_items = null;
+            $starting_ticket_id = null;
+            $users = array();
+            list($departments, $ticket_statuses, $owner_staffs) = func_get_args();
+        } elseif (func_num_args() == 4) {
+            $max_items = null;
+            $starting_ticket_id = null;
+            list($departments, $ticket_statuses, $owner_staffs, $users) = func_get_args();
+        } elseif (func_num_args() == 5) {
+            $starting_ticket_id = null;
+            list($departments, $ticket_statuses, $owner_staffs, $users, $max_items) = func_get_args();
+        } elseif (func_num_args() == 6) {
+            list($departments, $ticket_statuses, $owner_staffs, $users, $max_items, $starting_ticket_id) = func_get_args();
+        }
+        
+        
 		$search_parameters = array('ListAll');
 
 		$department_ids = array();

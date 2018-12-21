@@ -170,7 +170,22 @@ class kyKnowledgebaseArticle extends kyObjectBase {
 		return $data;
 	}
 
-	static public function getAll($category = null, $max_items = null, $starting_kbarticle_id = null) {
+	static public function getAll() {
+        if (func_num_args() == 0) {
+            $category = null;
+            $max_items = null;
+            $starting_kbarticle_id = null;
+        } elseif (func_num_args() == 1) {
+            $max_items = null;
+            $starting_kbarticle_id = null;
+            list($category) = func_get_args();
+        } elseif (func_num_args() == 2) {
+            $starting_kbcategory_id = null;;
+            list($category, $max_items) = func_get_args();
+        } else {
+            list($category, $max_items, $starting_kbcategory_id) = func_get_args();
+        }
+        
 		if ($category instanceof kyKnowledgebaseCategory) {
 			$category_id = $category->getId();
 		} else {

@@ -194,7 +194,9 @@ class kyTicketTimeTrack extends kyObjectBase {
 	 * @param int $ticket_id Ticket identifier.
 	 * @return kyResultSet
 	 */
-	static public function getAll($ticket_id) {
+    static public function getAll() {
+        list($ticket_id) = func_get_args();
+
 		$search_parameters = array('ListAll');
 
 		$search_parameters[] = $ticket_id;

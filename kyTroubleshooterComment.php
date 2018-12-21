@@ -46,7 +46,8 @@ class kyTroubleshooterComment extends kyCommentBase {
 	 *
 	 * @return kyResultSet
 	 */
-	static public function getAll($troubleshooterstep) {
+	static public function getAll() {
+        list($troubleshooterstep) = func_get_args();
 		if ($troubleshooterstep instanceof kyTroubleshooterStep) {
 			$troubleshooterstep_item_id = $troubleshooterstep->getId();
 		} else {

@@ -46,7 +46,8 @@ class kyNewsComment extends kyCommentBase {
 	 * @param kyNewsItem $knowledgebase_article News item.
 	 * @return kyResultSet
 	 */
-	static public function getAll($knowledgebase_article) {
+	static public function getAll() {
+        list($knowledgebase_article) = func_get_args();
 		if ($knowledgebase_article instanceof kyNewsItem) {
 			$news_item_id = $knowledgebase_article->getId();
 		} else {

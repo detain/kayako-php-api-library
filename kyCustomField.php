@@ -119,7 +119,12 @@ class kyCustomField extends kyObjectBase {
 		throw new BadMethodCallException(sprintf("You can't get single object of type %s.", get_called_class()));
 	}
 
-	static public function getAll($search_parameters = array()) {
+    static public function getAll() {
+        if (func_num_args() == 0) {
+            $search_parameters = array();
+        } else {
+            list($search_parameters) = func_get_args();
+        }
 		throw new BadMethodCallException(sprintf("You can't get all objects of type %s this way. Use kyCustomFieldGroupBase extending classes getAll method instead or relevant methods of objects extending kyObjectWithCustomFieldsBase class.", get_called_class()));
 	}
 

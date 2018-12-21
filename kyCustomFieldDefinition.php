@@ -178,7 +178,12 @@ class kyCustomFieldDefinition extends kyObjectBase {
 	 * @param array $search_parameters Optional. Additional search parameters.
 	 * @return kyResultSet
 	 */
-	static public function getAll($search_parameters = array()) {
+    static public function getAll() {
+        if (func_num_args() == 0) {
+            $search_parameters = array();
+        } else {
+            list($search_parameters) = func_get_args();
+        }
 		if (self::$definitions === null) {
 			self::$definitions = parent::getAll($search_parameters);
 		}

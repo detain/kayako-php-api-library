@@ -234,7 +234,16 @@ class kyUser extends kyObjectBase {
 	 * @param int $max_items Optional maximum items count. Defaults to 1000 when starting user is defined.
 	 * @return kyResultSet
 	 */
-	static public function getAll($starting_user_id = null, $max_items = null) {
+	static public function getAll() {
+        if (func_num_args() == 0) {
+            $starting_user_id = null;
+            $max_items = null;
+        } elseif (func_num_args() == 1) {
+            $max_items = null;
+            list($starting_user_id) = func_get_args();
+        } else {
+            list($starting_user_id, $max_user_id) = func_get_args();
+        }
 		$search_parameters = array('Filter');
 		if (is_numeric($starting_user_id) && $starting_user_id > 0) {
 			if (!is_numeric($max_items) || $max_items <= 0) {

@@ -90,7 +90,8 @@ class kyTroubleshooterAttachment extends kyObjectBase {
 	 * @param int $troubelshooter_step_id TroubleshooterStep identifier.
 	 * @return kyResultSet
 	 */
-	static public function getAll($troubelshooter_step_id) {
+	static public function getAll() {
+        list($troubelshooter_step_id) = func_get_args();
 		$search_parameters = array('ListAll');
 
 		$search_parameters[] = $troubelshooter_step_id;

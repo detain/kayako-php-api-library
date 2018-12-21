@@ -215,7 +215,17 @@ class kyKnowledgebaseCategory extends kyObjectBase {
 	 * @param int $max_items Optional maximum items count. Defaults to 1000 when starting kbcategoryid is defined.
 	 * @return kyResultSet
 	 */
-	static public function getAll($max_items = null, $starting_kbcategory_id = 0) {
+	static public function getAll() {
+        if (func_num_args() == 0) {
+            $max_items = null;
+            $starting_kbcategory_id = 0;
+        } elseif (func_num_args() == 1) {
+            $starting_kbcategory_id = 0;
+            list($max_items) = func_get_args();
+        } else {
+            list($max_items, $starting_kbcategory_id) = func_get_args();
+        }
+        
 		$search_parameters = array('GetList');
 
 		if (is_numeric($starting_kbcategory_id) && $starting_kbcategory_id > 0) {

@@ -46,7 +46,8 @@ class kyKnowledgebaseComment extends kyCommentBase {
 	 * @param kyKnowledgebaseArticle $kbarticle kyKnowledgebaseArticle item.
 	 * @return kyResultSet
 	 */
-	static public function getAll($kbarticle) {
+	static public function getAll() {
+        list($kbarticle) = func_get_args();
 		if ($kbarticle instanceof kyKnowledgebaseArticle) {
 			$kbarticle_id = $kbarticle->getId();
 		} else {
