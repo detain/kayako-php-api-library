@@ -288,7 +288,8 @@ class kyTicketPost extends kyObjectBase {
 	 * @param int $id Ticket post identifier.
 	 * @return kyTicketPost
 	 */
-	static public function get($ticket_id, $id) {
+	static public function get() {
+        list($ticket_id, $id) = func_get_args();
 		return parent::get(array($ticket_id, $id));
 	}
 

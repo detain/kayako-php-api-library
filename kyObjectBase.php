@@ -256,7 +256,9 @@ abstract class kyObjectBase {
 	 * @param int|array $id Object identifier or list of identifiers (ex. ticket identifier and ticket post identifier when fetching TicketPost).
 	 * @return kyObjectBase
 	 */
-	static public function get($id) {
+    static public function get() {
+        list($id) = func_get_args();
+
 		if (!is_array($id))
 			$id = array($id);
 		$result = self::getRESTClient()->get(static::$controller, $id);

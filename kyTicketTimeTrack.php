@@ -209,7 +209,8 @@ class kyTicketTimeTrack extends kyObjectBase {
 	 * @param int $id Ticket time track identifier.
 	 * @return kyTicketTimeTrack
 	 */
-	static public function get($ticket_id, $id) {
+	static public function get() {
+        list($ticket_id, $id) = func_get_args();
 		return parent::get(array($ticket_id, $id));
 	}
 

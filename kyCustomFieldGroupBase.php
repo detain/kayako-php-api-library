@@ -77,7 +77,8 @@ abstract class kyCustomFieldGroupBase extends kyObjectBase {
 		return $data;
 	}
 
-	static public function get($id) {
+	static public function get() {
+        list($id) = func_get_args();
 		throw new BadMethodCallException(sprintf("You can't get single object of type %s.", get_called_class()));
 	}
 

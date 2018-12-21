@@ -105,7 +105,8 @@ class kyTroubleshooterAttachment extends kyObjectBase {
 	 * @param int $id TroubleshooterStep attachment identifier.
 	 * @return kyTroubleshooterAttachment
 	 */
-	static public function get($troubelshooter_step_id, $id) {
+	static public function get() {
+        list($troubelshooter_step_id, $id) = func_get_args();
 		return parent::get(array($troubelshooter_step_id, $id));
 	}
 

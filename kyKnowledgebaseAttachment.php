@@ -113,7 +113,8 @@ class kyKnowledgebaseAttachment extends kyObjectBase {
 	 * @param int $id kbarticle attachment id identifier.
 	 * @return kyKnowledgebaseAttachment
 	 */
-	static public function get($kbarticle_id, $id) {
+    static public function get() {
+        list($kbarticle_id , $id) = func_get_args();
 		return parent::get(array($kbarticle_id, $id));
 	}
 

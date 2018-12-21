@@ -64,7 +64,9 @@ class kyCustomFieldOption extends kyObjectBase {
 		$this->parent_option_id = intval($data['_attributes']['parentcustomfieldoptionid']);
 	}
 
-	static public function get($id) {
+    static public function get() {
+        list($id) = func_get_args();
+
 		throw new BadMethodCallException(sprintf("You can't get single object of type %s.", get_called_class()));
 	}
 
