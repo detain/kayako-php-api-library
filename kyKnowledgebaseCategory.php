@@ -582,7 +582,8 @@ class kyKnowledgebaseCategory extends kyObjectBase {
 	 * @param int $category_type Category type of knowledgebase item.
 	 * @return kyKnowledgebaseCategory
 	 */
-	static public function createNew($title, $category_type) {
+	static public function createNew() {
+        list($title, $category_type) = func_get_args();
 		$new_knowledgebase_category = new kyKnowledgebaseCategory();
 		$new_knowledgebase_category->setTitle($title);
 		$new_knowledgebase_category->setCategoryType($category_type);

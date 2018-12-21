@@ -121,7 +121,8 @@ class kyTroubleshooterComment extends kyCommentBase {
 	 * @param string $contents Contents of this comment.
 	 * @return kyTroubleshooterComment
 	 */
-	static public function createNew($troubleshooterstep, $creator, $contents) {
+	static public function createNew() {
+        list($troubleshooterstep, $creator, $contents) = func_get_args();
 		/** @var $new_comment kyTroubleshooterComment */
 		$new_comment = parent::createNew($creator, $contents);
 		$new_comment->setTroubleshooterStep($troubleshooterstep);

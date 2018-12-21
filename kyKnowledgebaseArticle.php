@@ -488,7 +488,8 @@ class kyKnowledgebaseArticle extends kyObjectBase {
 	 * @param kyStaff $staff Author (staff) of knowledgebase article.
 	 * @return kyKnowledgebaseCategory
 	 */
-	static public function createNew($subject, $contents, kyStaff $creator_id) {
+	static public function createNew() {
+        list($subject, $contents, $creator_id) = func_get_args();
 		$new_kbarticle_item = new kyKnowledgebaseArticle();
 		$new_kbarticle_item->setSubject($subject);
 		$new_kbarticle_item->setContents($contents);

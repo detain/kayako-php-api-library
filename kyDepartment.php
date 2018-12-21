@@ -457,7 +457,18 @@ class kyDepartment extends kyObjectBase {
 	 * @param string $module Module of new department - one of kyDepartment::MODULE_* constants.
 	 * @return kyDepartment
 	 */
-	static public function createNew($title, $type = self::TYPE_PUBLIC, $module = self::MODULE_TICKETS) {
+	static public function createNew() {
+        if (func_num_args() == 1) {
+            $type = self::TYPE_PUBLIC;
+            $module = self::MODULE_TICKETS;
+            list($title) = func_get_args();
+        } elseif (func_num_args() == 2) {
+            $module = self::MODULE_TICKETS;
+            list($title, $type) = func_get_args();
+        } else {
+            list($title, $type, $module) = func_get_args();
+        }
+        
 		$new_department = new kyDepartment();
 		$new_department->setTitle($title);
 		$new_department->setType($type);

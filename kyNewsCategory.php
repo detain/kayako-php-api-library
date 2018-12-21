@@ -155,7 +155,8 @@ class kyNewsCategory extends kyObjectBase {
 	 * @param int $visibility_type Visibility type of news item.
 	 * @return kyNewsCategory
 	 */
-	static public function createNew($title, $visibility_type) {
+	static public function createNew() {
+        list($title, $visibility_type) = func_get_args();
 		$new_news_category = new kyNewsCategory();
 		$new_news_category->setTitle($title);
 		$new_news_category->setVisibilityType($visibility_type);

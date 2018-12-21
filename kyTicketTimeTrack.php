@@ -626,7 +626,8 @@ class kyTicketTimeTrack extends kyObjectBase {
 	 * @param string $time_billable Billable time formatted as hh:mm. Bill date will be set to current datetime.
 	 * @return kyTicketTimeTrack
 	 */
-	static public function createNew(kyTicket $ticket, $contents, kyStaff $staff, $time_worked, $time_billable) {
+	static public function createNew() {
+        list($ticket, $contents, $staff, $time_worked, $time_billable) = func_get_args();
 		$ticket_time_track = new self();
 		$ticket_time_track->setTicketId($ticket->getId());
 		$ticket_time_track->setContents($contents);

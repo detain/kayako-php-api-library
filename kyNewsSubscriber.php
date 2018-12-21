@@ -174,7 +174,13 @@ class kyNewsSubscriber extends kyObjectBase {
 	 * @param bool $is_validated Whether email address is validated.
 	 * @return kyNewsSubscriber
 	 */
-	static public function createNew($email, $is_validated = false) {
+	static public function createNew() {
+        if (func_num_args() == 1) {
+            $is_validated = false;
+            list($email) = func_get_args();
+        } else {
+            list($email, $is_validated) = func_get_args();
+        }
 		$new_news_subscriber = new kyNewsSubscriber();
 		$new_news_subscriber->setEmail($email);
 		$new_news_subscriber->setIsValidated($is_validated);

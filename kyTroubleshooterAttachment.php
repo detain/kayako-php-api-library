@@ -269,7 +269,8 @@ class kyTroubleshooterAttachment extends kyObjectBase {
 	 * @param string $file_name Filename.
 	 * @return kyTroubleshooterAttachment
 	 */
-	static public function createNew($troubleshooter_step, $contents, $file_name) {
+	static public function createNew() {
+        list($troubleshooter_step, $contents, $file_name) = func_get_args();
 		$new_troubleshooter_attachment = new kyTroubleshooterAttachment();
 
 		$new_troubleshooter_attachment->setTroubleshooterStepId($troubleshooter_step->getId());

@@ -112,7 +112,13 @@ class kyStaffGroup extends kyObjectBase {
 	 * @param bool $is_admin True, if you want staff members assigned to this group to be Administrators. False (default), otherwise.
 	 * @return kyStaffGroup
 	 */
-	static public function createNew($title, $is_admin = false) {
+	static public function createNew() {
+        if (func_num_args() == 1) {
+            $is_admin = false;
+            list($title) = func_get_args();
+        } else {
+            list($title, $is_admin) = func_get_args();
+        }
 		$new_staff_group = new kyStaffGroup();
 		$new_staff_group->setTitle($title);
 		$new_staff_group->setIsAdmin($is_admin);

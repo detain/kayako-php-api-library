@@ -464,7 +464,8 @@ class kyTroubleshooterCategory extends kyObjectBase {
 	 * @param kyStaff $staff Staff user.
 	 * @return kyTroubleshooterCategory
 	 */
-	static public function createNew($title, $category_type, kyStaff $staff) {
+	static public function createNew() {
+        list($title, $category_type, $staff) = func_get_args();
 		$new_troubleshooter_category = new kyTroubleshooterCategory();
 		$new_troubleshooter_category->setTitle($title);
 		$new_troubleshooter_category->setCategoryType($category_type);

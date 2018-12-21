@@ -586,7 +586,8 @@ class kyTroubleshooterStep extends kyObjectBase {
 	 *
 	 *@return kyTroubleshooterStep
 	 */
-	static public function createNew($category, $subject, $contents, kyStaff $staff) {
+	static public function createNew() {
+        list($category, $subject, $contents, $staff) = func_get_args();
 		$new_troubleshooterstep_item = new kyTroubleshooterStep();
 		$new_troubleshooterstep_item->setCategory($category);
 		$new_troubleshooterstep_item->setSubject($subject);

@@ -499,7 +499,8 @@ class kyStaff extends kyObjectBase {
 	 * @param string $password Password for new staff user.
 	 * @return kyStaff
 	 */
-	static public function createNew($first_name, $last_name, $user_name, $email, kyStaffGroup $staff_group, $password) {
+	static public function createNew() {
+        list($first_name, $last_name, $user_name, $email, $staff_group, $password) = func_get_args();
 		$new_staff = new kyStaff();
 		$new_staff->setFirstName($first_name);
 		$new_staff->setLastName($last_name);

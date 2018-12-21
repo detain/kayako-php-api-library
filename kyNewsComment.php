@@ -119,7 +119,8 @@ class kyNewsComment extends kyCommentBase {
 	 * @param string $contents Contents of this comment.
 	 * @return kyNewsComment
 	 */
-	static public function createNew($knowledgebase_article, $creator, $contents) {
+	static public function createNew() {
+        list($knowledgebase_article, $creator, $contents) = func_get_args();
 		/** @var $new_comment kyNewsComment */
 		$new_comment = parent::createNew($creator, $contents);
 		$new_comment->setNewsItem($knowledgebase_article);

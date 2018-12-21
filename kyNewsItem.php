@@ -1099,7 +1099,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @param kyStaff $staff Author (staff) of news item.
 	 * @return kyNewsItem
 	 */
-	static public function createNew($subject, $contents, kyStaff $staff) {
+	static public function createNew() {
+        list($subject, $contents, $staff) = func_get_args();
 		$new_news_item = new kyNewsItem();
 		$new_news_item->setSubject($subject);
 		$new_news_item->setContents($contents);

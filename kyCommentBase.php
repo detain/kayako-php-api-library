@@ -542,7 +542,8 @@ abstract class kyCommentBase extends kyObjectBase {
 	 * @param string $contents Contents of this comment.
 	 * @return static
 	 */
-	static public function createNew($creator, $contents) {
+	static public function createNew() {
+        list($creator, $contents) = func_get_args();
 		/** @var $new_comment kyCommentBase */
 		$new_comment = new static();
 		$new_comment->setCreator($creator);

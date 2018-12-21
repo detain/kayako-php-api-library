@@ -297,7 +297,8 @@ class kyKnowledgebaseAttachment extends kyObjectBase {
 	 * @param string $file_name Filename.
 	 * @return kyKnowledgebaseAttachment
 	 */
-	static public function createNew($kbarticle, $contents, $file_name) {
+	static public function createNew() {
+        list($kbarticle, $contents, $file_name) = func_get_args();
 		$new_kbarticle_attachment = new kyKnowledgebaseAttachment();
 
 		$new_kbarticle_attachment->setKbarticleId($kbarticle->getId());
