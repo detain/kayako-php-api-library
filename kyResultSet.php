@@ -8,7 +8,8 @@
  * @author Tomasz Sawicki (https://github.com/Furgas)
  * @package Common
  */
-class kyResultSet implements Iterator, Countable, ArrayAccess {
+class kyResultSet implements Iterator, Countable, ArrayAccess
+{
 
 	/**
 	 * Prefix for filter methods.
@@ -32,7 +33,7 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	 * List of valid filter operators.
 	 * @var string[]
 	 */
-	static private $operators = array("~", ">", ">=", "<", "<=", "!=");
+	private static $operators = array("~", ">", ">=", "<", "<=", "!=");
 
 	/**
 	 * Class name of objects in this result set.
@@ -65,7 +66,8 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	 * @param string $class_name Optional. Class name of objects in this result set.
 	 * @param kyResultSet $previous_result_set Optional result set which was the base of filtering operation producing this result set.
 	 */
-	function __construct($objects, $class_name = null, $previous_result_set = null) {
+	public function __construct($objects, $class_name = null, $previous_result_set = null)
+	{
 		if ($objects === null) {
 			$objects = array();
 		}
@@ -91,65 +93,75 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	 *
 	 * @return string
 	 */
-	public function getObjectsClassName() {
+	public function getObjectsClassName()
+	{
 		return $this->class_name;
 	}
 
 	/**
 	 * Iterator implementation.
 	 */
-	public function rewind() {
+	public function rewind()
+	{
 		reset($this->objects);
 	}
 
 	/**
 	 * Iterator implementation.
 	 */
-	public function current() {
+	public function current()
+	{
 		return current($this->objects);
 	}
 
 	/**
 	 * Iterator implementation.
 	 */
-	public function key() {
+	public function key()
+	{
 		return key($this->objects);
 	}
 
 	/**
 	 * Iterator implementation.
 	 */
-	public function next() {
+	public function next()
+	{
 		next($this->objects);
 	}
 
 	/**
 	 * Iterator implementation.
 	 */
-	public function valid() {
+	public function valid()
+	{
 		return current($this->objects) !== false;
 	}
 
 	/**
 	 * Countable implementation.
 	 */
-	public function count() {
+	public function count()
+	{
 		return count($this->object_keys);
 	}
 
 	/**
 	 * ArrayAccess implementation.
 	 */
-	public function offsetExists($offset) {
+	public function offsetExists($offset)
+	{
 		return in_array($offset, $this->object_keys);
 	}
 
 	/**
 	 * ArrayAccess implementation.
 	 */
-	public function offsetGet($offset) {
-		if (!in_array($offset, $this->object_keys))
+	public function offsetGet($offset)
+	{
+		if (!in_array($offset, $this->object_keys)) {
 			return null;
+		}
 
 		return $this->objects[$offset];
 	}
@@ -157,9 +169,11 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	/**
 	 * ArrayAccess implementation.
 	 */
-	public function offsetSet($offset, $value) {
-		if (!is_object($value) || (strlen($this->class_name) > 0 && get_class($value) !== $this->class_name))
+	public function offsetSet($offset, $value)
+	{
+		if (!is_object($value) || (strlen($this->class_name) > 0 && get_class($value) !== $this->class_name)) {
 			throw new DomainException(sprintf('The result set can only hold objects of type "%s"', $this->class_name));
+		}
 
 		$this->objects[$offset] = $value;
 		$this->object_keys = array_keys($this->objects);
@@ -168,9 +182,11 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	/**
 	 * ArrayAccess implementation.
 	 */
-	public function offsetUnset($offset) {
-		if (!in_array($offset, $this->object_keys))
+	public function offsetUnset($offset)
+	{
+		if (!in_array($offset, $this->object_keys)) {
 			return;
+		}
 
 		unset($this->objects[$offset]);
 		$this->object_keys = array_keys($this->objects);
@@ -181,7 +197,8 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	 *
 	 * @return kyObjectBase[]
 	 */
-	public function getRawArray() {
+	public function getRawArray()
+	{
 		return $this->objects;
 	}
 
@@ -206,7 +223,8 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	 * @param array $filter_values List of filter values.
 	 * @return kyResultSet
 	 */
-	public function filterBy($get_method_name, $filter_values) {
+	public function filterBy($get_method_name, $filter_values)
+	{
 		if (!is_array($filter_values)) {
 			$filter_values = array($filter_values);
 		}
@@ -249,7 +267,8 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	 * @param bool $asc True (default) to sort ascending. False to sort descending.
 	 * @return kyResultSet
 	 */
-	public function orderBy($get_method_name, $asc = true) {
+	public function orderBy($get_method_name, $asc = true)
+	{
 		usort($this->objects, ky_usort_comparison(array("kyResultSet", "compareObjects"), array($get_method_name, $asc)));
 		$this->object_keys = array_keys($this->objects);
 		return $this;
@@ -265,7 +284,8 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	 * @param string $get_method_name Name of the method to call on object.
 	 * @return array
 	 */
-	public function collect($get_method_name) {
+	public function collect($get_method_name)
+	{
 		$get_method_arguments = array();
 		if (func_num_args() > 1) {
 			$get_method_arguments = array_splice(func_get_args(), 1);
@@ -283,9 +303,11 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	 *
 	 * @return kyObjectBase
 	 */
-	public function first() {
-		if (count($this->object_keys) === 0)
+	public function first()
+	{
+		if (count($this->object_keys) === 0) {
 			return null;
+		}
 
 		//looks strange, but avoids resetting internal pointer of $this->objects
 		return $this->objects[reset($this->object_keys)];
@@ -296,9 +318,11 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	 *
 	 * @return kyResultSet
 	 */
-	public function removeFilters() {
-		if ($this->previous_result_set === null)
+	public function removeFilters()
+	{
+		if ($this->previous_result_set === null) {
 			return $this;
+		}
 
 		return $this->previous_result_set->removeFilters();
 	}
@@ -309,9 +333,11 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	 * @param int $depth How many filters to remove.
 	 * @return kyResultSet
 	 */
-	public function removeFilter($depth = 1) {
-		if ($depth <= 0 || $this->previous_result_set === null)
+	public function removeFilter($depth = 1)
+	{
+		if ($depth <= 0 || $this->previous_result_set === null) {
 			return $this;
+		}
 
 		return $this->previous_result_set->removeFilter($depth - 1);
 	}
@@ -328,9 +354,11 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	 * @param int $items_per_page Maximum number of items per page (default 20).
 	 * @return kyResultSet
 	 */
-	public function getPage($page_number, $items_per_page = 20) {
-		if ($items_per_page <= 0)
+	public function getPage($page_number, $items_per_page = 20)
+	{
+		if ($items_per_page <= 0) {
 			$items_per_page = 20;
+		}
 
 		//avoid resetting internal pointer of $this->objects
 		$page_object_keys = array_slice($this->object_keys, ($page_number - 1) * $items_per_page, $items_per_page, true);
@@ -347,9 +375,11 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	 * @param int $items_per_page Maximum number of items per page (default 20).
 	 * @return int
 	 */
-	public function getPageCount($items_per_page = 20) {
-		if ($items_per_page <= 0)
+	public function getPageCount($items_per_page = 20)
+	{
+		if ($items_per_page <= 0) {
 			$items_per_page = 20;
+		}
 
 		return ceil(count($this->object_keys) / $items_per_page);
 	}
@@ -363,10 +393,12 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	 * @param array $arguments Method arguments.
 	 * @return kyResultSet
 	 */
-	public function __call($name, $arguments) {
+	public function __call($name, $arguments)
+	{
 		if (stripos($name, self::FILTER_PREFIX) === 0) {
-			if (count($this->object_keys) === 0)
+			if (count($this->object_keys) === 0) {
 				return new kyResultSet($this->objects, $this->getObjectsClassName());
+			}
 
 			$filter_name = strtolower($name);
 
@@ -380,8 +412,9 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 				return call_user_func_array(array($this, 'filterBy'), $arguments);
 			}
 		} elseif (stripos($name, self::ORDER_PREFIX) === 0) {
-			if (count($this->object_keys) === 0)
+			if (count($this->object_keys) === 0) {
 				return $this;
+			}
 
 			$asc = true;
 			if (count($arguments) === 1) {
@@ -421,7 +454,8 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	 * @param bool $asc True (default) to sort ascending. False to sort descending.
 	 * @return int
 	 */
-	static public function compareObjects($object1, $object2, $get_method_name, $asc) {
+	public static function compareObjects($object1, $object2, $get_method_name, $asc)
+	{
 		$value1 = $object1->$get_method_name();
 		if (is_array($value1)) {
 			$value1 = reset($value1);
@@ -440,7 +474,8 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	 * @param array $object_values Object values.
 	 * @return bool
 	 */
-	static private function filterObject(&$filter_values, $object_values) {
+	private static function filterObject(&$filter_values, $object_values)
+	{
 		foreach ($object_values as $object_value) {
 			foreach (array_keys($filter_values) as $key) {
 				$filter_value = $filter_values[$key];
@@ -453,8 +488,9 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 							$preg_result = preg_match($adv_filter_value, $object_value);
 
 							//pattern ok and matched
-							if ($preg_result === 1)
+							if ($preg_result === 1) {
 								return true;
+							}
 							break;
 						case '<':
 						case '>':
@@ -463,12 +499,14 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 							//making types the same
 							settype($adv_filter_value, gettype($object_value));
 							$result = eval('return $object_value ' . $adv_filter_operator . ' $adv_filter_value;');
-							if ($result === true)
+							if ($result === true) {
 								return true;
+							}
 							break;
 						case '!=':
-							if (strcasecmp($adv_filter_value, $object_value) !== 0)
+							if (strcasecmp($adv_filter_value, $object_value) !== 0) {
 								return true;
+							}
 							break;
 						default:
 							trigger_error(sprintf("Unknown filtering operator '%s'", $adv_filter_operator), E_USER_WARNING);
@@ -477,8 +515,9 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 							break 2;
 					}
 				} else {
-					if (strcasecmp($filter_value, $object_value) === 0)
+					if (strcasecmp($filter_value, $object_value) === 0) {
 						return true;
+					}
 				}
 			}
 		}
@@ -489,7 +528,8 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	 * Deletes from server all objects in this result sets.
 	 * WARNING: Use carefully!
 	 */
-	public function deleteAll() {
+	public function deleteAll()
+	{
 		foreach ($this->object_keys as $key) {
 			$this->objects[$key]->delete();
 		}
@@ -499,7 +539,8 @@ class kyResultSet implements Iterator, Countable, ArrayAccess {
 	 * Returns formatted list of objects in this result set.
 	 * Calls __toString method of every object.
 	 */
-	public function __toString() {
+	public function __toString()
+	{
 		$result = '';
 		$count = 1;
 		foreach ($this->object_keys as $key) {

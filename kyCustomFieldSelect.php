@@ -8,7 +8,8 @@
  *
  * @noinspection PhpDocSignatureInspection
  */
-class kyCustomFieldSelect extends kyCustomField {
+class kyCustomFieldSelect extends kyCustomField
+{
 
 	/**
 	 * Selected option.
@@ -16,12 +17,14 @@ class kyCustomFieldSelect extends kyCustomField {
 	 */
 	protected $option;
 
-	protected function parseData($data) {
+	protected function parseData($data)
+	{
 		parent::parseData($data);
 		$this->option = $this->getOption($data['_contents']);
 	}
 
-	public function buildData($create) {
+	public function buildData($create)
+	{
 		$this->checkRequiredAPIFields($create);
 
 		$data = array();
@@ -39,7 +42,8 @@ class kyCustomFieldSelect extends kyCustomField {
 	 * @param kyCustomFieldOption $option Field option.
 	 * @return kyCustomFieldSelect
 	 */
-	public function setSelectedOption($option) {
+	public function setSelectedOption($option)
+	{
 		$this->option = ky_assure_object($option, 'kyCustomFieldOption');
 
 		$this->raw_value = $this->option !== null ? $this->option->getValue() : null;
@@ -51,7 +55,8 @@ class kyCustomFieldSelect extends kyCustomField {
 	 *
 	 * @return kyCustomFieldOption
 	 */
-	public function getSelectedOption() {
+	public function getSelectedOption()
+	{
 		return $this->option;
 	}
 
@@ -63,7 +68,8 @@ class kyCustomFieldSelect extends kyCustomField {
 	 *
 	 * @return kyCustomFieldOption
 	 */
-	public function getValue() {
+	public function getValue()
+	{
 		return $this->option;
 	}
 
@@ -76,7 +82,8 @@ class kyCustomFieldSelect extends kyCustomField {
 	 * @param mixed $value Identifier of field option OR value of field option OR an option.
 	 * @return kyCustomFieldSelect
 	 */
-	public function setValue($value) {
+	public function setValue($value)
+	{
 		$this->setSelectedOption($this->getOption($value));
 		return $this;
 	}

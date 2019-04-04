@@ -9,8 +9,8 @@
  *
  * @noinspection PhpDocSignatureInspection
  */
-class kyTicket extends kyObjectWithCustomFieldsBase {
-
+class kyTicket extends kyObjectWithCustomFieldsBase
+{
 	const FLAG_NONE = 0;
 	const FLAG_PURPLE = 1;
 	const FLAG_ORANGE = 2;
@@ -99,38 +99,38 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 */
 	const SEARCH_TAGS = 'tags';
 
-	static protected $controller = '/Tickets/Ticket';
-	static protected $object_xml_name = 'ticket';
-	static protected $custom_field_group_class = 'kyTicketCustomFieldGroup';
-	static protected $object_id_field = 'ticketid';
+	protected static $controller = '/Tickets/Ticket';
+	protected static $object_xml_name = 'ticket';
+	protected static $custom_field_group_class = 'kyTicketCustomFieldGroup';
+	protected static $object_id_field = 'ticketid';
 
 	/**
 	 * Default status identifier for new tickets.
 	 * @see kyTicket::setDefaults
 	 * @var int
 	 */
-	static private $default_status_id = null;
+	private static $default_status_id = null;
 
 	/**
 	 * Default priority identifier for new tickets.
 	 * @see kyTicket::setDefaults
 	 * @var int
 	 */
-	static private $default_priority_id = null;
+	private static $default_priority_id = null;
 
 	/**
 	 * Default type identifier for new tickets.
 	 * @see kyTicket::setDefaults
 	 * @var int
 	 */
-	static private $default_type_id = null;
+	private static $default_type_id = null;
 
 	/**
 	 * Default status identifier for new tickets.
 	 * @see kyTicket::setDefaults
 	 * @var int
 	 */
-	static private $auto_create_user = true;
+	private static $auto_create_user = true;
 
 	/**
 	 * Ticket identifier.
@@ -486,7 +486,7 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * Tickets statistic.
 	 * @var array
 	 */
-	static private $statistics = null;
+	private static $statistics = null;
 
 	/**
 	 * Sets default status, priority and type for newly created tickets.
@@ -496,14 +496,16 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param int $type_id Default ticket type identifier.
 	 * @param bool $auto_create_user True to automatically create user if none is provided as creator. False otherwise.
 	 */
-	static public function setDefaults($status_id, $priority_id, $type_id, $auto_create_user = true) {
+	public static function setDefaults($status_id, $priority_id, $type_id, $auto_create_user = true)
+	{
 		self::$default_status_id = $status_id;
 		self::$default_priority_id = $priority_id;
 		self::$default_type_id = $type_id;
 		self::$auto_create_user = $auto_create_user;
 	}
 
-	protected function parseData($data) {
+	protected function parseData($data)
+	{
 		$this->id = intval($data['_attributes']['id']);
 		$this->flag_type = intval($data['_attributes']['flagtype']);
 		$this->display_id = $data['displayid'];
@@ -563,13 +565,15 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 				 * Includes workaround for old format of TimeTrack object - if "timeworked" key is present than it's a time track.
 				 */
 				if ($note_data['_attributes']['type'] === 'timetrack' || array_key_exists('timeworked', $note_data['_attributes'])) {
-					if ($this->time_tracks === null)
+					if ($this->time_tracks === null) {
 						$this->time_tracks = array();
+					}
 
 					$this->time_tracks[] = new kyTicketTimeTrack($note_data);
 				} else {
-					if ($this->notes === null)
+					if ($this->notes === null) {
 						$this->notes = array();
+					}
 
 					$this->notes[] = new kyTicketNote($note_data);
 				}
@@ -593,7 +597,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 		}
 	}
 
-	public function buildData($create) {
+	public function buildData($create)
+	{
 		$this->checkRequiredAPIFields($create);
 
 		$data = array();
@@ -628,6 +633,7 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 						break;
 					}
 
+					// no break
 				default:
 					throw new kyException("Value for API fields 'staffid' or 'userid' is required or automatic ticket user creation should be enabled for this operation to complete.");
 				break;
@@ -636,9 +642,9 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 			$data['contents'] = $this->contents;
 			$data['type'] = $this->creation_type;
 			$data['ignoreautoresponder'] = $this->ignore_auto_responder;
- 		} else {
- 			$data['userid'] = $this->user_id;
- 		}
+		} else {
+			$data['userid'] = $this->user_id;
+		}
 
 		return $data;
 	}
@@ -655,37 +661,38 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @throws InvalidArgumentException
 	 * @return kyResultSet
 	 */
-	static public function getAll() {
-        if (func_num_args() == 1) {
-            $max_items = null;
-            $starting_ticket_id = null;
-            $users = array();
-            $owner_staffs = array();
-            $ticket_statuses = array();
-            list($departments) = func_get_args();
-        } elseif (func_num_args() == 2) {
-            $max_items = null;
-            $starting_ticket_id = null;
-            $users = array();
-            $owner_staffs = array();
-            list($departments, $ticket_statuses) = func_get_args();
-        } elseif (func_num_args() == 3) {
-            $max_items = null;
-            $starting_ticket_id = null;
-            $users = array();
-            list($departments, $ticket_statuses, $owner_staffs) = func_get_args();
-        } elseif (func_num_args() == 4) {
-            $max_items = null;
-            $starting_ticket_id = null;
-            list($departments, $ticket_statuses, $owner_staffs, $users) = func_get_args();
-        } elseif (func_num_args() == 5) {
-            $starting_ticket_id = null;
-            list($departments, $ticket_statuses, $owner_staffs, $users, $max_items) = func_get_args();
-        } elseif (func_num_args() == 6) {
-            list($departments, $ticket_statuses, $owner_staffs, $users, $max_items, $starting_ticket_id) = func_get_args();
-        }
-        
-        
+	public static function getAll()
+	{
+		if (func_num_args() == 1) {
+			$max_items = null;
+			$starting_ticket_id = null;
+			$users = array();
+			$owner_staffs = array();
+			$ticket_statuses = array();
+			list($departments) = func_get_args();
+		} elseif (func_num_args() == 2) {
+			$max_items = null;
+			$starting_ticket_id = null;
+			$users = array();
+			$owner_staffs = array();
+			list($departments, $ticket_statuses) = func_get_args();
+		} elseif (func_num_args() == 3) {
+			$max_items = null;
+			$starting_ticket_id = null;
+			$users = array();
+			list($departments, $ticket_statuses, $owner_staffs) = func_get_args();
+		} elseif (func_num_args() == 4) {
+			$max_items = null;
+			$starting_ticket_id = null;
+			list($departments, $ticket_statuses, $owner_staffs, $users) = func_get_args();
+		} elseif (func_num_args() == 5) {
+			$starting_ticket_id = null;
+			list($departments, $ticket_statuses, $owner_staffs, $users, $max_items) = func_get_args();
+		} elseif (func_num_args() == 6) {
+			list($departments, $ticket_statuses, $owner_staffs, $users, $max_items, $starting_ticket_id) = func_get_args();
+		}
+		
+		
 		$search_parameters = array('ListAll');
 
 		$department_ids = array();
@@ -696,8 +703,9 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 		}
 
 		//department
-		if (count($department_ids) === 0)
+		if (count($department_ids) === 0) {
 			throw new InvalidArgumentException('You must provide at least one department to search for tickets.');
+		}
 
 		$ticket_status_ids = array();
 		if ($ticket_statuses instanceof kyTicketStatus) {
@@ -725,22 +733,25 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 		$search_parameters[] = implode(',', $department_ids);
 
 		//ticket status
-		if (count($ticket_status_ids) > 0)
+		if (count($ticket_status_ids) > 0) {
 			$search_parameters[] = implode(',', $ticket_status_ids);
-		else
+		} else {
 			$search_parameters[] = '-1';
+		}
 
 		//owner staff
-		if (count($owner_staff_ids) > 0)
+		if (count($owner_staff_ids) > 0) {
 			$search_parameters[] = implode(',', $owner_staff_ids);
-		else
+		} else {
 			$search_parameters[] = '-1';
+		}
 
 		//user
-		if (count($user_ids) > 0)
+		if (count($user_ids) > 0) {
 			$search_parameters[] = implode(',', $user_ids);
-		else
+		} else {
 			$search_parameters[] = '-1';
+		}
 
 		if (is_numeric($starting_ticket_id) && $starting_ticket_id > 0) {
 			if (!is_numeric($max_items) || $max_items <= 0) {
@@ -762,7 +773,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param array $areas List of areas where to search for as array with kyTicket::SEARCH_ constants.
 	 * @return kyResultSet
 	 */
-	static public function search($query, $areas) {
+	public static function search($query, $areas)
+	{
 		$data = array();
 		$data['query'] = $query;
 
@@ -781,11 +793,13 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 		return new kyResultSet($objects);
 	}
 
-	public function toString() {
+	public function toString()
+	{
 		return sprintf("%s %s (creator: %s)", $this->getDisplayId(), $this->getSubject(), $this->getFullName());
 	}
 
-	public function getId($complete = false) {
+	public function getId($complete = false)
+	{
 		return $complete ? array($this->id) : $this->id;
 	}
 
@@ -798,7 +812,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param int $type Creator type. Required only when $creator is an identifier.
 	 * @return kyTicket
 	 */
-	public function setCreator($creator, $type = null) {
+	public function setCreator($creator, $type = null)
+	{
 		if (is_numeric($creator)) {
 			switch ($type) {
 				case self::CREATOR_USER:
@@ -825,7 +840,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param string $email E-mail of the creator.
 	 * @return kyTicket
 	 */
-	public function setCreatorAuto($full_name, $email) {
+	public function setCreatorAuto($full_name, $email)
+	{
 		$this->setFullName($full_name);
 		$this->setEmail($email);
 		$this->creator = self::CREATOR_AUTO;
@@ -846,7 +862,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getFlagType() {
+	public function getFlagType()
+	{
 		return $this->flag_type;
 	}
 
@@ -857,7 +874,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getDisplayId() {
+	public function getDisplayId()
+	{
 		return $this->display_id;
 	}
 
@@ -868,7 +886,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getDepartmentId() {
+	public function getDepartmentId()
+	{
 		return $this->department_id;
 	}
 
@@ -878,7 +897,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param int $department_id Department identifier.
 	 * @return kyTicket
 	 */
-	public function setDepartmentId($department_id) {
+	public function setDepartmentId($department_id)
+	{
 		$this->department_id = ky_assure_positive_int($department_id);
 		$this->department = null;
 		return $this;
@@ -892,12 +912,15 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyDepartment
 	 */
-	public function getDepartment($reload = false) {
-		if ($this->department !== null && !$reload)
+	public function getDepartment($reload = false)
+	{
+		if ($this->department !== null && !$reload) {
 			return $this->department;
+		}
 
-		if ($this->department_id === null)
+		if ($this->department_id === null) {
 			return null;
+		}
 
 		$this->department = kyDepartment::get($this->department_id);
 		return $this->department;
@@ -909,7 +932,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param kyDepartment $department Department.
 	 * @return kyTicket
 	 */
-	public function setDepartment($department) {
+	public function setDepartment($department)
+	{
 		$this->department = ky_assure_object($department, 'kyDepartment');
 		$this->department_id = $this->department !== null ? $this->department->getId() : null;
 		return $this;
@@ -922,7 +946,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getStatusId() {
+	public function getStatusId()
+	{
 		return $this->status_id;
 	}
 
@@ -932,7 +957,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param int $ticket_status_id Ticket status identifier.
 	 * @return kyTicket
 	 */
-	public function setStatusId($ticket_status_id) {
+	public function setStatusId($ticket_status_id)
+	{
 		$this->status_id = ky_assure_positive_int($ticket_status_id);
 		$this->status = null;
 		return $this;
@@ -946,12 +972,15 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyTicketStatus
 	 */
-	public function getStatus($reload = false) {
-		if ($this->status !== null && !$reload)
+	public function getStatus($reload = false)
+	{
+		if ($this->status !== null && !$reload) {
 			return $this->status;
+		}
 
-		if ($this->status_id === null)
+		if ($this->status_id === null) {
 			return null;
+		}
 
 		$this->status = kyTicketStatus::get($this->status_id);
 		return $this->status;
@@ -963,7 +992,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param kyTicketStatus $ticket_status Ticket status.
 	 * @return kyTicket
 	 */
-	public function setStatus($ticket_status) {
+	public function setStatus($ticket_status)
+	{
 		$this->status = ky_assure_object($ticket_status, 'kyTicketStatus');
 		$this->status_id = $this->status !== null ? $this->status->getId() : null;
 		return $this;
@@ -976,7 +1006,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getPriorityId() {
+	public function getPriorityId()
+	{
 		return $this->priority_id;
 	}
 
@@ -985,7 +1016,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param int $ticket_priority_id Ticket priority identifier.
 	 * @return kyTicket
 	 */
-	public function setPriorityId($ticket_priority_id) {
+	public function setPriorityId($ticket_priority_id)
+	{
 		$this->priority_id = ky_assure_positive_int($ticket_priority_id);
 		$this->priority = null;
 		return $this;
@@ -999,12 +1031,15 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyTicketPriority
 	 */
-	public function getPriority($reload = false) {
-		if ($this->priority !== null && !$reload)
+	public function getPriority($reload = false)
+	{
+		if ($this->priority !== null && !$reload) {
 			return $this->priority;
+		}
 
-		if ($this->priority_id === null)
+		if ($this->priority_id === null) {
 			return null;
+		}
 
 		$this->priority = kyTicketPriority::get($this->priority_id);
 		return $this->priority;
@@ -1016,7 +1051,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param kyTicketPriority $ticket_priority
 	 * @return kyTicket
 	 */
-	public function setPriority($ticket_priority) {
+	public function setPriority($ticket_priority)
+	{
 		$this->priority = ky_assure_object($ticket_priority, 'kyTicketPriority');
 		$this->priority_id = $this->priority !== null ? $this->priority->getId() : null;
 		return $this;
@@ -1029,7 +1065,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getTypeId() {
+	public function getTypeId()
+	{
 		return $this->type_id;
 	}
 
@@ -1039,7 +1076,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param int $ticket_type_id Ticket type identifier.
 	 * @return kyTicket
 	 */
-	public function setTypeId($ticket_type_id) {
+	public function setTypeId($ticket_type_id)
+	{
 		$this->type_id = ky_assure_positive_int($ticket_type_id);
 		$this->type = null;
 		return $this;
@@ -1053,12 +1091,15 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyTicketType
 	 */
-	public function getType($reload = false) {
-		if ($this->type !== null && !$reload)
+	public function getType($reload = false)
+	{
+		if ($this->type !== null && !$reload) {
 			return $this->type;
+		}
 
-		if ($this->type_id === null)
+		if ($this->type_id === null) {
 			return null;
+		}
 
 		$this->type = kyTicketType::get($this->type_id);
 		return $this->type;
@@ -1070,7 +1111,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param kyTicketType $ticket_type Ticket type.
 	 * @return kyTicket
 	 */
-	public function setType($ticket_type) {
+	public function setType($ticket_type)
+	{
 		$this->type = ky_assure_object($ticket_type, 'kyTicketType');
 		$this->type_id = $this->type !== null ? $this->type->getId() : null;
 		return $this;
@@ -1083,7 +1125,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getUserId() {
+	public function getUserId()
+	{
 		return $this->user_id;
 	}
 
@@ -1093,7 +1136,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param int $user_id User identifier.
 	 * @return kyTicket
 	 */
-	public function setUserId($user_id) {
+	public function setUserId($user_id)
+	{
 		$this->user_id = ky_assure_positive_int($user_id);
 		$this->creator = $this->user_id > 0 ? self::CREATOR_USER : null;
 		$this->user = $this->user_id > 0 ? kyUser::get($this->user_id) : null;
@@ -1115,12 +1159,15 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyUser
 	 */
-	public function getUser($reload = false) {
-		if ($this->user !== null && !$reload)
+	public function getUser($reload = false)
+	{
+		if ($this->user !== null && !$reload) {
 			return $this->user;
+		}
 
-		if ($this->user_id === null)
+		if ($this->user_id === null) {
 			return null;
+		}
 
 		$this->user = kyUser::get($this->user_id);
 		return $this->user;
@@ -1132,7 +1179,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param kyUser $user User.
 	 * @return kyTicketPost
 	 */
-	public function setUser($user) {
+	public function setUser($user)
+	{
 		$this->user = ky_assure_object($user, 'kyUser');
 		$this->user_id = $this->user !== null ? $this->user->getId() : null;
 		$this->creator = $this->user !== null ? self::CREATOR_USER : null;
@@ -1153,7 +1201,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getUserOrganizationName() {
+	public function getUserOrganizationName()
+	{
 		return $this->user_organization_name;
 	}
 
@@ -1164,7 +1213,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getUserOrganizationId() {
+	public function getUserOrganizationId()
+	{
 		return $this->user_organization_id;
 	}
 
@@ -1176,12 +1226,15 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyUserOrganization
 	 */
-	public function getUserOrganization($reload = false) {
-		if ($this->user_organization !== null && !$reload)
+	public function getUserOrganization($reload = false)
+	{
+		if ($this->user_organization !== null && !$reload) {
 			return $this->user_organization;
+		}
 
-		if ($this->user_organization_id === null)
+		if ($this->user_organization_id === null) {
 			return null;
+		}
 
 		$this->user_organization = kyUserOrganization::get($this->user_organization_id);
 		return $this->user_organization;
@@ -1193,7 +1246,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param int $staff_id Staff user identifier.
 	 * @return kyTicketPost
 	 */
-	public function setStaffId($staff_id) {
+	public function setStaffId($staff_id)
+	{
 		$this->staff_id = ky_assure_positive_int($staff_id);
 		$this->creator = $this->staff_id > 0 ? self::CREATOR_STAFF : null;
 		$this->staff = $this->staff_id > 0 ? kyStaff::get($this->staff_id) : null;
@@ -1213,7 +1267,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param kyStaff $staff Staff user.
 	 * @return kyTicketPost
 	 */
-	public function setStaff($staff) {
+	public function setStaff($staff)
+	{
 		$this->staff = ky_assure_object($staff, 'kyStaff');
 		$this->staff_id = $this->staff !== null ? $this->staff->getId() : null;
 		$this->creator = $this->staff !== null ? self::CREATOR_STAFF : null;
@@ -1234,7 +1289,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getOwnerStaffName() {
+	public function getOwnerStaffName()
+	{
 		return $this->owner_staff_name;
 	}
 
@@ -1245,7 +1301,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getOwnerStaffId() {
+	public function getOwnerStaffId()
+	{
 		return $this->owner_staff_id;
 	}
 
@@ -1255,7 +1312,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param int $owner_staff_id Staff user identifier.
 	 * @return kyTicket
 	 */
-	public function setOwnerStaffId($owner_staff_id) {
+	public function setOwnerStaffId($owner_staff_id)
+	{
 		$this->owner_staff_id = ky_assure_positive_int($owner_staff_id);
 		$this->owner_staff = null;
 		return $this;
@@ -1269,12 +1327,15 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyStaff
 	 */
-	public function getOwnerStaff($reload = false) {
-		if ($this->owner_staff !== null && !$reload)
+	public function getOwnerStaff($reload = false)
+	{
+		if ($this->owner_staff !== null && !$reload) {
 			return $this->owner_staff;
+		}
 
-		if ($this->owner_staff_id === null)
+		if ($this->owner_staff_id === null) {
 			return null;
+		}
 
 		$this->owner_staff = kyStaff::get($this->owner_staff_id);
 		return $this->owner_staff;
@@ -1286,7 +1347,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param kyStaff $owner_staff Staff user.
 	 * @return kyTicket
 	 */
-	public function setOwnerStaff($owner_staff) {
+	public function setOwnerStaff($owner_staff)
+	{
 		$this->owner_staff = ky_assure_object($owner_staff, 'kyStaff');
 		$this->owner_staff_id = $this->owner_staff !== null ? $this->owner_staff->getId() : null;
 		return $this;
@@ -1299,7 +1361,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getFullName() {
+	public function getFullName()
+	{
 		return $this->full_name;
 	}
 
@@ -1309,7 +1372,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param string $full_name Creator full name.
 	 * @return kyTicket
 	 */
-	public function setFullName($full_name) {
+	public function setFullName($full_name)
+	{
 		$this->full_name = ky_assure_string($full_name);
 		return $this;
 	}
@@ -1321,7 +1385,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getEmail() {
+	public function getEmail()
+	{
 		return $this->email;
 	}
 
@@ -1331,7 +1396,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param string $email Creator e-mail.
 	 * @return kyTicket
 	 */
-	public function setEmail($email) {
+	public function setEmail($email)
+	{
 		$this->email = ky_assure_string($email);
 		return $this;
 	}
@@ -1343,7 +1409,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getLastReplier() {
+	public function getLastReplier()
+	{
 		return $this->last_replier;
 	}
 
@@ -1354,7 +1421,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getSubject() {
+	public function getSubject()
+	{
 		return $this->subject;
 	}
 
@@ -1364,7 +1432,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param string $subject Ticket subject.
 	 * @return kyTicket
 	 */
-	public function setSubject($subject) {
+	public function setSubject($subject)
+	{
 		$this->subject = $subject;
 		return $this;
 	}
@@ -1379,9 +1448,11 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getCreationTime($format = null) {
-		if ($this->creation_time == null)
+	public function getCreationTime($format = null)
+	{
+		if ($this->creation_time == null) {
 			return null;
+		}
 
 		if ($format === null) {
 			$format = kyConfig::get()->getDatetimeFormat();
@@ -1400,9 +1471,11 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getLastActivity($format = null) {
-		if ($this->last_activity == null)
+	public function getLastActivity($format = null)
+	{
+		if ($this->last_activity == null) {
 			return null;
+		}
 
 		if ($format === null) {
 			$format = kyConfig::get()->getDatetimeFormat();
@@ -1421,9 +1494,11 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getLastStaffReply($format = null) {
-		if ($this->last_staff_reply == null)
+	public function getLastStaffReply($format = null)
+	{
+		if ($this->last_staff_reply == null) {
 			return null;
+		}
 
 		if ($format === null) {
 			$format = kyConfig::get()->getDatetimeFormat();
@@ -1442,9 +1517,11 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getLastUserReply($format = null) {
-		if ($this->last_user_reply == null)
+	public function getLastUserReply($format = null)
+	{
+		if ($this->last_user_reply == null) {
 			return null;
+		}
 
 		if ($format === null) {
 			$format = kyConfig::get()->getDatetimeFormat();
@@ -1459,7 +1536,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @return int
 	 * @filterBy
 	 */
-	public function getSLAPlanId() {
+	public function getSLAPlanId()
+	{
 		return $this->sla_plan_id;
 	}
 
@@ -1473,9 +1551,11 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getNextReplyDue($format = null) {
-		if ($this->next_reply_due == null)
+	public function getNextReplyDue($format = null)
+	{
+		if ($this->next_reply_due == null) {
 			return null;
+		}
 
 		if ($format === null) {
 			$format = kyConfig::get()->getDatetimeFormat();
@@ -1494,9 +1574,11 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getResolutionDue($format = null) {
-		if ($this->resolution_due == null)
+	public function getResolutionDue($format = null)
+	{
+		if ($this->resolution_due == null) {
 			return null;
+		}
 
 		if ($format === null) {
 			$format = kyConfig::get()->getDatetimeFormat();
@@ -1512,7 +1594,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getReplies() {
+	public function getReplies()
+	{
 		return $this->replies;
 	}
 
@@ -1523,7 +1606,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getIPAddress() {
+	public function getIPAddress()
+	{
 		return $this->ip_address;
 	}
 
@@ -1536,7 +1620,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getCreatorType() {
+	public function getCreatorType()
+	{
 		return $this->creator;
 	}
 
@@ -1549,7 +1634,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getCreationMode() {
+	public function getCreationMode()
+	{
 		return $this->creation_mode;
 	}
 
@@ -1562,7 +1648,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getCreationType() {
+	public function getCreationType()
+	{
 		return $this->creation_type;
 	}
 
@@ -1574,7 +1661,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param int $creation_type Creation type.
 	 * @return kyTicket
 	 */
-	public function setCreationType($creation_type) {
+	public function setCreationType($creation_type)
+	{
 		$this->creation_type = ky_assure_constant($creation_type, $this, 'CREATION_TYPE');
 		return $this;
 	}
@@ -1586,7 +1674,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getIsEscalated() {
+	public function getIsEscalated()
+	{
 		return $this->is_escalated;
 	}
 
@@ -1596,7 +1685,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @return int
 	 * @filterBy
 	 */
-	public function getEscalationRuleId() {
+	public function getEscalationRuleId()
+	{
 		return $this->escalation_rule_id;
 	}
 
@@ -1606,7 +1696,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @return string
 	 * @filterBy
 	 */
-	public function getTags() {
+	public function getTags()
+	{
 		return $this->tags;
 	}
 
@@ -1617,7 +1708,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	* @filterBy
 	* @orderBy
 	*/
-	public function getTemplateGroupId() {
+	public function getTemplateGroupId()
+	{
 		return $this->template_group_id;
 	}
 
@@ -1628,7 +1720,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param int $template_group_id Template group identifier.
 	 * @return kyTicket
 	 */
-	public function setTemplateGroupId($template_group_id) {
+	public function setTemplateGroupId($template_group_id)
+	{
 		$this->template_group_id = ky_assure_positive_int($template_group_id);
 		$this->template_group_name = null;
 		return $this;
@@ -1641,7 +1734,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	* @filterBy
 	* @orderBy
 	*/
-	public function getTemplateGroupName() {
+	public function getTemplateGroupName()
+	{
 		return $this->template_group_name;
 	}
 
@@ -1652,7 +1746,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param string $template_group_name Template group name.
 	 * @return kyTicket
 	 */
-	public function setTemplateGroupName($template_group_name) {
+	public function setTemplateGroupName($template_group_name)
+	{
 		$this->template_group_name = ky_assure_string($template_group_name);
 		$this->template_group_id = null;
 		return $this;
@@ -1664,7 +1759,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param string|int $template_group_id_or_name Template group name or identifier.
 	 * @return kyTicket
 	 */
-	public function setTemplateGroup($template_group_id_or_name) {
+	public function setTemplateGroup($template_group_id_or_name)
+	{
 		if (is_numeric($template_group_id_or_name)) {
 			$this->setTemplateGroupId($template_group_id_or_name);
 		} else {
@@ -1679,7 +1775,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param bool $ignore_auto_responder Whether to ignore (disable) autoresponder e-mail.
 	 * @return kyTicket
 	 */
-	public function setIgnoreAutoResponder($ignore_auto_responder) {
+	public function setIgnoreAutoResponder($ignore_auto_responder)
+	{
 		$this->ignore_auto_responder = ky_assure_bool($ignore_auto_responder);
 		return $this;
 	}
@@ -1699,7 +1796,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 *
 	 * @return array
 	 */
-	public function getWatchers() {
+	public function getWatchers()
+	{
 		return ky_assure_array($this->watchers);
 	}
 
@@ -1718,7 +1816,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 *
 	 * @return array
 	 */
-	public function getWorkflows() {
+	public function getWorkflows()
+	{
 		return ky_assure_array($this->workflows);
 	}
 
@@ -1730,7 +1829,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param bool $reload True to reload notes from server.
 	 * @return kyResultSet
 	 */
-	public function getNotes($reload = false) {
+	public function getNotes($reload = false)
+	{
 		if ($this->notes === null || $reload) {
 			$this->notes = kyTicketNote::getAll($this->getId())->getRawArray();
 		}
@@ -1745,7 +1845,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param bool $reload True to reload time tracks from server.
 	 * @return kyResultSet
 	 */
-	public function getTimeTracks($reload = false) {
+	public function getTimeTracks($reload = false)
+	{
 		if ($this->time_tracks === null || $reload) {
 			$this->time_tracks = kyTicketTimeTrack::getAll($this->getId())->getRawArray();
 		}
@@ -1761,7 +1862,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param bool $reload True to reload posts from server.
 	 * @return kyResultSet
 	 */
-	public function getPosts($reload = false) {
+	public function getPosts($reload = false)
+	{
 		if ($this->posts === null || $reload) {
 			$this->posts = kyTicketPost::getAll($this->getId())->getRawArray();
 		}
@@ -1774,7 +1876,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 *
 	 * @return kyTicketPost
 	 */
-	public function getFirstPost() {
+	public function getFirstPost()
+	{
 		return $this->getPosts()->first();
 	}
 
@@ -1786,7 +1889,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param bool $reload True to reload attachments from server.
 	 * @return kyTicketAttachment[]
 	 */
-	public function getAttachments($reload = false) {
+	public function getAttachments($reload = false)
+	{
 		if ($this->attachments === null || $reload) {
 			$this->attachments = kyTicketAttachment::getAll($this->id)->getRawArray();
 		}
@@ -1800,7 +1904,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param string $contents Ticket contents.
 	 * @return kyTicket
 	 */
-	public function setContents($contents) {
+	public function setContents($contents)
+	{
 		$this->contents = ky_assure_string($contents);
 		return $this;
 	}
@@ -1813,7 +1918,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param string $subject Subject of new ticket.
 	 * @return kyTicket
 	 */
-	static private function createNewGeneric($department, $contents, $subject) {
+	private static function createNewGeneric($department, $contents, $subject)
+	{
 		$new_ticket = new kyTicket();
 		$new_ticket->setStatusId(self::$default_status_id);
 		$new_ticket->setPriorityId(self::$default_priority_id);
@@ -1834,8 +1940,9 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param string $subject Subject of new ticket.
 	 * @return kyTicket
 	 */
-	static public function createNew() {
-        list($department, $creator, $contents, $subject) = func_get_args();
+	public static function createNew()
+	{
+		list($department, $creator, $contents, $subject) = func_get_args();
 		$new_ticket = self::createNewGeneric($department, $contents, $subject);
 		$new_ticket->setCreator($creator);
 		return $new_ticket;
@@ -1852,7 +1959,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param string $subject Subject of new ticket.
 	 * @return kyTicket
 	 */
-	static public function createNewAuto(kyDepartment $department, $creator_full_name, $creator_email, $contents, $subject) {
+	public static function createNewAuto(kyDepartment $department, $creator_full_name, $creator_email, $contents, $subject)
+	{
 		$new_ticket = self::createNewGeneric($department, $contents, $subject);
 		$new_ticket->setCreatorAuto($creator_full_name, $creator_email);
 		return $new_ticket;
@@ -1866,7 +1974,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param string $contents Contents of new post.
 	 * @return kyTicketPost
 	 */
-	public function newPost($creator, $contents) {
+	public function newPost($creator, $contents)
+	{
 		return kyTicketPost::createNew($this, $creator, $contents);
 	}
 
@@ -1878,7 +1987,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param string $contents Contents of new note.
 	 * @return kyTicketNote
 	 */
-	public function newNote(kyStaff $creator, $contents) {
+	public function newNote(kyStaff $creator, $contents)
+	{
 		return kyTicketNote::createNew($this, $creator, $contents);
 	}
 
@@ -1892,7 +2002,8 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param string $time_billable Billable time formatted as hh:mm. Bill date will be set to current datetime.
 	 * @return kyTicketTimeTrack
 	 */
-	public function newTimeTrack($contents, kyStaff $staff, $time_worked, $time_billable) {
+	public function newTimeTrack($contents, kyStaff $staff, $time_worked, $time_billable)
+	{
 		return kyTicketTimeTrack::createNew($this, $contents, $staff, $time_worked, $time_billable);
 	}
 
@@ -1965,9 +2076,11 @@ class kyTicket extends kyObjectWithCustomFieldsBase {
 	 * @param bool $reload True to reload statistics data from server.
 	 * @return array
 	 */
-	static public function getStatistics($reload = false) {
-		if (self::$statistics !== null && !$reload)
+	public static function getStatistics($reload = false)
+	{
+		if (self::$statistics !== null && !$reload) {
 			return self::$statistics;
+		}
 
 		self::$statistics = array('departments' => array(), 'ticket_statuses' => array(), 'ticket_owners' => array());
 		$raw_stats = self::getRESTClient()->get('/Tickets/TicketCount', array());

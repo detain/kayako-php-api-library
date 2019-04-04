@@ -9,10 +9,10 @@
  *
  * @noinspection PhpDocSignatureInspection
  */
-class kyNewsComment extends kyCommentBase {
-
-	static protected $controller = '/News/Comment';
-	static protected $object_xml_name = 'newsitemcomment';
+class kyNewsComment extends kyCommentBase
+{
+	protected static $controller = '/News/Comment';
+	protected static $object_xml_name = 'newsitemcomment';
 
 	/**
 	 * News item identifier.
@@ -27,12 +27,14 @@ class kyNewsComment extends kyCommentBase {
 	 */
 	protected $news_item;
 
-	protected function parseData($data) {
+	protected function parseData($data)
+	{
 		parent::parseData($data);
 		$this->news_item_id = ky_assure_positive_int($data['newsitemid']);
 	}
 
-	public function buildData($create) {
+	public function buildData($create)
+	{
 		$data = parent::buildData($create);
 
 		$this->buildDataNumeric($data, 'newsitemid', $this->news_item_id);
@@ -46,8 +48,9 @@ class kyNewsComment extends kyCommentBase {
 	 * @param kyNewsItem $knowledgebase_article News item.
 	 * @return kyResultSet
 	 */
-	static public function getAll() {
-        list($knowledgebase_article) = func_get_args();
+	public static function getAll()
+	{
+		list($knowledgebase_article) = func_get_args();
 		if ($knowledgebase_article instanceof kyNewsItem) {
 			$news_item_id = $knowledgebase_article->getId();
 		} else {
@@ -64,7 +67,8 @@ class kyNewsComment extends kyCommentBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getNewsItemId() {
+	public function getNewsItemId()
+	{
 		return $this->news_item_id;
 	}
 
@@ -74,7 +78,8 @@ class kyNewsComment extends kyCommentBase {
 	 * @param int $news_item_id News item identifier.
 	 * @return kyNewsComment
 	 */
-	public function setNewsItemId($news_item_id) {
+	public function setNewsItemId($news_item_id)
+	{
 		$this->news_item_id = ky_assure_positive_int($news_item_id);
 		$this->news_item = null;
 		return $this;
@@ -88,12 +93,15 @@ class kyNewsComment extends kyCommentBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyNewsItem
 	 */
-	public function getNewsItem($reload = false) {
-		if ($this->news_item !== null && !$reload)
+	public function getNewsItem($reload = false)
+	{
+		if ($this->news_item !== null && !$reload) {
 			return $this->news_item;
+		}
 
-		if ($this->news_item_id === null)
+		if ($this->news_item_id === null) {
 			return null;
+		}
 
 		$this->news_item = kyNewsItem::get($this->news_item_id);
 		return $this->news_item;
@@ -105,7 +113,8 @@ class kyNewsComment extends kyCommentBase {
 	 * @param kyNewsItem $news_item News item.
 	 * @return kyNewsComment
 	 */
-	public function setNewsItem($news_item) {
+	public function setNewsItem($news_item)
+	{
 		$this->news_item = ky_assure_object($news_item, 'kyNewsItem');
 		$this->news_item_id = $this->news_item !== null ? $this->news_item->getId() : null;
 		return $this;
@@ -120,8 +129,9 @@ class kyNewsComment extends kyCommentBase {
 	 * @param string $contents Contents of this comment.
 	 * @return kyNewsComment
 	 */
-	static public function createNew() {
-        list($knowledgebase_article, $creator, $contents) = func_get_args();
+	public static function createNew()
+	{
+		list($knowledgebase_article, $creator, $contents) = func_get_args();
 		/** @var $new_comment kyNewsComment */
 		$new_comment = parent::createNew($creator, $contents);
 		$new_comment->setNewsItem($knowledgebase_article);

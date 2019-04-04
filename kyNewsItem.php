@@ -13,7 +13,8 @@
  *
  * @noinspection PhpDocSignatureInspection
  */
-class kyNewsItem extends kyCommentableBase {
+class kyNewsItem extends kyCommentableBase
+{
 
 	/**
 	 * News type - Global.
@@ -53,9 +54,9 @@ class kyNewsItem extends kyCommentableBase {
 	 */
 	const STATUS_PUBLISHED = 2;
 
-	static protected $controller = '/News/NewsItem';
-	static protected $object_xml_name = 'newsitem';
-	static protected $comment_class = 'kyNewsComment';
+	protected static $controller = '/News/NewsItem';
+	protected static $object_xml_name = 'newsitem';
+	protected static $comment_class = 'kyNewsComment';
 
 	/**
 	 * News item identifier.
@@ -248,7 +249,8 @@ class kyNewsItem extends kyCommentableBase {
 	 */
 	private $categories = array();
 
-	protected function parseData($data) {
+	protected function parseData($data)
+	{
 		$this->id = ky_assure_positive_int($data['id']);
 		$this->staff_id = ky_assure_positive_int($data['staffid']);
 		$this->type = ky_assure_positive_int($data['newstype']);
@@ -300,7 +302,8 @@ class kyNewsItem extends kyCommentableBase {
 		}
 	}
 
-	public function buildData($create) {
+	public function buildData($create)
+	{
 		$this->checkRequiredAPIFields($create);
 
 		$data = array();
@@ -341,13 +344,14 @@ class kyNewsItem extends kyCommentableBase {
 		return $data;
 	}
 
-	static public function getAll() {
-        if (func_num_args() == 0) {
-            $category = null;
-        } else {
-            list($category) = func_get_args();
-        }
-        
+	public static function getAll()
+	{
+		if (func_num_args() == 0) {
+			$category = null;
+		} else {
+			list($category) = func_get_args();
+		}
+		
 		if ($category instanceof kyNewsCategory) {
 			$category_id = $category->getId();
 		} else {
@@ -361,11 +365,13 @@ class kyNewsItem extends kyCommentableBase {
 		}
 	}
 
-	public function toString() {
+	public function toString()
+	{
 		return sprintf("%s (type: %s, status: %s, expiry: %s)", $this->getSubject(), $this->getType(), $this->getStatus(), $this->getExpiry());
 	}
 
-	public function getId($complete = false) {
+	public function getId($complete = false)
+	{
 		return $complete ? array($this->id) : $this->id;
 	}
 
@@ -376,7 +382,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getStaffId() {
+	public function getStaffId()
+	{
 		return $this->staff_id;
 	}
 
@@ -386,7 +393,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @param int $staff_id Staff user identifier.
 	 * @return kyNewsItem
 	 */
-	public function setStaffId($staff_id) {
+	public function setStaffId($staff_id)
+	{
 		$this->staff_id = ky_assure_positive_int($staff_id);
 		$this->staff = null;
 		return $this;
@@ -398,12 +406,15 @@ class kyNewsItem extends kyCommentableBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyStaff
 	 */
-	public function getStaff($reload = false) {
-		if ($this->staff !== null && !$reload)
+	public function getStaff($reload = false)
+	{
+		if ($this->staff !== null && !$reload) {
 			return $this->staff;
+		}
 
-		if ($this->staff_id === null)
+		if ($this->staff_id === null) {
 			return null;
+		}
 
 		$this->staff = kyStaff::get($this->staff_id);
 		return $this->staff;
@@ -415,7 +426,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @param kyStaff $staff Staff user.
 	 * @return kyNewsItem
 	 */
-	public function setStaff($staff) {
+	public function setStaff($staff)
+	{
 		$this->staff = ky_assure_object($staff, 'kyStaff');
 		$this->staff_id = $this->staff !== null ? $this->staff->getId() : null;
 		return $this;
@@ -427,7 +439,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @param int $staff_id Staff user identifier.
 	 * @return kyNewsItem
 	 */
-	public function setEditedStaffId($staff_id) {
+	public function setEditedStaffId($staff_id)
+	{
 		$this->edited_staff_id = ky_assure_positive_int($staff_id);
 		$this->edited_staff = null;
 		return $this;
@@ -439,7 +452,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @param kyStaff $staff Staff user.
 	 * @return kyNewsItem
 	 */
-	public function setEditedStaff($staff) {
+	public function setEditedStaff($staff)
+	{
 		$this->edited_staff = ky_assure_object($staff, 'kyStaff');
 		$this->edited_staff_id = $this->edited_staff !== null ? $this->edited_staff->getId() : null;
 		return $this;
@@ -454,7 +468,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getType() {
+	public function getType()
+	{
 		return $this->type;
 	}
 
@@ -467,7 +482,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @param int $type Type of the news item.
 	 * @return kyNewsItem
 	 */
-	public function setType($type) {
+	public function setType($type)
+	{
 		$this->type = ky_assure_constant($type, $this, 'TYPE');
 		return $this;
 	}
@@ -481,7 +497,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getStatus() {
+	public function getStatus()
+	{
 		return $this->status;
 	}
 
@@ -493,7 +510,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @param int $status Status of the news item.
 	 * @return kyNewsItem
 	 */
-	public function setStatus($status) {
+	public function setStatus($status)
+	{
 		$this->status = ky_assure_constant($status, $this, 'STATUS');
 		return $this;
 	}
@@ -505,7 +523,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getAuthor() {
+	public function getAuthor()
+	{
 		return $this->author;
 	}
 
@@ -516,7 +535,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getAuthorEmail() {
+	public function getAuthorEmail()
+	{
 		return $this->author_email;
 	}
 
@@ -528,7 +548,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @param string $from_name The From Name email header that will be used for the emails sent out to subscribers.
 	 * @return kyNewsItem
 	 */
-	public function setFromName($from_name) {
+	public function setFromName($from_name)
+	{
 		$this->from_name = ky_assure_string($from_name);
 		return $this;
 	}
@@ -539,7 +560,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @param string $email The From Email address that will be used for the emails sent out to subscribers. Please note that this may be the address users reply back to (if they reply to the news article email).
 	 * @return kyNewsItem
 	 */
-	public function setEmail($email) {
+	public function setEmail($email)
+	{
 		$this->email = ky_assure_string($email);
 		return $this;
 	}
@@ -551,7 +573,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getSubject() {
+	public function getSubject()
+	{
 		return $this->subject;
 	}
 
@@ -561,7 +584,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @param string $subject Subject of the news item.
 	 * @return kyNewsItem
 	 */
-	public function setSubject($subject) {
+	public function setSubject($subject)
+	{
 		$this->subject = ky_assure_string($subject);
 		return $this;
 	}
@@ -573,7 +597,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getEmailSubject() {
+	public function getEmailSubject()
+	{
 		return $this->email_subject;
 	}
 
@@ -585,7 +610,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @param string $email_subject Subject for the mass email that will be send out to the subscribers for this news article. If no subject is specified, the subject of the news article will be used instead.
 	 * @return kyNewsItem
 	 */
-	public function setEmailSubject($email_subject) {
+	public function setEmailSubject($email_subject)
+	{
 		$this->email_subject = ky_assure_string($email_subject);
 		return $this;
 	}
@@ -596,7 +622,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @param bool $send_email True to send notification email to subscribers when creating or updating this news item. False otherwise.
 	 * @return kyNewsItem
 	 */
-	public function setSendEmail($send_email) {
+	public function setSendEmail($send_email)
+	{
 		$this->send_email = ky_assure_bool($send_email);
 		return $this;
 	}
@@ -608,7 +635,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getAllowComments() {
+	public function getAllowComments()
+	{
 		return $this->allow_comments;
 	}
 
@@ -618,7 +646,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @param bool $allow_comments True to allow clients to comment on this news item.
 	 * @return kyNewsItem
 	 */
-	public function setAllowComments($allow_comments) {
+	public function setAllowComments($allow_comments)
+	{
 		$this->allow_comments = ky_assure_bool($allow_comments);
 		return $this;
 	}
@@ -633,9 +662,11 @@ class kyNewsItem extends kyCommentableBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getDateline($format = null) {
-		if ($this->dateline == null)
+	public function getDateline($format = null)
+	{
+		if ($this->dateline == null) {
 			return null;
+		}
 
 		if ($format === null) {
 			$format = kyConfig::get()->getDatetimeFormat();
@@ -654,9 +685,11 @@ class kyNewsItem extends kyCommentableBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getExpiry($format = null) {
-		if ($this->expiry == null)
+	public function getExpiry($format = null)
+	{
+		if ($this->expiry == null) {
 			return null;
+		}
 
 		if ($format === null) {
 			$format = kyConfig::get()->getDatetimeFormat();
@@ -673,7 +706,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @param string|int|null $expiry Date and time when the news item will expire (timestamp or string format understood by PHP strtotime). Null to disable expiration.
 	 * @return kyNewsItem
 	 */
-	public function setExpiry($expiry) {
+	public function setExpiry($expiry)
+	{
 		$this->expiry = is_numeric($expiry) || $expiry === null ? ky_assure_positive_int($expiry) : strtotime($expiry);
 		return $this;
 	}
@@ -685,7 +719,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @filterBy name=IsExpired
 	 * @orderBy name=IsExpired
 	 */
-	public function IsExpired() {
+	public function IsExpired()
+	{
 		return $this->expiry > 0 && $this->expiry <= time();
 	}
 
@@ -696,7 +731,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getIsSynced() {
+	public function getIsSynced()
+	{
 		return $this->is_synced;
 	}
 
@@ -707,7 +743,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getTotalComments() {
+	public function getTotalComments()
+	{
 		return $this->total_comments;
 	}
 
@@ -718,7 +755,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @return bool
 	 * @filterBy
 	 */
-	public function getUserVisibilityCustom() {
+	public function getUserVisibilityCustom()
+	{
 		return $this->user_visibility_custom;
 	}
 
@@ -730,7 +768,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @param bool $user_visibility_custom True to restrict visibility of this news item to particular user groups. False otherwise.
 	 * @return kyNewsItem
 	 */
-	public function setUserVisibilityCustom($user_visibility_custom) {
+	public function setUserVisibilityCustom($user_visibility_custom)
+	{
 		$this->user_visibility_custom = ky_assure_bool($user_visibility_custom);
 		if ($this->user_visibility_custom === false) {
 			$this->user_group_ids = array();
@@ -745,7 +784,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @return array
 	 * @filterBy name=UserGroupId
 	 */
-	public function getUserGroupIds() {
+	public function getUserGroupIds()
+	{
 		return $this->user_group_ids;
 	}
 
@@ -755,7 +795,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @param int[] $user_group_ids Identifiers of user groups that this news item will be visible to.
 	 * @return kyNewsItem
 	 */
-	public function setUserGroupIds($user_group_ids) {
+	public function setUserGroupIds($user_group_ids)
+	{
 		//normalization to array
 		if (!is_array($user_group_ids)) {
 			if (is_numeric($user_group_ids)) {
@@ -769,8 +810,9 @@ class kyNewsItem extends kyCommentableBase {
 		$this->user_group_ids = array();
 		foreach ($user_group_ids as $user_group_id) {
 			$user_group_id = ky_assure_positive_int($user_group_id);
-			if ($user_group_id === null)
+			if ($user_group_id === null) {
 				continue;
+			}
 
 			$this->user_group_ids[] = $user_group_id;
 		}
@@ -785,7 +827,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyResultSet
 	 */
-	public function getUserGroups($reload = false) {
+	public function getUserGroups($reload = false)
+	{
 		foreach ($this->user_group_ids as $user_group_id) {
 			if (!is_array($this->user_groups) || !array_key_exists($user_group_id, $this->user_groups) || $reload) {
 				$this->user_groups[$user_group_id] = kyUserGroup::get($user_group_id);
@@ -802,15 +845,19 @@ class kyNewsItem extends kyCommentableBase {
 	 * @return bool
 	 * @filterBy
 	 */
-	public function isVisibleToUserGroup($user_group, $check_expiration = true) {
-		if ($this->type === self::TYPE_PRIVATE)
+	public function isVisibleToUserGroup($user_group, $check_expiration = true)
+	{
+		if ($this->type === self::TYPE_PRIVATE) {
 			return false;
+		}
 
-		if ($check_expiration === true && $this->isExpired())
+		if ($check_expiration === true && $this->isExpired()) {
 			return false;
+		}
 
-		if ($this->user_visibility_custom === false)
+		if ($this->user_visibility_custom === false) {
 			return true;
+		}
 
 		if ($user_group instanceof kyUserGroup) {
 			$user_group_id = $user_group->getId();
@@ -829,7 +876,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @param bool $clear Clear the list before adding.
 	 * @return kyNewsItem
 	 */
-	public function addUserGroup(kyUserGroup $user_group, $clear = false) {
+	public function addUserGroup(kyUserGroup $user_group, $clear = false)
+	{
 		if ($clear) {
 			$this->user_groups = array();
 			$this->user_group_ids = array();
@@ -850,7 +898,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @return bool
 	 * @filterBy
 	 */
-	public function getStaffVisibilityCustom() {
+	public function getStaffVisibilityCustom()
+	{
 		return $this->staff_visibility_custom;
 	}
 
@@ -862,7 +911,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @param bool $staff_visibility_custom True to restrict visibility of this news item to particular staff groups. False otherwise.
 	 * @return kyNewsItem
 	 */
-	public function setStaffVisibilityCustom($staff_visibility_custom) {
+	public function setStaffVisibilityCustom($staff_visibility_custom)
+	{
 		$this->staff_visibility_custom = ky_assure_bool($staff_visibility_custom);
 		if ($this->staff_visibility_custom === false) {
 			$this->staff_group_ids = array();
@@ -877,7 +927,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @return array
 	 * @filterBy name=StaffGroupId
 	 */
-	public function getStaffGroupIds() {
+	public function getStaffGroupIds()
+	{
 		return $this->staff_group_ids;
 	}
 
@@ -887,7 +938,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @param int[] $staff_group_ids Identifiers of staff groups that this news item will be visible to.
 	 * @return kyNewsItem
 	 */
-	public function setStaffGroupIds($staff_group_ids) {
+	public function setStaffGroupIds($staff_group_ids)
+	{
 		//normalization to array
 		if (!is_array($staff_group_ids)) {
 			if (is_numeric($staff_group_ids)) {
@@ -901,8 +953,9 @@ class kyNewsItem extends kyCommentableBase {
 		$this->staff_group_ids = array();
 		foreach ($staff_group_ids as $staff_group_id) {
 			$staff_group_id = ky_assure_positive_int($staff_group_id);
-			if ($staff_group_id === null)
+			if ($staff_group_id === null) {
 				continue;
+			}
 
 			$this->staff_group_ids[] = $staff_group_id;
 		}
@@ -917,7 +970,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyResultSet
 	 */
-	public function getStaffGroups($reload = false) {
+	public function getStaffGroups($reload = false)
+	{
 		foreach ($this->staff_group_ids as $staff_group_id) {
 			if (!is_array($this->staff_groups) || !array_key_exists($staff_group_id, $this->staff_groups) || $reload) {
 				$this->staff_groups[$staff_group_id] = kyStaffGroup::get($staff_group_id);
@@ -934,15 +988,19 @@ class kyNewsItem extends kyCommentableBase {
 	 * @return bool
 	 * @filterBy
 	 */
-	public function isVisibleToStaffGroup($staff_group, $check_expiration = true) {
-		if ($this->type === self::TYPE_PUBLIC)
+	public function isVisibleToStaffGroup($staff_group, $check_expiration = true)
+	{
+		if ($this->type === self::TYPE_PUBLIC) {
 			return false;
+		}
 
-		if ($check_expiration === true && $this->isExpired())
+		if ($check_expiration === true && $this->isExpired()) {
 			return false;
+		}
 
-		if ($this->staff_visibility_custom === false)
+		if ($this->staff_visibility_custom === false) {
 			return true;
+		}
 
 		if ($staff_group instanceof kyStaffGroup) {
 			$staff_group_id = $staff_group->getId();
@@ -961,7 +1019,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @param bool $clear Clear the list before adding.
 	 * @return kyNewsItem
 	 */
-	public function addStaffGroup(kyStaffGroup $staff_group, $clear = false) {
+	public function addStaffGroup(kyStaffGroup $staff_group, $clear = false)
+	{
 		if ($clear) {
 			$this->staff_groups = array();
 			$this->staff_group_ids = array();
@@ -981,7 +1040,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @return string
 	 * @filterBy
 	 */
-	public function getContents() {
+	public function getContents()
+	{
 		return $this->contents;
 	}
 
@@ -991,7 +1051,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @param string $contents Contents of the news item.
 	 * @return kyNewsItem
 	 */
-	public function setContents($contents) {
+	public function setContents($contents)
+	{
 		$this->contents = ky_assure_string($contents);
 		return $this;
 	}
@@ -1002,7 +1063,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @return array
 	 * @filterBy name=CategoryId
 	 */
-	public function getCategoryIds() {
+	public function getCategoryIds()
+	{
 		return $this->category_ids;
 	}
 
@@ -1012,7 +1074,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @param int[] $category_ids Identifiers of categories for this news item.
 	 * @return kyNewsItem
 	 */
-	public function setCategoryIds($category_ids) {
+	public function setCategoryIds($category_ids)
+	{
 		//normalization to array
 		if (!is_array($category_ids)) {
 			if (is_numeric($category_ids)) {
@@ -1026,8 +1089,9 @@ class kyNewsItem extends kyCommentableBase {
 		$this->category_ids = array();
 		foreach ($category_ids as $category_id) {
 			$category_id = ky_assure_positive_int($category_id);
-			if ($category_id === null)
+			if ($category_id === null) {
 				continue;
+			}
 
 			$this->category_ids[] = $category_id;
 		}
@@ -1042,7 +1106,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyResultSet
 	 */
-	public function getCategories($reload = false) {
+	public function getCategories($reload = false)
+	{
 		foreach ($this->category_ids as $category_id) {
 			if (!is_array($this->categories) || !array_key_exists($category_id, $this->categories) || $reload) {
 				$this->categories[$category_id] = kyNewsCategory::get($category_id);
@@ -1065,7 +1130,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @return bool
 	 * @filterBy
 	 */
-	public function isInCategory($category) {
+	public function isInCategory($category)
+	{
 		if ($category instanceof kyNewsCategory) {
 			$category_id = $category->getId();
 		} else {
@@ -1082,7 +1148,8 @@ class kyNewsItem extends kyCommentableBase {
 	 * @param bool $clear Clear the list before adding.
 	 * @return kyNewsItem
 	 */
-	public function addCategory(kyNewsCategory $category, $clear = false) {
+	public function addCategory(kyNewsCategory $category, $clear = false)
+	{
 		if ($clear) {
 			$this->categories = array();
 			$this->category_ids = array();
@@ -1105,8 +1172,9 @@ class kyNewsItem extends kyCommentableBase {
 	 * @param kyStaff $staff Author (staff) of news item.
 	 * @return kyNewsItem
 	 */
-	static public function createNew() {
-        list($subject, $contents, $staff) = func_get_args();
+	public static function createNew()
+	{
+		list($subject, $contents, $staff) = func_get_args();
 		$new_news_item = new kyNewsItem();
 		$new_news_item->setSubject($subject);
 		$new_news_item->setContents($contents);

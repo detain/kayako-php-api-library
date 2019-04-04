@@ -11,7 +11,8 @@
  *
  * @noinspection PhpDocSignatureInspection
  */
-abstract class kyCommentBase extends kyObjectBase {
+abstract class kyCommentBase extends kyObjectBase
+{
 
 	/**
 	 * Comment creator type - Staff.
@@ -68,7 +69,7 @@ abstract class kyCommentBase extends kyObjectBase {
 	 * Staff creator of this comment (if applicable).
 	 * @var kyStaff
 	 */
-	protected  $creator_staff;
+	protected $creator_staff;
 
 	/**
 	 * User creator of this comment (if applicable).
@@ -152,7 +153,8 @@ abstract class kyCommentBase extends kyObjectBase {
 	 */
 	protected $contents;
 
-	protected function parseData($data) {
+	protected function parseData($data)
+	{
 		$this->id = ky_assure_positive_int($data['id']);
 		$this->creator_type = ky_assure_positive_int($data['creatortype']);
 		$this->creator_id = ky_assure_positive_int($data['creatorid']);
@@ -168,7 +170,8 @@ abstract class kyCommentBase extends kyObjectBase {
 		$this->contents = ky_assure_string($data['contents']);
 	}
 
-	public function buildData($create) {
+	public function buildData($create)
+	{
 		$this->checkRequiredAPIFields($create);
 
 		$data = array();
@@ -198,11 +201,13 @@ abstract class kyCommentBase extends kyObjectBase {
 		return $data;
 	}
 
-	public function toString() {
+	public function toString()
+	{
 		return sprintf("%s%s (author: %s, status: %d)", strtr(substr($this->getContents(), 0, 20), "\n", " "), strlen($this->getContents()) > 20 ? "..." : "", $this->getCreatorFullname(), $this->getStatus());
 	}
 
-	public function getId($complete = false) {
+	public function getId($complete = false)
+	{
 		return $complete ? array($this->id) : $this->id;
 	}
 
@@ -215,7 +220,8 @@ abstract class kyCommentBase extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getCreatorType() {
+	public function getCreatorType()
+	{
 		return $this->creator_type;
 	}
 
@@ -229,7 +235,8 @@ abstract class kyCommentBase extends kyObjectBase {
 	 * @param int $creator_type Creator type of the comment.
 	 * @return $this
 	 */
-	public function setCreatorType($creator_type) {
+	public function setCreatorType($creator_type)
+	{
 		$this->creator_type = ky_assure_constant($creator_type, $this, 'CREATOR_TYPE');
 
 		switch ($this->creator_type) {
@@ -252,7 +259,8 @@ abstract class kyCommentBase extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getCreatorId() {
+	public function getCreatorId()
+	{
 		return $this->creator_id;
 	}
 
@@ -264,7 +272,8 @@ abstract class kyCommentBase extends kyObjectBase {
 	 * @param int $creator_id Identifier of creator of this comment.
 	 * @return $this
 	 */
-	public function setCreatorId($creator_id) {
+	public function setCreatorId($creator_id)
+	{
 		$this->creator_id = ky_assure_positive_int($creator_id);
 		$this->creator_fullname = null;
 		return $this;
@@ -279,23 +288,28 @@ abstract class kyCommentBase extends kyObjectBase {
 	 * @return kyUser|kyStaff
 	 * @filterBy
 	 */
-	public function getCreator($reload = false) {
+	public function getCreator($reload = false)
+	{
 		switch ($this->creator_type) {
 			case self::CREATOR_TYPE_STAFF:
-				if ($this->creator_staff !== null && !$reload)
+				if ($this->creator_staff !== null && !$reload) {
 					return $this->creator_staff;
+				}
 
-				if ($this->creator_id === null)
+				if ($this->creator_id === null) {
 					return null;
+				}
 
 				$this->creator_staff = kyStaff::get($this->creator_id);
 				return $this->creator_staff;
 			case self::CREATOR_TYPE_USER:
-				if ($this->creator_user !== null && !$reload)
+				if ($this->creator_user !== null && !$reload) {
 					return $this->creator_user;
+				}
 
-				if ($this->creator_id === null)
+				if ($this->creator_id === null) {
 					return null;
+				}
 
 				$this->creator_user = kyUser::get($this->creator_id);
 				return $this->creator_user;
@@ -310,7 +324,8 @@ abstract class kyCommentBase extends kyObjectBase {
 	 * @param kyUser|kyStaff|string $creator Creator (staff object, user object or user fullname) of this comment.
 	 * @return $this
 	 */
-	public function setCreator($creator) {
+	public function setCreator($creator)
+	{
 		if ($creator instanceof kyStaff) {
 			$this->creator_staff = $creator;
 			$this->creator_id = $this->creator_staff->getId();
@@ -340,7 +355,8 @@ abstract class kyCommentBase extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getCreatorFullname() {
+	public function getCreatorFullname()
+	{
 		return $this->creator_fullname;
 	}
 
@@ -352,7 +368,8 @@ abstract class kyCommentBase extends kyObjectBase {
 	 * @param string $fullname Fullname of creator of this comment.
 	 * @return $this
 	 */
-	public function setCreatorFullname($fullname) {
+	public function setCreatorFullname($fullname)
+	{
 		$this->creator_fullname = $fullname;
 		$this->creator_type = self::CREATOR_TYPE_USER;
 		$this->creator_id = null;
@@ -368,7 +385,8 @@ abstract class kyCommentBase extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getCreatorEmail() {
+	public function getCreatorEmail()
+	{
 		return $this->creator_email;
 	}
 
@@ -378,7 +396,8 @@ abstract class kyCommentBase extends kyObjectBase {
 	 * @param string $email Email of creator of this comment.
 	 * @return $this
 	 */
-	public function setCreatorEmail($email) {
+	public function setCreatorEmail($email)
+	{
 		$this->creator_email = ky_assure_string($email);
 		return $this;
 	}
@@ -390,7 +409,8 @@ abstract class kyCommentBase extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getIPAddress() {
+	public function getIPAddress()
+	{
 		return $this->ip_address;
 	}
 
@@ -404,9 +424,11 @@ abstract class kyCommentBase extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getDateline($format = null) {
-		if ($this->dateline == null)
+	public function getDateline($format = null)
+	{
+		if ($this->dateline == null) {
 			return null;
+		}
 
 		if ($format === null) {
 			$format = kyConfig::get()->getDatetimeFormat();
@@ -422,7 +444,8 @@ abstract class kyCommentBase extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getParentCommentId() {
+	public function getParentCommentId()
+	{
 		return $this->parent_comment_id;
 	}
 
@@ -432,7 +455,8 @@ abstract class kyCommentBase extends kyObjectBase {
 	 * @param int $parent_comment_id Identifier of parent comment (comment that this comment is a reply to).
 	 * @return $this
 	 */
-	public function setParentCommentId($parent_comment_id) {
+	public function setParentCommentId($parent_comment_id)
+	{
 		$this->parent_comment_id = ky_assure_positive_int($parent_comment_id);
 		$this->parent_comment = null;
 		return $this;
@@ -448,12 +472,15 @@ abstract class kyCommentBase extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getParentComment($reload = false) {
-		if ($this->parent_comment !== null && !$reload)
+	public function getParentComment($reload = false)
+	{
+		if ($this->parent_comment !== null && !$reload) {
 			return $this->parent_comment;
+		}
 
-		if ($this->parent_comment_id === null)
+		if ($this->parent_comment_id === null) {
 			return null;
+		}
 
 		$this->parent_comment = kyNewsComment::get($this->parent_comment_id);
 		return $this->parent_comment;
@@ -465,7 +492,8 @@ abstract class kyCommentBase extends kyObjectBase {
 	 * @param kyCommentBase $parent_comment Parent comment (comment that this comment is a reply to).
 	 * @return $this
 	 */
-	public function setParentComment($parent_comment) {
+	public function setParentComment($parent_comment)
+	{
 		$this->parent_comment = ky_assure_object($parent_comment, get_class($this));
 		$this->parent_comment_id = $this->parent_comment !== null ? $this->parent_comment->getId() : null;
 		return $this;
@@ -480,7 +508,8 @@ abstract class kyCommentBase extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getStatus() {
+	public function getStatus()
+	{
 		return $this->status;
 	}
 
@@ -490,7 +519,8 @@ abstract class kyCommentBase extends kyObjectBase {
 	 * @return string
 	 * @filterBy
 	 */
-	public function getUserAgent() {
+	public function getUserAgent()
+	{
 		return $this->user_agent;
 	}
 
@@ -500,7 +530,8 @@ abstract class kyCommentBase extends kyObjectBase {
 	 * @return string
 	 * @filterBy
 	 */
-	public function getReferrer() {
+	public function getReferrer()
+	{
 		return $this->referrer;
 	}
 
@@ -509,7 +540,8 @@ abstract class kyCommentBase extends kyObjectBase {
 	 *
 	 * @return string
 	 */
-	public function getParentURL() {
+	public function getParentURL()
+	{
 		return $this->parent_url;
 	}
 
@@ -519,7 +551,8 @@ abstract class kyCommentBase extends kyObjectBase {
 	 * @return int
 	 * @filterBy
 	 */
-	public function getContents() {
+	public function getContents()
+	{
 		return $this->contents;
 	}
 
@@ -529,7 +562,8 @@ abstract class kyCommentBase extends kyObjectBase {
 	 * @param string $contents Contents of this comment.
 	 * @return $this
 	 */
-	public function setContents($contents) {
+	public function setContents($contents)
+	{
 		$this->contents = ky_assure_string($contents);
 		return $this;
 	}
@@ -542,8 +576,9 @@ abstract class kyCommentBase extends kyObjectBase {
 	 * @param string $contents Contents of this comment.
 	 * @return static
 	 */
-	static public function createNew() {
-        list($creator, $contents) = func_get_args();
+	public static function createNew()
+	{
+		list($creator, $contents) = func_get_args();
 		/** @var $new_comment kyCommentBase */
 		$new_comment = new static();
 		$new_comment->setCreator($creator);

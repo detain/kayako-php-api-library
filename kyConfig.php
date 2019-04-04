@@ -5,7 +5,8 @@
  * @author Tomasz Sawicki (https://github.com/Furgas)
  * @package Common
  */
-class kyConfig {
+class kyConfig
+{
 	/**
 	 * Base URL of Kayako REST API.
 	 * @var string
@@ -67,7 +68,7 @@ class kyConfig {
 	 * Current configuration.
 	 * @var kyConfig
 	 */
-	static private $current_config = null;
+	private static $current_config = null;
 
 	/**
 	 * Initializes client configuration object.
@@ -76,7 +77,8 @@ class kyConfig {
 	 * @param string $api_key Kayako REST API key.
 	 * @param string $secret_key Kayako REST API secret key.
 	 */
-	function __construct($base_url, $api_key, $secret_key) {
+	public function __construct($base_url, $api_key, $secret_key)
+	{
 		$this->setBaseURL($base_url);
 		$this->setAPIKey($api_key);
 		$this->setSecretKey($secret_key);
@@ -88,9 +90,11 @@ class kyConfig {
 	 * @throws kyException
 	 * @return kyConfig
 	 */
-	static public function get() {
-		if (self::$current_config === null)
+	public static function get()
+	{
+		if (self::$current_config === null) {
 			throw new kyException('Kayako PHP API Library is not initialized. Use kyConfig::set() to initialize it.');
+		}
 
 		return self::$current_config;
 	}
@@ -103,7 +107,8 @@ class kyConfig {
 	 * @param kyConfig $config Configuration.
 	 * @return kyConfig
 	 */
-	static public function set(kyConfig $config) {
+	public static function set(kyConfig $config)
+	{
 		self::$current_config = $config;
 		return self::$current_config;
 	}
@@ -113,7 +118,8 @@ class kyConfig {
 	 *
 	 * @return string
 	 */
-	public function getBaseURL() {
+	public function getBaseURL()
+	{
 		return $this->base_url;
 	}
 
@@ -123,7 +129,8 @@ class kyConfig {
 	 * @param string $base_url Base URL of Kayako REST API.
 	 * @return kyConfig
 	 */
-	public function setBaseURL($base_url) {
+	public function setBaseURL($base_url)
+	{
 		//URL can't end with PHP file (for compatibility with $controller_as_query = false) and can't contain any query parameters
 		$to_remove = basename(parse_url($base_url, PHP_URL_PATH));
 
@@ -146,7 +153,8 @@ class kyConfig {
 	 *
 	 * @return string
 	 */
-	public function getAPIKey() {
+	public function getAPIKey()
+	{
 		return $this->api_key;
 	}
 
@@ -156,7 +164,8 @@ class kyConfig {
 	 * @param string $api_key Kayako REST API key.
 	 * @return kyConfig
 	 */
-	public function setAPIKey($api_key) {
+	public function setAPIKey($api_key)
+	{
 		$this->api_key = $api_key;
 		return $this;
 	}
@@ -166,7 +175,8 @@ class kyConfig {
 	 *
 	 * @return string
 	 */
-	public function getSecretKey() {
+	public function getSecretKey()
+	{
 		return $this->secret_key;
 	}
 
@@ -176,7 +186,8 @@ class kyConfig {
 	 * @param string $secret_key Kayako REST API secret key.
 	 * @return kyConfig
 	 */
-	public function setSecretKey($secret_key) {
+	public function setSecretKey($secret_key)
+	{
 		$this->secret_key = $secret_key;
 		return $this;
 	}
@@ -187,7 +198,8 @@ class kyConfig {
 	 * @param int $timeout Timeout Value in Seconds
 	 * @return kyConfig
 	 */
-	public function setTimeout($timeout) {
+	public function setTimeout($timeout)
+	{
 		$this->timeout = (int)$timeout;
 		return $this;
 	}
@@ -197,7 +209,8 @@ class kyConfig {
 	 *
 	 * @return int
 	 */
-	public function getTimeout() {
+	public function getTimeout()
+	{
 		return $this->timeout;
 	}
 
@@ -206,7 +219,8 @@ class kyConfig {
 	 *
 	 * @return kyRESTClientInterface
 	 */
-	public function getRESTClient() {
+	public function getRESTClient()
+	{
 		if ($this->rest_client === null) {
 			$this->rest_client = new kyRESTClient();
 			$this->rest_client->setConfig($this);
@@ -221,7 +235,8 @@ class kyConfig {
 	 * @param kyRESTClientInterface $rest_client REST client instance.
 	 * @return kyConfig
 	 */
-	public function setRESTClient(kyRESTClientInterface $rest_client) {
+	public function setRESTClient(kyRESTClientInterface $rest_client)
+	{
 		$this->rest_client = $rest_client;
 		return $this;
 	}
@@ -233,7 +248,8 @@ class kyConfig {
 	 *
 	 * @return string
 	 */
-	public function getDatetimeFormat() {
+	public function getDatetimeFormat()
+	{
 		return $this->datetime_format;
 	}
 
@@ -245,7 +261,8 @@ class kyConfig {
 	 * @param string $datetime_format Default format of datetime object properties used in getters and setters.
 	 * @return kyConfig
 	 */
-	public function setDatetimeFormat($datetime_format) {
+	public function setDatetimeFormat($datetime_format)
+	{
 		$this->datetime_format = $datetime_format;
 		return $this;
 	}
@@ -257,7 +274,8 @@ class kyConfig {
 	 *
 	 * @return string
 	 */
-	public function getDateFormat() {
+	public function getDateFormat()
+	{
 		return $this->date_format;
 	}
 
@@ -269,7 +287,8 @@ class kyConfig {
 	 * @param string $date_format Default format of date object properties used in getters and setters.
 	 * @return kyConfig
 	 */
-	public function setDateFormat($date_format) {
+	public function setDateFormat($date_format)
+	{
 		$this->date_format = $date_format;
 		return $this;
 	}
@@ -281,7 +300,8 @@ class kyConfig {
 	 *
 	 * @return bool
 	 */
-	public function getIsStandardURLType() {
+	public function getIsStandardURLType()
+	{
 		return $this->is_standard_url_type;
 	}
 
@@ -294,7 +314,8 @@ class kyConfig {
 	 * @param bool $is_standard_url_type True for standard URL. False to use "e" parameter in URL.
 	 * @return kyConfig
 	 */
-	public function setIsStandardURLType($is_standard_url_type) {
+	public function setIsStandardURLType($is_standard_url_type)
+	{
 		$this->is_standard_url_type = $is_standard_url_type;
 		return $this;
 	}
@@ -305,7 +326,8 @@ class kyConfig {
 	 *
 	 * @return bool
 	 */
-	public function isDebugEnabled() {
+	public function isDebugEnabled()
+	{
 		return $this->is_debug_enabled;
 	}
 
@@ -316,7 +338,8 @@ class kyConfig {
 	 * @param bool $is_debug_enabled
 	 * @return kyConfig
 	 */
-	public function setDebugEnabled($is_debug_enabled) {
+	public function setDebugEnabled($is_debug_enabled)
+	{
 		$this->is_debug_enabled = $is_debug_enabled;
 		return $this;
 	}

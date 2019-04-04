@@ -8,7 +8,8 @@
  *
  * @noinspection PhpDocSignatureInspection
  */
-class kyCustomFieldMultiSelect extends kyCustomField {
+class kyCustomFieldMultiSelect extends kyCustomField
+{
 
 	/**
 	 * Separator of field selected values.
@@ -22,7 +23,8 @@ class kyCustomFieldMultiSelect extends kyCustomField {
 	 */
 	protected $options;
 
-	protected function parseData($data) {
+	protected function parseData($data)
+	{
 		parent::parseData($data);
 
 		$values = explode(self::VALUES_SEPARATOR, $data['_contents']);
@@ -30,14 +32,16 @@ class kyCustomFieldMultiSelect extends kyCustomField {
 		$this->options = array();
 		foreach ($values as $value) {
 			$field_option = $this->getOption($value);
-			if ($field_option === null)
+			if ($field_option === null) {
 				continue;
+			}
 
 			$this->options[] = $field_option;
 		}
 	}
 
-	public function buildData($create) {
+	public function buildData($create)
+	{
 		$this->checkRequiredAPIFields($create);
 
 		$data = array();
@@ -55,7 +59,8 @@ class kyCustomFieldMultiSelect extends kyCustomField {
 	 *
 	 * @return kyResultSet
 	 */
-	public function getSelectedOptions() {
+	public function getSelectedOptions()
+	{
 		/** @noinspection PhpParamsInspection */
 		return new kyResultSet($this->options);
 	}
@@ -66,7 +71,8 @@ class kyCustomFieldMultiSelect extends kyCustomField {
 	 * @param kyCustomFieldOption[] $options List of options.
 	 * @return kyCustomFieldMultiSelect
 	 */
-	public function setSelectedOptions($options) {
+	public function setSelectedOptions($options)
+	{
 		//make sure it's array
 		if (!is_array($options)) {
 			if ($options === null) {
@@ -103,7 +109,8 @@ class kyCustomFieldMultiSelect extends kyCustomField {
 	 *
 	 * @return kyCustomFieldOption[]
 	 */
-	public function getValue() {
+	public function getValue()
+	{
 		return $this->options;
 	}
 
@@ -116,7 +123,8 @@ class kyCustomFieldMultiSelect extends kyCustomField {
 	 *
 	 * @return array
 	 */
-	public function getValues() {
+	public function getValues()
+	{
 		$values = array();
 		foreach ($this->options as $field_option) {
 			/* @var $field_option kyCustomFieldOption */
@@ -131,7 +139,8 @@ class kyCustomFieldMultiSelect extends kyCustomField {
 	 * @param array $value List of values where each value can be: identifier of field option OR value of field option OR an option.
 	 * @return kyCustomFieldMultiSelect
 	 */
-	public function setValue($value) {
+	public function setValue($value)
+	{
 		//make sure it's array
 		if (!is_array($value)) {
 			if ($value === null) {
@@ -147,8 +156,9 @@ class kyCustomFieldMultiSelect extends kyCustomField {
 		$options = array();
 		foreach ($values as $value) {
 			$field_option = $this->getOption($value);
-			if ($field_option === null)
+			if ($field_option === null) {
 				continue;
+			}
 
 			$options[] = $field_option;
 		}

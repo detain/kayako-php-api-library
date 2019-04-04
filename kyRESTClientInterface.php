@@ -9,7 +9,8 @@
  * @author Tomasz Sawicki (https://github.com/Furgas)
  * @package Common\REST
  */
-interface kyRESTClientInterface {
+interface kyRESTClientInterface
+{
 	/**
 	 * HTTP verb - GET. For getting objects.
 	 * @var string

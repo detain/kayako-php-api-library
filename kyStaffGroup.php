@@ -9,10 +9,10 @@
  *
  * @noinspection PhpDocSignatureInspection
  */
-class kyStaffGroup extends kyObjectBase {
-
-	static protected $controller = '/Base/StaffGroup';
-	static protected $object_xml_name = 'staffgroup';
+class kyStaffGroup extends kyObjectBase
+{
+	protected static $controller = '/Base/StaffGroup';
+	protected static $object_xml_name = 'staffgroup';
 
 	/**
 	 * Staff group identifier.
@@ -35,13 +35,15 @@ class kyStaffGroup extends kyObjectBase {
 	 */
 	protected $is_admin = false;
 
-	protected function parseData($data) {
+	protected function parseData($data)
+	{
 		$this->id = intval($data['id']);
 		$this->title = $data['title'];
 		$this->is_admin = ky_assure_bool($data['isadmin']);
 	}
 
-	public function buildData($create) {
+	public function buildData($create)
+	{
 		$this->checkRequiredAPIFields($create);
 
 		$data = array();
@@ -52,11 +54,13 @@ class kyStaffGroup extends kyObjectBase {
 		return $data;
 	}
 
-	public function toString() {
+	public function toString()
+	{
 		return sprintf("%s (isadmin: %s)", $this->getTitle(), $this->getIsAdmin() ? "yes" : "no");
 	}
 
-	public function getId($complete = false) {
+	public function getId($complete = false)
+	{
 		return $complete ? array($this->id) : $this->id;
 	}
 
@@ -67,7 +71,8 @@ class kyStaffGroup extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getTitle() {
+	public function getTitle()
+	{
 		return $this->title;
 	}
 
@@ -77,7 +82,8 @@ class kyStaffGroup extends kyObjectBase {
 	 * @param string $title Title of the staff group.
 	 * @return kyStaffGroup
 	 */
-	public function setTitle($title) {
+	public function setTitle($title)
+	{
 		$this->title = ky_assure_string($title);
 		return $this;
 	}
@@ -89,7 +95,8 @@ class kyStaffGroup extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getIsAdmin() {
+	public function getIsAdmin()
+	{
 		return $this->is_admin;
 	}
 
@@ -99,7 +106,8 @@ class kyStaffGroup extends kyObjectBase {
 	 * @param bool $is_admin True, if you want staff members assigned to this group to be Administrators. False (default), otherwise.
 	 * @return kyStaffGroup
 	 */
-	public function setIsAdmin($is_admin) {
+	public function setIsAdmin($is_admin)
+	{
 		$this->is_admin = ky_assure_bool($is_admin);
 		return $this;
 	}
@@ -112,13 +120,14 @@ class kyStaffGroup extends kyObjectBase {
 	 * @param bool $is_admin True, if you want staff members assigned to this group to be Administrators. False (default), otherwise.
 	 * @return kyStaffGroup
 	 */
-	static public function createNew() {
-        if (func_num_args() == 1) {
-            $is_admin = false;
-            list($title) = func_get_args();
-        } else {
-            list($title, $is_admin) = func_get_args();
-        }
+	public static function createNew()
+	{
+		if (func_num_args() == 1) {
+			$is_admin = false;
+			list($title) = func_get_args();
+		} else {
+			list($title, $is_admin) = func_get_args();
+		}
 		$new_staff_group = new kyStaffGroup();
 		$new_staff_group->setTitle($title);
 		$new_staff_group->setIsAdmin($is_admin);
@@ -136,7 +145,8 @@ class kyStaffGroup extends kyObjectBase {
 	 * @param string $password Password for new staff user.
 	 * @return kyStaff
 	 */
-	public function newStaff($first_name, $last_name, $user_name, $email, $password) {
+	public function newStaff($first_name, $last_name, $user_name, $email, $password)
+	{
 		return kyStaff::createNew($first_name, $last_name, $user_name, $email, $this, $password);
 	}
 }

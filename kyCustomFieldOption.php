@@ -7,10 +7,10 @@
  * @since Kayako version 4.40.1079
  * @package Object\CustomField
  */
-class kyCustomFieldOption extends kyObjectBase {
-
-	static protected $controller = '/Base/CustomField/ListOptions';
-	static protected $object_xml_name = 'option';
+class kyCustomFieldOption extends kyObjectBase
+{
+	protected static $controller = '/Base/CustomField/ListOptions';
+	protected static $object_xml_name = 'option';
 	protected $read_only = true;
 
 	/**
@@ -55,7 +55,8 @@ class kyCustomFieldOption extends kyObjectBase {
 	 */
 	protected $parent_option_id;
 
-	protected function parseData($data) {
+	protected function parseData($data)
+	{
 		$this->id = intval($data['_attributes']['customfieldoptionid']);
 		$this->field_id = intval($data['_attributes']['customfieldid']);
 		$this->value = $data['_attributes']['optionvalue'];
@@ -64,21 +65,25 @@ class kyCustomFieldOption extends kyObjectBase {
 		$this->parent_option_id = intval($data['_attributes']['parentcustomfieldoptionid']);
 	}
 
-    static public function get() {
-        list($id) = func_get_args();
+	public static function get()
+	{
+		list($id) = func_get_args();
 
 		throw new BadMethodCallException(sprintf("You can't get single object of type %s.", get_called_class()));
 	}
 
-	public function refresh() {
+	public function refresh()
+	{
 		throw new BadMethodCallException(sprintf("You can't refresh object of type %s.", get_called_class()));
 	}
 
-	public function toString() {
+	public function toString()
+	{
 		return sprintf("%s (selected by default: %s)", $this->getValue(), $this->getIsSelected() ? "yes" : "no");
 	}
 
-	public function getId($complete = false) {
+	public function getId($complete = false)
+	{
 		return $complete ? array($this->id) : $this->id;
 	}
 
@@ -88,7 +93,8 @@ class kyCustomFieldOption extends kyObjectBase {
 	 * @return int
 	 * @filterBy
 	 */
-	public function getFieldId() {
+	public function getFieldId()
+	{
 		return $this->field_id;
 	}
 
@@ -99,7 +105,8 @@ class kyCustomFieldOption extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getValue() {
+	public function getValue()
+	{
 		return $this->value;
 	}
 
@@ -110,7 +117,8 @@ class kyCustomFieldOption extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getDisplayOrder() {
+	public function getDisplayOrder()
+	{
 		return $this->display_order;
 	}
 
@@ -121,7 +129,8 @@ class kyCustomFieldOption extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getIsSelected() {
+	public function getIsSelected()
+	{
 		return $this->is_selected;
 	}
 
@@ -132,7 +141,8 @@ class kyCustomFieldOption extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getParentOptionId() {
+	public function getParentOptionId()
+	{
 		return $this->parent_option_id;
 	}
 }

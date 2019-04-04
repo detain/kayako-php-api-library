@@ -9,7 +9,8 @@
  *
  * @noinspection PhpDocSignatureInspection
  */
-class kyTicketPost extends kyObjectBase {
+class kyTicketPost extends kyObjectBase
+{
 	/**
 	 * Post creator type - staff user.
 	 * @var int
@@ -46,8 +47,8 @@ class kyTicketPost extends kyObjectBase {
 	 */
 	const CREATOR_THIRDPARTY = 5;
 
-	static protected $controller = '/Tickets/TicketPost';
-	static protected $object_xml_name = 'post';
+	protected static $controller = '/Tickets/TicketPost';
+	protected static $object_xml_name = 'post';
 
 	/**
 	 * Ticket post identifier.
@@ -217,7 +218,8 @@ class kyTicketPost extends kyObjectBase {
 	 */
 	private $ticket = null;
 
-	protected function parseData($data) {
+	protected function parseData($data)
+	{
 		$this->id = intval($data['id']);
 		$this->ticket_id = ky_assure_positive_int($data['ticketid']);
 		$this->dateline = ky_assure_positive_int($data['dateline']);
@@ -242,7 +244,8 @@ class kyTicketPost extends kyObjectBase {
 		}
 	}
 
-	public function buildData($create) {
+	public function buildData($create)
+	{
 		$this->checkRequiredAPIFields($create);
 
 		$data = array();
@@ -252,8 +255,9 @@ class kyTicketPost extends kyObjectBase {
 		$data['contents'] = $this->contents;
 		$data['isprivate'] = $this->is_private;
 
-		if (!is_numeric($this->staff_id) && !is_numeric($this->user_id))
+		if (!is_numeric($this->staff_id) && !is_numeric($this->user_id)) {
 			throw new kyException("Value for API fields 'staffid' or 'userid' is required for this operation to complete.");
+		}
 
 		switch ($this->creator) {
 			case self::CREATOR_STAFF:
@@ -273,15 +277,16 @@ class kyTicketPost extends kyObjectBase {
 	 * @param int $ticket_id Ticket identifier.
 	 * @return kyResultSet
 	 */
-    static public function getAll() {
-        list($ticket_id) = func_get_args();
+	public static function getAll()
+	{
+		list($ticket_id) = func_get_args();
 
 		$search_parameters = array('ListAll');
 
 		$search_parameters[] = $ticket_id;
 
-			return parent::getAll($search_parameters);
-		}
+		return parent::getAll($search_parameters);
+	}
 
 	/**
 	 * Returns ticket post.
@@ -290,24 +295,29 @@ class kyTicketPost extends kyObjectBase {
 	 * @param int $id Ticket post identifier.
 	 * @return kyTicketPost
 	 */
-	static public function get() {
-        list($ticket_id, $id) = func_get_args();
+	public static function get()
+	{
+		list($ticket_id, $id) = func_get_args();
 		return parent::get(array($ticket_id, $id));
 	}
 
-	public function update() {
+	public function update()
+	{
 		throw new BadMethodCallException("You can't update objects of type kyTicketPost.");
 	}
 
-	public function delete() {
+	public function delete()
+	{
 		self::getRESTClient()->delete(static::$controller, array($this->ticket_id, $this->id));
 	}
 
-	public function toString() {
+	public function toString()
+	{
 		return sprintf("%s (creator: %s)", substr($this->getContents(), 0, 50) . (strlen($this->getContents()) > 50 ? '...' : ''), $this->getFullName());
 	}
 
-	public function getId($complete = false) {
+	public function getId($complete = false)
+	{
 		return $complete ? array($this->ticket_id, $this->id) : $this->id;
 	}
 
@@ -316,7 +326,8 @@ class kyTicketPost extends kyObjectBase {
 	 *
 	 * @return int
 	 */
-	public function getTicketId() {
+	public function getTicketId()
+	{
 		return $this->ticket_id;
 	}
 
@@ -326,7 +337,8 @@ class kyTicketPost extends kyObjectBase {
 	 * @param int $ticket_id Ticket identifier.
 	 * @return kyTicketPost
 	 */
-	public function setTicketId($ticket_id) {
+	public function setTicketId($ticket_id)
+	{
 		$this->ticket_id = ky_assure_positive_int($ticket_id);
 		$this->ticket = null;
 		return $this;
@@ -340,12 +352,15 @@ class kyTicketPost extends kyObjectBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyTicket
 	 */
-	public function getTicket($reload = false) {
-		if ($this->ticket !== null && !$reload)
+	public function getTicket($reload = false)
+	{
+		if ($this->ticket !== null && !$reload) {
 			return $this->ticket;
+		}
 
-		if ($this->ticket_id === null)
+		if ($this->ticket_id === null) {
 			return null;
+		}
 
 		$this->ticket = kyTicket::get($this->ticket_id);
 		return $this->ticket;
@@ -357,7 +372,8 @@ class kyTicketPost extends kyObjectBase {
 	 * @param kyTicket $ticket Ticket.
 	 * @return kyTicketPost
 	 */
-	public function setTicket($ticket) {
+	public function setTicket($ticket)
+	{
 		$this->ticket = ky_assure_object($ticket, 'kyTicket');
 		$this->ticket_id = $this->ticket !== null ? $this->ticket->getId() : null;
 		return $this;
@@ -373,9 +389,11 @@ class kyTicketPost extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getDateline($format = null) {
-		if ($this->dateline == null)
+	public function getDateline($format = null)
+	{
+		if ($this->dateline == null) {
 			return null;
+		}
 
 		if ($format === null) {
 			$format = kyConfig::get()->getDatetimeFormat();
@@ -391,7 +409,8 @@ class kyTicketPost extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getUserId() {
+	public function getUserId()
+	{
 		return $this->user_id;
 	}
 
@@ -401,7 +420,8 @@ class kyTicketPost extends kyObjectBase {
 	 * @param int $user_id User identifier.
 	 * @return kyTicketPost
 	 */
-	public function setUserId($user_id) {
+	public function setUserId($user_id)
+	{
 		$this->user_id = ky_assure_positive_int($user_id);
 		$this->creator = $this->user_id > 0 ? self::CREATOR_USER : null;
 		$this->user = null;
@@ -416,12 +436,15 @@ class kyTicketPost extends kyObjectBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyUser
 	 */
-	public function getUser($reload = false) {
-		if ($this->user !== null && !$reload)
+	public function getUser($reload = false)
+	{
+		if ($this->user !== null && !$reload) {
 			return $this->user;
+		}
 
-		if ($this->user_id === null)
+		if ($this->user_id === null) {
 			return null;
+		}
 
 		$this->user = kyUser::get($this->user_id);
 		return $this->user;
@@ -433,7 +456,8 @@ class kyTicketPost extends kyObjectBase {
 	 * @param kyUser $user User.
 	 * @return kyTicketPost
 	 */
-	public function setUser($user) {
+	public function setUser($user)
+	{
 		$this->user = ky_assure_object($user, 'kyUser');
 		$this->user_id = $this->user !== null ? $this->user->getId() : null;
 		$this->creator = $this->user !== null ? self::CREATOR_USER : null;
@@ -449,7 +473,8 @@ class kyTicketPost extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getFullName() {
+	public function getFullName()
+	{
 		return $this->full_name;
 	}
 
@@ -460,7 +485,8 @@ class kyTicketPost extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getEmail() {
+	public function getEmail()
+	{
 		return $this->email;
 	}
 
@@ -473,7 +499,8 @@ class kyTicketPost extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getEmailTo() {
+	public function getEmailTo()
+	{
 		return $this->email_to;
 	}
 
@@ -484,7 +511,8 @@ class kyTicketPost extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getIPAddress() {
+	public function getIPAddress()
+	{
 		return $this->ip_address;
 	}
 
@@ -495,7 +523,8 @@ class kyTicketPost extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getHasAttachments() {
+	public function getHasAttachments()
+	{
 		return $this->has_attachments;
 	}
 
@@ -508,7 +537,8 @@ class kyTicketPost extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getCreatorType() {
+	public function getCreatorType()
+	{
 		return $this->creator;
 	}
 
@@ -518,7 +548,8 @@ class kyTicketPost extends kyObjectBase {
 	 * @return bool
 	 * @filterBy
 	 */
-	public function getIsThirdParty() {
+	public function getIsThirdParty()
+	{
 		return $this->is_third_party;
 	}
 
@@ -528,7 +559,8 @@ class kyTicketPost extends kyObjectBase {
 	 * @return bool
 	 * @filterBy
 	 */
-	public function getIsHTML() {
+	public function getIsHTML()
+	{
 		return $this->is_html;
 	}
 
@@ -538,7 +570,8 @@ class kyTicketPost extends kyObjectBase {
 	 * @return bool
 	 * @filterBy
 	 */
-	public function getIsEmailed() {
+	public function getIsEmailed()
+	{
 		return $this->is_emailed;
 	}
 
@@ -549,7 +582,8 @@ class kyTicketPost extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getStaffId() {
+	public function getStaffId()
+	{
 		return $this->staff_id;
 	}
 
@@ -559,7 +593,8 @@ class kyTicketPost extends kyObjectBase {
 	 * @param int $staff_id Staff user identifier.
 	 * @return kyTicketPost
 	 */
-	public function setStaffId($staff_id) {
+	public function setStaffId($staff_id)
+	{
 		$this->staff_id = ky_assure_positive_int($staff_id);
 		$this->creator = $this->staff_id > 0 ? self::CREATOR_STAFF : null;
 		$this->staff = null;
@@ -574,12 +609,15 @@ class kyTicketPost extends kyObjectBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyStaff
 	 */
-	public function getStaff($reload = false) {
-		if ($this->staff !== null && !$reload)
+	public function getStaff($reload = false)
+	{
+		if ($this->staff !== null && !$reload) {
 			return $this->staff;
+		}
 
-		if ($this->staff_id === null)
+		if ($this->staff_id === null) {
 			return null;
+		}
 
 		$this->staff = kyStaff::get($this->staff_id);
 		return $this->staff;
@@ -591,7 +629,8 @@ class kyTicketPost extends kyObjectBase {
 	 * @param kyStaff $staff Staff user.
 	 * @return kyTicketPost
 	 */
-	public function setStaff($staff) {
+	public function setStaff($staff)
+	{
 		$this->staff = ky_assure_object($staff, 'kyStaff');
 		$this->staff_id = $this->staff !== null ? $this->staff->getId() : null;
 		$this->creator = $this->staff !== null ? self::CREATOR_STAFF : null;
@@ -609,7 +648,8 @@ class kyTicketPost extends kyObjectBase {
 	 * @param int $type Creator type. Required only when $creator is an identifier.
 	 * @return kyTicketPost
 	 */
-	public function setCreator($creator, $type = null) {
+	public function setCreator($creator, $type = null)
+	{
 		if (is_numeric($creator)) {
 			switch ($type) {
 				case self::CREATOR_USER:
@@ -634,7 +674,8 @@ class kyTicketPost extends kyObjectBase {
 	 *
 	 * @return kyUser|kyStaff
 	 */
-	public function getCreator() {
+	public function getCreator()
+	{
 		switch ($this->creator) {
 			case self::CREATOR_STAFF:
 				return $this->getStaff();
@@ -650,7 +691,8 @@ class kyTicketPost extends kyObjectBase {
 	 * @return bool
 	 * @filterBy
 	 */
-	public function getIsSurveyComment() {
+	public function getIsSurveyComment()
+	{
 		return $this->is_survey_comment;
 	}
 
@@ -660,7 +702,8 @@ class kyTicketPost extends kyObjectBase {
 	 * @return string
 	 * @filterBy
 	 */
-	public function getSubject() {
+	public function getSubject()
+	{
 		return $this->subject;
 	}
 
@@ -670,7 +713,8 @@ class kyTicketPost extends kyObjectBase {
 	 * @param string $subject Post subject.
 	 * @return kyTicketPost
 	 */
-	public function setSubject($subject) {
+	public function setSubject($subject)
+	{
 		$this->subject = ky_assure_string($subject);
 		return $this;
 	}
@@ -682,7 +726,8 @@ class kyTicketPost extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getContents() {
+	public function getContents()
+	{
 		return $this->contents;
 	}
 
@@ -692,7 +737,8 @@ class kyTicketPost extends kyObjectBase {
 	 * @param string $contents Post contents.
 	 * @return kyTicketPost
 	 */
-	public function setContents($contents) {
+	public function setContents($contents)
+	{
 		$this->contents = ky_assure_string($contents);
 		return $this;
 	}
@@ -704,7 +750,8 @@ class kyTicketPost extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getIsPrivate() {
+	public function getIsPrivate()
+	{
 		return $this->is_private;
 	}
 
@@ -714,7 +761,8 @@ class kyTicketPost extends kyObjectBase {
 	 * @param bool $is_private Whether the ticket post should be created as private (hidden from the customer) or not.
 	 * @return kyTicketPost
 	 */
-	public function setIsPrivate($is_private) {
+	public function setIsPrivate($is_private)
+	{
 		$this->is_private = ky_assure_bool($is_private);
 		return $this;
 	}
@@ -725,7 +773,8 @@ class kyTicketPost extends kyObjectBase {
 	 * @param bool $reload True to reload attachments from server.
 	 * @return kyResultSet
 	 */
-	public function getAttachments($reload = false) {
+	public function getAttachments($reload = false)
+	{
 		if ($this->attachments === null || $reload) {
 			$this->attachments = array();
 
@@ -755,8 +804,9 @@ class kyTicketPost extends kyObjectBase {
 	 * @param string $contents Contents of new post.
 	 * @return kyTicketPost
 	 */
-	static public function createNew() {
-        list($ticket, $creator, $contents) = func_get_args();
+	public static function createNew()
+	{
+		list($ticket, $creator, $contents) = func_get_args();
 		$new_ticket_post = new kyTicketPost();
 		$new_ticket_post->setTicket($ticket);
 		$new_ticket_post->setCreator($creator);
@@ -772,7 +822,8 @@ class kyTicketPost extends kyObjectBase {
 	 * @param string $file_name Filename.
 	 * @return kyTicketAttachment
 	 */
-	public function newAttachment($contents, $file_name) {
+	public function newAttachment($contents, $file_name)
+	{
 		return kyTicketAttachment::createNew($this, $contents, $file_name);
 	}
 
@@ -784,7 +835,8 @@ class kyTicketPost extends kyObjectBase {
 	 * @param string $file_name Optional. Use to set filename other than physical file.
 	 * @return kyTicketAttachment
 	 */
-	public function newAttachmentFromFile($file_path, $file_name = null) {
+	public function newAttachmentFromFile($file_path, $file_name = null)
+	{
 		return kyTicketAttachment::createNewFromFile($this, $file_path, $file_name);
 	}
 }

@@ -7,13 +7,13 @@
  * @since Kayako version 4.01.204
  * @package Object\User
  */
-class kyUserOrganization extends kyObjectBase {
-
+class kyUserOrganization extends kyObjectBase
+{
 	const TYPE_RESTRICTED = 'restricted';
 	const TYPE_SHARED = 'shared';
 
-	static protected $controller = '/Base/UserOrganization';
-	static protected $object_xml_name = 'userorganization';
+	protected static $controller = '/Base/UserOrganization';
+	protected static $object_xml_name = 'userorganization';
 
 	/**
 	 * User organization identifier.
@@ -123,7 +123,8 @@ class kyUserOrganization extends kyObjectBase {
 	 */
 	protected $sla_plan_expiry;
 
-	protected function parseData($data) {
+	protected function parseData($data)
+	{
 		$this->id = intval($data['id']);
 		$this->name = $data['name'];
 		$this->type = $data['organizationtype'];
@@ -141,7 +142,8 @@ class kyUserOrganization extends kyObjectBase {
 		$this->sla_plan_expiry = ky_assure_positive_int($data['slaplanexpiry']);
 	}
 
-	public function buildData($create) {
+	public function buildData($create)
+	{
 		$this->checkRequiredAPIFields($create);
 
 		$data = array();
@@ -162,11 +164,13 @@ class kyUserOrganization extends kyObjectBase {
 		return $data;
 	}
 
-	public function toString() {
+	public function toString()
+	{
 		return sprintf("%s (type: %s)", $this->getName(), $this->getType());
 	}
 
-	public function getId($complete = false) {
+	public function getId($complete = false)
+	{
 		return $complete ? array($this->id) : $this->id;
 	}
 
@@ -177,7 +181,8 @@ class kyUserOrganization extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getName() {
+	public function getName()
+	{
 		return $this->name;
 	}
 
@@ -187,7 +192,8 @@ class kyUserOrganization extends kyObjectBase {
 	 * @param string $name User organization name.
 	 * @return kyUserOrganization
 	 */
-	public function setName($name) {
+	public function setName($name)
+	{
 		$this->name = ky_assure_string($name);
 		return $this;
 	}
@@ -201,7 +207,8 @@ class kyUserOrganization extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getType() {
+	public function getType()
+	{
 		return $this->type;
 	}
 
@@ -213,7 +220,8 @@ class kyUserOrganization extends kyObjectBase {
 	 * @param string $type User organization type
 	 * @return kyUserOrganization
 	 */
-	public function setType($type) {
+	public function setType($type)
+	{
 		$this->type = ky_assure_constant($type, $this, 'TYPE');
 		return $this;
 	}
@@ -225,7 +233,8 @@ class kyUserOrganization extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getAddress() {
+	public function getAddress()
+	{
 		return $this->address;
 	}
 
@@ -235,7 +244,8 @@ class kyUserOrganization extends kyObjectBase {
 	 * @param string $address User organization address.
 	 * @return kyUserOrganization
 	 */
-	public function setAddress($address) {
+	public function setAddress($address)
+	{
 		$this->address = ky_assure_string($address);
 		return $this;
 	}
@@ -247,7 +257,8 @@ class kyUserOrganization extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getCity() {
+	public function getCity()
+	{
 		return $this->city;
 	}
 
@@ -257,7 +268,8 @@ class kyUserOrganization extends kyObjectBase {
 	 * @param string $city User organization city.
 	 * @return kyUserOrganization
 	 */
-	public function setCity($city) {
+	public function setCity($city)
+	{
 		$this->city = ky_assure_string($city);
 		return $this;
 	}
@@ -269,7 +281,8 @@ class kyUserOrganization extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getState() {
+	public function getState()
+	{
 		return $this->state;
 	}
 
@@ -279,7 +292,8 @@ class kyUserOrganization extends kyObjectBase {
 	 * @param string $state User organization state.
 	 * @return kyUserOrganization
 	 */
-	public function setState($state) {
+	public function setState($state)
+	{
 		$this->state = ky_assure_string($state);
 		return $this;
 	}
@@ -291,7 +305,8 @@ class kyUserOrganization extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getPostalCode() {
+	public function getPostalCode()
+	{
 		return $this->postal_code;
 	}
 
@@ -301,7 +316,8 @@ class kyUserOrganization extends kyObjectBase {
 	 * @param string $postal_code User organization postal code.
 	 * @return kyUserOrganization
 	 */
-	public function setPostalCode($postal_code) {
+	public function setPostalCode($postal_code)
+	{
 		$this->postal_code = ky_assure_string($postal_code);
 		return $this;
 	}
@@ -313,7 +329,8 @@ class kyUserOrganization extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getCountry() {
+	public function getCountry()
+	{
 		return $this->country;
 	}
 
@@ -323,7 +340,8 @@ class kyUserOrganization extends kyObjectBase {
 	 * @param string $country User organization country.
 	 * @return kyUserOrganization
 	 */
-	public function setCountry($country) {
+	public function setCountry($country)
+	{
 		$this->country = ky_assure_string($country);
 		return $this;
 	}
@@ -334,7 +352,8 @@ class kyUserOrganization extends kyObjectBase {
 	 * @returns string
 	 * @filterBy
 	 */
-	public function getPhone() {
+	public function getPhone()
+	{
 		return $this->phone;
 	}
 
@@ -344,7 +363,8 @@ class kyUserOrganization extends kyObjectBase {
 	 * @param string $phone User organization phone number.
 	 * @return kyUserOrganization
 	 */
-	public function setPhone($phone) {
+	public function setPhone($phone)
+	{
 		$this->phone = ky_assure_string($phone);
 		return $this;
 	}
@@ -355,7 +375,8 @@ class kyUserOrganization extends kyObjectBase {
 	 * @returns string
 	 * @filterBy
 	 */
-	public function getFAX() {
+	public function getFAX()
+	{
 		return $this->fax;
 	}
 
@@ -365,7 +386,8 @@ class kyUserOrganization extends kyObjectBase {
 	 * @param string $fax User organization FAX number.
 	 * @return kyUserOrganization
 	 */
-	public function setFAX($fax) {
+	public function setFAX($fax)
+	{
 		$this->fax = ky_assure_string($fax);
 		return $this;
 	}
@@ -376,7 +398,8 @@ class kyUserOrganization extends kyObjectBase {
 	 * @returns string
 	 * @filterBy
 	 */
-	public function getWebsite() {
+	public function getWebsite()
+	{
 		return $this->website;
 	}
 
@@ -386,7 +409,8 @@ class kyUserOrganization extends kyObjectBase {
 	 * @param string $website User organization website URL.
 	 * @return kyUserOrganization
 	 */
-	public function setWebsite($website) {
+	public function setWebsite($website)
+	{
 		$this->website = ky_assure_string($website);
 		return $this;
 	}
@@ -401,9 +425,11 @@ class kyUserOrganization extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getDateline($format = null) {
-		if ($this->dateline == null)
+	public function getDateline($format = null)
+	{
+		if ($this->dateline == null) {
 			return null;
+		}
 
 		if ($format === null) {
 			$format = kyConfig::get()->getDatetimeFormat();
@@ -422,9 +448,11 @@ class kyUserOrganization extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getLastUpdate($format = null) {
-		if ($this->last_update == null)
+	public function getLastUpdate($format = null)
+	{
+		if ($this->last_update == null) {
 			return null;
+		}
 
 		if ($format === null) {
 			$format = kyConfig::get()->getDatetimeFormat();
@@ -439,7 +467,8 @@ class kyUserOrganization extends kyObjectBase {
 	 * @return int
 	 * @filterBy
 	 */
-	public function getSLAPlanId() {
+	public function getSLAPlanId()
+	{
 		return $this->sla_plan_id;
 	}
 
@@ -449,7 +478,8 @@ class kyUserOrganization extends kyObjectBase {
 	 * @param int $sla_plan_id Service Level Agreement plan identifier.
 	 * @return kyUserOrganization
 	 */
-	public function setSLAPlanId($sla_plan_id) {
+	public function setSLAPlanId($sla_plan_id)
+	{
 		$this->sla_plan_id = ky_assure_positive_int($sla_plan_id);
 		return $this;
 	}
@@ -464,9 +494,11 @@ class kyUserOrganization extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getSLAPlanExpiry($format = null) {
-		if ($this->sla_plan_expiry == null)
+	public function getSLAPlanExpiry($format = null)
+	{
+		if ($this->sla_plan_expiry == null) {
 			return null;
+		}
 
 		if ($format === null) {
 			$format = kyConfig::get()->getDatetimeFormat();
@@ -483,7 +515,8 @@ class kyUserOrganization extends kyObjectBase {
 	 * @param string|int|null $sla_plan_expiry Date and time when Service Level Agreement plan for this user organization will expire (timestamp or string format understood by PHP strtotime). Null to disable expiration.
 	 * @return kyUserOrganization
 	 */
-	public function setSLAPlanExpiry($sla_plan_expiry) {
+	public function setSLAPlanExpiry($sla_plan_expiry)
+	{
 		$this->sla_plan_expiry = is_numeric($sla_plan_expiry) || $sla_plan_expiry === null ? ky_assure_positive_int($sla_plan_expiry) : strtotime($sla_plan_expiry);
 		return $this;
 	}

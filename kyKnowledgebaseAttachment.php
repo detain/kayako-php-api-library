@@ -9,7 +9,8 @@
  * @package Object\Knowledgebase
  *
  */
-class kyKnowledgebaseAttachment extends kyObjectBase {
+class kyKnowledgebaseAttachment extends kyObjectBase
+{
 
 	/**
 	 * kbarticle attachment identifier.
@@ -66,21 +67,24 @@ class kyKnowledgebaseAttachment extends kyObjectBase {
 	 */
 	protected $dateline;
 
-	static protected $controller = '/Knowledgebase/Attachment';
-	static protected $object_xml_name = 'kbattachment';
+	protected static $controller = '/Knowledgebase/Attachment';
+	protected static $object_xml_name = 'kbattachment';
 
-	protected function parseData($data) {
+	protected function parseData($data)
+	{
 		$this->id = intval($data['id']);
 		$this->kbarticle_id = ky_assure_positive_int($data['kbarticleid']);
 		$this->file_name = $data['filename'];
 		$this->file_size = intval($data['filesize']);
 		$this->file_type = $data['filetype'];
 		$this->dateline = ky_assure_positive_int($data['dateline']);
-		if (array_key_exists('contents', $data) && strlen($data['contents']) > 0)
+		if (array_key_exists('contents', $data) && strlen($data['contents']) > 0) {
 			$this->contents = base64_decode($data['contents']);
+		}
 	}
 
-	public function buildData($create) {
+	public function buildData($create)
+	{
 		$this->checkRequiredAPIFields($create);
 
 		$data = array();
@@ -98,8 +102,9 @@ class kyKnowledgebaseAttachment extends kyObjectBase {
 	 * @param int $kbarticle_id kbarticle identifier.
 	 * @return kyResultSet
 	 */
-	static public function getAll() {
-        list($kbarticle_id) = func_get_args();
+	public static function getAll()
+	{
+		list($kbarticle_id) = func_get_args();
 		$search_parameters = array('ListAll');
 
 		$search_parameters[] = $kbarticle_id;
@@ -114,24 +119,29 @@ class kyKnowledgebaseAttachment extends kyObjectBase {
 	 * @param int $id kbarticle attachment id identifier.
 	 * @return kyKnowledgebaseAttachment
 	 */
-    static public function get() {
-        list($kbarticle_id , $id) = func_get_args();
+	public static function get()
+	{
+		list($kbarticle_id, $id) = func_get_args();
 		return parent::get(array($kbarticle_id, $id));
 	}
 
-	public function update() {
+	public function update()
+	{
 		throw new BadMethodCallException("You can't update objects of type kyKnowledgebaseAttachment.");
 	}
 
-	public function delete() {
+	public function delete()
+	{
 		self::getRESTClient()->delete(static::$controller, array($this->kbarticle_id, $this->id));
 	}
 
-	public function toString() {
+	public function toString()
+	{
 		return sprintf("%s (filetype: %s, filesize: %s)", $this->getFileName(), $this->getFileType(), $this->getFileSize(true));
 	}
 
-	public function getId($complete = false) {
+	public function getId($complete = false)
+	{
 		return $complete ? array($this->kbarticle_id, $this->id) : $this->id;
 	}
 
@@ -140,7 +150,8 @@ class kyKnowledgebaseAttachment extends kyObjectBase {
 	 *
 	 * @return int
 	 */
-	public function getKbarticleId() {
+	public function getKbarticleId()
+	{
 		return $this->kbarticle_id;
 	}
 
@@ -150,7 +161,8 @@ class kyKnowledgebaseAttachment extends kyObjectBase {
 	 * @param int $kbarticle_id kbarticle identifier.
 	 * @return kyKnowledgebaseAttachment
 	 */
-	public function setKbarticleId($kbarticle_id) {
+	public function setKbarticleId($kbarticle_id)
+	{
 		$this->kbarticle_id = ky_assure_positive_int($kbarticle_id);
 		$this->kbarticle = null;
 		return $this;
@@ -164,12 +176,15 @@ class kyKnowledgebaseAttachment extends kyObjectBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyKnowledgebaseArticle
 	 */
-	public function getKbarticle($reload = false) {
-		if ($this->kbarticle !== null && !$reload)
+	public function getKbarticle($reload = false)
+	{
+		if ($this->kbarticle !== null && !$reload) {
 			return $this->kbarticle;
+		}
 
-		if ($this->kbarticle_id === null)
+		if ($this->kbarticle_id === null) {
 			return null;
+		}
 
 		$this->kbarticle = kyKnowledgebaseArticle::get($this->kbarticle_id);
 		return $this->kbarticle;
@@ -182,7 +197,8 @@ class kyKnowledgebaseAttachment extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getFileName() {
+	public function getFileName()
+	{
 		return $this->file_name;
 	}
 
@@ -192,7 +208,8 @@ class kyKnowledgebaseAttachment extends kyObjectBase {
 	 * @param string $file_name File name.
 	 * @return kyKnowledgebaseAttachment
 	 */
-	public function setFileName($file_name) {
+	public function setFileName($file_name)
+	{
 		$this->file_name = ky_assure_string($file_name);
 		return $this;
 	}
@@ -205,7 +222,8 @@ class kyKnowledgebaseAttachment extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getFileSize($formatted = false) {
+	public function getFileSize($formatted = false)
+	{
 		if ($formatted) {
 			return ky_bytes_format($this->file_size);
 		}
@@ -220,7 +238,8 @@ class kyKnowledgebaseAttachment extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getFileType() {
+	public function getFileType()
+	{
 		return $this->file_type;
 	}
 
@@ -234,9 +253,11 @@ class kyKnowledgebaseAttachment extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getDateline($format = null) {
-		if ($this->dateline == null)
+	public function getDateline($format = null)
+	{
+		if ($this->dateline == null) {
 			return null;
+		}
 
 		if ($format === null) {
 			$format = kyConfig::get()->getDatetimeFormat();
@@ -251,7 +272,8 @@ class kyKnowledgebaseAttachment extends kyObjectBase {
 	 * @param bool $auto_fetch True to automatically fetch the contents of the attachment if not present.
 	 * @return string
 	 */
-	public function &getContents($auto_fetch = true) {
+	public function &getContents($auto_fetch = true)
+	{
 		if ($this->contents === null && is_numeric($this->id) && is_numeric($this->kbarticle_id) && $auto_fetch) {
 			$attachment = $this->getId($this->kbarticle_id);
 			$this->contents = $attachment->getContents(false);
@@ -265,7 +287,8 @@ class kyKnowledgebaseAttachment extends kyObjectBase {
 	 * @param string $contents Raw contents of the attachment (NOT base64 encoded).
 	 * @return kyKnowledgebaseAttachment
 	 */
-	public function setContents(&$contents) {
+	public function setContents(&$contents)
+	{
 		$this->contents =& $contents;
 		return $this;
 	}
@@ -278,14 +301,17 @@ class kyKnowledgebaseAttachment extends kyObjectBase {
 	 * @throws kyException
 	 * @return kyKnowledgebaseAttachment
 	 */
-	public function setContentsFromFile($file_path, $file_name = null) {
+	public function setContentsFromFile($file_path, $file_name = null)
+	{
 		$contents = base64_encode(file_get_contents($file_path));
-		if ($contents === false)
+		if ($contents === false) {
 			throw new kyException(sprintf("Error reading contents of %s.", $file_path));
+		}
 
 		$this->contents = & $contents;
-		if ($file_name === null)
+		if ($file_name === null) {
 			$file_name = basename($file_path);
+		}
 		$this->file_name = $file_name;
 		return $this;
 	}
@@ -299,8 +325,9 @@ class kyKnowledgebaseAttachment extends kyObjectBase {
 	 * @param string $file_name Filename.
 	 * @return kyKnowledgebaseAttachment
 	 */
-	static public function createNew() {
-        list($kbarticle, $contents, $file_name) = func_get_args();
+	public static function createNew()
+	{
+		list($kbarticle, $contents, $file_name) = func_get_args();
 		$new_kbarticle_attachment = new kyKnowledgebaseAttachment();
 
 		$new_kbarticle_attachment->setKbarticleId($kbarticle->getId());
@@ -319,7 +346,8 @@ class kyKnowledgebaseAttachment extends kyObjectBase {
 	 * @param string $file_name Optional. Use to set filename other than physical file.
 	 * @return kyKnowledgebaseAttachment
 	 */
-	static public function createNewFromFile($kbarticle, $file_path, $file_name = null) {
+	public static function createNewFromFile($kbarticle, $file_path, $file_name = null)
+	{
 		$new_kbarticle_attachment = new kyKnowledgebaseAttachment();
 
 		$new_kbarticle_attachment->setKbarticleId($kbarticle->getId());

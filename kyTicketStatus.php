@@ -7,13 +7,13 @@
  * @since Kayako version 4.01.240
  * @package Object\Ticket
  */
-class kyTicketStatus extends kyObjectBase {
-
+class kyTicketStatus extends kyObjectBase
+{
 	const TYPE_PUBLIC = 'public';
 	const TYPE_PRIVATE = 'private';
 
-	static protected $controller = '/Tickets/TicketStatus';
-	static protected $object_xml_name = 'ticketstatus';
+	protected static $controller = '/Tickets/TicketStatus';
+	protected static $object_xml_name = 'ticketstatus';
 	protected $read_only = true;
 
 	/**
@@ -138,7 +138,8 @@ class kyTicketStatus extends kyObjectBase {
 	 */
 	private $staff_groups = null;
 
-	protected function parseData($data) {
+	protected function parseData($data)
+	{
 		$this->id = intval($data['id']);
 		$this->title = $data['title'];
 		$this->display_order = intval($data['displayorder']);
@@ -160,11 +161,13 @@ class kyTicketStatus extends kyObjectBase {
 		}
 	}
 
-	public function toString() {
+	public function toString()
+	{
 		return sprintf("%s (type: %s)", $this->getTitle(), $this->getType());
 	}
 
-	public function getId($complete = false) {
+	public function getId($complete = false)
+	{
 		return $complete ? array($this->id) : $this->id;
 	}
 
@@ -175,7 +178,8 @@ class kyTicketStatus extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getTitle() {
+	public function getTitle()
+	{
 		return $this->title;
 	}
 
@@ -186,7 +190,8 @@ class kyTicketStatus extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getDisplayOrder() {
+	public function getDisplayOrder()
+	{
 		return $this->display_order;
 	}
 
@@ -198,7 +203,8 @@ class kyTicketStatus extends kyObjectBase {
 	 * @return int
 	 * @filterBy
 	 */
-	public function getDepartmentId() {
+	public function getDepartmentId()
+	{
 		return $this->department_id;
 	}
 
@@ -211,12 +217,15 @@ class kyTicketStatus extends kyObjectBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyDepartment
 	 */
-	public function getDepartment($reload = false) {
-		if ($this->department !== null && !$reload)
+	public function getDepartment($reload = false)
+	{
+		if ($this->department !== null && !$reload) {
 			return $this->department;
+		}
 
-		if ($this->department_id === null || $this->department_id <= 0)
+		if ($this->department_id === null || $this->department_id <= 0) {
 			return null;
+		}
 
 		$this->department = kyDepartment::get($this->department_id);
 		return $this->department;
@@ -226,7 +235,8 @@ class kyTicketStatus extends kyObjectBase {
 	 * Returns path to icon displayed in GUI for this ticket status.
 	 * @return string
 	 */
-	public function getDisplayIcon() {
+	public function getDisplayIcon()
+	{
 		return $this->display_icon;
 	}
 
@@ -239,7 +249,8 @@ class kyTicketStatus extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getType() {
+	public function getType()
+	{
 		return $this->type;
 	}
 
@@ -250,7 +261,8 @@ class kyTicketStatus extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getMarkAsResolved() {
+	public function getMarkAsResolved()
+	{
 		return $this->mark_as_resolved;
 	}
 
@@ -261,7 +273,8 @@ class kyTicketStatus extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getDisplayCount() {
+	public function getDisplayCount()
+	{
 		return $this->display_count;
 	}
 
@@ -271,7 +284,8 @@ class kyTicketStatus extends kyObjectBase {
 	 * @return string
 	 * @filterBy
 	 */
-	public function getStatusColor() {
+	public function getStatusColor()
+	{
 		return $this->status_color;
 	}
 
@@ -283,7 +297,8 @@ class kyTicketStatus extends kyObjectBase {
 	 * @return string
 	 * @filterBy
 	 */
-	public function getStatusBackgroundColor() {
+	public function getStatusBackgroundColor()
+	{
 		return $this->status_bg_color;
 	}
 
@@ -293,7 +308,8 @@ class kyTicketStatus extends kyObjectBase {
 	 * @return bool
 	 * @filterBy
 	 */
-	public function getResetDueTime() {
+	public function getResetDueTime()
+	{
 		return $this->reset_due_time;
 	}
 
@@ -303,7 +319,8 @@ class kyTicketStatus extends kyObjectBase {
 	 * @return bool
 	 * @filterBy
 	 */
-	public function getTriggerSurvey() {
+	public function getTriggerSurvey()
+	{
 		return $this->trigger_survey;
 	}
 
@@ -312,7 +329,8 @@ class kyTicketStatus extends kyObjectBase {
 	 * @return bool
 	 * @filterBy
 	 */
-	public function getStaffVisibilityCustom() {
+	public function getStaffVisibilityCustom()
+	{
 		return $this->staff_visibility_custom;
 	}
 
@@ -323,7 +341,8 @@ class kyTicketStatus extends kyObjectBase {
 	 * @filterBy name=StaffGroupId
 	 * @orderBy name=StaffGroupId
 	 */
-	public function getStaffGroupIds() {
+	public function getStaffGroupIds()
+	{
 		return $this->staff_group_ids;
 	}
 
@@ -335,7 +354,8 @@ class kyTicketStatus extends kyObjectBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyResultSet
 	 */
-	public function getStaffGroups($reload = false) {
+	public function getStaffGroups($reload = false)
+	{
 		foreach ($this->staff_group_ids as $staff_group_id) {
 			if (!is_array($this->staff_groups) || !array_key_exists($staff_group_id, $this->staff_groups) || $reload) {
 				$this->staff_groups[$staff_group_id] = kyStaffGroup::get($staff_group_id);
@@ -351,9 +371,11 @@ class kyTicketStatus extends kyObjectBase {
 	 * @return bool
 	 * @filterBy
 	 */
-	public function isVisibleToStaffGroup($staff_group) {
-		if ($this->staff_visibility_custom === false)
+	public function isVisibleToStaffGroup($staff_group)
+	{
+		if ($this->staff_visibility_custom === false) {
 			return true;
+		}
 
 		if ($staff_group instanceof kyStaffGroup) {
 			$staff_group_id = $staff_group->getId();
@@ -371,9 +393,11 @@ class kyTicketStatus extends kyObjectBase {
 	 * @return bool
 	 * @filterBy
 	 */
-	public function isAvailableInDepartment($department) {
-		if ($this->department_id == null)
+	public function isAvailableInDepartment($department)
+	{
+		if ($this->department_id == null) {
 			return true;
+		}
 
 		if ($department instanceof kyDepartment) {
 			$department_id = $department->getId();

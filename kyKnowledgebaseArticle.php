@@ -9,7 +9,8 @@
  * @package Object\Knowledgebase
  *
  */
-class kyKnowledgebaseArticle extends kyObjectBase {
+class kyKnowledgebaseArticle extends kyObjectBase
+{
 
 	/**
 	 * Article Status - Published.
@@ -27,8 +28,8 @@ class kyKnowledgebaseArticle extends kyObjectBase {
 	 */
 	const STATUS_DRAFT = 2;
 
-	static protected $controller = '/Knowledgebase/Article';
-	static protected $object_xml_name = 'kbarticle';
+	protected static $controller = '/Knowledgebase/Article';
+	protected static $object_xml_name = 'kbarticle';
 
 	/**
 	 * Knowledgebase article identifier.
@@ -125,7 +126,8 @@ class kyKnowledgebaseArticle extends kyObjectBase {
 	 */
 	private $categories = array();
 
-	protected function parseData($data) {
+	protected function parseData($data)
+	{
 		$this->id = ky_assure_positive_int($data['kbarticleid']);
 		$this->subject = ky_assure_string($data['subject']);
 		$this->contents = ky_assure_string($data['contents']);
@@ -146,10 +148,10 @@ class kyKnowledgebaseArticle extends kyObjectBase {
 				}
 			}
 		}
-
 	}
 
-	public function buildData($create) {
+	public function buildData($create)
+	{
 		$this->checkRequiredAPIFields($create);
 
 		$data = array();
@@ -170,22 +172,24 @@ class kyKnowledgebaseArticle extends kyObjectBase {
 		return $data;
 	}
 
-	static public function getAll() {
-        if (func_num_args() == 0) {
-            $category = null;
-            $max_items = null;
-            $starting_kbarticle_id = null;
-        } elseif (func_num_args() == 1) {
-            $max_items = null;
-            $starting_kbarticle_id = null;
-            list($category) = func_get_args();
-        } elseif (func_num_args() == 2) {
-            $starting_kbcategory_id = null;;
-            list($category, $max_items) = func_get_args();
-        } else {
-            list($category, $max_items, $starting_kbcategory_id) = func_get_args();
-        }
-        
+	public static function getAll()
+	{
+		if (func_num_args() == 0) {
+			$category = null;
+			$max_items = null;
+			$starting_kbarticle_id = null;
+		} elseif (func_num_args() == 1) {
+			$max_items = null;
+			$starting_kbarticle_id = null;
+			list($category) = func_get_args();
+		} elseif (func_num_args() == 2) {
+			$starting_kbcategory_id = null;
+			;
+			list($category, $max_items) = func_get_args();
+		} else {
+			list($category, $max_items, $starting_kbcategory_id) = func_get_args();
+		}
+		
 		if ($category instanceof kyKnowledgebaseCategory) {
 			$category_id = $category->getId();
 		} else {
@@ -208,11 +212,13 @@ class kyKnowledgebaseArticle extends kyObjectBase {
 		}
 	}
 
-	public function toString() {
+	public function toString()
+	{
 		return sprintf("(title: %s, contents: %s)", $this->getSubject(), substr($this->getContents(), 0, 50) . (strlen($this->getContents()) > 50 ? '...' : ''));
 	}
 
-	public function getId($complete = false) {
+	public function getId($complete = false)
+	{
 		return $complete ? array($this->id) : $this->id;
 	}
 
@@ -223,7 +229,8 @@ class kyKnowledgebaseArticle extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getStaffId() {
+	public function getStaffId()
+	{
 		return $this->creator_id;
 	}
 
@@ -233,7 +240,8 @@ class kyKnowledgebaseArticle extends kyObjectBase {
 	 * @param int $creator_id Staff user identifier.
 	 * @return kyKnowledgebaseArticle
 	 */
-	public function setStaffId($creator_id) {
+	public function setStaffId($creator_id)
+	{
 		$this->creator_id = ky_assure_positive_int($creator_id);
 		$this->creator = null;
 		return $this;
@@ -245,12 +253,15 @@ class kyKnowledgebaseArticle extends kyObjectBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyStaff
 	 */
-	public function getStaff($reload = false) {
-		if ($this->creator !== null && !$reload)
+	public function getStaff($reload = false)
+	{
+		if ($this->creator !== null && !$reload) {
 			return $this->creator;
+		}
 
-		if ($this->creator_id === null)
+		if ($this->creator_id === null) {
 			return null;
+		}
 
 		$this->creator = kyStaff::get($this->creator_id);
 		return $this->creator;
@@ -262,7 +273,8 @@ class kyKnowledgebaseArticle extends kyObjectBase {
 	 * @param kyStaff $staff Staff user.
 	 * @return kyKnowledgebaseArticle
 	 */
-	public function setStaff($creator) {
+	public function setStaff($creator)
+	{
 		$this->creator = ky_assure_object($creator, 'kyStaff');
 		$this->creator_id = $this->creator !== null ? $this->creator->getId() : null;
 		return $this;
@@ -275,7 +287,8 @@ class kyKnowledgebaseArticle extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getSubject() {
+	public function getSubject()
+	{
 		return $this->subject;
 	}
 
@@ -285,7 +298,8 @@ class kyKnowledgebaseArticle extends kyObjectBase {
 	 * @param string $subject Subject of the knowledgebase article.
 	 * @return kyKnowledgebaseArticle
 	 */
-	public function setSubject($subject) {
+	public function setSubject($subject)
+	{
 		$this->subject = ky_assure_string($subject);
 		return $this;
 	}
@@ -296,7 +310,8 @@ class kyKnowledgebaseArticle extends kyObjectBase {
 	 * @return string
 	 * @filterBy
 	 */
-	public function getContents() {
+	public function getContents()
+	{
 		return $this->contents;
 	}
 
@@ -306,7 +321,8 @@ class kyKnowledgebaseArticle extends kyObjectBase {
 	 * @param string $contents Contents of the knowledgebase article.
 	 * @return kyKnowledgebaseArticle
 	 */
-	public function setContents($contents) {
+	public function setContents($contents)
+	{
 		$this->contents = ky_assure_string($contents);
 		return $this;
 	}
@@ -320,7 +336,8 @@ class kyKnowledgebaseArticle extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getStatus() {
+	public function getStatus()
+	{
 		return $this->article_status;
 	}
 
@@ -332,7 +349,8 @@ class kyKnowledgebaseArticle extends kyObjectBase {
 	 * @param int $status Status of the knowledgebase article.
 	 * @return kyKnowledgebaseArticle
 	 */
-	public function setStatus($status) {
+	public function setStatus($status)
+	{
 		$this->article_status = ky_assure_constant($status, $this, 'STATUS');
 		return $this;
 	}
@@ -345,7 +363,8 @@ class kyKnowledgebaseArticle extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getCreatorId() {
+	public function getCreatorId()
+	{
 		return $this->creator_id;
 	}
 
@@ -356,7 +375,8 @@ class kyKnowledgebaseArticle extends kyObjectBase {
 	 * @param int $creator_id creator of the knowledgebase article.
 	 * @return kyKnowledgebaseArticle
 	 */
-	public function setCreatorId($creator_id) {
+	public function setCreatorId($creator_id)
+	{
 		$this->creator_id = ky_assure_int($creator_id);
 		return $this;
 	}
@@ -367,7 +387,8 @@ class kyKnowledgebaseArticle extends kyObjectBase {
 	 * @param int $staff_id Staff user identifier.
 	 * @return kyKnowledgebaseArticle
 	 */
-	public function setEditedStaffId($staff_id) {
+	public function setEditedStaffId($staff_id)
+	{
 		$this->edited_staff_id = ky_assure_positive_int($staff_id);
 		$this->edited_staff = null;
 		return $this;
@@ -380,7 +401,8 @@ class kyKnowledgebaseArticle extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getIsFeatured() {
+	public function getIsFeatured()
+	{
 		return $this->is_featured;
 	}
 
@@ -390,7 +412,8 @@ class kyKnowledgebaseArticle extends kyObjectBase {
 	 * @param bool $is_featured knowledgebase article.
 	 * @return kyKnowledgebaseCategory
 	 */
-	public function setIsFeatured($is_featured) {
+	public function setIsFeatured($is_featured)
+	{
 		$this->is_featured = ky_assure_bool($is_featured);
 		return $this;
 	}
@@ -402,7 +425,8 @@ class kyKnowledgebaseArticle extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getTotalComments() {
+	public function getTotalComments()
+	{
 		return $this->total_comments;
 	}
 
@@ -413,7 +437,8 @@ class kyKnowledgebaseArticle extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getAllowComments() {
+	public function getAllowComments()
+	{
 		return $this->allow_comments;
 	}
 
@@ -423,7 +448,8 @@ class kyKnowledgebaseArticle extends kyObjectBase {
 	 * @param bool $allow_comments True to allow clients to comment on this knowledgebase article item.
 	 * @return kyKnowledgebaseCategory
 	 */
-	public function setAllowComments($allow_comments) {
+	public function setAllowComments($allow_comments)
+	{
 		$this->allow_comments = ky_assure_bool($allow_comments);
 		return $this;
 	}
@@ -435,7 +461,8 @@ class kyKnowledgebaseArticle extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getHasAttachments() {
+	public function getHasAttachments()
+	{
 		return $this->has_attachments;
 	}
 
@@ -445,7 +472,8 @@ class kyKnowledgebaseArticle extends kyObjectBase {
 	 * @return array
 	 * @filterBy name=CategoryId
 	 */
-	public function getCategoryIds() {
+	public function getCategoryIds()
+	{
 		return $this->category_ids;
 	}
 
@@ -455,7 +483,8 @@ class kyKnowledgebaseArticle extends kyObjectBase {
 	 * @param int[] $category_ids Identifiers of categories for this knowledgebase article item.
 	 * @return kyKnowledgebaseCategory
 	 */
-	public function setCategoryIds($category_ids) {
+	public function setCategoryIds($category_ids)
+	{
 		//normalization to array
 		if (!is_array($category_ids)) {
 			if (is_numeric($category_ids)) {
@@ -469,8 +498,9 @@ class kyKnowledgebaseArticle extends kyObjectBase {
 		$this->category_ids = array();
 		foreach ($category_ids as $category_id) {
 			$category_id = ky_assure_positive_int($category_id);
-			if ($category_id === null)
+			if ($category_id === null) {
 				continue;
+			}
 
 			$this->category_ids[] = $category_id;
 		}
@@ -485,7 +515,8 @@ class kyKnowledgebaseArticle extends kyObjectBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyResultSet
 	 */
-	public function getCategories($reload = false) {
+	public function getCategories($reload = false)
+	{
 		foreach ($this->category_ids as $category_id) {
 			if (!is_array($this->categories) || !array_key_exists($category_id, $this->categories) || $reload) {
 				$this->categories[$category_id] = kyKnowledgebaseCategory::get($category_id);
@@ -503,13 +534,13 @@ class kyKnowledgebaseArticle extends kyObjectBase {
 	 * @param kyStaff $staff Author (staff) of knowledgebase article.
 	 * @return kyKnowledgebaseCategory
 	 */
-	static public function createNew() {
-        list($subject, $contents, $creator_id) = func_get_args();
+	public static function createNew()
+	{
+		list($subject, $contents, $creator_id) = func_get_args();
 		$new_kbarticle_item = new kyKnowledgebaseArticle();
 		$new_kbarticle_item->setSubject($subject);
 		$new_kbarticle_item->setContents($contents);
 		$new_kbarticle_item->setStaff($creator_id);
 		return $new_kbarticle_item;
 	}
-
 }

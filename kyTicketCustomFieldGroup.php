@@ -7,9 +7,9 @@
  * @since Kayako version 4.01.220
  * @package Object\Ticket
  */
-class kyTicketCustomFieldGroup extends kyCustomFieldGroupBase {
-
-	static protected $controller = '/Tickets/TicketCustomField';
+class kyTicketCustomFieldGroup extends kyCustomFieldGroupBase
+{
+	protected static $controller = '/Tickets/TicketCustomField';
 
 	/**
 	 * Ticket identifier.
@@ -23,7 +23,8 @@ class kyTicketCustomFieldGroup extends kyCustomFieldGroupBase {
 	 * @param int $ticket_id Ticket identifier.
 	 * @param array|null $data Object data from XML response converted into array.
 	 */
-	function __construct($ticket_id, $data = null) {
+	public function __construct($ticket_id, $data = null)
+	{
 		parent::__construct($data);
 		$this->type = kyCustomFieldGroupBase::TYPE_TICKET;
 		$this->ticket_id = $ticket_id;
@@ -35,8 +36,9 @@ class kyTicketCustomFieldGroup extends kyCustomFieldGroupBase {
 	 * @param int $ticket_id Ticket identifier.
 	 * @return kyResultSet
 	 */
-    static public function getAll() {
-        list($ticket_id) = func_get_args();
+	public static function getAll()
+	{
+		list($ticket_id) = func_get_args();
 
 		$result = self::getRESTClient()->get(static::$controller, array($ticket_id));
 		$objects = array();
@@ -53,7 +55,8 @@ class kyTicketCustomFieldGroup extends kyCustomFieldGroupBase {
 	 *
 	 * @return int
 	 */
-	public function getTicketId() {
+	public function getTicketId()
+	{
 		return $this->ticket_id;
 	}
 }

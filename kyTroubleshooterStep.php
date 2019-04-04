@@ -9,10 +9,10 @@
  * @package Object\TroubleshooterStep
  *
  */
-class kyTroubleshooterStep extends kyObjectBase {
-
-	static protected $controller = '/Troubleshooter/Step';
-	static protected $object_xml_name = 'troubleshooterstep';
+class kyTroubleshooterStep extends kyObjectBase
+{
+	protected static $controller = '/Troubleshooter/Step';
+	protected static $object_xml_name = 'troubleshooterstep';
 
 	/**
 	 * Troubleshooterstep status - Draft.
@@ -166,7 +166,8 @@ class kyTroubleshooterStep extends kyObjectBase {
 	 */
 	protected $child_stepids_list = array();
 
-	protected function parseData($data) {
+	protected function parseData($data)
+	{
 		$this->id = ky_assure_positive_int($data['id']);
 		$this->category_id = ky_assure_positive_int($data['categoryid']);
 		$this->staff_id = ky_assure_positive_int($data['staffid']);
@@ -201,10 +202,10 @@ class kyTroubleshooterStep extends kyObjectBase {
 				}
 			}
 		}
-
 	}
 
-	public function buildData($create) {
+	public function buildData($create)
+	{
 		$this->checkRequiredAPIFields($create);
 
 		$data = array();
@@ -236,11 +237,13 @@ class kyTroubleshooterStep extends kyObjectBase {
 		return $data;
 	}
 
-	public function toString() {
+	public function toString()
+	{
 		return sprintf("%s (Contents : %s)", $this->getSubject(), substr($this->getContents(), 0, 50) . (strlen($this->getContents()) > 50 ? '...' : ''));
 	}
 
-	public function getId($complete = false) {
+	public function getId($complete = false)
+	{
 		return $complete ? array($this->id) : $this->id;
 	}
 
@@ -251,7 +254,8 @@ class kyTroubleshooterStep extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getSubject() {
+	public function getSubject()
+	{
 		return $this->subject;
 	}
 
@@ -261,7 +265,8 @@ class kyTroubleshooterStep extends kyObjectBase {
 	 * @param string $subject Subject of the Troubleshooterstep item.
 	 * @return kyTroubleshooterStep
 	 */
-	public function setSubject($subject) {
+	public function setSubject($subject)
+	{
 		$this->subject = ky_assure_string($subject);
 		return $this;
 	}
@@ -275,7 +280,8 @@ class kyTroubleshooterStep extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getStatus() {
+	public function getStatus()
+	{
 		return $this->status;
 	}
 
@@ -286,7 +292,8 @@ class kyTroubleshooterStep extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getHasAttachments() {
+	public function getHasAttachments()
+	{
 		return $this->has_attachments;
 	}
 
@@ -298,7 +305,8 @@ class kyTroubleshooterStep extends kyObjectBase {
 	 * @param int $status Status of the Troubleshooterstep item.
 	 * @return kyTroubleshooterStep
 	 */
-	public function setStatus($status) {
+	public function setStatus($status)
+	{
 		$this->status = ky_assure_constant($status, $this, 'STATUS');
 		return $this;
 	}
@@ -309,7 +317,8 @@ class kyTroubleshooterStep extends kyObjectBase {
 	 * @return string
 	 * @filterBy
 	 */
-	public function getContents() {
+	public function getContents()
+	{
 		return $this->contents;
 	}
 
@@ -319,7 +328,8 @@ class kyTroubleshooterStep extends kyObjectBase {
 	 * @param string $contents Contents of the Troubleshooterstep item.
 	 * @return kyTroubleshooterStep
 	 */
-	public function setContents($contents) {
+	public function setContents($contents)
+	{
 		$this->contents = ky_assure_string($contents);
 		return $this;
 	}
@@ -331,7 +341,8 @@ class kyTroubleshooterStep extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getDisplayOrder() {
+	public function getDisplayOrder()
+	{
 		return $this->display_order;
 	}
 
@@ -341,7 +352,8 @@ class kyTroubleshooterStep extends kyObjectBase {
 	 *
 	 * @return $this
 	 */
-	public function setDisplayOrder($displayorder) {
+	public function setDisplayOrder($displayorder)
+	{
 		$this->display_order = ky_assure_int($displayorder);
 		return $this;
 	}
@@ -353,7 +365,8 @@ class kyTroubleshooterStep extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getAllowComments() {
+	public function getAllowComments()
+	{
 		return $this->allow_comments;
 	}
 
@@ -363,7 +376,8 @@ class kyTroubleshooterStep extends kyObjectBase {
 	 * @param bool $allow_comments True to allow clients to comment on this Troubleshooterstep item.
 	 * @return kyTroubleshooterStep
 	 */
-	public function setAllowComments($allow_comments) {
+	public function setAllowComments($allow_comments)
+	{
 		$this->allow_comments = ky_assure_bool($allow_comments);
 		return $this;
 	}
@@ -377,7 +391,8 @@ class kyTroubleshooterStep extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getType() {
+	public function getType()
+	{
 		return $this->ticket_typeid;
 	}
 
@@ -387,7 +402,8 @@ class kyTroubleshooterStep extends kyObjectBase {
 	 *
 	 * @return $this
 	 */
-	public function setType($type) {
+	public function setType($type)
+	{
 		$this->ticket_typeid = ky_assure_int($type);
 		return $this;
 	}
@@ -400,7 +416,8 @@ class kyTroubleshooterStep extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getPriority() {
+	public function getPriority()
+	{
 		return $this->ticket_priorityid;
 	}
 
@@ -410,7 +427,8 @@ class kyTroubleshooterStep extends kyObjectBase {
 	 *
 	 * @return $this
 	 */
-	public function setPriority($priority) {
+	public function setPriority($priority)
+	{
 		$this->ticket_priorityid = ky_assure_int($priority);
 		return $this;
 	}
@@ -423,7 +441,8 @@ class kyTroubleshooterStep extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getTicketSubject() {
+	public function getTicketSubject()
+	{
 		return $this->ticket_subject;
 	}
 
@@ -433,7 +452,8 @@ class kyTroubleshooterStep extends kyObjectBase {
 	 * @param string $ticketsubject subject of the ticket.
 	 * @return kyTroubleshooterStep
 	 */
-	public function setTicketSubject($ticketsubject) {
+	public function setTicketSubject($ticketsubject)
+	{
 		$this->ticket_subject = ky_assure_string($ticketsubject);
 		return $this;
 	}
@@ -444,12 +464,15 @@ class kyTroubleshooterStep extends kyObjectBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyStaff
 	 */
-	public function getStaff($reload = false) {
-		if ($this->staff !== null && !$reload)
+	public function getStaff($reload = false)
+	{
+		if ($this->staff !== null && !$reload) {
 			return $this->staff;
+		}
 
-		if ($this->staff_id === null)
+		if ($this->staff_id === null) {
 			return null;
+		}
 
 		$this->staff = kyStaff::get($this->staff_id);
 		return $this->staff;
@@ -461,7 +484,8 @@ class kyTroubleshooterStep extends kyObjectBase {
 	 * @param kyStaff $staff Staff user.
 	 * @return kyTroubleshooterStep
 	 */
-	public function setStaff($staff) {
+	public function setStaff($staff)
+	{
 		$this->staff = ky_assure_object($staff, 'kyStaff');
 		$this->staff_id = $this->staff !== null ? $this->staff->getId() : null;
 		return $this;
@@ -473,7 +497,8 @@ class kyTroubleshooterStep extends kyObjectBase {
 	 * @param kyTroubleshootercategory $categoryid category.
 	 * @return kyTroubleshootercategory
 	 */
-	public function setCategory($categoryid) {
+	public function setCategory($categoryid)
+	{
 		$this->category = ky_assure_object($categoryid, 'kyTroubleshooterCategory');
 		$this->category_id = $this->category !== null ? $this->category->getId() : null;
 		return $this;
@@ -485,7 +510,8 @@ class kyTroubleshooterStep extends kyObjectBase {
 	 * @param bool $enab_ticket_redirect True to allow ticket creation.
 	 * @return kyTroubleshooterStep
 	 */
-	public function setEnableTicketRedirection($enab_ticket_redirect) {
+	public function setEnableTicketRedirection($enab_ticket_redirect)
+	{
 		$this->enable_ticket_redirection = ky_assure_bool($enab_ticket_redirect);
 		return $this;
 	}
@@ -497,7 +523,8 @@ class kyTroubleshooterStep extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getTicketRedirectDepartmentId() {
+	public function getTicketRedirectDepartmentId()
+	{
 		return $this->ticket_subject;
 	}
 
@@ -507,7 +534,8 @@ class kyTroubleshooterStep extends kyObjectBase {
 	 * @param int $ticket_redirect_deptid departmentid of this Troubleshooterstep item.
 	 * @return kyTroubleshooterStep
 	 */
-	public function setTicketRedirectDepartmentId($ticket_redirect_deptid) {
+	public function setTicketRedirectDepartmentId($ticket_redirect_deptid)
+	{
 		$this->redirect_departmentid = ky_assure_string($ticket_redirect_deptid);
 		return $this;
 	}
@@ -518,7 +546,8 @@ class kyTroubleshooterStep extends kyObjectBase {
 	 * @return array
 	 * @filterBy name=StaffGroupId
 	 */
-	public function getParentstepIds() {
+	public function getParentstepIds()
+	{
 		return $this->parent_stepids_list;
 	}
 
@@ -528,7 +557,8 @@ class kyTroubleshooterStep extends kyObjectBase {
 	 * @param int[] $parent_stepids Identifiers of parent_stepids that this troubleshooterstep item will be visible to.
 	 * @return kyTroubleshooterStep
 	 */
-	public function setParentstepIds($parent_stepids) {
+	public function setParentstepIds($parent_stepids)
+	{
 		//normalization to array
 		if (!is_array($parent_stepids)) {
 			if (is_numeric($parent_stepids)) {
@@ -542,8 +572,9 @@ class kyTroubleshooterStep extends kyObjectBase {
 		$this->parent_stepids_list = array();
 		foreach ($parent_stepids as $parent_step_id) {
 			$parent_step_id = ky_assure_positive_int($parent_step_id);
-			if ($parent_step_id === null)
+			if ($parent_step_id === null) {
 				continue;
+			}
 
 			$this->parent_stepids_list[] = $parent_step_id;
 		}
@@ -557,7 +588,8 @@ class kyTroubleshooterStep extends kyObjectBase {
 	 * @param int $staff_id Staff user identifier.
 	 * @return kyTroubleshooterStep
 	 */
-	public function setEditedStaffId($staff_id) {
+	public function setEditedStaffId($staff_id)
+	{
 		$this->edited_staff_id = ky_assure_positive_int($staff_id);
 		$this->edited_staff = null;
 		return $this;
@@ -569,7 +601,8 @@ class kyTroubleshooterStep extends kyObjectBase {
 	 * @param kyStaff $staff Staff user.
 	 * @return kyTroubleshooterStep
 	 */
-	public function setEditedStaff($staff) {
+	public function setEditedStaff($staff)
+	{
 		$this->edited_staff = ky_assure_object($staff, 'kyStaff');
 		$this->edited_staff_id = $this->edited_staff !== null ? $this->edited_staff->getId() : null;
 		return $this;
@@ -586,8 +619,9 @@ class kyTroubleshooterStep extends kyObjectBase {
 	 *
 	 *@return kyTroubleshooterStep
 	 */
-	static public function createNew() {
-        list($category, $subject, $contents, $staff) = func_get_args();
+	public static function createNew()
+	{
+		list($category, $subject, $contents, $staff) = func_get_args();
 		$new_troubleshooterstep_item = new kyTroubleshooterStep();
 		$new_troubleshooterstep_item->setCategory($category);
 		$new_troubleshooterstep_item->setSubject($subject);
@@ -595,5 +629,4 @@ class kyTroubleshooterStep extends kyObjectBase {
 		$new_troubleshooterstep_item->setStaff($staff);
 		return $new_troubleshooterstep_item;
 	}
-
 }

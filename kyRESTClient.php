@@ -5,7 +5,8 @@
  * @author Tomasz Sawicki (https://github.com/Furgas)
  * @package Common\REST
  */
-class kyRESTClient implements kyRESTClientInterface {
+class kyRESTClient implements kyRESTClientInterface
+{
 	/**
 	 * Library configuration.
 	 * @var kyConfig
@@ -17,7 +18,8 @@ class kyRESTClient implements kyRESTClientInterface {
 	 *
 	 * @see kyRESTClientInterface::setConfig()
 	 */
-	public function setConfig(kyConfig $config) {
+	public function setConfig(kyConfig $config)
+	{
 		$this->config = $config;
 	}
 
@@ -31,10 +33,11 @@ class kyRESTClient implements kyRESTClientInterface {
 	 * @param array $headers Optional. Placeholder for headers.
 	 * @return string
 	 */
-	private function buildPostBody($data, $files = array(), &$headers = array()) {
+	private function buildPostBody($data, $files = array(), &$headers = array())
+	{
 		if (is_array($files) && count($files) > 0) {
 			$post_body = array();
-			$boundary = substr(md5(rand(0,32000)), 0, 10);
+			$boundary = substr(md5(rand(0, 32000)), 0, 10);
 
 			if (is_array($data) && count($data) > 0) {
 				foreach ($data as $name => $value) {
@@ -76,7 +79,8 @@ class kyRESTClient implements kyRESTClientInterface {
 	 * @param array $data Placeholder for POST/PUT data.
 	 * @return string
 	 */
-	private function getRequestData($controller, $method, $parameters = array(), &$data = array()) {
+	private function getRequestData($controller, $method, $parameters = array(), &$data = array())
+	{
 		$salt = mt_rand();
 		$signature = base64_encode(hash_hmac('sha256', $salt, $this->config->getSecretKey(), true));
 
@@ -94,9 +98,9 @@ class kyRESTClient implements kyRESTClientInterface {
 		switch ($method) {
 			case self::METHOD_POST:
 			case self::METHOD_PUT:
- 				$data['apikey'] = $this->config->getAPIKey();
- 				$data['salt'] = $salt;
- 				$data['signature'] = $signature;
+				$data['apikey'] = $this->config->getAPIKey();
+				$data['salt'] = $salt;
+				$data['signature'] = $signature;
 				break;
 			case self::METHOD_GET:
 			case self::METHOD_DELETE:
@@ -118,7 +122,8 @@ class kyRESTClient implements kyRESTClientInterface {
 	 * @throws kyException
 	 * @return array
 	 */
-	protected function processRequest($controller, $method, $parameters = array(), $data = array(), $files = array()) {
+	protected function processRequest($controller, $method, $parameters = array(), $data = array(), $files = array())
+	{
 		$url = $this->getRequestData($controller, $method, $parameters, $data);
 
 		$headers = array();
@@ -178,24 +183,29 @@ class kyRESTClient implements kyRESTClientInterface {
 			$response = substr($response, $xml_start_pos);
 		}
 
-		if ($response === false)
+		if ($response === false) {
 			throw new kyException(sprintf('CURL error: %s (%s)', curl_error($curl_handle), curl_errno($curl_handle)));
+		}
 
 		$http_status = curl_getinfo($curl_handle, CURLINFO_HTTP_CODE);
-		if ($http_status != 200)
+		if ($http_status != 200) {
 			throw new kyException(sprintf("HTTP error: %s", $http_status));
+		}
 
 		curl_close($curl_handle);
 
-		if ($method === self::METHOD_DELETE)
+		if ($method === self::METHOD_DELETE) {
 			return null;
+		}
 
 		$result = ky_xml_to_array($response);
-		if ($result === false)
+		if ($result === false) {
 			throw new kyException("Error parsing XML response.");
+		}
 
-		if (count($result) === 1 && array_key_exists('_contents', $result) && strlen($result['_contents']) === 0)
+		if (count($result) === 1 && array_key_exists('_contents', $result) && strlen($result['_contents']) === 0) {
 			$result = array();
+		}
 
 		return $result;
 	}
@@ -206,7 +216,8 @@ class kyRESTClient implements kyRESTClientInterface {
 	 * {@inheritdoc}
 	 * @see kyRESTClientInterface::get()
 	 */
-	public function get($controller, $parameters = array()) {
+	public function get($controller, $parameters = array())
+	{
 		return $this->processRequest($controller, self::METHOD_GET, $parameters);
 	}
 
@@ -216,7 +227,8 @@ class kyRESTClient implements kyRESTClientInterface {
 	 * {@inheritdoc}
 	 * @see kyRESTClientInterface::post()
 	 */
-	public function post($controller, $parameters = array(), $data = array(), $files = array()) {
+	public function post($controller, $parameters = array(), $data = array(), $files = array())
+	{
 		return $this->processRequest($controller, self::METHOD_POST, $parameters, $data, $files);
 	}
 
@@ -226,7 +238,8 @@ class kyRESTClient implements kyRESTClientInterface {
 	 * {@inheritdoc}
 	 * @see kyRESTClientInterface::put()
 	 */
-	public function put($controller, $parameters = array(), $data = array(), $files = array()) {
+	public function put($controller, $parameters = array(), $data = array(), $files = array())
+	{
 		return $this->processRequest($controller, self::METHOD_PUT, $parameters, $data, $files);
 	}
 
@@ -236,7 +249,8 @@ class kyRESTClient implements kyRESTClientInterface {
 	 * {@inheritdoc}
 	 * @see kyRESTClientInterface::delete()
 	 */
-	public function delete($controller, $parameters = array()) {
+	public function delete($controller, $parameters = array())
+	{
 		$this->processRequest($controller, self::METHOD_DELETE, $parameters);
 	}
 }

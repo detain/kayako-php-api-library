@@ -9,9 +9,10 @@
  *
  * @noinspection PhpDocSignatureInspection
  */
-class kyTicketAttachment extends kyObjectBase {
-	static protected $controller = '/Tickets/TicketAttachment';
-	static protected $object_xml_name = 'attachment';
+class kyTicketAttachment extends kyObjectBase
+{
+	protected static $controller = '/Tickets/TicketAttachment';
+	protected static $object_xml_name = 'attachment';
 
 	/**
 	 * Ticket attachment identifier.
@@ -81,7 +82,8 @@ class kyTicketAttachment extends kyObjectBase {
 	 */
 	private $ticket_post = null;
 
-	protected function parseData($data) {
+	protected function parseData($data)
+	{
 		$this->id = intval($data['id']);
 		$this->ticket_id = ky_assure_positive_int($data['ticketid']);
 		$this->ticket_post_id = ky_assure_positive_int($data['ticketpostid']);
@@ -89,11 +91,13 @@ class kyTicketAttachment extends kyObjectBase {
 		$this->file_size = intval($data['filesize']);
 		$this->file_type = $data['filetype'];
 		$this->dateline = ky_assure_positive_int($data['dateline']);
-		if (array_key_exists('contents', $data) && strlen($data['contents']) > 0)
+		if (array_key_exists('contents', $data) && strlen($data['contents']) > 0) {
 			$this->contents = base64_decode($data['contents']);
+		}
 	}
 
-	public function buildData($create) {
+	public function buildData($create)
+	{
 		$this->checkRequiredAPIFields($create);
 
 		$data = array();
@@ -112,8 +116,9 @@ class kyTicketAttachment extends kyObjectBase {
 	 * @param int $ticket_id Ticket identifier.
 	 * @return kyResultSet
 	 */
-    static public function getAll() {
-        list($ticket_id) = func_get_args();
+	public static function getAll()
+	{
+		list($ticket_id) = func_get_args();
 
 		$search_parameters = array('ListAll');
 
@@ -129,24 +134,29 @@ class kyTicketAttachment extends kyObjectBase {
 	 * @param int $id Ticket attachment identifier.
 	 * @return kyTicketAttachment
 	 */
-	static public function get() {
-        list($ticket_id, $id) = func_get_args();
+	public static function get()
+	{
+		list($ticket_id, $id) = func_get_args();
 		return parent::get(array($ticket_id, $id));
 	}
 
-	public function update() {
+	public function update()
+	{
 		throw new BadMethodCallException("You can't update objects of type kyTicketAttachment.");
 	}
 
-	public function delete() {
+	public function delete()
+	{
 		self::getRESTClient()->delete(static::$controller, array($this->ticket_id, $this->id));
 	}
 
-	public function toString() {
+	public function toString()
+	{
 		return sprintf("%s (filetype: %s, filesize: %s)", $this->getFileName(), $this->getFileType(), $this->getFileSize(true));
 	}
 
-	public function getId($complete = false) {
+	public function getId($complete = false)
+	{
 		return $complete ? array($this->ticket_id, $this->id) : $this->id;
 	}
 
@@ -155,7 +165,8 @@ class kyTicketAttachment extends kyObjectBase {
 	 *
 	 * @return int
 	 */
-	public function getTicketId() {
+	public function getTicketId()
+	{
 		return $this->ticket_id;
 	}
 
@@ -165,7 +176,8 @@ class kyTicketAttachment extends kyObjectBase {
 	 * @param int $ticket_id Ticket identifier.
 	 * @return kyTicketAttachment
 	 */
-	public function setTicketId($ticket_id) {
+	public function setTicketId($ticket_id)
+	{
 		$this->ticket_id = ky_assure_positive_int($ticket_id);
 		$this->ticket = null;
 		return $this;
@@ -179,12 +191,15 @@ class kyTicketAttachment extends kyObjectBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyTicket
 	 */
-	public function getTicket($reload = false) {
-		if ($this->ticket !== null && !$reload)
+	public function getTicket($reload = false)
+	{
+		if ($this->ticket !== null && !$reload) {
 			return $this->ticket;
+		}
 
-		if ($this->ticket_id === null)
+		if ($this->ticket_id === null) {
 			return null;
+		}
 
 		$this->ticket = kyTicket::get($this->ticket_id);
 		return $this->ticket;
@@ -194,7 +209,8 @@ class kyTicketAttachment extends kyObjectBase {
 	 * Returns identifier of the ticket post this attachment is attached to.
 	 * @return int
 	 */
-	public function getTicketPostId() {
+	public function getTicketPostId()
+	{
 		return $this->ticket_post_id;
 	}
 
@@ -203,7 +219,8 @@ class kyTicketAttachment extends kyObjectBase {
 	 * @param int $ticket_post_id Ticket post identifier.
 	 * @return kyTicketAttachment
 	 */
-	public function setTicketPostId($ticket_post_id) {
+	public function setTicketPostId($ticket_post_id)
+	{
 		$this->ticket_post_id = ky_assure_positive_int($ticket_post_id);
 		$this->ticket_post = null;
 		return $this;
@@ -217,12 +234,15 @@ class kyTicketAttachment extends kyObjectBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyTicketPost
 	 */
-	public function getTicketPost($reload = false) {
-		if ($this->ticket_post !== null && !$reload)
+	public function getTicketPost($reload = false)
+	{
+		if ($this->ticket_post !== null && !$reload) {
 			return $this->ticket_post;
+		}
 
-		if ($this->ticket_id === null || $this->ticket_post_id === null)
+		if ($this->ticket_id === null || $this->ticket_post_id === null) {
 			return null;
+		}
 
 		$this->ticket_post = kyTicketPost::get($this->ticket_id, $this->ticket_post_id);
 		return $this->ticket_post;
@@ -235,7 +255,8 @@ class kyTicketAttachment extends kyObjectBase {
 	 *
 	 * @param kyTicketPost $ticket_post Ticket post.
 	 */
-	public function setTicketPost($ticket_post) {
+	public function setTicketPost($ticket_post)
+	{
 		$this->ticket_post = ky_assure_object($ticket_post, 'kyTicketPost');
 		$this->ticket_post_id = $this->ticket_post !== null ? $this->ticket_post->getId() : null;
 		$this->ticket = $this->ticket_post !== null ? $this->ticket_post->getTicket() : null;
@@ -249,7 +270,8 @@ class kyTicketAttachment extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getFileName() {
+	public function getFileName()
+	{
 		return $this->file_name;
 	}
 
@@ -259,7 +281,8 @@ class kyTicketAttachment extends kyObjectBase {
 	 * @param string $file_name File name.
 	 * @return kyTicketAttachment
 	 */
-	public function setFileName($file_name) {
+	public function setFileName($file_name)
+	{
 		$this->file_name = ky_assure_string($file_name);
 		return $this;
 	}
@@ -272,7 +295,8 @@ class kyTicketAttachment extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getFileSize($formatted = false) {
+	public function getFileSize($formatted = false)
+	{
 		if ($formatted) {
 			return ky_bytes_format($this->file_size);
 		}
@@ -287,7 +311,8 @@ class kyTicketAttachment extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getFileType() {
+	public function getFileType()
+	{
 		return $this->file_type;
 	}
 
@@ -301,9 +326,11 @@ class kyTicketAttachment extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getDateline($format = null) {
-		if ($this->dateline == null)
+	public function getDateline($format = null)
+	{
+		if ($this->dateline == null) {
 			return null;
+		}
 
 		if ($format === null) {
 			$format = kyConfig::get()->getDatetimeFormat();
@@ -318,7 +345,8 @@ class kyTicketAttachment extends kyObjectBase {
 	 * @param bool $auto_fetch True to automatically fetch the contents of the attachment if not present.
 	 * @return string
 	 */
-	public function &getContents($auto_fetch = true) {
+	public function &getContents($auto_fetch = true)
+	{
 		if ($this->contents === null && is_numeric($this->id) && is_numeric($this->ticket_id) && $auto_fetch) {
 			$attachment = $this->get($this->ticket_id, $this->id);
 			$this->contents = $attachment->getContents(false);
@@ -332,7 +360,8 @@ class kyTicketAttachment extends kyObjectBase {
 	 * @param string $contents Raw contents of the attachment (NOT base64 encoded).
 	 * @return kyTicketAttachment
 	 */
-	public function setContents(&$contents) {
+	public function setContents(&$contents)
+	{
 		$this->contents =& $contents;
 		return $this;
 	}
@@ -345,14 +374,17 @@ class kyTicketAttachment extends kyObjectBase {
 	 * @throws kyException
 	 * @return kyTicketAttachment
 	 */
-	public function setContentsFromFile($file_path, $file_name = null) {
+	public function setContentsFromFile($file_path, $file_name = null)
+	{
 		$contents = file_get_contents($file_path);
-		if ($contents === false)
+		if ($contents === false) {
 			throw new kyException(sprintf("Error reading contents of %s.", $file_path));
+		}
 
 		$this->contents =& $contents;
-		if ($file_name === null)
+		if ($file_name === null) {
 			$file_name = basename($file_path);
+		}
 		$this->file_name = $file_name;
 		return $this;
 	}
@@ -366,8 +398,9 @@ class kyTicketAttachment extends kyObjectBase {
 	 * @param string $file_name Filename.
 	 * @return kyTicketAttachment
 	 */
-	static public function createNew() {
-        list($ticket_post, $contents, $file_name) = func_get_args();
+	public static function createNew()
+	{
+		list($ticket_post, $contents, $file_name) = func_get_args();
 		$new_ticket_attachment = new kyTicketAttachment();
 
 		$new_ticket_attachment->setTicketId($ticket_post->getTicketId());
@@ -387,7 +420,8 @@ class kyTicketAttachment extends kyObjectBase {
 	 * @param string $file_name Optional. Use to set filename other than physical file.
 	 * @return kyTicketAttachment
 	 */
-	static public function createNewFromFile($ticket_post, $file_path, $file_name = null) {
+	public static function createNewFromFile($ticket_post, $file_path, $file_name = null)
+	{
 		$new_ticket_attachment = new kyTicketAttachment();
 
 		$new_ticket_attachment->setTicketId($ticket_post->getTicketId());

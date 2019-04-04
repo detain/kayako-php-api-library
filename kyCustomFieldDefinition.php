@@ -7,8 +7,8 @@
  * @since Kayako version 4.40.1079
  * @package Object\CustomField
  */
-class kyCustomFieldDefinition extends kyObjectBase {
-
+class kyCustomFieldDefinition extends kyObjectBase
+{
 	const TYPE_TEXT = 1;
 
 	const TYPE_TEXTAREA = 2;
@@ -31,9 +31,9 @@ class kyCustomFieldDefinition extends kyObjectBase {
 
 	const TYPE_FILE = 11;
 
-	static protected $controller = '/Base/CustomField';
+	protected static $controller = '/Base/CustomField';
 
-	static protected $object_xml_name = 'customfield';
+	protected static $object_xml_name = 'customfield';
 
 	protected $read_only = true;
 
@@ -153,9 +153,10 @@ class kyCustomFieldDefinition extends kyObjectBase {
 	 *
 	 * @var kyCustomFieldDefinition[]
 	 */
-	static private $definitions = null;
+	private static $definitions = null;
 
-	protected function parseData($data) {
+	protected function parseData($data)
+	{
 		$this->id = intval($data['_attributes']['customfieldid']);
 		$this->group_id = intval($data['_attributes']['customfieldgroupid']);
 		$this->type = intval($data['_attributes']['fieldtype']);
@@ -178,12 +179,13 @@ class kyCustomFieldDefinition extends kyObjectBase {
 	 * @param array $search_parameters Optional. Additional search parameters.
 	 * @return kyResultSet
 	 */
-    static public function getAll() {
-        if (func_num_args() == 0) {
-            $search_parameters = array();
-        } else {
-            list($search_parameters) = func_get_args();
-        }
+	public static function getAll()
+	{
+		if (func_num_args() == 0) {
+			$search_parameters = array();
+		} else {
+			list($search_parameters) = func_get_args();
+		}
 		if (self::$definitions === null) {
 			self::$definitions = parent::getAll($search_parameters);
 		}
@@ -194,26 +196,31 @@ class kyCustomFieldDefinition extends kyObjectBase {
 	/**
 	 * Clears custom field definitions cache.
 	 */
-	static public function clearCache() {
+	public static function clearCache()
+	{
 		self::$definitions = null;
 	}
 
-    static public function get() {
-        list($id) = func_get_args();
+	public static function get()
+	{
+		list($id) = func_get_args();
 		throw new BadMethodCallException(sprintf("You can't get single object of type %s.", get_called_class()));
 	}
 
-	public function refresh() {
+	public function refresh()
+	{
 		throw new BadMethodCallException(sprintf("You can't refresh object of type %s.", get_called_class()));
 	}
 
-	public function toString() {
+	public function toString()
+	{
 		$class = new ReflectionClass(get_class($this));
 		$constants = array_flip($class->getConstants());
 		return sprintf("%s (type: %s, required: %s)", $this->getTitle(), strtolower(str_replace(array("TYPE_", "_"), array("", " "), $constants[$this->getType()])), $this->getIsRequired() ? "yes" : "no");
 	}
 
-	public function getId($complete = false) {
+	public function getId($complete = false)
+	{
 		return $complete ? array($this->id) : $this->id;
 	}
 
@@ -224,7 +231,8 @@ class kyCustomFieldDefinition extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getTitle() {
+	public function getTitle()
+	{
 		return $this->title;
 	}
 
@@ -235,7 +243,8 @@ class kyCustomFieldDefinition extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getGroupId() {
+	public function getGroupId()
+	{
 		return $this->group_id;
 	}
 
@@ -246,7 +255,8 @@ class kyCustomFieldDefinition extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getType() {
+	public function getType()
+	{
 		return $this->type;
 	}
 
@@ -257,7 +267,8 @@ class kyCustomFieldDefinition extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getName() {
+	public function getName()
+	{
 		return $this->name;
 	}
 
@@ -268,7 +279,8 @@ class kyCustomFieldDefinition extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getDefaultValue() {
+	public function getDefaultValue()
+	{
 		switch ($this->type) {
 			case self::TYPE_TEXT:
 			case self::TYPE_TEXTAREA:
@@ -293,7 +305,8 @@ class kyCustomFieldDefinition extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getIsRequired() {
+	public function getIsRequired()
+	{
 		return $this->is_required;
 	}
 
@@ -303,7 +316,8 @@ class kyCustomFieldDefinition extends kyObjectBase {
 	 * @return bool
 	 * @filterBy
 	 */
-	public function getIsUserEditable() {
+	public function getIsUserEditable()
+	{
 		return $this->is_user_editable;
 	}
 
@@ -313,7 +327,8 @@ class kyCustomFieldDefinition extends kyObjectBase {
 	 * @return bool
 	 * @filterBy
 	 */
-	public function getIsStaffEditable() {
+	public function getIsStaffEditable()
+	{
 		return $this->is_staff_editable;
 	}
 
@@ -322,7 +337,8 @@ class kyCustomFieldDefinition extends kyObjectBase {
 	 *
 	 * @return string
 	 */
-	public function getRegexpValidate() {
+	public function getRegexpValidate()
+	{
 		return $this->regexp_validate;
 	}
 
@@ -333,7 +349,8 @@ class kyCustomFieldDefinition extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getDisplayOrder() {
+	public function getDisplayOrder()
+	{
 		return $this->display_order;
 	}
 
@@ -343,7 +360,8 @@ class kyCustomFieldDefinition extends kyObjectBase {
 	 * @return int
 	 * @filterBy
 	 */
-	public function getIsEncrypted() {
+	public function getIsEncrypted()
+	{
 		return $this->is_encrypted;
 	}
 
@@ -353,7 +371,8 @@ class kyCustomFieldDefinition extends kyObjectBase {
 	 * @return int
 	 * @filterBy
 	 */
-	public function getDescription() {
+	public function getDescription()
+	{
 		return $this->description;
 	}
 
@@ -363,9 +382,11 @@ class kyCustomFieldDefinition extends kyObjectBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyResultSet
 	 */
-	public function getOptions($reload = false) {
-		if ($this->options !== null && !$reload)
+	public function getOptions($reload = false)
+	{
+		if ($this->options !== null && !$reload) {
 			return $this->options;
+		}
 
 		switch ($this->type) {
 			case self::TYPE_CHECKBOX:
@@ -388,11 +409,13 @@ class kyCustomFieldDefinition extends kyObjectBase {
 	 * @param string $value Value to search for.
 	 * @return kyCustomFieldOption
 	 */
-	public function getOptionByValue($value) {
+	public function getOptionByValue($value)
+	{
 		foreach ($this->getOptions() as $field_option) {
 			/* @var $field_option kyCustomFieldOption */
-			if ($field_option->getValue() == $value)
+			if ($field_option->getValue() == $value) {
 				return $field_option;
+			}
 		}
 
 		return null;
@@ -404,11 +427,13 @@ class kyCustomFieldDefinition extends kyObjectBase {
 	 * @param int $id Identifier to search for.
 	 * @return kyCustomFieldOption
 	 */
-	public function getOptionById($id) {
+	public function getOptionById($id)
+	{
 		foreach ($this->getOptions() as $field_option) {
 			/* @var $field_option kyCustomFieldOption */
-			if ($field_option->getId() == $id || $id == '0')
+			if ($field_option->getId() == $id || $id == '0') {
 				return $field_option;
+			}
 		}
 
 		return null;
@@ -419,7 +444,8 @@ class kyCustomFieldDefinition extends kyObjectBase {
 	 *
 	 * @return kyResultSet
 	 */
-	public function getDefaultOptions() {
+	public function getDefaultOptions()
+	{
 		switch ($this->type) {
 			case self::TYPE_CHECKBOX:
 			case self::TYPE_LINKED_SELECT:

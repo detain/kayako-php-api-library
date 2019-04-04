@@ -8,7 +8,8 @@
  * @package Object\TroubleshooterCategory
  *
  */
-class kyTroubleshooterCategory extends kyObjectBase {
+class kyTroubleshooterCategory extends kyObjectBase
+{
 
 	/**
 	 * TroubleshooterCategory type - Global.
@@ -34,8 +35,8 @@ class kyTroubleshooterCategory extends kyObjectBase {
 	 */
 	const CATEGORY_TYPE_PRIVATE = '3';
 
-	static protected $controller = '/Troubleshooter/Category';
-	static protected $object_xml_name = 'troubleshootercategory';
+	protected static $controller = '/Troubleshooter/Category';
+	protected static $object_xml_name = 'troubleshootercategory';
 
 	/**
 	 * TroubleshooterCategory identifier.
@@ -115,7 +116,8 @@ class kyTroubleshooterCategory extends kyObjectBase {
 	 */
 	protected $staff;
 
-	protected function parseData($data) {
+	protected function parseData($data)
+	{
 		$this->id = ky_assure_positive_int($data['id']);
 		$this->title = ky_assure_string($data['title']);
 		$this->category_type = ky_assure_string($data['categorytype']);
@@ -147,7 +149,8 @@ class kyTroubleshooterCategory extends kyObjectBase {
 		$this->staff_id = ky_assure_int($data['staffid']);
 	}
 
-	public function buildData($create) {
+	public function buildData($create)
+	{
 		$data = array();
 
 		$this->buildDataString($data, 'title', $this->title);
@@ -168,11 +171,13 @@ class kyTroubleshooterCategory extends kyObjectBase {
 		return $data;
 	}
 
-	public function toString() {
+	public function toString()
+	{
 		return sprintf("%s (contents : %s) (category type: %s)", $this->getTitle(), $this->getDescription(), $this->getCategoryType());
 	}
 
-	public function getId($complete = false) {
+	public function getId($complete = false)
+	{
 		return $complete ? array($this->id) : $this->id;
 	}
 
@@ -185,7 +190,8 @@ class kyTroubleshooterCategory extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getCategoryType() {
+	public function getCategoryType()
+	{
 		return $this->category_type;
 	}
 
@@ -197,7 +203,8 @@ class kyTroubleshooterCategory extends kyObjectBase {
 	 * @param int $category_type Category type of the TroubleshooterCategory.
 	 * @return kyTroubleshooterCategory
 	 */
-	public function setCategoryType($category_type) {
+	public function setCategoryType($category_type)
+	{
 		$this->category_type = ky_assure_constant($category_type, $this, 'CATEGORY_TYPE');
 		return $this;
 	}
@@ -209,7 +216,8 @@ class kyTroubleshooterCategory extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getTitle() {
+	public function getTitle()
+	{
 		return $this->title;
 	}
 
@@ -219,7 +227,8 @@ class kyTroubleshooterCategory extends kyObjectBase {
 	 * @param string $title Title of the TroubleshooterCategory.
 	 * @return kyTroubleshooterCategory
 	 */
-	public function setTitle($title) {
+	public function setTitle($title)
+	{
 		$this->title = ky_assure_string($title);
 		return $this;
 	}
@@ -231,7 +240,8 @@ class kyTroubleshooterCategory extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getDescription() {
+	public function getDescription()
+	{
 		return $this->description;
 	}
 
@@ -241,7 +251,8 @@ class kyTroubleshooterCategory extends kyObjectBase {
 	 * @param int $display_order of the TroubleshooterCategory.
 	 * @return kyTroubleshooterCategory
 	 */
-	public function setDescription($description) {
+	public function setDescription($description)
+	{
 		$this->description = ky_assure_string($description);
 		return $this;
 	}
@@ -253,7 +264,8 @@ class kyTroubleshooterCategory extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getDisplayOrder() {
+	public function getDisplayOrder()
+	{
 		return $this->displayorder;
 	}
 
@@ -263,7 +275,8 @@ class kyTroubleshooterCategory extends kyObjectBase {
 	 * @param int $display_order of the TroubleshooterCategory.
 	 * @return kyTroubleshooterCategory
 	 */
-	public function setDisplayOrder($display_order) {
+	public function setDisplayOrder($display_order)
+	{
 		$this->displayorder = ky_assure_int($display_order, 0);
 		return $this;
 	}
@@ -274,12 +287,15 @@ class kyTroubleshooterCategory extends kyObjectBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyStaff
 	 */
-	public function getStaff($reload = false) {
-		if ($this->staff !== null && !$reload)
+	public function getStaff($reload = false)
+	{
+		if ($this->staff !== null && !$reload) {
 			return $this->staff;
+		}
 
-		if ($this->staff_id === null)
+		if ($this->staff_id === null) {
 			return null;
+		}
 
 		$this->staff = kyStaff::get($this->staff_id);
 		return $this->staff;
@@ -291,7 +307,8 @@ class kyTroubleshooterCategory extends kyObjectBase {
 	 * @param kyStaff $staff Staff user.
 	 * @return kyTroubleshooterCategory
 	 */
-	public function setStaff($staff) {
+	public function setStaff($staff)
+	{
 		$this->staff = ky_assure_object($staff, 'kyStaff');
 		$this->staff_id = $this->staff !== null ? $this->staff->getId() : null;
 		return $this;
@@ -305,7 +322,8 @@ class kyTroubleshooterCategory extends kyObjectBase {
 	 * @return bool
 	 * @filterBy
 	 */
-	public function getUserVisibilityCustom() {
+	public function getUserVisibilityCustom()
+	{
 		return $this->user_visibility_custom;
 	}
 
@@ -317,7 +335,8 @@ class kyTroubleshooterCategory extends kyObjectBase {
 	 * @param bool $user_visibility_custom True to restrict visibility of this TroubleshooterCategory to particular user groups. False otherwise.
 	 * @return kyTroubleshooterCategory
 	 */
-	public function setUserVisibilityCustom($user_visibility_custom) {
+	public function setUserVisibilityCustom($user_visibility_custom)
+	{
 		$this->user_visibility_custom = ky_assure_bool($user_visibility_custom);
 		if ($this->user_visibility_custom === false) {
 			$this->user_group_ids = array();
@@ -331,7 +350,8 @@ class kyTroubleshooterCategory extends kyObjectBase {
 	 * @return array
 	 * @filterBy name=UserGroupId
 	 */
-	public function getUserGroupIds() {
+	public function getUserGroupIds()
+	{
 		return $this->user_group_ids;
 	}
 
@@ -341,7 +361,8 @@ class kyTroubleshooterCategory extends kyObjectBase {
 	 * @param int[] $user_group_ids Identifiers of user groups that this TroubleshooterCategory will be visible to.
 	 * @return kyTroubleshooterCategory
 	 */
-	public function setUserGroupIds($user_group_ids) {
+	public function setUserGroupIds($user_group_ids)
+	{
 		//normalization to array
 		if (!is_array($user_group_ids)) {
 			if (is_numeric($user_group_ids)) {
@@ -355,8 +376,9 @@ class kyTroubleshooterCategory extends kyObjectBase {
 		$this->user_group_ids = array();
 		foreach ($user_group_ids as $user_group_id) {
 			$user_group_id = ky_assure_positive_int($user_group_id);
-			if ($user_group_id === null)
+			if ($user_group_id === null) {
 				continue;
+			}
 
 			$this->user_group_ids[] = $user_group_id;
 		}
@@ -371,7 +393,8 @@ class kyTroubleshooterCategory extends kyObjectBase {
 	 * @return bool
 	 * @filterBy
 	 */
-	public function getStaffVisibilityCustom() {
+	public function getStaffVisibilityCustom()
+	{
 		return $this->staff_visibility_custom;
 	}
 
@@ -383,7 +406,8 @@ class kyTroubleshooterCategory extends kyObjectBase {
 	 * @param bool $staff_visibility_custom True to restrict visibility of this TroubleshooterCategory to particular staff groups. False otherwise.
 	 * @return kyTroubleshooterCategory
 	 */
-	public function setStaffVisibilityCustom($staff_visibility_custom) {
+	public function setStaffVisibilityCustom($staff_visibility_custom)
+	{
 		$this->staff_visibility_custom = ky_assure_bool($staff_visibility_custom);
 		if ($this->staff_visibility_custom === false) {
 			$this->staff_group_ids = array();
@@ -398,7 +422,8 @@ class kyTroubleshooterCategory extends kyObjectBase {
 	 * @return array
 	 * @filterBy name=StaffGroupId
 	 */
-	public function getStaffGroupIds() {
+	public function getStaffGroupIds()
+	{
 		return $this->staff_group_ids;
 	}
 
@@ -408,7 +433,8 @@ class kyTroubleshooterCategory extends kyObjectBase {
 	 * @param int[] $staff_group_ids Identifiers of staff groups that this TroubleshooterCategory item will be visible to.
 	 * @return kyTroubleshooterCategory
 	 */
-	public function setStaffGroupIds($staff_group_ids) {
+	public function setStaffGroupIds($staff_group_ids)
+	{
 		//normalization to array
 		if (!is_array($staff_group_ids)) {
 			if (is_numeric($staff_group_ids)) {
@@ -422,8 +448,9 @@ class kyTroubleshooterCategory extends kyObjectBase {
 		$this->staff_group_ids = array();
 		foreach ($staff_group_ids as $staff_group_id) {
 			$staff_group_id = ky_assure_positive_int($staff_group_id);
-			if ($staff_group_id === null)
+			if ($staff_group_id === null) {
 				continue;
+			}
 
 			$this->staff_group_ids[] = $staff_group_id;
 		}
@@ -438,7 +465,8 @@ class kyTroubleshooterCategory extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getStaffId() {
+	public function getStaffId()
+	{
 		return $this->staff_id;
 	}
 
@@ -448,7 +476,8 @@ class kyTroubleshooterCategory extends kyObjectBase {
 	 * @param string $staff_id of the knoledgebase category.
 	 * @return kyTroubleshooterCategory
 	 */
-	public function setStaffId($staff_id) {
+	public function setStaffId($staff_id)
+	{
 		$this->staff_id = ky_assure_positive_int($staff_id);
 		return $this;
 	}
@@ -464,8 +493,9 @@ class kyTroubleshooterCategory extends kyObjectBase {
 	 * @param kyStaff $staff Staff user.
 	 * @return kyTroubleshooterCategory
 	 */
-	static public function createNew() {
-        list($title, $category_type, $staff) = func_get_args();
+	public static function createNew()
+	{
+		list($title, $category_type, $staff) = func_get_args();
 		$new_troubleshooter_category = new kyTroubleshooterCategory();
 		$new_troubleshooter_category->setTitle($title);
 		$new_troubleshooter_category->setCategoryType($category_type);

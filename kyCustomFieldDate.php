@@ -8,7 +8,8 @@
  *
  * @noinspection PhpDocSignatureInspection
  */
-class kyCustomFieldDate extends kyCustomField {
+class kyCustomFieldDate extends kyCustomField
+{
 
 	/**
 	 * Timestamp representation of date.
@@ -16,7 +17,8 @@ class kyCustomFieldDate extends kyCustomField {
 	 */
 	private $timestamp;
 
-	protected function parseData($data) {
+	protected function parseData($data)
+	{
 		parent::parseData($data);
 		$this->timestamp = strtotime($data['_contents']);
 	}
@@ -26,7 +28,8 @@ class kyCustomFieldDate extends kyCustomField {
 	 *
 	 * @return int
 	 */
-	public function getTimestamp() {
+	public function getTimestamp()
+	{
 		return $this->timestamp;
 	}
 
@@ -36,7 +39,8 @@ class kyCustomFieldDate extends kyCustomField {
 	 * @param int $timestamp Timestamp.
 	 * @return kyCustomFieldDate
 	 */
-	public function setTimestamp($timestamp) {
+	public function setTimestamp($timestamp)
+	{
 		$this->timestamp = ky_assure_int($timestamp, 0);
 
 		$this->raw_value = date('m/d/Y', $this->timestamp);
@@ -48,7 +52,8 @@ class kyCustomFieldDate extends kyCustomField {
 	 * @param string $format Output format of the date. If null the format set in client configuration is used.
 	 * @return string
 	 */
-	public function getDate($format = null) {
+	public function getDate($format = null)
+	{
 		if ($format === null) {
 			$format = kyConfig::get()->getDateFormat();
 		}
@@ -62,7 +67,8 @@ class kyCustomFieldDate extends kyCustomField {
 	 * @param string $date Date in format understood by PHP strtotime.
 	 * @return kyCustomFieldDate
 	 */
-	public function setDate($date) {
+	public function setDate($date)
+	{
 		$this->setTimestamp(strtotime($date));
 		return $this;
 	}
@@ -74,7 +80,8 @@ class kyCustomFieldDate extends kyCustomField {
 	 *
 	 * @return string
 	 */
-	public function getValue() {
+	public function getValue()
+	{
 		return $this->getDate();
 	}
 
@@ -87,7 +94,8 @@ class kyCustomFieldDate extends kyCustomField {
 	 * @param string $value Date in format understood by PHP strtotime.
 	 * @return kyCustomFieldDate
 	 */
-	public function setValue($value) {
+	public function setValue($value)
+	{
 		$this->setDate($value);
 		return $this;
 	}

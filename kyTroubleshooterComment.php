@@ -8,10 +8,10 @@
  * @package Object\TroubleshooterComment
  *
  */
-class kyTroubleshooterComment extends kyCommentBase {
-
-	static protected $controller = '/Troubleshooter/Comment';
-	static protected $object_xml_name = 'troubleshooterstepcomment';
+class kyTroubleshooterComment extends kyCommentBase
+{
+	protected static $controller = '/Troubleshooter/Comment';
+	protected static $object_xml_name = 'troubleshooterstepcomment';
 
 	/**
 	 * Troubleshooterstep item identifier.
@@ -26,12 +26,14 @@ class kyTroubleshooterComment extends kyCommentBase {
 	 */
 	protected $troubleshooterstep_item;
 
-	protected function parseData($data) {
+	protected function parseData($data)
+	{
 		parent::parseData($data);
 		$this->troubleshooterstep_item_id = ky_assure_positive_int($data['troubleshooterstepid']);
 	}
 
-	public function buildData($create) {
+	public function buildData($create)
+	{
 		$data = parent::buildData($create);
 
 		$this->buildDataNumeric($data, 'troubleshooterstepid', $this->troubleshooterstep_item_id);
@@ -46,8 +48,9 @@ class kyTroubleshooterComment extends kyCommentBase {
 	 *
 	 * @return kyResultSet
 	 */
-	static public function getAll() {
-        list($troubleshooterstep) = func_get_args();
+	public static function getAll()
+	{
+		list($troubleshooterstep) = func_get_args();
 		if ($troubleshooterstep instanceof kyTroubleshooterStep) {
 			$troubleshooterstep_item_id = $troubleshooterstep->getId();
 		} else {
@@ -64,7 +67,8 @@ class kyTroubleshooterComment extends kyCommentBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getTroubelshooterStepId() {
+	public function getTroubelshooterStepId()
+	{
 		return $this->troubleshooterstep_item_id;
 	}
 
@@ -75,7 +79,8 @@ class kyTroubleshooterComment extends kyCommentBase {
 	 *
 	 * @return $this
 	 */
-	public function setTroubelshooterStepId($troubleshooterstep_item_id) {
+	public function setTroubelshooterStepId($troubleshooterstep_item_id)
+	{
 		$this->troubleshooterstep_item_id = ky_assure_positive_int($troubleshooterstep_item_id);
 		$this->troubleshooterstep_item = null;
 		return $this;
@@ -89,12 +94,15 @@ class kyTroubleshooterComment extends kyCommentBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyTroubleshooterStep
 	 */
-	public function getTroubleshooterStep($reload = false) {
-		if ($this->troubleshooterstep_item !== null && !$reload)
+	public function getTroubleshooterStep($reload = false)
+	{
+		if ($this->troubleshooterstep_item !== null && !$reload) {
 			return $this->troubleshooterstep_item;
+		}
 
-		if ($this->troubleshooterstep_item_id === null)
+		if ($this->troubleshooterstep_item_id === null) {
 			return null;
+		}
 
 		$this->troubleshooterstep_item = kyTroubleshooterStep::get($this->troubleshooterstep_item_id);
 		return $this->troubleshooterstep_item;
@@ -107,7 +115,8 @@ class kyTroubleshooterComment extends kyCommentBase {
 	 *
 	 * @return $this
 	 */
-	public function setTroubleshooterStep($troubleshooterstep_item) {
+	public function setTroubleshooterStep($troubleshooterstep_item)
+	{
 		$this->troubleshooterstep_item = ky_assure_object($troubleshooterstep_item, 'kyTroubleshooterStep');
 		$this->troubleshooterstep_item_id = $this->troubleshooterstep_item !== null ? $this->troubleshooterstep_item->getId() : null;
 		return $this;
@@ -122,8 +131,9 @@ class kyTroubleshooterComment extends kyCommentBase {
 	 * @param string $contents Contents of this comment.
 	 * @return kyTroubleshooterComment
 	 */
-	static public function createNew() {
-        list($troubleshooterstep, $creator, $contents) = func_get_args();
+	public static function createNew()
+	{
+		list($troubleshooterstep, $creator, $contents) = func_get_args();
 		/** @var $new_comment kyTroubleshooterComment */
 		$new_comment = parent::createNew($creator, $contents);
 		$new_comment->setTroubleshooterStep($troubleshooterstep);

@@ -9,7 +9,8 @@
  *
  * @noinspection PhpDocSignatureInspection
  */
-class kyDepartment extends kyObjectBase {
+class kyDepartment extends kyObjectBase
+{
 
 	/**
 	 * Module a department can be associated with - Tickets.
@@ -39,8 +40,8 @@ class kyDepartment extends kyObjectBase {
 	 */
 	const TYPE_PRIVATE = 'private';
 
-	static protected $controller = '/Base/Department';
-	static protected $object_xml_name = 'department';
+	protected static $controller = '/Base/Department';
+	protected static $object_xml_name = 'department';
 
 	/**
 	 * Department identifier.
@@ -111,7 +112,8 @@ class kyDepartment extends kyObjectBase {
 	 */
 	private $user_groups = null;
 
-	protected function parseData($data) {
+	protected function parseData($data)
+	{
 		$this->id = intval($data['id']);
 		$this->title = $data['title'];
 		$this->type = $data['type'];
@@ -131,7 +133,8 @@ class kyDepartment extends kyObjectBase {
 		}
 	}
 
-	public function buildData($create) {
+	public function buildData($create)
+	{
 		$this->checkRequiredAPIFields($create);
 
 		$data = array();
@@ -140,11 +143,13 @@ class kyDepartment extends kyObjectBase {
 		$data['type'] = $this->type;
 		$data['module'] = $this->module;
 
-		if (is_numeric($this->display_order))
+		if (is_numeric($this->display_order)) {
 			$data['displayorder'] = $this->display_order;
+		}
 
-		if (is_numeric($this->parent_department_id))
+		if (is_numeric($this->parent_department_id)) {
 			$data['parentdepartmentid'] = $this->parent_department_id;
+		}
 
 		$data['uservisibilitycustom'] = $this->user_visibility_custom ? 1 : 0;
 
@@ -155,11 +160,13 @@ class kyDepartment extends kyObjectBase {
 		return $data;
 	}
 
-	public function toString() {
+	public function toString()
+	{
 		return sprintf("%s (type: %s, module: %s)", $this->getTitle(), $this->getType(), $this->getModule());
 	}
 
-	public function getId($complete = false) {
+	public function getId($complete = false)
+	{
 		return $complete ? array($this->id) : $this->id;
 	}
 
@@ -170,7 +177,8 @@ class kyDepartment extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getTitle() {
+	public function getTitle()
+	{
 		return $this->title;
 	}
 
@@ -180,7 +188,8 @@ class kyDepartment extends kyObjectBase {
 	 * @param string $title Title of the department.
 	 * @return kyDepartment
 	 */
-	public function setTitle($title) {
+	public function setTitle($title)
+	{
 		$this->title = ky_assure_string($title);
 		return $this;
 	}
@@ -194,7 +203,8 @@ class kyDepartment extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getType() {
+	public function getType()
+	{
 		return $this->type;
 	}
 
@@ -206,7 +216,8 @@ class kyDepartment extends kyObjectBase {
 	 * @param string $type Type of the department.
 	 * @return kyDepartment
 	 */
-	public function setType($type) {
+	public function setType($type)
+	{
 		$this->type = ky_assure_constant($type, $this, 'TYPE');
 		return $this;
 	}
@@ -220,7 +231,8 @@ class kyDepartment extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getModule() {
+	public function getModule()
+	{
 		return $this->module;
 	}
 
@@ -232,7 +244,8 @@ class kyDepartment extends kyObjectBase {
 	 * @param string $module Module the department will be associated with.
 	 * @return kyDepartment
 	 */
-	public function setModule($module) {
+	public function setModule($module)
+	{
 		$this->module = ky_assure_constant($module, $this, 'MODULE');
 		return $this;
 	}
@@ -244,7 +257,8 @@ class kyDepartment extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getDisplayOrder() {
+	public function getDisplayOrder()
+	{
 		return $this->display_order;
 	}
 
@@ -254,7 +268,8 @@ class kyDepartment extends kyObjectBase {
 	 * @param int $display_order A positive integer that the helpdesk will use to sort departments when displaying them (ascending).
 	 * @return kyDepartment
 	 */
-	public function setDisplayOrder($display_order) {
+	public function setDisplayOrder($display_order)
+	{
 		$this->display_order = ky_assure_int($display_order, 0);
 		return $this;
 	}
@@ -266,7 +281,8 @@ class kyDepartment extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getParentDepartmentId() {
+	public function getParentDepartmentId()
+	{
 		return $this->parent_department_id;
 	}
 
@@ -276,7 +292,8 @@ class kyDepartment extends kyObjectBase {
 	 * @param int $parent_department_id Identifier of department that will be the parent for this department.
 	 * @return kyDepartment
 	 */
-	public function setParentDepartmentId($parent_department_id) {
+	public function setParentDepartmentId($parent_department_id)
+	{
 		$this->parent_department_id = ky_assure_positive_int($parent_department_id);
 		$this->parent_department = null;
 		return $this;
@@ -289,12 +306,15 @@ class kyDepartment extends kyObjectBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyDepartment
 	 */
-	public function getParentDepartment($reload = false) {
-		if ($this->parent_department !== null && !$reload)
+	public function getParentDepartment($reload = false)
+	{
+		if ($this->parent_department !== null && !$reload) {
 			return $this->parent_department;
+		}
 
-		if ($this->parent_department_id === null || $this->parent_department_id <= 0)
+		if ($this->parent_department_id === null || $this->parent_department_id <= 0) {
 			return null;
+		}
 
 		$this->parent_department = kyDepartment::get($this->parent_department_id);
 		return $this->parent_department;
@@ -306,7 +326,8 @@ class kyDepartment extends kyObjectBase {
 	 * @param kyDepartment $parent_department Department object that will be the parent for this department.
 	 * @return kyDepartment
 	 */
-	public function setParentDepartment($parent_department) {
+	public function setParentDepartment($parent_department)
+	{
 		$this->parent_department = ky_assure_object($parent_department, 'kyDepartment');
 		$this->parent_department_id = $this->parent_department !== null ? $this->parent_department->getId() : null;
 		return $this;
@@ -319,7 +340,8 @@ class kyDepartment extends kyObjectBase {
 	 * @return bool
 	 * @filterBy
 	 */
-	public function getUserVisibilityCustom() {
+	public function getUserVisibilityCustom()
+	{
 		return $this->user_visibility_custom;
 	}
 
@@ -331,7 +353,8 @@ class kyDepartment extends kyObjectBase {
 	 * @param bool $user_visibility_custom True to restrict visibility of this department to particular user groups. False otherwise.
 	 * @return kyDepartment
 	 */
-	public function setUserVisibilityCustom($user_visibility_custom) {
+	public function setUserVisibilityCustom($user_visibility_custom)
+	{
 		$this->user_visibility_custom = ky_assure_bool($user_visibility_custom);
 		if ($this->user_visibility_custom === false) {
 			$this->user_group_ids = array();
@@ -346,7 +369,8 @@ class kyDepartment extends kyObjectBase {
 	 * @return array
 	 * @filterBy name=UserGroupId
 	 */
-	public function getUserGroupIds() {
+	public function getUserGroupIds()
+	{
 		return $this->user_group_ids;
 	}
 
@@ -356,7 +380,8 @@ class kyDepartment extends kyObjectBase {
 	 * @param int[] $user_group_ids Identifiers of user groups that this department will be visible to.
 	 * @return kyDepartment
 	 */
-	public function setUserGroupIds($user_group_ids) {
+	public function setUserGroupIds($user_group_ids)
+	{
 		//normalization to array
 		if (!is_array($user_group_ids)) {
 			if (is_numeric($user_group_ids)) {
@@ -370,8 +395,9 @@ class kyDepartment extends kyObjectBase {
 		$this->user_group_ids = array();
 		foreach ($user_group_ids as $user_group_id) {
 			$user_group_id = ky_assure_positive_int($user_group_id);
-			if ($user_group_id === null)
+			if ($user_group_id === null) {
 				continue;
+			}
 
 			$this->user_group_ids[] = $user_group_id;
 		}
@@ -386,7 +412,8 @@ class kyDepartment extends kyObjectBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyResultSet
 	 */
-	public function getUserGroups($reload = false) {
+	public function getUserGroups($reload = false)
+	{
 		foreach ($this->user_group_ids as $user_group_id) {
 			if (!is_array($this->user_groups) || !array_key_exists($user_group_id, $this->user_groups) || $reload) {
 				$this->user_groups[$user_group_id] = kyUserGroup::get($user_group_id);
@@ -409,12 +436,15 @@ class kyDepartment extends kyObjectBase {
 	 * @return bool
 	 * @filterBy
 	 */
-	public function isVisibleToUserGroup($user_group) {
-		if ($this->type !== self::TYPE_PUBLIC)
+	public function isVisibleToUserGroup($user_group)
+	{
+		if ($this->type !== self::TYPE_PUBLIC) {
 			return false;
+		}
 
-		if ($this->user_visibility_custom === false)
+		if ($this->user_visibility_custom === false) {
 			return true;
+		}
 
 		if ($user_group instanceof kyUserGroup) {
 			$user_group_id = $user_group->getId();
@@ -433,7 +463,8 @@ class kyDepartment extends kyObjectBase {
 	 * @param bool $clear Clear the list before adding.
 	 * @return kyDepartment
 	 */
-	public function addUserGroup(kyUserGroup $user_group, $clear = false) {
+	public function addUserGroup(kyUserGroup $user_group, $clear = false)
+	{
 		if ($clear) {
 			$this->user_groups = array();
 			$this->user_group_ids = array();
@@ -457,18 +488,19 @@ class kyDepartment extends kyObjectBase {
 	 * @param string $module Module of new department - one of kyDepartment::MODULE_* constants.
 	 * @return kyDepartment
 	 */
-	static public function createNew() {
-        if (func_num_args() == 1) {
-            $type = self::TYPE_PUBLIC;
-            $module = self::MODULE_TICKETS;
-            list($title) = func_get_args();
-        } elseif (func_num_args() == 2) {
-            $module = self::MODULE_TICKETS;
-            list($title, $type) = func_get_args();
-        } else {
-            list($title, $type, $module) = func_get_args();
-        }
-        
+	public static function createNew()
+	{
+		if (func_num_args() == 1) {
+			$type = self::TYPE_PUBLIC;
+			$module = self::MODULE_TICKETS;
+			list($title) = func_get_args();
+		} elseif (func_num_args() == 2) {
+			$module = self::MODULE_TICKETS;
+			list($title, $type) = func_get_args();
+		} else {
+			list($title, $type, $module) = func_get_args();
+		}
+		
 		$new_department = new kyDepartment();
 		$new_department->setTitle($title);
 		$new_department->setType($type);
@@ -484,7 +516,8 @@ class kyDepartment extends kyObjectBase {
 	 * @param string $type Type of new department - one of kyDepartment::TYPE_* constants.
 	 * @return kyDepartment
 	 */
-	public function newSubdepartment($title, $type = self::TYPE_PUBLIC) {
+	public function newSubdepartment($title, $type = self::TYPE_PUBLIC)
+	{
 		$new_department = kyDepartment::createNew($title, $type, $this->getModule());
 		$new_department->setParentDepartment($this);
 		return $new_department;
@@ -500,7 +533,8 @@ class kyDepartment extends kyObjectBase {
 	 * @param string $subject Subject of new ticket.
 	 * @return kyTicket
 	 */
-	public function newTicketAuto($creator_full_name, $creator_email, $contents, $subject) {
+	public function newTicketAuto($creator_full_name, $creator_email, $contents, $subject)
+	{
 		return kyTicket::createNewAuto($this, $creator_full_name, $creator_email, $contents, $subject);
 	}
 }

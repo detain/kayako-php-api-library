@@ -8,7 +8,8 @@
  *
  * @noinspection PhpDocSignatureInspection
  */
-class kyCustomFieldFile extends kyCustomField {
+class kyCustomFieldFile extends kyCustomField
+{
 
 	/**
 	 * File name.
@@ -29,7 +30,8 @@ class kyCustomFieldFile extends kyCustomField {
 	 */
 	protected $is_changed = false;
 
-	protected function parseData($data) {
+	protected function parseData($data)
+	{
 		parent::parseData($data);
 		if (array_key_exists('filename', $data['_attributes'])) {
 			$this->file_name = $data['_attributes']['filename'];
@@ -37,7 +39,8 @@ class kyCustomFieldFile extends kyCustomField {
 		$this->contents = base64_decode($data['_contents']);
 	}
 
-	public function buildData($create) {
+	public function buildData($create)
+	{
 		$this->checkRequiredAPIFields($create);
 
 		$data = array();
@@ -49,7 +52,8 @@ class kyCustomFieldFile extends kyCustomField {
 		return $data;
 	}
 
-	public function toString() {
+	public function toString()
+	{
 		return sprintf("%s = %s", $this->getTitle(), $this->getFileName());
 	}
 
@@ -58,7 +62,8 @@ class kyCustomFieldFile extends kyCustomField {
 	 *
 	 * @return string
 	 */
-	public function getFileName() {
+	public function getFileName()
+	{
 		return $this->file_name;
 	}
 
@@ -68,7 +73,8 @@ class kyCustomFieldFile extends kyCustomField {
 	 * @param string $file_name File name.
 	 * @return kyCustomFieldFile
 	 */
-	public function setFileName($file_name) {
+	public function setFileName($file_name)
+	{
 		$file_name = ky_assure_string($file_name);
 
 		if ($this->file_name !== $file_name) {
@@ -85,7 +91,8 @@ class kyCustomFieldFile extends kyCustomField {
 	 *
 	 * @return string
 	 */
-	public function getContents() {
+	public function getContents()
+	{
 		return $this->contents;
 	}
 
@@ -95,7 +102,8 @@ class kyCustomFieldFile extends kyCustomField {
 	 * @param string $contents Raw contents of the attachment (NOT base64 encoded).
 	 * @return kyCustomFieldFile
 	 */
-	public function setContents(&$contents) {
+	public function setContents(&$contents)
+	{
 		if (md5($this->contents) !== md5($contents)) {
 			$this->is_changed = true;
 		}
@@ -111,15 +119,18 @@ class kyCustomFieldFile extends kyCustomField {
 	 * @throws kyException
 	 * @return kyCustomFieldFile
 	 */
-	public function setContentsFromFile($file_path, $file_name = null) {
+	public function setContentsFromFile($file_path, $file_name = null)
+	{
 		$contents = file_get_contents($file_path);
-		if ($contents === false)
+		if ($contents === false) {
 			throw new kyException(sprintf("Error reading contents of %s.", $file_path));
+		}
 
 		$this->setContents($contents);
 
-		if ($file_name === null)
+		if ($file_name === null) {
 			$file_name = basename($file_path);
+		}
 		$this->setFileName($file_name);
 
 		$this->raw_value = base64_encode($contents);
@@ -137,7 +148,8 @@ class kyCustomFieldFile extends kyCustomField {
 	 *
 	 * @return array
 	 */
-	public function getValue() {
+	public function getValue()
+	{
 		return array($this->file_name, &$this->contents);
 	}
 
@@ -149,7 +161,8 @@ class kyCustomFieldFile extends kyCustomField {
 	 * @param string $value Path to file.
 	 * @return kyCustomFieldFile
 	 */
-	public function setValue($value) {
+	public function setValue($value)
+	{
 		$this->setContentsFromFile($value);
 	}
 }

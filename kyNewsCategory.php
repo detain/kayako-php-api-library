@@ -11,7 +11,8 @@
  *
  * @noinspection PhpDocSignatureInspection
  */
-class kyNewsCategory extends kyObjectBase {
+class kyNewsCategory extends kyObjectBase
+{
 
 	/**
 	 * News category visibility type - Public.
@@ -29,8 +30,8 @@ class kyNewsCategory extends kyObjectBase {
 	 */
 	const VISIBILITY_TYPE_PRIVATE = 'private';
 
-	static protected $controller = '/News/Category';
-	static protected $object_xml_name = 'newscategory';
+	protected static $controller = '/News/Category';
+	protected static $object_xml_name = 'newscategory';
 
 	/**
 	 * News category identifier.
@@ -60,14 +61,16 @@ class kyNewsCategory extends kyObjectBase {
 	 */
 	protected $visibility_type;
 
-	protected function parseData($data) {
+	protected function parseData($data)
+	{
 		$this->id = ky_assure_positive_int($data['id']);
 		$this->title = ky_assure_string($data['title']);
 		$this->visibility_type = ky_assure_string($data['visibilitytype']);
 		$this->news_item_count = ky_assure_positive_int($data['newsitemcount'], 0);
 	}
 
-	public function buildData($create) {
+	public function buildData($create)
+	{
 		$this->checkRequiredAPIFields($create);
 
 		$data = array();
@@ -78,11 +81,13 @@ class kyNewsCategory extends kyObjectBase {
 		return $data;
 	}
 
-	public function toString() {
+	public function toString()
+	{
 		return sprintf("%s (visbility type: %s)", $this->getTitle(), $this->getVisibilityType());
 	}
 
-	public function getId($complete = false) {
+	public function getId($complete = false)
+	{
 		return $complete ? array($this->id) : $this->id;
 	}
 
@@ -95,7 +100,8 @@ class kyNewsCategory extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getVisibilityType() {
+	public function getVisibilityType()
+	{
 		return $this->visibility_type;
 	}
 
@@ -107,7 +113,8 @@ class kyNewsCategory extends kyObjectBase {
 	 * @param int $visibility_type Visibility type of the news category.
 	 * @return kyNewsCategory
 	 */
-	public function setVisibilityType($visibility_type) {
+	public function setVisibilityType($visibility_type)
+	{
 		$this->visibility_type = ky_assure_constant($visibility_type, $this, 'VISIBILITY_TYPE');
 		return $this;
 	}
@@ -119,7 +126,8 @@ class kyNewsCategory extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getTitle() {
+	public function getTitle()
+	{
 		return $this->title;
 	}
 
@@ -129,7 +137,8 @@ class kyNewsCategory extends kyObjectBase {
 	 * @param string $title Title of the news category.
 	 * @return kyNewsCategory
 	 */
-	public function setTitle($title) {
+	public function setTitle($title)
+	{
 		$this->title = ky_assure_string($title);
 		return $this;
 	}
@@ -141,7 +150,8 @@ class kyNewsCategory extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getNewsItemCount() {
+	public function getNewsItemCount()
+	{
 		return $this->news_item_count;
 	}
 
@@ -155,8 +165,9 @@ class kyNewsCategory extends kyObjectBase {
 	 * @param int $visibility_type Visibility type of news item.
 	 * @return kyNewsCategory
 	 */
-	static public function createNew() {
-        list($title, $visibility_type) = func_get_args();
+	public static function createNew()
+	{
+		list($title, $visibility_type) = func_get_args();
 		$new_news_category = new kyNewsCategory();
 		$new_news_category->setTitle($title);
 		$new_news_category->setVisibilityType($visibility_type);

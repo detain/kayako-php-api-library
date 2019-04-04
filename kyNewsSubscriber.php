@@ -9,10 +9,10 @@
  *
  * @noinspection PhpDocSignatureInspection
  */
-class kyNewsSubscriber extends kyObjectBase {
-
-	static protected $controller = '/News/Subscriber';
-	static protected $object_xml_name = 'newssubscriber';
+class kyNewsSubscriber extends kyObjectBase
+{
+	protected static $controller = '/News/Subscriber';
+	protected static $object_xml_name = 'newssubscriber';
 
 	/**
 	 * News subscriber identifier.
@@ -56,7 +56,8 @@ class kyNewsSubscriber extends kyObjectBase {
 	 */
 	protected $user_group_id;
 
-	protected function parseData($data) {
+	protected function parseData($data)
+	{
 		$this->id = ky_assure_positive_int($data['id']);
 		$this->template_group_id = ky_assure_positive_int($data['tgroupid']);
 		$this->user_id = ky_assure_positive_int($data['userid']);
@@ -65,7 +66,8 @@ class kyNewsSubscriber extends kyObjectBase {
 		$this->user_group_id = ky_assure_positive_int($data['usergroupid']);
 	}
 
-	public function buildData($create) {
+	public function buildData($create)
+	{
 		$this->checkRequiredAPIFields($create);
 
 		$data = array();
@@ -81,11 +83,13 @@ class kyNewsSubscriber extends kyObjectBase {
 		return $data;
 	}
 
-	public function toString() {
+	public function toString()
+	{
 		return sprintf("%s (%svalidated)", $this->getEmail(), $this->getIsValidated() ? "" : "not ");
 	}
 
-	public function getId($complete = false) {
+	public function getId($complete = false)
+	{
 		return $complete ? array($this->id) : $this->id;
 	}
 
@@ -96,7 +100,8 @@ class kyNewsSubscriber extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getTemplateGroupId() {
+	public function getTemplateGroupId()
+	{
 		return $this->template_group_id;
 	}
 
@@ -107,7 +112,8 @@ class kyNewsSubscriber extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getUserId() {
+	public function getUserId()
+	{
 		return $this->user_id;
 	}
 
@@ -118,7 +124,8 @@ class kyNewsSubscriber extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getEmail() {
+	public function getEmail()
+	{
 		return $this->email;
 	}
 
@@ -128,7 +135,8 @@ class kyNewsSubscriber extends kyObjectBase {
 	 * @param string $email Email of the news subscriber.
 	 * @return kyNewsSubscriber
 	 */
-	public function setEmail($email) {
+	public function setEmail($email)
+	{
 		$this->email = ky_assure_string($email);
 		return $this;
 	}
@@ -140,7 +148,8 @@ class kyNewsSubscriber extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getIsValidated() {
+	public function getIsValidated()
+	{
 		return $this->is_validated;
 	}
 
@@ -150,7 +159,8 @@ class kyNewsSubscriber extends kyObjectBase {
 	 * @param bool $is_validated Whether the news subscriber's email is validated.
 	 * @return kyNewsSubscriber
 	 */
-	public function setIsValidated($is_validated) {
+	public function setIsValidated($is_validated)
+	{
 		$this->is_validated = $is_validated;
 		return $this;
 	}
@@ -162,7 +172,8 @@ class kyNewsSubscriber extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getUserGroupId() {
+	public function getUserGroupId()
+	{
 		return $this->user_group_id;
 	}
 
@@ -174,13 +185,14 @@ class kyNewsSubscriber extends kyObjectBase {
 	 * @param bool $is_validated Whether email address is validated.
 	 * @return kyNewsSubscriber
 	 */
-	static public function createNew() {
-        if (func_num_args() == 1) {
-            $is_validated = false;
-            list($email) = func_get_args();
-        } else {
-            list($email, $is_validated) = func_get_args();
-        }
+	public static function createNew()
+	{
+		if (func_num_args() == 1) {
+			$is_validated = false;
+			list($email) = func_get_args();
+		} else {
+			list($email, $is_validated) = func_get_args();
+		}
 		$new_news_subscriber = new kyNewsSubscriber();
 		$new_news_subscriber->setEmail($email);
 		$new_news_subscriber->setIsValidated($is_validated);

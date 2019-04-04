@@ -29,7 +29,8 @@ require_once("../kyIncludes.php");
 /**
  * Initializes the client.
  */
-function initKayako() {
+function initKayako()
+{
 	$config = new kyConfig(BASE_URL, API_KEY, SECRET_KEY);
 	$config->setDebugEnabled(DEBUG);
 	kyConfig::set($config);
@@ -44,13 +45,15 @@ function initKayako() {
  *
  * @return array
  */
-function get_timezones() {
+function get_timezones()
+{
 	$timezones = array();
 
 	foreach (timezone_abbreviations_list() as $tz_abbreviation) {
 		foreach ($tz_abbreviation as $timezone) {
-			if (strlen($timezone['timezone_id']) === 0)
+			if (strlen($timezone['timezone_id']) === 0) {
 				continue;
+			}
 
 			$timezones[$timezone['timezone_id']] = $timezone['dst'];
 		}
@@ -72,7 +75,8 @@ function get_timezones() {
  * @param bool $as_array Tells whether field value is expected to be an array.
  * @return mixed Field value.
  */
-function get_post_value($field_name, &$form_valid, &$fields_valid, $required = true, $regexp = null, $as_array = false) {
+function get_post_value($field_name, &$form_valid, &$fields_valid, $required = true, $regexp = null, $as_array = false)
+{
 	$fields_valid[$field_name] = true;
 
 	if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -303,8 +307,7 @@ if ($render === 'user') {
 	$user_organizations = kyUserOrganization::getAll()->filterByType(kyUserOrganization::TYPE_SHARED);
 	$salutations = array('Mr.', 'Ms.', 'Mrs.', 'Dr.');
 
-	$timezones = get_timezones();
-?>
+	$timezones = get_timezones(); ?>
 	<form method="POST">
 		<input type="hidden" name="page" id="page" value="user">
 
@@ -319,13 +322,10 @@ if ($render === 'user') {
 					$selected = false;
 					if ($salutation == $salutation_option) {
 						$selected = true;
-					}
-?>
+					} ?>
 					<option<?=$selected ? ' selected' : ''?> value="<?=$salutation_option?>"><?=$salutation_option?></option>
 <?php
-
-				}
-?>
+				} ?>
 				</select>
 				<input type="text" value="<?=$full_name?>" id="full_name" name="full_name" style="width: 220px;">
 				<span class="description required<?=!$form_valid && $fields_valid['full_name'] !== true ? ' error' : ''?>">Provide your first and last name.</span>
@@ -359,13 +359,10 @@ if ($render === 'user') {
 					$selected = false;
 					if (is_numeric($user_organization_id) && $user_organization_id == $user_organization->getId()) {
 						$selected = true;
-					}
-?>
+					} ?>
 					<option<?=$selected ? ' selected' : ''?> value="<?=$user_organization->getId()?>"><?=$user_organization->getName()?></option>
 <?php
-
-				}
-?>
+				} ?>
 				</select>
 				<span class="description <?=!$form_valid && $fields_valid['user_organization_id'] !== true ? ' error' : ''?>">Choose your organization.</span>
 			</label>
@@ -392,13 +389,10 @@ if ($render === 'user') {
 					$selected = false;
 					if ($timezone == $timezone_id) {
 						$selected = true;
-					}
-?>
+					} ?>
 					<option<?=$selected ? ' selected' : ''?> value="<?=$timezone_id?>" enabledst="<?=$timezone_enable_dst ? 'enable' : 'disable'?>"><?=$timezone_id?></option>
 <?php
-
-				}
-?>
+				} ?>
 				</select>
 				<span class="description <?=!$form_valid && $fields_valid['timezone'] !== true ? ' error' : ''?>">Choose your timezone.</span>
 			</label>
@@ -451,7 +445,7 @@ if ($render === 'submit') {
 
 //we are rendering summary
 if ($render === 'summary') {
-?>
+	?>
 	<p>
 	Your request was submitted sucessfully. The user was created.
 	</p>

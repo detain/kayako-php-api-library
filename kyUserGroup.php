@@ -9,7 +9,8 @@
  *
  * @noinspection PhpDocSignatureInspection
  */
-class kyUserGroup extends kyObjectBase {
+class kyUserGroup extends kyObjectBase
+{
 
 	/**
 	 * Type of user group - guest.
@@ -23,8 +24,8 @@ class kyUserGroup extends kyObjectBase {
 	 */
 	const TYPE_REGISTERED = 'registered';
 
-	static protected $controller = '/Base/UserGroup';
-	static protected $object_xml_name = 'usergroup';
+	protected static $controller = '/Base/UserGroup';
+	protected static $object_xml_name = 'usergroup';
 
 	/**
 	 * User group identifier.
@@ -57,14 +58,16 @@ class kyUserGroup extends kyObjectBase {
 	 */
 	protected $is_master;
 
-	protected function parseData($data) {
+	protected function parseData($data)
+	{
 		$this->id = intval($data['id']);
 		$this->title = $data['title'];
 		$this->type = $data['grouptype'];
 		$this->is_master = ky_assure_bool($data['ismaster']);
 	}
 
-	public function buildData($create) {
+	public function buildData($create)
+	{
 		$this->checkRequiredAPIFields($create);
 
 		$data = array();
@@ -75,11 +78,13 @@ class kyUserGroup extends kyObjectBase {
 		return $data;
 	}
 
-	public function toString() {
+	public function toString()
+	{
 		return sprintf("%s (type: %s)", $this->getTitle(), $this->getType());
 	}
 
-	public function getId($complete = false) {
+	public function getId($complete = false)
+	{
 		return $complete ? array($this->id) : $this->id;
 	}
 
@@ -90,7 +95,8 @@ class kyUserGroup extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getTitle() {
+	public function getTitle()
+	{
 		return $this->title;
 	}
 
@@ -100,7 +106,8 @@ class kyUserGroup extends kyObjectBase {
 	 * @param string $title Title of the user group.
 	 * @return kyUserGroup
 	 */
-	public function setTitle($title) {
+	public function setTitle($title)
+	{
 		$this->title = ky_assure_string($title);
 		return $this;
 	}
@@ -114,7 +121,8 @@ class kyUserGroup extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getType() {
+	public function getType()
+	{
 		return $this->type;
 	}
 
@@ -126,7 +134,8 @@ class kyUserGroup extends kyObjectBase {
 	 * @param string $type Type of the user group.
 	 * @return kyUserGroup
 	 */
-	public function setType($type) {
+	public function setType($type)
+	{
 		$this->type = ky_assure_constant($type, $this, 'TYPE');
 		return $this;
 	}
@@ -137,7 +146,8 @@ class kyUserGroup extends kyObjectBase {
 	 * @return bool
 	 * @filterBy
 	 */
-	public function getIsMaster() {
+	public function getIsMaster()
+	{
 		return $this->is_master;
 	}
 
@@ -149,13 +159,14 @@ class kyUserGroup extends kyObjectBase {
 	 * @param string $type Type of new user group - one of kyUserGroup::TYPE_* constants.
 	 * @return kyUserGroup
 	 */
-	static public function createNew() {
-        if (func_num_args() == 1) {
-            $type = self::TYPE_REGISTERED;
-            list($title) = func_get_args();
-        } else {
-            list($title, $type) = func_get_args();
-        }
+	public static function createNew()
+	{
+		if (func_num_args() == 1) {
+			$type = self::TYPE_REGISTERED;
+			list($title) = func_get_args();
+		} else {
+			list($title, $type) = func_get_args();
+		}
 		$new_user_group = new kyUserGroup();
 		$new_user_group->setTitle($title);
 		$new_user_group->setType($type);
@@ -171,7 +182,8 @@ class kyUserGroup extends kyObjectBase {
 	 * @param string $password Password of new user.
 	 * @return kyUser
 	 */
-	public function newUser($full_name, $email, $password) {
+	public function newUser($full_name, $email, $password)
+	{
 		return kyUser::createNew($full_name, $email, $this, $password);
 	}
 }

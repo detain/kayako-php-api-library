@@ -6,7 +6,8 @@
  * @since Kayako version 4.40.1079
  * @package Object\CustomField
  */
-class kyCustomField extends kyObjectBase {
+class kyCustomField extends kyObjectBase
+{
 
 	/**
 	 * Field identifier.
@@ -61,7 +62,8 @@ class kyCustomField extends kyObjectBase {
 	 * @param kyCustomFieldGroupBase $custom_field_group Custom field group this field belongs to.
 	 * @param array $data Object data from XML response converted into array.
 	 */
-	function __construct($custom_field_group, $data = null) {
+	public function __construct($custom_field_group, $data = null)
+	{
 		parent::__construct($data);
 		$this->custom_field_group = $custom_field_group;
 	}
@@ -74,7 +76,8 @@ class kyCustomField extends kyObjectBase {
 	 * @throws DomainException
 	 * @return kyCustomField
 	 */
-	static public function createByType($custom_field_group, $data) {
+	public static function createByType($custom_field_group, $data)
+	{
 		switch ($data['_attributes']['type']) {
 			case kyCustomFieldDefinition::TYPE_TEXT:
 			case kyCustomFieldDefinition::TYPE_TEXTAREA:
@@ -97,7 +100,8 @@ class kyCustomField extends kyObjectBase {
 		throw new DomainException("Unknown custom field type.");
 	}
 
-	protected function parseData($data) {
+	protected function parseData($data)
+	{
 		$this->id = intval($data['_attributes']['id']);
 		$this->name = $data['_attributes']['name'];
 		$this->type = intval($data['_attributes']['type']);
@@ -105,7 +109,8 @@ class kyCustomField extends kyObjectBase {
 		$this->raw_value = $data['_contents'];
 	}
 
-	public function buildData($create) {
+	public function buildData($create)
+	{
 		$this->checkRequiredAPIFields($create);
 
 		$data[$this->name] = $this->raw_value;
@@ -113,46 +118,55 @@ class kyCustomField extends kyObjectBase {
 		return $data;
 	}
 
-    static public function get() {
-        list($id) = func_get_args();
+	public static function get()
+	{
+		list($id) = func_get_args();
 
 		throw new BadMethodCallException(sprintf("You can't get single object of type %s.", get_called_class()));
 	}
 
-    static public function getAll() {
-        if (func_num_args() == 0) {
-            $search_parameters = array();
-        } else {
-            list($search_parameters) = func_get_args();
-        }
+	public static function getAll()
+	{
+		if (func_num_args() == 0) {
+			$search_parameters = array();
+		} else {
+			list($search_parameters) = func_get_args();
+		}
 		throw new BadMethodCallException(sprintf("You can't get all objects of type %s this way. Use kyCustomFieldGroupBase extending classes getAll method instead or relevant methods of objects extending kyObjectWithCustomFieldsBase class.", get_called_class()));
 	}
 
-	public function create() {
+	public function create()
+	{
 		throw new BadMethodCallException(sprintf("You can't create objects of type %s.", get_called_class()));
 	}
 
-	public function update() {
+	public function update()
+	{
 		throw new BadMethodCallException(sprintf("You can't update single custom fields of type %s. Use updateCustomFields method of objects extending kyObjectWithCustomFieldsBase class.", get_called_class()));
 	}
 
-	public function delete() {
+	public function delete()
+	{
 		throw new BadMethodCallException(sprintf("You can't delete objects of type %s.", get_called_class()));
 	}
 
-	public function refresh() {
+	public function refresh()
+	{
 		throw new BadMethodCallException(sprintf("You can't refresh objects of type %s.", get_called_class()));
 	}
 
-	public function __toString() {
+	public function __toString()
+	{
 		return sprintf("%s (id: %s, name: %s): %s\n", get_class($this), implode(', ', $this->getId(true)), $this->getName(), $this->toString());
 	}
 
-	public function toString() {
+	public function toString()
+	{
 		return sprintf("%s = %s", $this->getTitle(), $this->getRawValue());
 	}
 
-	public function getId($complete = false) {
+	public function getId($complete = false)
+	{
 		return $complete ? array($this->id) : $this->id;
 	}
 
@@ -163,7 +177,8 @@ class kyCustomField extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getType() {
+	public function getType()
+	{
 		return $this->type;
 	}
 
@@ -174,7 +189,8 @@ class kyCustomField extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getName() {
+	public function getName()
+	{
 		return $this->name;
 	}
 
@@ -185,7 +201,8 @@ class kyCustomField extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getTitle() {
+	public function getTitle()
+	{
 		return $this->title;
 	}
 
@@ -196,7 +213,8 @@ class kyCustomField extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getRawValue() {
+	public function getRawValue()
+	{
 		return $this->raw_value;
 	}
 
@@ -206,7 +224,8 @@ class kyCustomField extends kyObjectBase {
 	 *
 	 * @return string
 	 */
-	public function getValue() {
+	public function getValue()
+	{
 		return $this->raw_value;
 	}
 
@@ -217,7 +236,8 @@ class kyCustomField extends kyObjectBase {
 	 * @param string $value Value.
 	 * @return kyCustomField
 	 */
-	public function setValue($value) {
+	public function setValue($value)
+	{
 		$this->raw_value = ky_assure_string($value);
 		return $this;
 	}
@@ -228,9 +248,11 @@ class kyCustomField extends kyObjectBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyCustomFieldDefinition
 	 */
-	public function getDefinition($reload = false) {
-		if ($this->definition !== null && !$reload)
+	public function getDefinition($reload = false)
+	{
+		if ($this->definition !== null && !$reload) {
 			return $this->definition;
+		}
 
 		/** @noinspection PhpUndefinedMethodInspection */
 		$this->definition = kyCustomFieldDefinition::getAll()->filterByName($this->getName())->first();
@@ -244,7 +266,8 @@ class kyCustomField extends kyObjectBase {
 	 * @param mixed $value Identifier of option OR value of option OR option.
 	 * @return kyCustomFieldOption
 	 */
-	public function getOption($value) {
+	public function getOption($value)
+	{
 		if (is_numeric($value)) { //value is option identifier
 			return $this->getDefinition()->getOptionById($value);
 		} elseif (is_string($value)) { //value is option value

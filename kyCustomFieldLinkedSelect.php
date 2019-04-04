@@ -8,7 +8,8 @@
  *
  * @noinspection PhpDocSignatureInspection
  */
-class kyCustomFieldLinkedSelect extends kyCustomFieldSelect {
+class kyCustomFieldLinkedSelect extends kyCustomFieldSelect
+{
 
 	/**
 	 * Separator of main and linked select values.
@@ -16,7 +17,8 @@ class kyCustomFieldLinkedSelect extends kyCustomFieldSelect {
 	 */
 	const PARENT_CHILD_SEPARATOR = ' &gt; ';
 
-	protected function parseData($data) {
+	protected function parseData($data)
+	{
 		parent::parseData($data);
 
 		if (strpos($data['_contents'], self::PARENT_CHILD_SEPARATOR) !== false) {
@@ -26,7 +28,8 @@ class kyCustomFieldLinkedSelect extends kyCustomFieldSelect {
 		}
 	}
 
-	public function buildData($create) {
+	public function buildData($create)
+	{
 		$this->checkRequiredAPIFields($create);
 
 		$data = array();
@@ -49,7 +52,8 @@ class kyCustomFieldLinkedSelect extends kyCustomFieldSelect {
 	 * @param kyCustomFieldOption $option Child (linked) field option.
 	 * @return kyCustomFieldLinkedSelect
 	 */
-	public function setSelectedOption($option) {
+	public function setSelectedOption($option)
+	{
 		$this->option = ky_assure_object($option, 'kyCustomFieldOption');
 
 		if ($this->option !== null) {

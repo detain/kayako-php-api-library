@@ -8,9 +8,10 @@
  * @package Object\TroubleshooterCategory
  *
  */
-class kyTroubleshooterAttachment extends kyObjectBase {
-	static protected $controller = '/Troubleshooter/Attachment';
-	static protected $object_xml_name = 'troubleshooterattachment';
+class kyTroubleshooterAttachment extends kyObjectBase
+{
+	protected static $controller = '/Troubleshooter/Attachment';
+	protected static $object_xml_name = 'troubleshooterattachment';
 
 	/**
 	 * TroubleshooterStep attachment identifier.
@@ -61,18 +62,21 @@ class kyTroubleshooterAttachment extends kyObjectBase {
 	 */
 	protected $contents;
 
-	protected function parseData($data) {
+	protected function parseData($data)
+	{
 		$this->id = intval($data['id']);
 		$this->troubleshooter_step_id = ky_assure_positive_int($data['troubleshooterstepid']);
 		$this->file_name = $data['filename'];
 		$this->file_size = intval($data['filesize']);
 		$this->file_type = $data['filetype'];
 		$this->dateline = ky_assure_positive_int($data['dateline']);
-		if (array_key_exists('contents', $data) && strlen($data['contents']) > 0)
+		if (array_key_exists('contents', $data) && strlen($data['contents']) > 0) {
 			$this->contents = base64_decode($data['contents']);
+		}
 	}
 
-	public function buildData($create) {
+	public function buildData($create)
+	{
 		$this->checkRequiredAPIFields($create);
 
 		$data = array();
@@ -90,8 +94,9 @@ class kyTroubleshooterAttachment extends kyObjectBase {
 	 * @param int $troubelshooter_step_id TroubleshooterStep identifier.
 	 * @return kyResultSet
 	 */
-	static public function getAll() {
-        list($troubelshooter_step_id) = func_get_args();
+	public static function getAll()
+	{
+		list($troubelshooter_step_id) = func_get_args();
 		$search_parameters = array('ListAll');
 
 		$search_parameters[] = $troubelshooter_step_id;
@@ -106,24 +111,29 @@ class kyTroubleshooterAttachment extends kyObjectBase {
 	 * @param int $id TroubleshooterStep attachment identifier.
 	 * @return kyTroubleshooterAttachment
 	 */
-	static public function get() {
-        list($troubelshooter_step_id, $id) = func_get_args();
+	public static function get()
+	{
+		list($troubelshooter_step_id, $id) = func_get_args();
 		return parent::get(array($troubelshooter_step_id, $id));
 	}
 
-	public function update() {
+	public function update()
+	{
 		throw new BadMethodCallException("You can't update objects of type kyTroubleshooterAttachment.");
 	}
 
-	public function delete() {
+	public function delete()
+	{
 		self::getRESTClient()->delete(static::$controller, array($this->troubleshooter_step_id, $this->id));
 	}
 
-	public function toString() {
+	public function toString()
+	{
 		return sprintf("%s (filetype: %s, filesize: %s)", $this->getFileName(), $this->getFileType(), $this->getFileSize(true));
 	}
 
-	public function getId($complete = false) {
+	public function getId($complete = false)
+	{
 		return $complete ? array($this->troubleshooter_step_id, $this->id) : $this->id;
 	}
 
@@ -132,7 +142,8 @@ class kyTroubleshooterAttachment extends kyObjectBase {
 	 *
 	 * @return int
 	 */
-	public function getTroubleshooterStepId() {
+	public function getTroubleshooterStepId()
+	{
 		return $this->troubleshooter_step_id;
 	}
 
@@ -142,7 +153,8 @@ class kyTroubleshooterAttachment extends kyObjectBase {
 	 * @param int $troubleshooter_step_id TroubleshooterStep identifier.
 	 * @return kyTroubleshooterAttachment
 	 */
-	public function setTroubleshooterStepId($troubleshooter_step_id) {
+	public function setTroubleshooterStepId($troubleshooter_step_id)
+	{
 		$this->troubleshooter_step_id = ky_assure_positive_int($troubleshooter_step_id);
 		return $this;
 	}
@@ -154,7 +166,8 @@ class kyTroubleshooterAttachment extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getFileName() {
+	public function getFileName()
+	{
 		return $this->file_name;
 	}
 
@@ -164,7 +177,8 @@ class kyTroubleshooterAttachment extends kyObjectBase {
 	 * @param string $file_name File name.
 	 * @return kyTroubleshooterAttachment
 	 */
-	public function setFileName($file_name) {
+	public function setFileName($file_name)
+	{
 		$this->file_name = ky_assure_string($file_name);
 		return $this;
 	}
@@ -177,7 +191,8 @@ class kyTroubleshooterAttachment extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getFileSize($formatted = false) {
+	public function getFileSize($formatted = false)
+	{
 		if ($formatted) {
 			return ky_bytes_format($this->file_size);
 		}
@@ -192,7 +207,8 @@ class kyTroubleshooterAttachment extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getFileType() {
+	public function getFileType()
+	{
 		return $this->file_type;
 	}
 
@@ -206,9 +222,11 @@ class kyTroubleshooterAttachment extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getDateline($format = null) {
-		if ($this->dateline == null)
+	public function getDateline($format = null)
+	{
+		if ($this->dateline == null) {
 			return null;
+		}
 
 		if ($format === null) {
 			$format = kyConfig::get()->getDatetimeFormat();
@@ -223,7 +241,8 @@ class kyTroubleshooterAttachment extends kyObjectBase {
 	 * @param bool $auto_fetch True to automatically fetch the contents of the attachment if not present.
 	 * @return string
 	 */
-	public function &getContents($auto_fetch = true) {
+	public function &getContents($auto_fetch = true)
+	{
 		if ($this->contents === null && is_numeric($this->id) && is_numeric($this->troubleshooter_step_id) && $auto_fetch) {
 			$attachment = $this->get($this->troubleshooter_step_id, $this->id);
 			$this->contents = $attachment->getContents(false);
@@ -237,7 +256,8 @@ class kyTroubleshooterAttachment extends kyObjectBase {
 	 * @param string $contents Raw contents of the attachment (NOT base64 encoded).
 	 * @return kyTroubleshooterAttachment
 	 */
-	public function setContents(&$contents) {
+	public function setContents(&$contents)
+	{
 		$this->contents =& $contents;
 		return $this;
 	}
@@ -250,14 +270,17 @@ class kyTroubleshooterAttachment extends kyObjectBase {
 	 * @throws kyException
 	 * @return kyTroubleshooterAttachment
 	 */
-	public function setContentsFromFile($file_path, $file_name = null) {
+	public function setContentsFromFile($file_path, $file_name = null)
+	{
 		$contents = base64_encode(file_get_contents($file_path));
-		if ($contents === false)
+		if ($contents === false) {
 			throw new kyException(sprintf("Error reading contents of %s.", $file_path));
+		}
 
 		$this->contents =& $contents;
-		if ($file_name === null)
+		if ($file_name === null) {
 			$file_name = basename($file_path);
+		}
 		$this->file_name = $file_name;
 		return $this;
 	}
@@ -271,8 +294,9 @@ class kyTroubleshooterAttachment extends kyObjectBase {
 	 * @param string $file_name Filename.
 	 * @return kyTroubleshooterAttachment
 	 */
-	static public function createNew() {
-        list($troubleshooter_step, $contents, $file_name) = func_get_args();
+	public static function createNew()
+	{
+		list($troubleshooter_step, $contents, $file_name) = func_get_args();
 		$new_troubleshooter_attachment = new kyTroubleshooterAttachment();
 
 		$new_troubleshooter_attachment->setTroubleshooterStepId($troubleshooter_step->getId());
@@ -291,7 +315,8 @@ class kyTroubleshooterAttachment extends kyObjectBase {
 	 * @param string $file_name Optional. Use to set filename other than physical file.
 	 * @return kyTroubleshooterAttachment
 	 */
-	static public function createNewFromFile($troubleshooter_step, $file_path, $file_name = null) {
+	public static function createNewFromFile($troubleshooter_step, $file_path, $file_name = null)
+	{
 		$new_troubleshooter_attachment = new kyTroubleshooterAttachment();
 
 		$new_troubleshooter_attachment->setTroubleshooterStepId($troubleshooter_step->getId());
@@ -299,5 +324,4 @@ class kyTroubleshooterAttachment extends kyObjectBase {
 
 		return $new_troubleshooter_attachment;
 	}
-
 }

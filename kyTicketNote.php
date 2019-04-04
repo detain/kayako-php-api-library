@@ -9,7 +9,8 @@
  *
  * @noinspection PhpDocSignatureInspection
  */
-class kyTicketNote extends kyObjectBase {
+class kyTicketNote extends kyObjectBase
+{
 
 	/**
 	 * Color of note - yellow.
@@ -67,8 +68,8 @@ class kyTicketNote extends kyObjectBase {
 	 */
 	const TYPE_USER_ORGANIZATION = 'userorganization';
 
-	static protected $controller = '/Tickets/TicketNote';
-	static protected $object_xml_name = 'note';
+	protected static $controller = '/Tickets/TicketNote';
+	protected static $object_xml_name = 'note';
 
 	/**
 	 * Ticket note identifier.
@@ -183,7 +184,8 @@ class kyTicketNote extends kyObjectBase {
 	 */
 	private $user_organization = null;
 
-	protected function parseData($data) {
+	protected function parseData($data)
+	{
 		$this->id = intval($data['_attributes']['id']);
 		$this->type = $data['_attributes']['type'];
 		$this->note_color = intval($data['_attributes']['notecolor']);
@@ -202,7 +204,8 @@ class kyTicketNote extends kyObjectBase {
 		}
 	}
 
-	public function buildData($create) {
+	public function buildData($create)
+	{
 		$this->checkRequiredAPIFields($create);
 
 		$data = array();
@@ -228,11 +231,12 @@ class kyTicketNote extends kyObjectBase {
 	 * @param int $ticket_id Ticket identifier.
 	 * @return kyResultSet
 	 */
-    static public function getAll() {
-        list($ticket_id) = func_get_args();
+	public static function getAll()
+	{
+		list($ticket_id) = func_get_args();
 
 		$search_parameters = array('ListAll');
-                                                      
+													  
 		$search_parameters[] = $ticket_id;
 
 		return parent::getAll($search_parameters);
@@ -245,34 +249,42 @@ class kyTicketNote extends kyObjectBase {
 	 * @param int $id Ticket note identifier.
 	 * @return kyTicketNote
 	 */
-	static public function get() {
-        list($ticket_id, $id) = func_get_args();
+	public static function get()
+	{
+		list($ticket_id, $id) = func_get_args();
 		return parent::get(array($ticket_id, $id));
 	}
 
-	public function create() {
-		if ($this->getType() !== self::TYPE_TICKET)
+	public function create()
+	{
+		if ($this->getType() !== self::TYPE_TICKET) {
 			throw new BadMethodCallException('You can create only note of type "ticket"');
+		}
 
 		parent::create();
 	}
 
-	public function update() {
+	public function update()
+	{
 		throw new BadMethodCallException("You can't update objects of type kyTicketNote.");
 	}
 
-	public function delete() {
-		if ($this->getType() !== self::TYPE_TICKET)
+	public function delete()
+	{
+		if ($this->getType() !== self::TYPE_TICKET) {
 			throw new BadMethodCallException('You can delete only note of type "ticket"');
+		}
 
 		self::getRESTClient()->delete(static::$controller, array($this->ticket_id, $this->id));
 	}
 
-	public function toString() {
+	public function toString()
+	{
 		return sprintf("%s (type: %s)", substr($this->getContents(), 0, 50) . (strlen($this->getContents()) > 50 ? '...' : ''), $this->getType());
 	}
 
-	public function getId($complete = false) {
+	public function getId($complete = false)
+	{
 		switch ($this->getType()) {
 			case self::TYPE_USER:
 				return $complete ? array($this->user_id, $this->id) : $this->id;
@@ -290,9 +302,11 @@ class kyTicketNote extends kyObjectBase {
 	 *
 	 * @return int
 	 */
-	public function getTicketId() {
-		if ($this->getType() !== self::TYPE_TICKET)
+	public function getTicketId()
+	{
+		if ($this->getType() !== self::TYPE_TICKET) {
 			return null;
+		}
 
 		return $this->ticket_id;
 	}
@@ -303,7 +317,8 @@ class kyTicketNote extends kyObjectBase {
 	 * @param int $ticket_id Ticket identifier.
 	 * @return kyTicketNote
 	 */
-	public function setTicketId($ticket_id) {
+	public function setTicketId($ticket_id)
+	{
 		$this->ticket_id = intval($ticket_id) > 0 ? intval($ticket_id) : null;
 		$this->ticket = null;
 		$this->type = $this->ticket_id !== null ? self::TYPE_TICKET : null;
@@ -319,15 +334,19 @@ class kyTicketNote extends kyObjectBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyTicket
 	 */
-	public function getTicket($reload = false) {
-		if ($this->getType() !== self::TYPE_TICKET)
+	public function getTicket($reload = false)
+	{
+		if ($this->getType() !== self::TYPE_TICKET) {
 			return null;
+		}
 
-		if ($this->ticket !== null && !$reload)
+		if ($this->ticket !== null && !$reload) {
 			return $this->ticket;
+		}
 
-		if ($this->ticket_id === null || $this->ticket_id <= 0)
+		if ($this->ticket_id === null || $this->ticket_id <= 0) {
 			return null;
+		}
 
 		$this->ticket = kyTicket::get($this->ticket_id);
 		return $this->ticket;
@@ -339,7 +358,8 @@ class kyTicketNote extends kyObjectBase {
 	 * @param kyTicket $ticket
 	 * @return kyTicketNote
 	 */
-	public function setTicket(kyTicket $ticket) {
+	public function setTicket(kyTicket $ticket)
+	{
 		$this->ticket = $ticket instanceof kyTicket ? $ticket : null;
 		$this->ticket_id = $this->ticket !== null ? $this->ticket->getId() : null;
 		$this->type = $this->ticket !== null ? self::TYPE_TICKET : null;
@@ -355,9 +375,11 @@ class kyTicketNote extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getUserId() {
-		if ($this->getType() !== self::TYPE_USER)
+	public function getUserId()
+	{
+		if ($this->getType() !== self::TYPE_USER) {
 			return null;
+		}
 
 		return $this->user_id;
 	}
@@ -371,15 +393,19 @@ class kyTicketNote extends kyObjectBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyUser
 	 */
-	public function getUser($reload = false) {
-		if ($this->getType() !== self::TYPE_USER)
+	public function getUser($reload = false)
+	{
+		if ($this->getType() !== self::TYPE_USER) {
 			return null;
+		}
 
-		if ($this->user !== null && !$reload)
+		if ($this->user !== null && !$reload) {
 			return $this->user;
+		}
 
-		if ($this->user_id === null || $this->user_id <= 0)
+		if ($this->user_id === null || $this->user_id <= 0) {
 			return null;
+		}
 
 		$this->user = kyUser::get($this->user_id);
 		return $this->user;
@@ -394,9 +420,11 @@ class kyTicketNote extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getUserOrganizationId() {
-		if ($this->getType() !== self::TYPE_USER_ORGANIZATION)
+	public function getUserOrganizationId()
+	{
+		if ($this->getType() !== self::TYPE_USER_ORGANIZATION) {
 			return null;
+		}
 
 		return $this->user_organization_id;
 	}
@@ -410,15 +438,19 @@ class kyTicketNote extends kyObjectBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyUserOrganization
 	 */
-	public function getUserOrganization($reload = false) {
-		if ($this->getType() !== self::TYPE_USER_ORGANIZATION)
+	public function getUserOrganization($reload = false)
+	{
+		if ($this->getType() !== self::TYPE_USER_ORGANIZATION) {
 			return null;
+		}
 
-		if ($this->user_organization !== null && !$reload)
+		if ($this->user_organization !== null && !$reload) {
 			return $this->user_organization;
+		}
 
-		if ($this->user_organization_id === null || $this->user_organization_id <= 0)
+		if ($this->user_organization_id === null || $this->user_organization_id <= 0) {
 			return null;
+		}
 
 		$this->user_organization = kyUserOrganization::get($this->user_organization_id);
 		return $this->user_organization;
@@ -433,7 +465,8 @@ class kyTicketNote extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getType() {
+	public function getType()
+	{
 		return $this->type;
 	}
 
@@ -445,7 +478,8 @@ class kyTicketNote extends kyObjectBase {
 	 * @return int
 	 * @filterBy
 	 */
-	public function getNoteColor() {
+	public function getNoteColor()
+	{
 		return $this->note_color;
 	}
 
@@ -457,7 +491,8 @@ class kyTicketNote extends kyObjectBase {
 	 * @param int $note_color Note color.
 	 * @return kyTicketNote
 	 */
-	public function setNoteColor($note_color) {
+	public function setNoteColor($note_color)
+	{
 		$this->note_color = $note_color;
 		return $this;
 	}
@@ -469,7 +504,8 @@ class kyTicketNote extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getCreatorStaffId() {
+	public function getCreatorStaffId()
+	{
 		return $this->creator_staff_id;
 	}
 
@@ -481,12 +517,15 @@ class kyTicketNote extends kyObjectBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyStaff
 	 */
-	public function getCreatorStaff($reload = false) {
-		if ($this->creator_staff !== null && !$reload)
+	public function getCreatorStaff($reload = false)
+	{
+		if ($this->creator_staff !== null && !$reload) {
 			return $this->creator_staff;
+		}
 
-		if ($this->creator_staff_id === null)
+		if ($this->creator_staff_id === null) {
 			return null;
+		}
 
 		$this->creator_staff = kyStaff::get($this->creator_staff_id);
 		return $this->creator_staff;
@@ -499,7 +538,8 @@ class kyTicketNote extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getCreatorName() {
+	public function getCreatorName()
+	{
 		return $this->creator_staff_name;
 	}
 
@@ -509,7 +549,8 @@ class kyTicketNote extends kyObjectBase {
 	 * @param kyStaff|int|string $creator Staff OR Staff identifier OR creator name (if the ticket is to be created without providing a staff user, ex: System messages, Alerts etc.).
 	 * @return kyTicketNote
 	 */
-	public function setCreator($creator) {
+	public function setCreator($creator)
+	{
 		if ($creator instanceof kyStaff) {
 			$this->creator_staff = $creator;
 			$this->creator_staff_id = $creator->getId();
@@ -533,7 +574,8 @@ class kyTicketNote extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getForStaffId() {
+	public function getForStaffId()
+	{
 		return $this->for_staff_id;
 	}
 
@@ -543,7 +585,8 @@ class kyTicketNote extends kyObjectBase {
 	 * @param int $for_staff_id
 	 * @return kyTicketNote
 	 */
-	public function setForStaffId($for_staff_id) {
+	public function setForStaffId($for_staff_id)
+	{
 		$this->for_staff_id = intval($for_staff_id) > 0 ? intval($for_staff_id) : null;
 		$this->for_staff = null;
 		return $this;
@@ -557,12 +600,15 @@ class kyTicketNote extends kyObjectBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyStaff
 	 */
-	public function getForStaff($reload = false) {
-		if ($this->for_staff !== null && !$reload)
+	public function getForStaff($reload = false)
+	{
+		if ($this->for_staff !== null && !$reload) {
 			return $this->for_staff;
+		}
 
-		if ($this->for_staff_id === null)
+		if ($this->for_staff_id === null) {
 			return null;
+		}
 
 		$this->for_staff = kyStaff::get($this->for_staff_id);
 		return $this->for_staff;
@@ -574,7 +620,8 @@ class kyTicketNote extends kyObjectBase {
 	 * @param kyStaff $for_staff
 	 * @return kyTicketNote
 	 */
-	public function setForStaff($for_staff) {
+	public function setForStaff($for_staff)
+	{
 		$this->for_staff = $for_staff instanceof kyStaff ? $for_staff : null;
 		$this->for_staff_id = $this->for_staff !== null ? $this->for_staff->getId(): null;
 		return $this;
@@ -590,9 +637,11 @@ class kyTicketNote extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getCreationDate($format = null) {
-		if ($this->creation_date == null)
+	public function getCreationDate($format = null)
+	{
+		if ($this->creation_date == null) {
 			return null;
+		}
 
 		if ($format === null) {
 			$format = kyConfig::get()->getDatetimeFormat();
@@ -607,7 +656,8 @@ class kyTicketNote extends kyObjectBase {
 	 * @return string
 	 * @filterBy
 	 */
-	public function getContents() {
+	public function getContents()
+	{
 		return $this->contents;
 	}
 
@@ -617,7 +667,8 @@ class kyTicketNote extends kyObjectBase {
 	 * @param string $contents
 	 * @return kyTicketNote
 	 */
-	public function setContents($contents) {
+	public function setContents($contents)
+	{
 		$this->contents = strval($contents);
 		return $this;
 	}
@@ -631,8 +682,9 @@ class kyTicketNote extends kyObjectBase {
 	 * @param string $contents Contents of new note.
 	 * @return kyTicketNote
 	 */
-	static public function createNew() {
-        list($ticket, $creator, $contents) = func_get_args();
+	public static function createNew()
+	{
+		list($ticket, $creator, $contents) = func_get_args();
 		$new_ticket_note = new kyTicketNote();
 
 		$new_ticket_note->setTicketId($ticket->getId());

@@ -9,10 +9,10 @@
  *
  *
  */
-class kyKnowledgebaseComment extends kyCommentBase {
-
-	static protected $controller = '/Knowledgebase/Comment';
-	static protected $object_xml_name = 'kbarticlecomment';
+class kyKnowledgebaseComment extends kyCommentBase
+{
+	protected static $controller = '/Knowledgebase/Comment';
+	protected static $object_xml_name = 'kbarticlecomment';
 
 	/**
 	 * kbarticle identifier.
@@ -27,12 +27,14 @@ class kyKnowledgebaseComment extends kyCommentBase {
 	 */
 	protected $kbarticle;
 
-	protected function parseData($data) {
+	protected function parseData($data)
+	{
 		parent::parseData($data);
 		$this->kbarticle_id = ky_assure_positive_int($data['kbarticleid']);
 	}
 
-	public function buildData($create) {
+	public function buildData($create)
+	{
 		$data = parent::buildData($create);
 
 		$this->buildDataNumeric($data, 'knowledgebasearticleid', $this->kbarticle_id);
@@ -46,8 +48,9 @@ class kyKnowledgebaseComment extends kyCommentBase {
 	 * @param kyKnowledgebaseArticle $kbarticle kyKnowledgebaseArticle item.
 	 * @return kyResultSet
 	 */
-	static public function getAll() {
-        list($kbarticle) = func_get_args();
+	public static function getAll()
+	{
+		list($kbarticle) = func_get_args();
 		if ($kbarticle instanceof kyKnowledgebaseArticle) {
 			$kbarticle_id = $kbarticle->getId();
 		} else {
@@ -64,7 +67,8 @@ class kyKnowledgebaseComment extends kyCommentBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getKbarticleId() {
+	public function getKbarticleId()
+	{
 		return $this->kbarticle_id;
 	}
 
@@ -74,7 +78,8 @@ class kyKnowledgebaseComment extends kyCommentBase {
 	 * @param int $kbarticle_id KnowledgebaseArticle identifier.
 	 * @return kyKnowledgebaseArticle
 	 */
-	public function setKbarticleId($kbarticle_id) {
+	public function setKbarticleId($kbarticle_id)
+	{
 		$this->kbarticle_id = ky_assure_positive_int($kbarticle_id);
 		$this->kbarticle = null;
 		return $this;
@@ -88,12 +93,15 @@ class kyKnowledgebaseComment extends kyCommentBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyKnowledgebaseArticle
 	 */
-	public function getKbarticle($reload = false) {
-		if ($this->kbarticle !== null && !$reload)
+	public function getKbarticle($reload = false)
+	{
+		if ($this->kbarticle !== null && !$reload) {
 			return $this->kbarticle;
+		}
 
-		if ($this->kbarticle_id === null)
+		if ($this->kbarticle_id === null) {
 			return null;
+		}
 
 		$this->kbarticle = kyKnowledgebaseArticle::get($this->kbarticle_id);
 		return $this->kbarticle;
@@ -105,7 +113,8 @@ class kyKnowledgebaseComment extends kyCommentBase {
 	 * @param kyKnowledgebaseArticle $kbarticle kbarticle item.
 	 * @return kyKnowledgebaseComment
 	 */
-	public function setKbarticle($kbarticle) {
+	public function setKbarticle($kbarticle)
+	{
 		$this->kbarticle = ky_assure_object($kbarticle, 'kyKnowledgebaseArticle');
 		$this->kbarticle_id = $this->kbarticle !== null ? $this->kbarticle->getId() : null;
 		return $this;
@@ -120,8 +129,9 @@ class kyKnowledgebaseComment extends kyCommentBase {
 	 * @param string $contents Contents of this comment.
 	 * @return kyKnowledgebaseComment
 	 */
-	static public function createNew() {
-        list($kb_article, $creator, $contents) = func_get_args();
+	public static function createNew()
+	{
+		list($kb_article, $creator, $contents) = func_get_args();
 		/** @var $kbarticle_comment kyKnowledgebaseComment */
 		$new_comment = parent::createNew($creator, $contents);
 		$new_comment->setKbarticle($kb_article);

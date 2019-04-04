@@ -29,7 +29,8 @@ require_once("../kyIncludes.php");
 /**
  * Initializes the client.
  */
-function initKayako() {
+function initKayako()
+{
 	$config = new kyConfig(BASE_URL, API_KEY, SECRET_KEY);
 	$config->setDebugEnabled(DEBUG);
 	kyConfig::set($config);
@@ -47,7 +48,8 @@ function initKayako() {
  *
  * @return array
  */
-function getDepartmentsTree() {
+function getDepartmentsTree()
+{
 	$departments_tree = array();
 	$all_departments = kyDepartment::getAll()->filterByModule(kyDepartment::MODULE_TICKETS)->filterByType(kyDepartment::TYPE_PUBLIC);
 
@@ -74,10 +76,12 @@ function getDepartmentsTree() {
  * @param bool $file_custom_field_present Placeholder to indicate if there is file custom field.
  * @return array
  */
-function get_ticket_custom_fields(kyTicket $ticket, &$file_custom_field_present) {
+function get_ticket_custom_fields(kyTicket $ticket, &$file_custom_field_present)
+{
 	$custom_field_groups = $ticket->getCustomFieldGroups();
-	if (count($custom_field_groups) === 0)
+	if (count($custom_field_groups) === 0) {
 		return array();
+	}
 
 	$custom_fields = array();
 	foreach ($custom_field_groups as $custom_field_group) {
@@ -86,8 +90,9 @@ function get_ticket_custom_fields(kyTicket $ticket, &$file_custom_field_present)
 		$group_custom_fields = array();
 		foreach ($custom_field_group->getFields() as $custom_field) {
 			/* @var $custom_field kyCustomField */
-			if (!$custom_field->getDefinition()->getIsUserEditable())
+			if (!$custom_field->getDefinition()->getIsUserEditable()) {
 				continue;
+			}
 
 			if ($custom_field->getType() === kyCustomFieldDefinition::TYPE_FILE) {
 				$file_custom_field_present = true;
@@ -116,7 +121,8 @@ function get_ticket_custom_fields(kyTicket $ticket, &$file_custom_field_present)
  * @param bool $as_array Tells whether field value is expected to be an array.
  * @return mixed Field value.
  */
-function get_post_value($field_name, &$form_valid, &$fields_valid, $required = true, $regexp = null, $as_array = false) {
+function get_post_value($field_name, &$form_valid, &$fields_valid, $required = true, $regexp = null, $as_array = false)
+{
 	$fields_valid[$field_name] = true;
 
 	if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -377,8 +383,7 @@ switch ($page) {
 //we are rendering Department form
 if ($render === 'department') {
 	//load departments tree
-	$departments_tree = getDepartmentsTree();
-?>
+	$departments_tree = getDepartmentsTree(); ?>
 	<form method="POST">
 		<input type="hidden" name="page" id="page" value="department">
 
@@ -392,8 +397,7 @@ if ($render === 'department') {
 				foreach ($departments_tree as $department_leaf) {
 					$top_department = $department_leaf['department'];
 					$child_departments = $department_leaf['child_departments'];
-					/*@var $top_department kyDepartment */
-?>
+					/*@var $top_department kyDepartment */ ?>
 				<label>
 					<input type="radio" name="department_id" value="<?=$top_department->getId()?>">
 					<span><?=$top_department->getTitle()?></span>
@@ -410,13 +414,10 @@ if ($render === 'department') {
 							<span><?=$child_department->getTitle()?></span>
 						</label>
 <?php
-					}
-?>
+					} ?>
 				</div>
 <?php
-
-				}
-?>
+				} ?>
 			</div>
 		</fieldset>
 
@@ -447,8 +448,7 @@ if ($render === 'general') {
 	//get only priorities visible to user group
 	if ($user_group !== null) {
 		$ticket_priorities = $ticket_priorities->filterByIsVisibleToUserGroup(true, $user_group);
-	}
-?>
+	} ?>
 	<form method="POST">
 		<input type="hidden" name="page" id="page" value="general">
 
@@ -474,13 +474,10 @@ if ($render === 'general') {
 					$selected = false;
 					if (is_numeric($type_id) && $type_id == $ticket_type->getId()) {
 						$selected = true;
-					}
-?>
+					} ?>
 					<option<?=$selected ? ' selected' : ''?> value="<?=$ticket_type->getId()?>"><?=$ticket_type->getTitle()?></option>
 <?php
-
-				}
-?>
+				} ?>
 				</select>
 				<span class="description required<?=!$form_valid && $fields_valid['type_id'] !== true ? ' error' : ''?>">Choose the type of your request.</span>
 			</label>
@@ -493,13 +490,10 @@ if ($render === 'general') {
 					$selected = false;
 					if (is_numeric($priority_id) && $priority_id == $ticket_priority->getId()) {
 						$selected = true;
-					}
-?>
+					} ?>
 					<option<?=$selected ? ' selected' : ''?> value="<?=$ticket_priority->getId()?>"><?=$ticket_priority->getTitle()?></option>
 <?php
-
-				}
-?>
+				} ?>
 				</select>
 				<span class="description required<?=!$form_valid && $fields_valid['priority_id'] !== true ? ' error' : ''?>">Choose, what is the urgency of your request.</span>
 			</label>
@@ -556,8 +550,9 @@ if ($render === 'submit') {
 			foreach ($custom_fields as $custom_field) {
 				/* @var $custom_field kyCustomField */
 				$field_default_value = $custom_field->getDefinition()->getDefaultValue();
-				if ($field_default_value === null)
+				if ($field_default_value === null) {
 					continue;
+				}
 
 				$custom_field_values[$custom_field->getName()] = $field_default_value;
 			}
@@ -570,7 +565,7 @@ if ($render === 'submit') {
 
 //we are rendering Custom Fields form
 if ($render === 'custom_fields') {
-?>
+	?>
 	<form<?=$file_custom_field_present === true ? ' enctype="multipart/form-data"' : ''?> method="POST">
 		<input type="hidden" name="page" id="page" value="custom_fields">
 
@@ -578,7 +573,7 @@ if ($render === 'custom_fields') {
 <?php
 		//iterating over custom field groups
 		foreach ($ticket_custom_fields as $custom_field_group_title => $custom_fields) {
-?>
+			?>
 		<fieldset>
 			<legend><?=$custom_field_group_title?></legend>
 
@@ -640,14 +635,12 @@ if ($render === 'custom_fields') {
 							$is_checked = false;
 							if (($field_value === null && $field_option->getIsSelected()) || ($field_value == $field_option->getId())) {
 								$is_checked = true;
-							}
-?>
+							} ?>
 							<label>
 								<input type="radio" name="<?=$field_name?>" <?=$is_checked ? 'checked' : ''?> value="<?=$field_option->getId()?>">
 								<span><?=$field_option->getValue()?></span>
 							</label>
 <?php
-
 						}
 ?>
 						</div>
@@ -665,11 +658,9 @@ if ($render === 'custom_fields') {
 								$is_selected = false;
 								if (($field_value === null && $field_option->getIsSelected()) || ($field_value == $field_option->getId())) {
 									$is_selected = true;
-								}
-?>
+								} ?>
 								<option<?=$is_selected ? ' selected' : ''?> value="<?=$field_option->getId()?>"><?=$field_option->getValue()?></option>
 <?php
-
 							}
 ?>
 						</select>
@@ -686,8 +677,7 @@ if ($render === 'custom_fields') {
 							$custom_field_options = $custom_field_definition->getOptions();
 							//iterating over options without parent option; render them as option groups (we are assuming that we can't select these options)
 							foreach ($custom_field_options->filterByParentOptionId(null)->orderByDisplayOrder() as $field_parent_option) {
-								/*@var $field_parent_option kyCustomFieldOption */
-?>
+								/*@var $field_parent_option kyCustomFieldOption */ ?>
 								<optgroup label="<?=$field_parent_option->getValue()?>">
 <?php
 								//iterating over child options
@@ -696,12 +686,10 @@ if ($render === 'custom_fields') {
 									$is_selected = false;
 									if (($field_value === null && $field_child_option->getIsSelected()) || ($field_value == $field_child_option->getId())) {
 										$is_selected = true;
-									}
-?>
+									} ?>
 									<option<?=$is_selected ? ' selected' : ''?> value="<?=$field_child_option->getId()?>"><?=$field_child_option->getValue()?></option>
 <?php
-								}
-?>
+								} ?>
 								</optgroup>
 <?php
 							}
@@ -723,8 +711,7 @@ if ($render === 'custom_fields') {
 							$is_checked = false;
 							if (($field_value === null && $field_option->getIsSelected()) || (is_array($field_value) && in_array($field_option->getId(), $field_value))) {
 								$is_checked = true;
-							}
-?>
+							} ?>
 							<label>
 								<input type="checkbox" name="<?=$field_name?>[]" <?=$is_checked ? 'checked' : ''?> value="<?=$field_option->getId()?>">
 								<span><?=$field_option->getValue()?></span>
@@ -747,11 +734,9 @@ if ($render === 'custom_fields') {
 								$is_selected = false;
 								if (($field_value === null && $field_option->getIsSelected()) || (is_array($field_value) && in_array($field_option->getId(), $field_value))) {
 									$is_selected = true;
-								}
-?>
+								} ?>
 								<option<?=$is_selected ? ' selected' : ''?> value="<?=$field_option->getId()?>"><?=$field_option->getValue()?></option>
 <?php
-
 							}
 ?>
 						</select>
@@ -779,12 +764,10 @@ if ($render === 'custom_fields') {
 <?php
 					break;
 				}
-			}
-?>
+			} ?>
 		</fieldset>
 <?php
-		}
-?>
+		} ?>
 
 
 		<input type="submit" name="submit_custom_fields" value="Submit">
@@ -824,7 +807,7 @@ if ($render === 'submit_custom_fields') {
 
 //we are rendering summary
 if ($render === 'summary') {
-?>
+	?>
 	<p>
 	Your request was submitted sucessfully. The request number is <strong><?=$ticket->getDisplayId()?></strong>.
 	</p>

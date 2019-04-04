@@ -6,13 +6,14 @@
  * @since Kayako version 4.51.1891
  * @package Object\Base
  */
-abstract class kyCommentableBase extends kyObjectBase {
+abstract class kyCommentableBase extends kyObjectBase
+{
 
 	/**
 	 * Name of class representing comments for this object.
 	 * @var string
 	 */
-	static protected $comment_class = null;
+	protected static $comment_class = null;
 
 	/**
 	 * Comments for this object.
@@ -27,13 +28,16 @@ abstract class kyCommentableBase extends kyObjectBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyCommentBase[]|kyResultSet
 	 */
-	public function getComments($reload = false) {
-		if ($this->comments !== null && !$reload)
+	public function getComments($reload = false)
+	{
+		if ($this->comments !== null && !$reload) {
 			return $this->comments;
+		}
 
 		$id = $this->getId();
-		if ($id === null)
+		if ($id === null) {
 			return null;
+		}
 
 		$classname = static::$comment_class;
 		/** @noinspection PhpUndefinedMethodInspection */
@@ -49,7 +53,8 @@ abstract class kyCommentableBase extends kyObjectBase {
 	 * @param string $contents Contents of this comment.
 	 * @return kyCommentBase
 	 */
-	public function newComment($creator, $contents) {
+	public function newComment($creator, $contents)
+	{
 		$classname = static::$comment_class;
 		/** @noinspection PhpUndefinedMethodInspection */
 		return $classname::createNew($this, $creator, $contents);

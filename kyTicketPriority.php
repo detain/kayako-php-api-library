@@ -7,13 +7,13 @@
  * @since Kayako version 4.01.240
  * @package Object\Ticket
  */
-class kyTicketPriority extends kyObjectBase {
-
+class kyTicketPriority extends kyObjectBase
+{
 	const TYPE_PUBLIC = 'public';
 	const TYPE_PRIVATE = 'private';
 
-	static protected $controller = '/Tickets/TicketPriority';
-	static protected $object_xml_name = 'ticketpriority';
+	protected static $controller = '/Tickets/TicketPriority';
+	protected static $object_xml_name = 'ticketpriority';
 	protected $read_only = true;
 
 	/**
@@ -88,7 +88,8 @@ class kyTicketPriority extends kyObjectBase {
 	 */
 	private $user_groups = null;
 
-	protected function parseData($data) {
+	protected function parseData($data)
+	{
 		$this->id = intval($data['id']);
 		$this->title = $data['title'];
 		$this->display_order = intval($data['displayorder']);
@@ -103,11 +104,13 @@ class kyTicketPriority extends kyObjectBase {
 		}
 	}
 
-	public function toString() {
+	public function toString()
+	{
 		return sprintf("%s (type: %s)", $this->getTitle(), $this->getType());
 	}
 
-	public function getId($complete = false) {
+	public function getId($complete = false)
+	{
 		return $complete ? array($this->id) : $this->id;
 	}
 
@@ -118,7 +121,8 @@ class kyTicketPriority extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getTitle() {
+	public function getTitle()
+	{
 		return $this->title;
 	}
 
@@ -129,7 +133,8 @@ class kyTicketPriority extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getDisplayOrder() {
+	public function getDisplayOrder()
+	{
 		return $this->display_order;
 	}
 
@@ -139,7 +144,8 @@ class kyTicketPriority extends kyObjectBase {
 	 * @return string
 	 * @filterBy
 	 */
-	public function getForegroundColor() {
+	public function getForegroundColor()
+	{
 		return $this->fr_color_code;
 	}
 
@@ -149,7 +155,8 @@ class kyTicketPriority extends kyObjectBase {
 	 * @return string
 	 * @filterBy
 	 */
-	public function getBackgroundColor() {
+	public function getBackgroundColor()
+	{
 		return $this->bg_color_code;
 	}
 
@@ -162,7 +169,8 @@ class kyTicketPriority extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getType() {
+	public function getType()
+	{
 		return $this->type;
 	}
 
@@ -172,7 +180,8 @@ class kyTicketPriority extends kyObjectBase {
 	 * @return bool
 	 * @filterBy
 	 */
-	public function getUserVisibilityCustom() {
+	public function getUserVisibilityCustom()
+	{
 		return $this->user_visibility_custom;
 	}
 
@@ -182,7 +191,8 @@ class kyTicketPriority extends kyObjectBase {
 	 * @return int[]
 	 * @filterBy name=UserGroupId
 	 */
-	public function getUserGroupIds() {
+	public function getUserGroupIds()
+	{
 		return $this->user_group_ids;
 	}
 
@@ -192,7 +202,8 @@ class kyTicketPriority extends kyObjectBase {
 	 * @param bool $reload True to reload data from server. False to use the cached value (if present).
 	 * @return kyResultSet
 	 */
-	public function getUserGroups($reload = false) {
+	public function getUserGroups($reload = false)
+	{
 		foreach ($this->user_group_ids as $user_group_id) {
 			if (!is_array($this->user_groups) || !array_key_exists($user_group_id, $this->user_groups) || $reload) {
 				$this->user_groups[$user_group_id] = kyUserGroup::get($user_group_id);
@@ -208,12 +219,15 @@ class kyTicketPriority extends kyObjectBase {
 	 * @return bool
 	 * @filterBy
 	 */
-	public function isVisibleToUserGroup($user_group) {
-		if ($this->type !== self::TYPE_PUBLIC)
+	public function isVisibleToUserGroup($user_group)
+	{
+		if ($this->type !== self::TYPE_PUBLIC) {
 			return false;
+		}
 
-		if ($this->user_visibility_custom === false)
+		if ($this->user_visibility_custom === false) {
 			return true;
+		}
 
 		if ($user_group instanceof kyUserGroup) {
 			$user_group_id = $user_group->getId();

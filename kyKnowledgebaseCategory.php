@@ -10,7 +10,8 @@
  *
  * @noinspection PhpDocSignatureInspection
  */
-class kyKnowledgebaseCategory extends kyObjectBase {
+class kyKnowledgebaseCategory extends kyObjectBase
+{
 
 	/**
 	 * Knowledegbase category type - Global.
@@ -44,8 +45,8 @@ class kyKnowledgebaseCategory extends kyObjectBase {
 	 */
 	const CATEGORY_TYPE_INHERIT = '4';
 
-	static protected $controller = '/Knowledgebase/Category';
-	static protected $object_xml_name = 'kbcategory';
+	protected static $controller = '/Knowledgebase/Category';
+	protected static $object_xml_name = 'kbcategory';
 
 	/**
 	 * Knowledegbase category identifier.
@@ -146,7 +147,8 @@ class kyKnowledgebaseCategory extends kyObjectBase {
 	 */
 	protected $staff_id;
 
-	protected function parseData($data) {
+	protected function parseData($data)
+	{
 		$this->id = ky_assure_positive_int($data['id']);
 		$this->title = ky_assure_string($data['title']);
 		$this->category_type = ky_assure_string($data['categorytype']);
@@ -181,7 +183,8 @@ class kyKnowledgebaseCategory extends kyObjectBase {
 		$this->staff_id = ky_assure_int($data['staffid']);
 	}
 
-	public function buildData($create) {
+	public function buildData($create)
+	{
 		$this->checkRequiredAPIFields($create);
 
 		$data = array();
@@ -215,17 +218,18 @@ class kyKnowledgebaseCategory extends kyObjectBase {
 	 * @param int $max_items Optional maximum items count. Defaults to 1000 when starting kbcategoryid is defined.
 	 * @return kyResultSet
 	 */
-	static public function getAll() {
-        if (func_num_args() == 0) {
-            $max_items = null;
-            $starting_kbcategory_id = 0;
-        } elseif (func_num_args() == 1) {
-            $starting_kbcategory_id = 0;
-            list($max_items) = func_get_args();
-        } else {
-            list($max_items, $starting_kbcategory_id) = func_get_args();
-        }
-        
+	public static function getAll()
+	{
+		if (func_num_args() == 0) {
+			$max_items = null;
+			$starting_kbcategory_id = 0;
+		} elseif (func_num_args() == 1) {
+			$starting_kbcategory_id = 0;
+			list($max_items) = func_get_args();
+		} else {
+			list($max_items, $starting_kbcategory_id) = func_get_args();
+		}
+		
 		$search_parameters = array('GetList');
 
 		if (is_numeric($starting_kbcategory_id) && $starting_kbcategory_id > 0) {
@@ -239,11 +243,13 @@ class kyKnowledgebaseCategory extends kyObjectBase {
 		return parent::getAll($search_parameters);
 	}
 
-	public function toString() {
+	public function toString()
+	{
 		return sprintf("%s (category type: %s)", $this->getTitle(), $this->getCategoryType());
 	}
 
-	public function getId($complete = false) {
+	public function getId($complete = false)
+	{
 		return $complete ? array($this->id) : $this->id;
 	}
 
@@ -256,7 +262,8 @@ class kyKnowledgebaseCategory extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getCategoryType() {
+	public function getCategoryType()
+	{
 		return $this->category_type;
 	}
 
@@ -268,7 +275,8 @@ class kyKnowledgebaseCategory extends kyObjectBase {
 	 * @param int $category_type Category type of the knowledgebase category.
 	 * @return kyKnowledgebaseCategory
 	 */
-	public function setCategoryType($category_type) {
+	public function setCategoryType($category_type)
+	{
 		$this->category_type = ky_assure_constant($category_type, $this, 'CATEGORY_TYPE');
 		return $this;
 	}
@@ -280,7 +288,8 @@ class kyKnowledgebaseCategory extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getTitle() {
+	public function getTitle()
+	{
 		return $this->title;
 	}
 
@@ -290,7 +299,8 @@ class kyKnowledgebaseCategory extends kyObjectBase {
 	 * @param string $title Title of the knowledgebase category.
 	 * @return kyKnowledgebaseCategory
 	 */
-	public function setTitle($title) {
+	public function setTitle($title)
+	{
 		$this->title = ky_assure_string($title);
 		return $this;
 	}
@@ -302,7 +312,8 @@ class kyKnowledgebaseCategory extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getDisplayOrder() {
+	public function getDisplayOrder()
+	{
 		return $this->displayorder;
 	}
 
@@ -312,7 +323,8 @@ class kyKnowledgebaseCategory extends kyObjectBase {
 	 * @param int $display_order of the knowledgebase category.
 	 * @return kyKnowledgebaseCategory
 	 */
-	public function setDisplayOrder($display_order) {
+	public function setDisplayOrder($display_order)
+	{
 		$this->displayorder = ky_assure_int($display_order, 0);
 		return $this;
 	}
@@ -324,7 +336,8 @@ class kyKnowledgebaseCategory extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getParentCategoryId() {
+	public function getParentCategoryId()
+	{
 		return $this->parent_kbcategoryid;
 	}
 
@@ -334,7 +347,8 @@ class kyKnowledgebaseCategory extends kyObjectBase {
 	 * @param int $parent_categoryid of the knowledgebase category.
 	 * @return kyKnowledgebaseCategory
 	 */
-	public function setParentCategoryId($parent_categoryid) {
+	public function setParentCategoryId($parent_categoryid)
+	{
 		$this->parent_kbcategoryid = ky_assure_int($parent_categoryid);
 		return $this;
 	}
@@ -346,7 +360,8 @@ class kyKnowledgebaseCategory extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getArticleSortOrder() {
+	public function getArticleSortOrder()
+	{
 		return $this->article_sortorder;
 	}
 
@@ -356,7 +371,8 @@ class kyKnowledgebaseCategory extends kyObjectBase {
 	 * @param int $articlesortorder Sort Order of the knowledgebase category.
 	 * @return kyKnowledgebaseCategory
 	 */
-	public function setArticleSortOrder($articlesortorder) {
+	public function setArticleSortOrder($articlesortorder)
+	{
 		$this->article_sortorder = ky_assure_int($articlesortorder);
 		return $this;
 	}
@@ -368,7 +384,8 @@ class kyKnowledgebaseCategory extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getAllowComments() {
+	public function getAllowComments()
+	{
 		return $this->allow_comments;
 	}
 
@@ -378,7 +395,8 @@ class kyKnowledgebaseCategory extends kyObjectBase {
 	 * @param string $allow_comments Title of the knowledgebase category.
 	 * @return kyKnowledgebaseCategory
 	 */
-	public function setAllowComments($allow_comments) {
+	public function setAllowComments($allow_comments)
+	{
 		$this->allow_comments = ky_assure_bool($allow_comments);
 		return $this;
 	}
@@ -390,7 +408,8 @@ class kyKnowledgebaseCategory extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getAllowRating() {
+	public function getAllowRating()
+	{
 		return $this->allow_rating;
 	}
 
@@ -400,7 +419,8 @@ class kyKnowledgebaseCategory extends kyObjectBase {
 	 * @param bool $allow_rating knowledgebase category.
 	 * @return kyKnowledgebaseCategory
 	 */
-	public function setAllowRating($allow_rating) {
+	public function setAllowRating($allow_rating)
+	{
 		$this->allow_rating = ky_assure_bool($allow_rating);
 		return $this;
 	}
@@ -412,7 +432,8 @@ class kyKnowledgebaseCategory extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getIsPublished() {
+	public function getIsPublished()
+	{
 		return $this->is_published;
 	}
 
@@ -422,7 +443,8 @@ class kyKnowledgebaseCategory extends kyObjectBase {
 	 * @param bool $is_published knowledgebase category.
 	 * @return kyKnowledgebaseCategory
 	 */
-	public function setIsPublished($is_published) {
+	public function setIsPublished($is_published)
+	{
 		$this->is_published = ky_assure_bool($is_published);
 		return $this;
 	}
@@ -434,7 +456,8 @@ class kyKnowledgebaseCategory extends kyObjectBase {
 	 * @return bool
 	 * @filterBy
 	 */
-	public function getUserVisibilityCustom() {
+	public function getUserVisibilityCustom()
+	{
 		return $this->user_visibility_custom;
 	}
 
@@ -446,7 +469,8 @@ class kyKnowledgebaseCategory extends kyObjectBase {
 	 * @param bool $user_visibility_custom True to restrict visibility of this knowledgebase category to particular user groups. False otherwise.
 	 * @return kyKnowledgebaseCategory
 	 */
-	public function setUserVisibilityCustom($user_visibility_custom) {
+	public function setUserVisibilityCustom($user_visibility_custom)
+	{
 		$this->user_visibility_custom = ky_assure_bool($user_visibility_custom);
 		if ($this->user_visibility_custom === false) {
 			$this->user_group_ids = array();
@@ -460,7 +484,8 @@ class kyKnowledgebaseCategory extends kyObjectBase {
 	 * @return array
 	 * @filterBy name=UserGroupId
 	 */
-	public function getUserGroupIds() {
+	public function getUserGroupIds()
+	{
 		return $this->user_group_ids;
 	}
 
@@ -470,7 +495,8 @@ class kyKnowledgebaseCategory extends kyObjectBase {
 	 * @param int[] $user_group_ids Identifiers of user groups that this knowledgebase category will be visible to.
 	 * @return kyKnowledgebaseCategory
 	 */
-	public function setUserGroupIds($user_group_ids) {
+	public function setUserGroupIds($user_group_ids)
+	{
 		//normalization to array
 		if (!is_array($user_group_ids)) {
 			if (is_numeric($user_group_ids)) {
@@ -484,8 +510,9 @@ class kyKnowledgebaseCategory extends kyObjectBase {
 		$this->user_group_ids = array();
 		foreach ($user_group_ids as $user_group_id) {
 			$user_group_id = ky_assure_positive_int($user_group_id);
-			if ($user_group_id === null)
+			if ($user_group_id === null) {
 				continue;
+			}
 
 			$this->user_group_ids[] = $user_group_id;
 		}
@@ -500,7 +527,8 @@ class kyKnowledgebaseCategory extends kyObjectBase {
 	 * @return bool
 	 * @filterBy
 	 */
-	public function getStaffVisibilityCustom() {
+	public function getStaffVisibilityCustom()
+	{
 		return $this->staff_visibility_custom;
 	}
 
@@ -512,7 +540,8 @@ class kyKnowledgebaseCategory extends kyObjectBase {
 	 * @param bool $staff_visibility_custom True to restrict visibility of this knowledgebase category to particular staff groups. False otherwise.
 	 * @return kyKnowledgebaseCategory
 	 */
-	public function setStaffVisibilityCustom($staff_visibility_custom) {
+	public function setStaffVisibilityCustom($staff_visibility_custom)
+	{
 		$this->staff_visibility_custom = ky_assure_bool($staff_visibility_custom);
 		if ($this->staff_visibility_custom === false) {
 			$this->staff_group_ids = array();
@@ -527,7 +556,8 @@ class kyKnowledgebaseCategory extends kyObjectBase {
 	 * @return array
 	 * @filterBy name=StaffGroupId
 	 */
-	public function getStaffGroupIds() {
+	public function getStaffGroupIds()
+	{
 		return $this->staff_group_ids;
 	}
 
@@ -537,7 +567,8 @@ class kyKnowledgebaseCategory extends kyObjectBase {
 	 * @param int[] $staff_group_ids Identifiers of staff groups that this knowledgebase category item will be visible to.
 	 * @return kyKnowledgebaseCategory
 	 */
-	public function setStaffGroupIds($staff_group_ids) {
+	public function setStaffGroupIds($staff_group_ids)
+	{
 		//normalization to array
 		if (!is_array($staff_group_ids)) {
 			if (is_numeric($staff_group_ids)) {
@@ -551,8 +582,9 @@ class kyKnowledgebaseCategory extends kyObjectBase {
 		$this->staff_group_ids = array();
 		foreach ($staff_group_ids as $staff_group_id) {
 			$staff_group_id = ky_assure_positive_int($staff_group_id);
-			if ($staff_group_id === null)
+			if ($staff_group_id === null) {
 				continue;
+			}
 
 			$this->staff_group_ids[] = $staff_group_id;
 		}
@@ -567,7 +599,8 @@ class kyKnowledgebaseCategory extends kyObjectBase {
 	 * @filterBy
 	 * @orderBy
 	 */
-	public function getStaffId() {
+	public function getStaffId()
+	{
 		return $this->staff_id;
 	}
 
@@ -577,7 +610,8 @@ class kyKnowledgebaseCategory extends kyObjectBase {
 	 * @param string $staff_id of the knoledgebase category.
 	 * @return kyKnowledgebaseCategory
 	 */
-	public function setStaffId($staff_id) {
+	public function setStaffId($staff_id)
+	{
 		$this->staff_id = ky_assure_positive_int($staff_id);
 		return $this;
 	}
@@ -592,8 +626,9 @@ class kyKnowledgebaseCategory extends kyObjectBase {
 	 * @param int $category_type Category type of knowledgebase item.
 	 * @return kyKnowledgebaseCategory
 	 */
-	static public function createNew() {
-        list($title, $category_type) = func_get_args();
+	public static function createNew()
+	{
+		list($title, $category_type) = func_get_args();
 		$new_knowledgebase_category = new kyKnowledgebaseCategory();
 		$new_knowledgebase_category->setTitle($title);
 		$new_knowledgebase_category->setCategoryType($category_type);

@@ -31,7 +31,7 @@ $general_department = kyDepartment::getAll()
 $example_department = kyDepartment::getAll()->filterByTitle("Printers (example)");
 if (count($example_department) > 0) {
 	$tickets_to_delete = kyTicket::getAll($example_department)
-	    ->filterBySubject("Printer not working (example)");
+		->filterBySubject("Printer not working (example)");
 
 	$tickets_to_delete->deleteAll();
 
@@ -41,7 +41,7 @@ if (count($example_department) > 0) {
 }
 
 $users_to_delete = kyUser::getAll()
-    ->filterByEmail("anno.ying@example.com");
+	->filterByEmail("anno.ying@example.com");
 
 $users_to_delete->deleteAll();
 
@@ -50,7 +50,7 @@ if (count($users_to_delete) > 0) {
 }
 
 $staff_to_delete = kyStaff::getAll()
-    ->filterByEmail("john.doe@lazycorp.com");
+	->filterByEmail("john.doe@lazycorp.com");
 
 $staff_to_delete->deleteAll();
 
@@ -59,7 +59,7 @@ if (count($staff_to_delete) > 0) {
 }
 
 $staff_groups_to_delete = kyStaffGroup::getAll()
-    ->filterByTitle("Lazy guys (example)");
+	->filterByTitle("Lazy guys (example)");
 
 $staff_groups_to_delete->deleteAll();
 
@@ -68,7 +68,7 @@ if (count($staff_groups_to_delete) > 0) {
 }
 
 $departments_to_delete = kyDepartment::getAll()
-    ->filterByTitle(array("Urgent problems (example)", "Printers (example)"));
+	->filterByTitle(array("Urgent problems (example)", "Printers (example)"));
 
 $departments_to_delete->deleteAll();
 
@@ -97,8 +97,8 @@ print 'Fetched: '.$general_department;
  * It's not currently possible to assign staff groups to departments via API. You must do it using Admin Control Panel.
  */
 $printers_department = $general_department
-    ->newSubdepartment("Printers (example)")
-    ->create();
+	->newSubdepartment("Printers (example)")
+	->create();
 
 print 'Created: '.$printers_department;
 
@@ -109,7 +109,7 @@ print 'Created: '.$printers_department;
  * module: livechat
  */
 $livechat_department = kyDepartment::createNew("Urgent problems (example)", kyDepartment::TYPE_PUBLIC, kyDepartment::MODULE_LIVECHAT)
-    ->create();
+	->create();
 
 print 'Created: '.$livechat_department;
 
@@ -119,7 +119,7 @@ print 'Created: '.$livechat_department;
  * isadmin: false (default)
  */
 $lazy_staff_group = kyStaffGroup::createNew("Lazy guys (example)")
-    ->create();
+	->create();
 
 print 'Created: '.$lazy_staff_group;
 
@@ -132,10 +132,10 @@ print 'Created: '.$lazy_staff_group;
  * password: veryhardpassword
  */
 $staff_user = $lazy_staff_group
-    ->newStaff("John", "Doe", "lazyguy", "john.doe@lazycorp.com", "veryhardpassword")
-    ->setDesignation("useless specialist") //designation
-    ->setSignature("Sorry I couldn't help you") //signature
-    ->create();
+	->newStaff("John", "Doe", "lazyguy", "john.doe@lazycorp.com", "veryhardpassword")
+	->setDesignation("useless specialist") //designation
+	->setSignature("Sorry I couldn't help you") //signature
+	->create();
 
 print 'Created: '.$staff_user;
 
@@ -143,8 +143,8 @@ print 'Created: '.$staff_user;
  * Update staff user mobile number.
  */
 $staff_user
-    ->setMobileNumber("427 078 528") //mobilenumber
-    ->update();
+	->setMobileNumber("427 078 528") //mobilenumber
+	->update();
 
 print 'Updated: '.$staff_user;
 
@@ -152,8 +152,8 @@ print 'Updated: '.$staff_user;
  * Load Registered user group.
  */
 $registered_user_group = kyUserGroup::getAll()
-    ->filterByTitle("Registered")
-    ->first();
+	->filterByTitle("Registered")
+	->first();
 
 print 'Fetched: '.$registered_user_group;
 
@@ -161,7 +161,7 @@ print 'Fetched: '.$registered_user_group;
  * Load some user organization.
  */
 $user_organization = kyUserOrganization::getAll()
-    ->first();
+	->first();
 
 print 'Fetched: '.$user_organization;
 
@@ -172,11 +172,11 @@ print 'Fetched: '.$user_organization;
  * password: qwerty123
  */
 $user = $registered_user_group
-    ->newUser("Anno Ying", "anno.ying@example.com", "qwerty123")
-    ->setUserOrganization($user_organization) //userorganizationid
-    ->setSalutation(kyUser::SALUTATION_MR) //salutation
-    ->setSendWelcomeEmail(false) //sendwelcomeemail
-    ->create();
+	->newUser("Anno Ying", "anno.ying@example.com", "qwerty123")
+	->setUserOrganization($user_organization) //userorganizationid
+	->setSalutation(kyUser::SALUTATION_MR) //salutation
+	->setSendWelcomeEmail(false) //sendwelcomeemail
+	->create();
 
 print 'Created: '.$user;
 
@@ -184,8 +184,8 @@ print 'Created: '.$user;
  * Load urgent priority.
  */
 $priority_urgent = kyTicketPriority::getAll()
-    ->filterByTitle("Urgent")
-    ->first();
+	->filterByTitle("Urgent")
+	->first();
 
 print 'Fetched: '.$priority_urgent;
 
@@ -193,12 +193,13 @@ print 'Fetched: '.$priority_urgent;
  * Create urgent ticket as the user created in previous step.
  */
 $ticket = $user
-    ->newTicket(
-        $printers_department,
-        "The printer on 4th floor in building B2 doesn't print at all. Fix it quickly, please.",
-        "Printer not working (example)")
-    ->setPriority($priority_urgent)
-    ->create();
+	->newTicket(
+		$printers_department,
+		"The printer on 4th floor in building B2 doesn't print at all. Fix it quickly, please.",
+		"Printer not working (example)"
+	)
+	->setPriority($priority_urgent)
+	->create();
 
 print 'Created: '.$ticket;
 
@@ -221,8 +222,8 @@ $user = $ticket->getUser();
  * Find ticket status with title "In Progress".
  */
 $status_in_progress = kyTicketStatus::getAll()
-    ->filterByTitle("In Progress")
-    ->first();
+	->filterByTitle("In Progress")
+	->first();
 
 print 'Fetched: '.$status_in_progress;
 
@@ -230,8 +231,8 @@ print 'Fetched: '.$status_in_progress;
  * Find ticket status with title "Closed".
  */
 $status_closed = kyTicketStatus::getAll()
-    ->filterByTitle("Closed")
-    ->first();
+	->filterByTitle("Closed")
+	->first();
 
 print 'Fetched: '.$status_closed;
 
@@ -239,8 +240,8 @@ print 'Fetched: '.$status_closed;
  * Assign the staff user created before.
  */
 $ticket
-    ->setOwnerStaff($staff_user)
-    ->update();
+	->setOwnerStaff($staff_user)
+	->update();
 
 print 'Updated ticket owner: '.$ticket;
 
@@ -248,8 +249,8 @@ print 'Updated ticket owner: '.$ticket;
  * Add new post (staff user reply).
  */
 $ticket_post = $ticket
-    ->newPost($staff_user, "Did you switched the printer on?")
-    ->create();
+	->newPost($staff_user, "Did you switched the printer on?")
+	->create();
 
 print 'Created ticket post: '.$ticket_post;
 
@@ -257,8 +258,8 @@ print 'Created ticket post: '.$ticket_post;
  * Change ticket status.
  */
 $ticket
-    ->setStatus($status_in_progress)
-    ->update();
+	->setStatus($status_in_progress)
+	->update();
 
 print 'Updated ticket status: '.$ticket;
 
@@ -266,8 +267,8 @@ print 'Updated ticket status: '.$ticket;
  * Add new post (user reply).
  */
 $user_reply_post = $ticket
-    ->newPost($user, "Yes, of course! See attached photo of the printer.")
-    ->create();
+	->newPost($user, "Yes, of course! See attached photo of the printer.")
+	->create();
 
 print 'Created ticket post: '.$user_reply_post;
 
@@ -275,8 +276,8 @@ print 'Created ticket post: '.$user_reply_post;
  * Add attachment to the post (for now using example image from Wikimedia Common).
  */
 $ticket_post_attachment = $user_reply_post
-    ->newAttachmentFromFile("http://upload.wikimedia.org/wikipedia/commons/0/0b/Canon_ir2270.jpg")
-    ->create();
+	->newAttachmentFromFile("http://upload.wikimedia.org/wikipedia/commons/0/0b/Canon_ir2270.jpg")
+	->create();
 
 print 'Created ticket post attachment: '.$ticket_post_attachment;
 
@@ -284,7 +285,7 @@ print 'Created ticket post attachment: '.$ticket_post_attachment;
  * Add "note to myself".
  */
 $ticket_note = $ticket->newNote($staff_user, "Power cable needs replacement.")
-    ->create();
+	->create();
 
 print 'Created ticket note: '.$ticket_note;
 
@@ -292,8 +293,8 @@ print 'Created ticket note: '.$ticket_note;
  * Add new post (staff user reply).
  */
 $staff_reply_post = $ticket
-    ->newPost($staff_user, "I think I know what's wrong. It will be fixed within half an hour.")
-    ->create();
+	->newPost($staff_user, "I think I know what's wrong. It will be fixed within half an hour.")
+	->create();
 
 print 'Created ticket post: '.$staff_reply_post;
 
@@ -301,8 +302,8 @@ print 'Created ticket post: '.$staff_reply_post;
  * Change ticket status.
  */
 $ticket
-    ->setStatus($status_in_progress)
-    ->update();
+	->setStatus($status_in_progress)
+	->update();
 
 print 'Updated ticket status: '.$ticket;
 
@@ -310,8 +311,8 @@ print 'Updated ticket status: '.$ticket;
  * Add new post (user reply).
  */
 $user_reply_post = $ticket
-    ->newPost($user, "Thank you. It's working now.")
-    ->create();
+	->newPost($user, "Thank you. It's working now.")
+	->create();
 
 print 'Created ticket post: '.$user_reply_post;
 
@@ -319,8 +320,8 @@ print 'Created ticket post: '.$user_reply_post;
  * Close the ticket.
  */
 $ticket
-    ->setStatus($status_closed)
-    ->update();
+	->setStatus($status_closed)
+	->update();
 
 print 'Updated ticket status: '.$ticket;
 
@@ -329,13 +330,13 @@ print 'Updated ticket status: '.$ticket;
  * which were created by user with e-mail anno.ying@example.com.
  */
 $tickets = kyTicket::getAll(
-    kyDepartment::getAll()
-        ->filterByTitle(array("~", "/printer/i")),
-    kyTicketStatus::getAll()
-        ->filterByTitle(array("!=", "Closed")),
-    array(),
-    kyUser::getAll()
-        ->filterByEmail("anno.ying@example.com")
+	kyDepartment::getAll()
+		->filterByTitle(array("~", "/printer/i")),
+	kyTicketStatus::getAll()
+		->filterByTitle(array("!=", "Closed")),
+	array(),
+	kyUser::getAll()
+		->filterByEmail("anno.ying@example.com")
 );
 
 //print them
@@ -354,10 +355,10 @@ print "Searching tickets:\n".$tickets;
  * WARNING: Can be time consuming.
  */
 $tickets = kyTicket::getAll(kyDepartment::getAll())
-    ->filterByStatusId(kyTicketStatus::getAll()
-        ->filterByTitle(array("!=", "Closed"))->collectId())
-    ->filterByReplies(array('<=', 1))
-    ->filterByOwnerStaffId(array("!=", null));
+	->filterByStatusId(kyTicketStatus::getAll()
+		->filterByTitle(array("!=", "Closed"))->collectId())
+	->filterByReplies(array('<=', 1))
+	->filterByOwnerStaffId(array("!=", null));
 
 //print them
 print "Searching tickets:\n".$tickets;

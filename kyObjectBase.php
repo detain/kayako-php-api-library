@@ -13,7 +13,8 @@
  * @link http://wiki.kayako.com/display/DEV/REST+API
  * @package Object\Base
  */
-abstract class kyObjectBase {
+abstract class kyObjectBase
+{
 
 	/**
 	 * Data key for storing files to send as multipart/form-data.
@@ -25,13 +26,13 @@ abstract class kyObjectBase {
 	 * Default Kayako controller used to operate on this objects. Override in descending classes.
 	 * @var string
 	 */
-	static protected $controller = null;
+	protected static $controller = null;
 
 	/**
 	 * Indicates the name of object element in XML response. Override in descending classes.
 	 * @var string
 	 */
-	static protected $object_xml_name = null;
+	protected static $object_xml_name = null;
 
 	/**
 	 * Controls if the object can be created/updated/deleted. Override in descending classes.
@@ -51,7 +52,7 @@ abstract class kyObjectBase {
 	 * )
 	 * @var string[]
 	 */
-	static protected $_filter_methods = array();
+	protected static $_filter_methods = array();
 
 	/**
 	 * Cache for available order methods.
@@ -65,7 +66,7 @@ abstract class kyObjectBase {
 	 * )
 	 * @var string[]
 	 */
-	static protected $_order_methods = array();
+	protected static $_order_methods = array();
 
 	/**
 	 * Cache for API fields.
@@ -86,22 +87,25 @@ abstract class kyObjectBase {
 	 * )
 	 * @var array
 	 */
-	static private $_api_fields = null;
+	private static $_api_fields = null;
 
 	/**
 	 * Default constructor.
 	 *
 	 * @param array $data Object data from XML response converted into array.
 	 */
-	function __construct($data = null) {
-		if ($data !== null)
+	public function __construct($data = null)
+	{
+		if ($data !== null) {
 			$this->parseData($data);
+		}
 	}
 
 	/**
 	 * Creates new object. Compatible with method chaining.
 	 */
-	static public function createNew() {
+	public static function createNew()
+	{
 		return new static();
 	}
 
@@ -110,7 +114,8 @@ abstract class kyObjectBase {
 	 *
 	 * @return string
 	 */
-	static public function getController() {
+	public static function getController()
+	{
 		return static::$controller;
 	}
 
@@ -128,7 +133,8 @@ abstract class kyObjectBase {
 	 * @param bool $create Indicates if the result will be used to create (true) or update (false) an object.
 	 * @return array
 	 */
-	public function buildData($create) {
+	public function buildData($create)
+	{
 		$this->checkRequiredAPIFields($create);
 		return array();
 	}
@@ -140,9 +146,11 @@ abstract class kyObjectBase {
 	 * @param string $field_name Field name.
 	 * @param mixed $field_value Field value.
 	 */
-	protected function buildDataNumeric(&$data, $field_name, $field_value) {
-		if (is_numeric($field_value))
+	protected function buildDataNumeric(&$data, $field_name, $field_value)
+	{
+		if (is_numeric($field_value)) {
 			$data[$field_name] = $field_value;
+		}
 	}
 
 	/**
@@ -152,9 +160,11 @@ abstract class kyObjectBase {
 	 * @param string $field_name Field name.
 	 * @param mixed $field_value Field value.
 	 */
-	protected function buildDataString(&$data, $field_name, $field_value) {
-		if (strlen($field_value) > 0)
+	protected function buildDataString(&$data, $field_name, $field_value)
+	{
+		if (strlen($field_value) > 0) {
 			$data[$field_name] = $field_value;
+		}
 	}
 
 	/**
@@ -164,9 +174,11 @@ abstract class kyObjectBase {
 	 * @param string $field_name Field name.
 	 * @param mixed $field_value Field value.
 	 */
-	protected function buildDataBool(&$data, $field_name, $field_value) {
-		if ($field_value !== null)
+	protected function buildDataBool(&$data, $field_name, $field_value)
+	{
+		if ($field_value !== null) {
 			$data[$field_name] = $field_value ? 1 : 0;
+		}
 	}
 
 	/**
@@ -176,9 +188,11 @@ abstract class kyObjectBase {
 	 * @param string $field_name Field name.
 	 * @param mixed $field_value Field value.
 	 */
-	protected function buildDataList(&$data, $field_name, $field_value) {
-		if (is_array($field_value) && count($field_value) > 0)
+	protected function buildDataList(&$data, $field_name, $field_value)
+	{
+		if (is_array($field_value) && count($field_value) > 0) {
 			$data[$field_name] = implode(',', $field_value);
+		}
 	}
 
 	/**
@@ -186,7 +200,8 @@ abstract class kyObjectBase {
 	 *
 	 * @return bool
 	 */
-	public function isNew() {
+	public function isNew()
+	{
 		return $this->getId() === null;
 	}
 
@@ -195,7 +210,8 @@ abstract class kyObjectBase {
 	 *
 	 * @return bool
 	 */
-	public function isReadOnly() {
+	public function isReadOnly()
+	{
 		return $this->read_only;
 	}
 
@@ -205,7 +221,8 @@ abstract class kyObjectBase {
 	 * @param bool $read_only Read only flag.
 	 * @return bool
 	 */
-	public function setReadOnly($read_only) {
+	public function setReadOnly($read_only)
+	{
 		$this->read_only = $read_only;
 	}
 
@@ -229,7 +246,8 @@ abstract class kyObjectBase {
 	 *
 	 * @return kyRESTClientInterface
 	 */
-	static protected function getRESTClient() {
+	protected static function getRESTClient()
+	{
 		return kyConfig::get()->getRESTClient();
 	}
 
@@ -239,12 +257,13 @@ abstract class kyObjectBase {
 	 * @param array $search_parameters Optional. Additional search parameters.
 	 * @return kyResultSet
 	 */
-    static public function getAll() {
-        if (func_num_args() == 0) {
-            $search_parameters = array();
-        } else {
-            list($search_parameters) = func_get_args();
-        }
+	public static function getAll()
+	{
+		if (func_num_args() == 0) {
+			$search_parameters = array();
+		} else {
+			list($search_parameters) = func_get_args();
+		}
 		$result = self::getRESTClient()->get(static::$controller, $search_parameters);
 		$objects = array();
 		if (array_key_exists(static::$object_xml_name, $result)) {
@@ -261,14 +280,17 @@ abstract class kyObjectBase {
 	 * @param int|array $id Object identifier or list of identifiers (ex. ticket identifier and ticket post identifier when fetching TicketPost).
 	 * @return kyObjectBase
 	 */
-    static public function get() {
-        list($id) = func_get_args();
+	public static function get()
+	{
+		list($id) = func_get_args();
 
-		if (!is_array($id))
+		if (!is_array($id)) {
 			$id = array($id);
+		}
 		$result = self::getRESTClient()->get(static::$controller, $id);
-		if (count($result) === 0)
+		if (count($result) === 0) {
 			return null;
+		}
 		return new static($result[static::$object_xml_name][0]);
 	}
 
@@ -278,9 +300,11 @@ abstract class kyObjectBase {
 	 * @throws BadMethodCallException
 	 * @return kyObjectBase
 	 */
-	public function refresh() {
-		if ($this->isNew())
+	public function refresh()
+	{
+		if ($this->isNew()) {
 			throw new BadMethodCallException("Object is not yet saved on server. Save it before refreshing.");
+		}
 
 		$result = self::getRESTClient()->get(static::$controller, $this->getId(true));
 
@@ -302,14 +326,17 @@ abstract class kyObjectBase {
 	 * @throws kyException
 	 * @return kyObjectBase
 	 */
-	public function create() {
-		if ($this->read_only)
+	public function create()
+	{
+		if ($this->read_only) {
 			throw new BadMethodCallException(sprintf("You can't create new objects of type %s.", get_called_class()));
+		}
 
 		$result = self::getRESTClient()->post(static::$controller, array(), $this->buildData(true));
 
-		if (count($result) === 0)
+		if (count($result) === 0) {
 			throw new kyException("No data returned by the server after creating the object.");
+		}
 
 		$this->parseData($result[static::$object_xml_name][0]);
 		return $this;
@@ -322,17 +349,21 @@ abstract class kyObjectBase {
 	 * @throws kyException
 	 * @return kyObjectBase
 	 */
-	public function update() {
-		if ($this->read_only)
+	public function update()
+	{
+		if ($this->read_only) {
 			throw new BadMethodCallException(sprintf("You can't update objects of type %s.", get_called_class()));
+		}
 
-		if ($this->isNew())
+		if ($this->isNew()) {
 			throw new BadMethodCallException(sprintf("You can't update object before it was created. Create it first.", get_called_class()));
+		}
 
 		$result = self::getRESTClient()->put(static::$controller, $this->getId(true), $this->buildData(false));
 
-		if (count($result) === 0)
+		if (count($result) === 0) {
 			throw new kyException("No data returned by the server after updating the object.");
+		}
 
 		$this->parseData($result[static::$object_xml_name][0]);
 		return $this;
@@ -343,7 +374,8 @@ abstract class kyObjectBase {
 	 *
 	 * @return kyObjectBase
 	 */
-	public function save() {
+	public function save()
+	{
 		if ($this->isNew()) {
 			return $this->create();
 		} else {
@@ -354,9 +386,11 @@ abstract class kyObjectBase {
 	/**
 	 * Deletes the object on the server.
 	 */
-	public function delete() {
-		if ($this->read_only)
+	public function delete()
+	{
+		if ($this->read_only) {
 			throw new BadMethodCallException(sprintf("You can't delete object of type %s.", get_called_class()));
+		}
 
 		self::getRESTClient()->delete(static::$controller, $this->getId(true));
 	}
@@ -369,7 +403,8 @@ abstract class kyObjectBase {
 	 * and builds API field list with property name, description, setter and getter method names, and required flags.
 	 * @see kyObjectBase::$_api_fields
 	 */
-	static private function initAPIFieldsAccessors() {
+	private static function initAPIFieldsAccessors()
+	{
 		$classname = get_called_class();
 
 		if (self::$_api_fields === null || !array_key_exists($classname, self::$_api_fields)) {
@@ -382,8 +417,9 @@ abstract class kyObjectBase {
 				$short_description = trim(next($comment_lines), " *\t\n\r");
 
 				$parameters = ky_get_tag_parameters($comment, 'apiField');
-				if ($parameters === false)
+				if ($parameters === false) {
 					continue;
+				}
 
 				$api_field = null;
 				$accessor = null;
@@ -397,8 +433,9 @@ abstract class kyObjectBase {
 					$api_field = str_replace('_', '', $property->getName());
 				}
 
-				if (array_key_exists($api_field, self::$_api_fields[$classname]))
+				if (array_key_exists($api_field, self::$_api_fields[$classname])) {
 					continue;
+				}
 
 				if (array_key_exists('accessor', $parameters)) {
 					$accessor = $parameters['accessor'];
@@ -414,7 +451,7 @@ abstract class kyObjectBase {
 					$setter = $parameters['setter'];
 				}
 
-				if (strlen($getter) === 0 && strlen($setter) === 0 ) {
+				if (strlen($getter) === 0 && strlen($setter) === 0) {
 					$name_parts = explode('_', $property->getName());
 					foreach ($name_parts as $name_part) {
 						$accessor .= ucfirst($name_part);
@@ -431,8 +468,9 @@ abstract class kyObjectBase {
 					$getter = null;
 				}
 
-				if (strlen($getter) === 0 && strlen($setter) === 0)
+				if (strlen($getter) === 0 && strlen($setter) === 0) {
 					continue;
+				}
 
 				$required_create = (array_key_exists('required', $parameters) && $parameters['required'] === 'true') || (array_key_exists('required_create', $parameters) && $parameters['required_create'] === 'true');
 				$required_update = (array_key_exists('required', $parameters) && $parameters['required'] === 'true') || (array_key_exists('required_update', $parameters) && $parameters['required_update'] === 'true');
@@ -472,24 +510,28 @@ abstract class kyObjectBase {
 	 *
 	 * @return string[]
 	 */
-	static public function getAPIFields() {
+	public static function getAPIFields()
+	{
 		static::initAPIFieldsAccessors();
 		$classname = get_called_class();
 
 		$api_fields = array();
 		foreach (self::$_api_fields[$classname] as $api_field => $api_field_parameters) {
 			$required = array();
-			if ($api_field_parameters['required_create'])
+			if ($api_field_parameters['required_create']) {
 				$required[] = 'create';
-			if ($api_field_parameters['required_update'])
+			}
+			if ($api_field_parameters['required_update']) {
 				$required[] = 'update';
+			}
 
-			$api_fields[$api_field] = sprintf("%s (getter: %s, setter: %s, required: %s, aliases: %s)",
-					strlen($api_field_parameters['description']) > 0 ? $api_field_parameters['description'] : 'no description',
-					strlen($api_field_parameters['getter']) > 0 ? $api_field_parameters['getter'] : 'no getter',
-					strlen($api_field_parameters['setter']) > 0 ? $api_field_parameters['setter'] : 'no setter',
-					count($required) > 0 ? implode(', ', $required) : 'no',
-					count($api_field_parameters['aliases']) > 0 ? implode(', ', $api_field_parameters['aliases']) : 'none'
+			$api_fields[$api_field] = sprintf(
+				"%s (getter: %s, setter: %s, required: %s, aliases: %s)",
+				strlen($api_field_parameters['description']) > 0 ? $api_field_parameters['description'] : 'no description',
+				strlen($api_field_parameters['getter']) > 0 ? $api_field_parameters['getter'] : 'no getter',
+				strlen($api_field_parameters['setter']) > 0 ? $api_field_parameters['setter'] : 'no setter',
+				count($required) > 0 ? implode(', ', $required) : 'no',
+				count($api_field_parameters['aliases']) > 0 ? implode(', ', $api_field_parameters['aliases']) : 'none'
 				);
 		}
 
@@ -502,14 +544,16 @@ abstract class kyObjectBase {
 	 * @param bool $create True when object will be created. False when object will be updated.
 	 * @return string[]
 	 */
-	static public function getRequiredAPIFields($create) {
+	public static function getRequiredAPIFields($create)
+	{
 		static::initAPIFieldsAccessors();
 		$classname = get_called_class();
 
 		$required_fields = array();
 		foreach (self::$_api_fields[$classname] as $api_field => $api_field_parameters) {
-			if (($create && $api_field_parameters['required_create'] === false) || (!$create && $api_field_parameters['required_update'] === false))
+			if (($create && $api_field_parameters['required_create'] === false) || (!$create && $api_field_parameters['required_update'] === false)) {
 				continue;
+			}
 
 			$required_fields[] = $api_field;
 		}
@@ -525,15 +569,17 @@ abstract class kyObjectBase {
 	 * @throws kyException When there are missing field values and $throw_exception is true.
 	 * @return string[]|bool List of missing API fields or true when there are none.
 	 */
-	public function checkRequiredAPIFields($create, $throw_exception = true) {
+	public function checkRequiredAPIFields($create, $throw_exception = true)
+	{
 		$classname = get_class($this);
 		/** @noinspection PhpUndefinedMethodInspection */
 		$classname::initAPIFieldsAccessors();
 
 		$missing_fields = array();
 		foreach (self::$_api_fields[$classname] as $api_field => $api_field_parameters) {
-			if (($create && $api_field_parameters['required_create'] === false) || (!$create && $api_field_parameters['required_update'] === false))
+			if (($create && $api_field_parameters['required_create'] === false) || (!$create && $api_field_parameters['required_update'] === false)) {
 				continue;
+			}
 
 			$property = $api_field_parameters['property'];
 			$property_value = $this->$property;
@@ -543,8 +589,9 @@ abstract class kyObjectBase {
 		}
 
 		if (count($missing_fields) > 0) {
-			if ($throw_exception)
+			if ($throw_exception) {
 				throw new kyException(sprintf("Values for API fields '%s' is required for this operation to complete.", implode(', ', $missing_fields)));
+			}
 
 			return $missing_fields;
 		}
@@ -561,13 +608,15 @@ abstract class kyObjectBase {
 	 * @param string $api_field_name API field name.
 	 * @return mixed
 	 */
-	public function __get($api_field_name) {
+	public function __get($api_field_name)
+	{
 		static::initAPIFieldsAccessors();
 		$classname = get_class($this);
 
 		foreach (self::$_api_fields[$classname] as $api_field => $api_field_parameters) {
-			if ($api_field !== $api_field_name && !in_array($api_field_name, $api_field_parameters['aliases']))
+			if ($api_field !== $api_field_name && !in_array($api_field_name, $api_field_parameters['aliases'])) {
 				continue;
+			}
 
 			$api_field_getter = $api_field_parameters['getter'];
 			if ($api_field_getter !== null) {
@@ -591,13 +640,15 @@ abstract class kyObjectBase {
 	 * @param mixed $value API field value.
 	 * @return mixed
 	 */
-	public function __set($api_field_name, $value) {
+	public function __set($api_field_name, $value)
+	{
 		static::initAPIFieldsAccessors();
 		$classname = get_class($this);
 
 		foreach (self::$_api_fields[$classname] as $api_field => $api_field_parameters) {
-			if ($api_field !== $api_field_name && !in_array($api_field_name, $api_field_parameters['aliases']))
+			if ($api_field !== $api_field_name && !in_array($api_field_name, $api_field_parameters['aliases'])) {
 				continue;
+			}
 
 			$api_field_setter = $api_field_parameters['setter'];
 			if ($api_field_setter !== null) {
@@ -618,7 +669,8 @@ abstract class kyObjectBase {
 	 * @param bool $filter_names_only True (default) to return array('filterByXXX', 'filterByYYY', ...). False to return array('filterByXXX' => 'getXXX', 'filterByYYY' => 'YYY', ...).
 	 * @return array
 	 */
-	static public function getAvailableFilterMethods($filter_names_only = true) {
+	public static function getAvailableFilterMethods($filter_names_only = true)
+	{
 		$class_name = get_called_class();
 		if (!array_key_exists($class_name, self::$_filter_methods)) {
 			$filter_methods = array();
@@ -630,8 +682,9 @@ abstract class kyObjectBase {
 				$get_method_name = $method->getName();
 				$method_comment = $method->getDocComment();
 				$parameters = ky_get_tag_parameters($method_comment, 'filterBy');
-				if ($parameters === false)
+				if ($parameters === false) {
 					continue;
+				}
 
 				if (array_key_exists('name', $parameters)) {
 					$filter_method_name = $parameters['name'];
@@ -654,7 +707,8 @@ abstract class kyObjectBase {
 	 * @param bool $order_names_only True (default) to return array('orderByXXX', 'orderByYYY', ...). False to return array('orderByXXX' => 'getXXX', 'orderByYYY' => 'YYY', ...).
 	 * @return array
 	 */
-	static public function getAvailableOrderMethods($order_names_only = true) {
+	public static function getAvailableOrderMethods($order_names_only = true)
+	{
 		$class_name = get_called_class();
 		if (!array_key_exists($class_name, self::$_order_methods)) {
 			$order_methods = array();
@@ -666,8 +720,9 @@ abstract class kyObjectBase {
 				$get_method_name = $method->getName();
 				$method_comment = $method->getDocComment();
 				$parameters = ky_get_tag_parameters($method_comment, 'orderBy');
-				if ($parameters === false)
+				if ($parameters === false) {
 					continue;
+				}
 
 				if (array_key_exists('name', $parameters)) {
 					$order_method_name = $parameters['name'];
@@ -689,7 +744,8 @@ abstract class kyObjectBase {
 	 *
 	 * @return string
 	 */
-	public function __toString() {
+	public function __toString()
+	{
 		return sprintf("%s (id: %s): %s\n", get_class($this), implode(', ', $this->getId(true)), $this->toString());
 	}
 }
