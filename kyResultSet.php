@@ -101,6 +101,7 @@ class kyResultSet implements Iterator, Countable, ArrayAccess
 	/**
 	 * Iterator implementation.
 	 */
+    #[\ReturnTypeWillChange]
 	public function rewind()
 	{
 		reset($this->objects);
@@ -109,6 +110,7 @@ class kyResultSet implements Iterator, Countable, ArrayAccess
 	/**
 	 * Iterator implementation.
 	 */
+    #[\ReturnTypeWillChange]
 	public function current()
 	{
 		return current($this->objects);
@@ -117,6 +119,7 @@ class kyResultSet implements Iterator, Countable, ArrayAccess
 	/**
 	 * Iterator implementation.
 	 */
+    #[\ReturnTypeWillChange]
 	public function key()
 	{
 		return key($this->objects);
@@ -125,6 +128,7 @@ class kyResultSet implements Iterator, Countable, ArrayAccess
 	/**
 	 * Iterator implementation.
 	 */
+    #[\ReturnTypeWillChange]
 	public function next()
 	{
 		next($this->objects);
@@ -133,6 +137,7 @@ class kyResultSet implements Iterator, Countable, ArrayAccess
 	/**
 	 * Iterator implementation.
 	 */
+    #[\ReturnTypeWillChange]
 	public function valid()
 	{
 		return current($this->objects) !== false;
@@ -141,6 +146,7 @@ class kyResultSet implements Iterator, Countable, ArrayAccess
 	/**
 	 * Countable implementation.
 	 */
+    #[\ReturnTypeWillChange]
 	public function count()
 	{
 		return count($this->object_keys);
@@ -149,6 +155,7 @@ class kyResultSet implements Iterator, Countable, ArrayAccess
 	/**
 	 * ArrayAccess implementation.
 	 */
+    #[\ReturnTypeWillChange]
 	public function offsetExists($offset)
 	{
 		return in_array($offset, $this->object_keys);
@@ -157,6 +164,7 @@ class kyResultSet implements Iterator, Countable, ArrayAccess
 	/**
 	 * ArrayAccess implementation.
 	 */
+    #[\ReturnTypeWillChange]
 	public function offsetGet($offset)
 	{
 		if (!in_array($offset, $this->object_keys)) {
@@ -169,6 +177,7 @@ class kyResultSet implements Iterator, Countable, ArrayAccess
 	/**
 	 * ArrayAccess implementation.
 	 */
+    #[\ReturnTypeWillChange]
 	public function offsetSet($offset, $value)
 	{
 		if (!is_object($value) || (strlen($this->class_name) > 0 && get_class($value) !== $this->class_name)) {
@@ -182,6 +191,7 @@ class kyResultSet implements Iterator, Countable, ArrayAccess
 	/**
 	 * ArrayAccess implementation.
 	 */
+    #[\ReturnTypeWillChange]
 	public function offsetUnset($offset)
 	{
 		if (!in_array($offset, $this->object_keys)) {
