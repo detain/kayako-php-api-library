@@ -76,7 +76,7 @@ class kyResultSet implements Iterator, Countable, ArrayAccess
 			$objects = $objects->getRawArray();
 		}
 
-		if (strlen($class_name) > 0) {
+		if (!is_null($classs_name) && strlen($class_name) > 0) {
 			$this->class_name = $class_name;
 		} elseif (count($objects) > 0) {
 			//get class name of first object
