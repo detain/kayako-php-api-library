@@ -421,10 +421,10 @@ abstract class kyObjectBase
 					continue;
 				}
 
-				$api_field = null;
+				$api_field = '';
 				$accessor = null;
-				$setter = null;
-				$getter = null;
+				$setter = '';
+				$getter = '';
 				if (array_key_exists('name', $parameters)) {
 					$api_field = $parameters['name'];
 				}
