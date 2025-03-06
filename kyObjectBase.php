@@ -468,7 +468,7 @@ abstract class kyObjectBase
 					$getter = null;
 				}
 
-				if (strlen($getter) === 0 && strlen($setter) === 0) {
+				if ((is_null($getter) || strlen($getter) === 0) && (is_null($setter) || strlen($setter) === 0)) {
 					continue;
 				}
 
