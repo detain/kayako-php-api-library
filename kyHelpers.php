@@ -52,7 +52,8 @@ if (!function_exists('ky_xml_to_array')) {
 			}
 		}
 		if (!($xml instanceof SimpleXMLElement)) {
-			myadmin_log('kayako', 'error', 'Cannot parse xml', __LINE__, __FILE__);
+			$raw = is_string($xml) ? substr($xml, 0, 500) : gettype($xml);
+			myadmin_log('kayako', 'error', 'Cannot parse xml: '.$raw, __LINE__, __FILE__);
 			return $arr;
 		}
 
